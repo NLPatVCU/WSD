@@ -1,0 +1,2231 @@
+=head1 NAME
+
+Word2vec::Word2vec - word2vec wrapper module.
+
+=head1 SYNOPSIS
+
+ # Parameters: Enabled Debug Logging, Disabled Write Logging
+ my $w2v = Word2vec::Word2vec->new( 1, 0 );             # Note: Specifiying no parameters implies default settings.
+
+ $w2v->SetTrainFilePath( "textCorpus.txt" );
+ $w2v->SetOutputFilePath( "vectors.bin" );
+ $w2v->SetWordVecSize( 200 );
+ $w2v->SetWindowSize( 8 );
+ $w2v->SetSample( 0.0001 );
+ $w2v->SetNegative( 25 );
+ $w2v->SetHSoftMax( 0 );
+ $w2v->SetBinaryOutput( 0 );
+ $w2v->SetNumOfThreads( 20 );
+ $w2v->SetNumOfIterations( 12 );
+ $w2v->SetUseCBOW( 1 );
+ $w2v->SetOverwriteOldFile( 0 );
+
+ $w2v->ExecuteTraining();
+
+ undef( $w2v );
+
+ # or
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();             # Note: Specifying no parameters implies default settings.
+
+ $w2v->ExecuteTraining( $trainFilePath, $outputFilePath, $vectorSize, $windowSize, $minCount, $sample, $negative,
+                        $alpha, $hs, $binary, $numOfThreads, $iterations, $useCBOW, $classes, $readVocab,
+                        $saveVocab, $debug, $overwrite );
+
+ undef( $w2v );
+
+=head1 DESCRIPTION
+
+Word2vec::Word2vec is a word2vec package tool that trains text corpus data using the word2vec tool, provides multiple avenues for cosine
+similarity computation, manipulation of word vectors and conversion of word2vec's binary format to human readable text.
+
+=head2 Main Functions
+
+=head3 new
+
+Description:
+
+ Returns a new "Word2vec::Word2vec" module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0
+    trainFileName               = ""
+    outputFileName              = ""
+    wordVecSize                 = 100
+    sample                      = 5
+    hSoftMax                    = 0
+    negative                    = 5
+    numOfThreads                = 12
+    numOfIterations             = 5
+    minCount                    = 5
+    alpha                       = 0.05 (CBOW) or 0.025 (Skip-Gram)
+    classes                     = 0
+    debug                       = 2
+    binaryOutput                = 1
+    saveVocab                   = ""
+    readVocab                   = ""
+    useCBOW                     = 1
+    workingDir                  = Current Directory
+    hashRefOfWordVectors        = ()
+    overwriteOldFile            = 0
+
+Input:
+
+ $debugLog                    -> Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -> Instructs module to print debug statements to a log file. (1 = True / 0 = False)
+ $trainFileName               -> Specifies the training text corpus file path. (String)
+ $outputFileName              -> Specifies the word2vec post training output file path. (String)
+ $wordVecSize                 -> Specifies word2vec word vector parameter size.(Integer)
+ $sample                      -> Specifies word2vec sample parameter value. (Integer)
+ $hSoftMax                    -> Specifies word2vec HSoftMax parameter value. (Integer)
+ $negative                    -> Specifies word2vec negative parameter value. (Integer)
+ $numOfThreads                -> Specifies word2vec number of threads parameter value. (Integer)
+ $numOfIterations             -> Specifies word2vec number of iterations parameter value. (Integer)
+ $minCount                    -> Specifies word2vec min-count parameter value. (Integer)
+ $alpha                       -> Specifies word2vec alpha parameter value. (Integer)
+ $classes                     -> Specifies word2vec classes parameter value. (Integer)
+ $debug                       -> Specifies word2vec debug training parameter value. (Integer: '0' = No Debug, '1' = Debug, '2' = Even more debug info)
+ $binaryOutput                -> Specifies word2vec binary output mode parameter value. (Integer: '1' = Binary, '0' = Plain Text)
+ $saveVocab                   -> Specifies word2vec save vocabulary file path. (String)
+ $readVocab                   -> Specifies word2vec read vocabulary file path. (String)
+ $useCBOW                     -> Specifies word2vec CBOW algorithm parameter value. (Integer: '1' = CBOW, '0' = Skip-Gram)
+ $workingDir                  -> Specifies module working directory. (String)
+ $hashRefOfWordVectors        -> Storage location for loaded word2vec trained vector data file in memory. (Hash)
+ $overwriteOldFile            -> Instructs the module to either overwrite any existing data with the same output file name and path. ( '1' or '0' )
+
+ Note: It is not recommended to specify all new() parameters, as it has not been thoroughly tested.
+
+Output:
+
+ Word2vec::Word2vec object.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+
+ undef( $w2v );
+
+=head3 DESTROY
+
+Description:
+
+  Removes member variables and file handle from memory.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->DESTROY();
+
+ undef( $w2v );
+
+=head3 ExecuteTraining
+
+ Executes word2vec training based on parameters. Parameter variables have higher precedence
+ than member variables. Any parameter specified will override its respective member variable.
+
+ Note: If no parameters are specified, this module executes word2vec training based on preset
+ member variables. Returns string regarding training status.
+
+Input:
+
+ $trainFilePath  -> Specifies word2vec text corpus training file in a given path. (String)
+ $outputFilePath -> Specifies word2vec trained output data file name and save path. (String)
+ $vectorSize     -> Size of word2vec word vectors. (Integer)
+ $windowSize     -> Maximum skip length between words. (Integer)
+ $minCount       -> Disregard words that appear less than $minCount times. (Integer)
+ $sample         -> Threshold for occurrence of words. Those that appear with higher frequency in the training data will be randomly down-sampled. (Float)
+ $negative       -> Number of negative examples. (Integer)
+ $alpha          -> Set that start learning rate. (Float)
+ $hs             -> Hierarchical Soft-max (Integer)
+ $binary         -> Save trained data as binary mode. (Integer)
+ $numOfThreads   -> Number of word2vec training threads. (Integer)
+ $iterations     -> Number of training iterations to run prior to completion of training. (Integer)
+ $useCBOW        -> Enable Continuous Bag Of Words model or Skip-Gram model. (Integer)
+ $classes        -> Output word classes rather than word vectors. (Integer)
+ $readVocab      -> Read vocabulary from file path without constructing from training data. (String)
+ $saveVocab      -> Save vocabulary to file path. (String)
+ $debug          -> Set word2vec debug mode. (Integer)
+ $overwrite      -> Instructs the module to either overwrite any existing text corpus files or append to the existing file. ( '1' = True / '0' = False )
+
+ Note: It is not recommended to specify all new() parameters, as it has not been thoroughly tested.
+
+Output:
+
+ $value          -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetTrainFilePath( "textcorpus.txt" );
+ $w2v->SetOutputFilePath( "vectors.bin" );
+ $w2v->SetWordVecSize( 200 );
+ $w2v->SetWindowSize( 8 );
+ $w2v->SetSample( 0.0001 );
+ $w2v->SetNegative( 25 );
+ $w2v->SetHSoftMax( 0 );
+ $w2v->SetBinaryOutput( 0 );
+ $w2v->SetNumOfThreads( 20 );
+ $w2v->SetNumOfIterations( 15 );
+ $w2v->SetUseCBOW( 1 );
+ $w2v->SetOverwriteOldFile( 0 );
+ $w2v->ExecuteTraining();
+
+ undef( $w2v );
+
+ # or
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ExecuteTraining( "textcorpus.txt", "vectors.bin", 200, 8, 5, 0.001, 25, 0.05, 0, 0, 20, 15, 1, 0, "", "", 2, 0 );
+
+ undef( $w2v );
+
+=head3 ExecuteStringTraining
+
+ Executes word2vec training based on parameters. Parameter variables have higher precedence
+ than member variables. Any parameter specified will override its respective member variable.
+
+ Note: If no parameters are specified, this module executes word2vec training based on preset
+ member variables. Returns string regarding training status.
+
+Input:
+
+ $trainingStr    -> String to train with word2vec.
+ $outputFilePath -> Specifies word2vec trained output data file name and save path. (String)
+ $vectorSize     -> Size of word2vec word vectors. (Integer)
+ $windowSize     -> Maximum skip length between words. (Integer)
+ $minCount       -> Disregard words that appear less than $minCount times. (Integer)
+ $sample         -> Threshold for occurrence of words. Those that appear with higher frequency in the training data will be randomly down-sampled. (Float)
+ $negative       -> Number of negative examples. (Integer)
+ $alpha          -> Set that start learning rate. (Float)
+ $hs             -> Hierarchical Soft-max (Integer)
+ $binary         -> Save trained data as binary mode. (Integer)
+ $numOfThreads   -> Number of word2vec training threads. (Integer)
+ $iterations     -> Number of training iterations to run prior to completion of training. (Integer)
+ $useCBOW        -> Enable Continuous Bag Of Words model or Skip-Gram model. (Integer)
+ $classes        -> Output word classes rather than word vectors. (Integer)
+ $readVocab      -> Read vocabulary from file path without constructing from training data. (String)
+ $saveVocab      -> Save vocabulary to file path. (String)
+ $debug          -> Set word2vec debug mode. (Integer)
+ $overwrite      -> Instructs the module to either overwrite any existing text corpus files or append to the existing file. ( '1' = True / '0' = False )
+
+ Note: It is not recommended to specify all new() parameters, as it has not been thoroughly tested.
+
+Output:
+
+ $value          -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetOutputFilePath( "vectors.bin" );
+ $w2v->SetWordVecSize( 200 );
+ $w2v->SetWindowSize( 8 );
+ $w2v->SetSample( 0.0001 );
+ $w2v->SetNegative( 25 );
+ $w2v->SetHSoftMax( 0 );
+ $w2v->SetBinaryOutput( 0 );
+ $w2v->SetNumOfThreads( 20 );
+ $w2v->SetNumOfIterations( 15 );
+ $w2v->SetUseCBOW( 1 );
+ $w2v->SetOverwriteOldFile( 0 );
+ $w2v->ExecuteStringTraining( "string to train here" );
+
+ undef( $w2v );
+
+ # or
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ExecuteStringTraining( "string to train here", "vectors.bin", 200, 8, 5, 0.001, 25, 0.05, 0, 0, 20, 15, 1, 0, "", "", 2, 0 );
+
+ undef( $w2v );
+
+=head3 ComputeCosineSimilarity
+
+Description:
+
+ Computes cosine similarity between two words using trained word2vec vector data. Returns
+ float value or undefined if one or more words are not in the dictionary.
+
+ Note: Supports single words only and requires vector data to be in memory with ReadTrainedVectorDataFromFile() prior to function execution.
+
+Input:
+
+ $string -> Single string word
+ $string -> Single string word
+
+Output:
+
+ $value  -> Float or Undefined
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ print "Cosine similarity between words: \"of\" and \"the\": " . $w2v->ComputeCosineSimilarity( "of", "the" ) . "\n";
+
+ undef( $w2v );
+
+=head3 ComputeAvgOfWordsCosineSimilarity
+
+Description:
+
+ Computes cosine similarity between two words or compound words using trained word2vec vector data.
+ Returns float value or undefined.
+
+ Note: Supports multiple words concatenated by ' ' and requires vector data to be in memory prior
+ to method execution. This method will not error out when a word is not located within the dictionary.
+ It will take the average of all found words for each parameter then cosine similarity of both word vectors.
+
+Input:
+
+ $string -> string of single or multiple words separated by ' ' (space).
+ $string -> string of single or multiple words separated by ' ' (space).
+
+Output:
+
+ $value  -> Float or Undefined
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ print "Cosine similarity between words: \"heart attack\" and \"acute myocardial infarction\": " .
+       $w2v->ComputeAvgOfWordsCosineSimilarity( "heart attack", "acute myocardial infarction" ) . "\n";
+
+ undef( $w2v );
+
+=head3 ComputeMultiWordCosineSimilarity
+
+Description:
+
+ Computes cosine similarity between two words or compound words using trained word2vec vector data.
+
+ Note: Supports multiple words concatenated by ' ' (space) and requires vector data to be in memory prior to method execution.
+ If $allWordsMustExist is set to true, this function will error out when a specified word is not found and return undefined.
+
+Input:
+
+ $string            -> string of single or multiple words separated by ' ' (space).
+ $string            -> string of single or multiple words separated by ' ' (space).
+ $allWordsMustExist -> 1 = True, 0 or undef = False
+
+Output:
+
+ $value             -> Float or Undefined
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ print "Cosine similarity between words: \"heart attack\" and \"acute myocardial infarction\": " .
+       $w2v->ComputeMultiWordCosineSimilarity( "heart attack", "acute myocardial infarction" ) . "\n";
+
+ undef( $w2v );
+
+=head3 ComputeCosineSimilarityOfWordVectors
+
+Description:
+
+ Computes cosine similarity between two word vectors.
+ Returns float value or undefined if one or more words are not in the dictionary.
+
+ Note: Function parameters require actual word vector data with words removed.
+
+Input:
+
+ $string -> string of word vector representation data separated by ' ' (space).
+ $string -> string of word vector representation data separated by ' ' (space).
+
+Output:
+
+ $value  -> Float or Undefined
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $word2vec = Word2vec::Word2vec->new();
+ $word2vec->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ my $vectorAData = $word2vec->GetWordVector( "heart" );
+ my $vectorBData = $word2vec->GetWordVector( "attack" );
+
+ # Remove Words From Data
+ $vectorAData = RemoveWordFromWordVectorString( $vectorAData );
+ $vectorBData = RemoveWordFromWordVectorString( $vectorBData );
+
+ print "Cosine similarity between words: \"heart\" and \"attack\": " .
+       $word2vec->ComputeCosineSimilarityOfWordVectors( $vectorAData, $vectorBData ) . "\n";
+
+ undef( $word2vec );
+
+=head3 CosSimWithUserInput
+
+Description:
+
+ Computes cosine similarity between two words using trained word2vec vector data based on user input.
+
+ Note: No compound word support.
+
+ Warning: Requires vector data to be in memory prior to method execution.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ $w2v->CosSimWIthUserInputTest();
+
+ undef( $w2v );
+
+=head3 MultiWordCosSimWithUserInput
+
+Description:
+
+ Computes cosine similarity between two words or compound words using trained word2vec vector data based on user input.
+
+ Note: Supports multiple words concatenated by ':'.
+
+ Warning: Requires vector data to be in memory prior to method execution.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ $w2v->MultiWordCosSimWithUserInput();
+
+ undef( $w2v );
+
+
+=head3 ComputeAverageOfWords
+
+Description:
+
+ Computes cosine similarity average of all found words given an array reference parameter of
+ plain text words. Returns average values (string) or undefined.
+
+ Warning: Requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $arrayReference -> Array reference of words
+
+Output:
+
+ $string         -> String of word2vec word average values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+ my $data = $w2v->ComputeAverageOfWords( "of", "the", "and" );
+ print( "Computed Average Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 AddTwoWords
+
+Description:
+
+ Adds two word vectors and returns the result.
+
+ Warning: This method also requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word to add
+ $string -> Word to add
+
+Output:
+
+ $string -> String of word2vec summed word values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+
+ my $data = $w2v->AddTwoWords( "heart", "attack" );
+ print( "Computed Sum Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 SubtractTwoWords
+
+Description:
+
+ Subtracts two word vectors and returns the result.
+
+ Warning: This method also requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word to subtract
+ $string -> Word to subtract
+
+Output:
+
+ $string -> String of word2vec difference between word values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+
+ my $data = $w2v->SubtractTwoWords( "king", "man" );
+ print( "Computed Difference Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 AddTwoWordVectors
+
+Description:
+
+ Adds two vector data strings and returns the result.
+
+ Warning: Text word must be removed from vector data prior to calling this method. This method
+ also requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word2vec word vector data (with string word removed)
+ $string -> Word2vec word vector data (with string word removed)
+
+Output:
+
+ $string -> String of word2vec summed word values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+ my $wordAData = $w2v->GetWordVector( "of" );
+ my $wordBData = $w2v->GetWordVector( "the" );
+
+ # Removing Words From Vector Data Array
+ $wordAData = RemoveWordFromWordVectorString( $wordAData );
+ $wordBData = RemoveWordFromWordVectorString( $wordBData );
+
+ my $data = $w2v->AddTwoWordVectors( $wordAData, $wordBData );
+ print( "Computed Sum Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 SubtractTwoWordVectors
+
+Description:
+
+ Subtracts two vector data strings and returns the result.
+
+ Warning: Text word must be removed from vector data prior to calling this method. This method
+ also requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word2vec word vector data (with string word removed)
+ $string -> Word2vec word vector data (with string word removed)
+
+Output:
+
+ $string -> String of word2vec difference between word values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+ my $wordAData = $w2v->GetWordVector( "of" );
+ my $wordBData = $w2v->GetWordVector( "the" );
+
+ # Removing Words From Vector Data Array
+ $wordAData = RemoveWordFromWordVectorString( $wordAData );
+ $wordBData = RemoveWordFromWordVectorString( $wordBData );
+
+ my $data = $w2v->SubtractTwoWordVectors( $wordAData, $wordBData );
+ print( "Computed Difference Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 AverageOfTwoWordVectors
+
+Description:
+
+ Computes the average of two vectors and returns the result.
+
+ Warning: Text word must be removed from vector data prior to calling this method. This method
+ also requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word2vec word vector data (with string word removed)
+ $string -> Word2vec word vector data (with string word removed)
+
+Output:
+
+ $string -> String of word2vec average between word values
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+ my $wordAData = $w2v->GetWordVector( "of" );
+ my $wordBData = $w2v->GetWordVector( "the" );
+
+ # Removing Words From Vector Data Array
+ $wordAData = RemoveWordFromWordVectorString( $wordAData );
+ $wordBData = RemoveWordFromWordVectorString( $wordBData );
+
+ my $data = $w2v->AverageOfTwoWordVectors( $wordAData, $wordBData );
+ print( "Computed Difference Of Words: $data" ) if defined( $data );
+
+ undef( $w2v );
+
+=head3 GetWordVector
+
+Description:
+
+ Searches dictionary in memory for the specified string argument and returns the vector data.
+ Returns undefined if not found.
+
+ Warning: Requires vector data to be in memory prior to method execution.
+
+Input:
+
+ $string -> Word to locate in word2vec vocabulary/dictionary
+
+Output:
+
+ $string -> Found word2vec word + word vector data or undefined.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "sample/samplevectors.bin" );
+ my $wordData = $w2v->GetWordVector( "of" );
+ print( "Word2vec Word Data: $wordData\n" ) if defined( $wordData );
+
+ undef( $w2v );
+
+=head3 IsVectorDataInMemory
+
+Description:
+
+ Checks to see if vector data has been loaded in memory.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $result = $w2v->IsVectorDataInMemory();
+
+ print( "No vector data in memory\n" ) if $result == 0;
+ print( "Yes vector data in memory\n" ) if $result == 1;
+
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+
+ print( "No vector data in memory\n" ) if $result == 0;
+ print( "Yes vector data in memory\n" ) if $result == 1;
+
+ undef( $w2v );
+
+=head3 IsWordOrCUIVectorData
+
+Description:
+
+ Checks to see if vector data consists of word or CUI terms.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> 'cui', 'word' or undef
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ my $isWordOrCUIData = $w2v->IsWordOrCUIVectorData();
+
+ print( "Vector Data Consists Of \"$isWordOrCUIData\" Terms\n" ) if defined( $isWordOrCUIData );
+ print( "Cannot Determine Type Of Terms\n" ) if !defined( $isWordOrCUIData );
+
+ undef( $w2v );
+
+=head3 IsVectorDataSorted
+
+Description:
+
+ Checks to see if vector data header is signed as sorted in memory.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+
+ my $result = $w2v->IsVectorDataSorted();
+
+ print( "No vector data is not sorted\n" ) if $result == 0;
+ print( "Yes vector data is sorted\n" ) if $result == 1;
+
+ undef( $w2v );
+
+=head3 CheckWord2VecDataFileType
+
+Description:
+
+ Checks specified file to see if vector data is in binary or plain text format. Returns 'text'
+ for plain text and 'binary' for binary data.
+
+Input:
+
+ $string -> File path
+
+Output:
+
+ $string -> File Type ( "text" = Plain text file / "binary" = Binary data file )
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $fileType = $w2v->CheckWord2VecDataFileType( "samples/samplevectors.bin" );
+
+ print( "FileType: $fileType\n" ) if defined( $fileType );
+
+ undef( $fileType );
+
+=head3 ReadTrainedVectorDataFromFile
+
+Description:
+
+ Reads trained vector data from file path in memory or searches for vector data from file. This function supports and
+ automatically detects word2vec binary, plain text and sparse vector data formats.
+
+ Note: If search word is undefined, the entire vector file is loaded in memory. If a search word is defined only the vector data is returned or undef.
+
+Input:
+
+ $string     -> Word2vec trained vector data file path
+ $searchWord -> Searches trained vector data file for specific word vector
+
+Output:
+
+ $value      -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ # Loading data in memory
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $result = $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+
+ print( "Success Loading Data\n" ) if $result == 0;
+ print( "Un-successful, Data Not Loaded\n" ) if $result == -1;
+
+ undef( $w2v );
+
+ # or
+
+ # Searching vector data file for a specific word vector
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $result = $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin", "medical" );
+
+ print( "Found Vector Data In File\n" ) if $result != -1;
+ print( "Vector Data Not Found\n" )     if $result == -1;
+
+ undef( $w2v );
+
+=head3 SaveTrainedVectorDataToFile
+
+Description:
+
+ Saves trained vector data at the location specified. Defining 'binaryFormat' parameter will
+ save in word2vec's binary format.
+
+Input:
+
+ $string       -> Save Path
+ $binaryFormat -> Integer ( '1' = Save data in word2vec binary format / '0' = Save as plain text )
+
+ Note: Leaving $binaryFormat as undefined will save the file in plain text format.
+
+ Warning: If the vector data is stored as a binary search tree, this method will error out gracefully.
+
+Output:
+
+ $value        -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+
+ # Instruct the module to store the method as an array, not a BST.
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ $w2v->SaveTrainedVectorDataToFile( "samples/newvectors.bin" );
+
+ undef( $w2v );
+
+=head3 StringsAreEqual
+
+Description:
+
+ Compares two strings to check for equality, ignoring case-sensitivity.
+
+ Note: This method is not case-sensitive. ie. "string" equals "StRiNg"
+
+Input:
+
+ $string -> String to compare
+ $string -> String to compare
+
+Output:
+
+ $value  -> '1' = Strings are equal / '0' = Strings are not equal
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $result = $w2v->StringsAreEqual( "hello world", "HeLlO wOrLd" );
+
+ print( "Strings are equal!\n" )if $result == 1;
+ print( "Strings are not equal!\n" ) if $result == 0;
+
+ undef( $w2v );
+
+=head3 RemoveWordFromWordVectorString
+
+Description:
+
+ Given a vector data string as input, it removed the vector word from its data returning only data.
+
+Input:
+
+ $string          -> Vector word & data string.
+
+Output:
+
+ $string          -> Vector data string.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = "cookie 1 0.234 9 0.0002 13 0.234 17 -0.0023 19 1.0000";
+
+ my $vectorData = $w2v->RemoveWordFromWordVectorString( $str );
+
+ print( "Success!\n" ) if length( vectorData ) < length( $str );
+
+ undef( $w2v );
+
+=head3 ConvertRawSparseTextToVectorDataAry
+
+Description:
+
+ Converts sparse vector string to a dense vector format data array.
+
+Input:
+
+ $string          -> Vector data string.
+
+Output:
+
+ $arrayReference  -> Reference to array of vector data.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = "cookie 1 0.234 9 0.0002 13 0.234 17 -0.0023 19 1.0000";
+
+ my @vectorData = @{ $w2v->ConvertRawSparseTextToVectorDataAry( $str ) };
+
+ print( "Data conversion successful!\n" ) if @vectorData > 0;
+ print( "Data conversion un-successful!\n" ) if @vectorData == 0;
+
+ undef( $w2v );
+
+=head3 ConvertRawSparseTextToVectorDataHash
+
+Description:
+
+ Converts sparse vector string to a dense vector format data hash.
+
+Input:
+
+ $string          -> Vector data string.
+
+Output:
+
+ $hashReference  -> Reference to array of hash data.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = "cookie 1 0.234 9 0.0002 13 0.234 17 -0.0023 19 1.0000";
+
+ my %vectorData = %{ $w2v->ConvertRawSparseTextToVectorDataHash( $str ) };
+
+ print( "Data conversion successful!\n" ) if ( keys %vectorData ) > 0;
+ print( "Data conversion un-successful!\n" ) if ( keys %vectorData ) == 0;
+
+ undef( $w2v );
+
+=head3 GetOSType
+
+Description:
+
+ Returns (string) operating system type.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Operating System String
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $os = $w2v->GetOSType();
+
+ print( "Operating System: $os\n" );
+
+ undef( $w2v );
+
+=head2 Accessor Functions
+
+=head3 GetDebugLog
+
+Description:
+
+ Returns the _debugLog member variable set during Word2vec::Word2vec object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '0' = False, '1' = True
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new()
+ my $debugLog = $w2v->GetDebugLog();
+
+ print( "Debug Logging Enabled\n" ) if $debugLog == 1;
+ print( "Debug Logging Disabled\n" ) if $debugLog == 0;
+
+
+ undef( $w2v );
+
+=head3 GetWriteLog
+
+Description:
+
+ Returns the _writeLog member variable set during Word2vec::Word2vec object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '0' = False, '1' = True
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $writeLog = $w2v->GetWriteLog();
+
+ print( "Write Logging Enabled\n" ) if $writeLog == 1;
+ print( "Write Logging Disabled\n" ) if $writeLog == 0;
+
+ undef( $w2v );
+
+=head3 GetFileHandle
+
+Description:
+
+ Returns the _fileHandle member variable set during Word2vec::Word2vec object instantiation of new function.
+
+ Warning: This is a private function. File handle is used by WriteLog() method. Do not manipulate this file handle as errors can result.
+
+Input:
+
+ None
+
+Output:
+
+ $fileHandle -> Returns file handle for WriteLog() method or undefined.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $fileHandle = $w2v->GetFileHandle();
+
+ undef( $w2v );
+
+=head3 GetTrainFilePath
+
+Description:
+
+ Returns the _trainFilePath member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Returns word2vec training text corpus file path.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $filePath = $w2v->GetTrainFilePath();
+ print( "Training File Path: $filePath\n" );
+
+ undef( $w2v );
+
+=head3 GetOutputFilePath
+
+Description:
+
+ Returns the _outputFilePath member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Returns post word2vec training output file path.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $filePath = $w2v->GetOutputFilePath();
+ print( "File Path: $filePath\n" );
+
+ undef( $w2v );
+
+=head3 GetWordVecSize
+
+Description:
+
+ Returns the _wordVecSize member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) size of word2vec word vectors. Default value = 100
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetWordVecSize();
+ print( "Word Vector Size: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetWindowSize
+
+Description:
+
+ Returns the _windowSize member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec window size. Default value = 5
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetWindowSize();
+ print( "Window Size: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetSample
+
+Description:
+
+ Returns the _sample member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec sample size. Default value = 0.001
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetSample();
+ print( "Sample: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetHSoftMax
+
+Description:
+
+ Returns the _hSoftMax member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec HSoftMax value. Default = 0
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetHSoftMax();
+ print( "HSoftMax: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetNegative
+
+Description:
+
+ Returns the _negative member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec negative value. Default = 5
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetNegative();
+ print( "Negative: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetNumOfThreads
+
+Description:
+
+ Returns the _numOfThreads member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec number of threads to use during training. Default = 12
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetNumOfThreads();
+ print( "Number of threads: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetNumOfIterations
+
+Description:
+
+ Returns the _iterations member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec number of word2vec iterations. Default = 5
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetNumOfIterations();
+ print( "Number of iterations: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetMinCount
+
+Description:
+
+ Returns the _minCount member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec min-count value. Default = 5
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetMinCount();
+ print( "Min Count: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetAlpha
+
+Description:
+
+ Returns the _alpha member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec alpha value. Default = 0.05 for CBOW and 0.025 for Skip-Gram.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetAlpha();
+ print( "Alpha: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetClasses
+
+Description:
+
+ Returns the _classes member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec classes value. Default = 0
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetClasses();
+ print( "Classes: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetDebugTraining
+
+Description:
+
+ Returns the _debug member variable set during Word2vec::Word2vec object instantiation of new function.
+
+ Note: 0 = No debug output, 1 = Enable debug output, 2 = Even more debug output
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec debug value. Default = 2
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetDebugTraining();
+ print( "Debug: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetBinaryOutput
+
+Description:
+
+ Returns the _binaryOutput member variable set during Word2vec::Word2vec object instantiation of new function.
+
+ Note: 1 = Save trained vector data in binary format, 2 = Save trained vector data in plain text format.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec binary flag. Default = 0
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetBinaryOutput();
+ print( "Binary Output: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetReadVocabFilePath
+
+Description:
+
+ Returns the _readVocab member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Returns (string) word2vec read vocabulary file name or empty string if not set.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = $w2v->GetReadVocabFilePath();
+ print( "Read Vocab File Path: $str\n" );
+
+ undef( $w2v );
+
+=head3 GetSaveVocabFilePath
+
+Description:
+
+ Returns the _saveVocab member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Returns (string) word2vec save vocabulary file name or empty string if not set.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = $w2v->GetSaveVocabFilePath();
+ print( "Save Vocab File Path: $str\n" );
+
+ undef( $w2v );
+
+=head3 GetUseCBOW
+
+Description:
+
+ Returns the _useCBOW member variable set during Word2vec::Word2vec object instantiation of new function.
+
+ Note: 0 = Skip-Gram Model, 1 = Continuous Bag Of Words Model.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (integer) word2vec Continuous-Bag-Of-Words flag. Default = 1
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetUseCBOW();
+ print( "Use CBOW?: $value\n" );
+
+ undef( $w2v );
+
+=head3 GetWorkingDir
+
+Description:
+
+ Returns the _workingDir member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (string) working directory path or current directory if not specified.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = $w2v->GetWorkingDir();
+ print( "Working Directory: $str\n" );
+
+ undef( $w2v );
+
+=head3 GetWord2VecExeDir
+
+Description:
+
+ Returns the _word2VecExeDir member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns (string) word2vec executable directory path or empty string if not specified.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $str = $w2v->GetWord2VecExeDir();
+ print( "Word2Vec Executable File Directory: $str\n" );
+
+ undef( $w2v );
+
+=head3 GetVocabularyHash
+
+Description:
+
+ Returns the _hashRefOfWordVectors member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns array of vocabulary/dictionary words. (Word2vec trained data in memory)
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my @vocabulary = $w2v->GetVocabularyHash();
+
+ undef( $w2v );
+
+=head3 GetOverwriteOldFile
+
+Description:
+
+ Returns the _overwriteOldFile member variable set during Word2vec::Word2vec object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Returns 1 = True or 0 = False.
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $value = $w2v->GetOverwriteOldFile();
+ print( "Overwrite Exiting File?: $value\n" );
+
+ undef( $w2v );
+
+=head2 Mutator Functions
+
+=head3 SetTrainFilePath
+
+Description:
+
+ Sets member variable to string parameter. Sets training file path.
+
+Input:
+
+ $string -> Text corpus training file path
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetTrainFilePath( "samples/textcorpus.txt" );
+
+ undef( $w2v );
+
+=head3 SetOutputFilePath
+
+Description:
+
+ Sets member variable to string parameter. Sets output file path.
+
+Input:
+
+ $string -> Post word2vec training save file path
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetOutputFilePath( "samples/tempvectors.bin" );
+
+ undef( $w2v );
+
+=head3 SetWordVecSize
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec word vector size.
+
+Input:
+
+ $value -> Word2vec word vector size
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetWordVecSize( 100 );
+
+ undef( $w2v );
+
+=head3 SetWindowSize
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec window size.
+
+Input:
+
+ $value -> Word2vec window size
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetWindowSize( 8 );
+
+ undef( $w2v );
+
+=head3 SetSample
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec sample size.
+
+Input:
+
+ $value -> Word2vec sample size
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetSample( 3 );
+
+ undef( $w2v );
+
+=head3 SetHSoftMax
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec HSoftMax value.
+
+Input:
+
+ $value -> Word2vec HSoftMax size
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetHSoftMax( 12 );
+
+ undef( $w2v );
+
+=head3 SetNegative
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec negative value.
+
+Input:
+
+ $value -> Word2vec negative value
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetNegative( 12 );
+
+ undef( $w2v );
+
+=head3 SetNumOfThreads
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec number of training threads to specified value.
+
+Input:
+
+ $value -> Word2vec number of threads value
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetNumOfThreads( 12 );
+
+ undef( $w2v );
+
+=head3 SetNumOfIterations
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec iterations value.
+
+Input:
+
+ $value -> Word2vec number of iterations value
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetNumOfIterations( 12 );
+
+ undef( $w2v );
+
+=head3 SetMinCount
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec min-count value.
+
+Input:
+
+ $value -> Word2vec min-count value
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetMinCount( 7 );
+
+ undef( $w2v );
+
+=head3 SetAlpha
+
+Description:
+
+ Sets member variable to float parameter. Sets word2vec alpha value.
+
+Input:
+
+ $value -> Word2vec alpha value. (Float)
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetAlpha( 0.0012 );
+
+ undef( $w2v );
+
+=head3 SetClasses
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec classes value.
+
+Input:
+
+ $value -> Word2vec classes value.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetClasses( 0 );
+
+ undef( $w2v );
+
+=head3 SetDebugTraining
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec debug parameter value.
+
+Input:
+
+ $value -> Word2vec debug training value.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetDebugTraining( 0 );
+
+ undef( $w2v );
+
+=head3 SetBinaryOutput
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec binary parameter value.
+
+Input:
+
+ $value -> Word2vec binary output mode value. ( '1' = Binary Output / '0' = Plain Text )
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetBinaryOutput( 1 );
+
+ undef( $w2v );
+
+=head3 SetSaveVocabFilePath
+
+Description:
+
+ Sets member variable to string parameter. Sets word2vec save vocabulary file name.
+
+Input:
+
+ $string -> Word2vec save vocabulary file name and path.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetSaveVocabFilePath( "samples/vocab.txt" );
+
+ undef( $w2v );
+
+=head3 SetReadVocabFilePath
+
+Description:
+
+ Sets member variable to string parameter. Sets word2vec read vocabulary file name.
+
+Input:
+
+ $string -> Word2vec read vocabulary file name and path.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetReadVocabFilePath( "samples/vocab.txt" );
+
+ undef( $w2v );
+
+=head3 SetUseCBOW
+
+Description:
+
+ Sets member variable to integer parameter. Sets word2vec CBOW parameter value.
+
+Input:
+
+ $value -> Word2vec CBOW mode value.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetUseCBOW( 1 );
+
+ undef( $w2v );
+
+=head3 SetWorkingDir
+
+Description:
+
+ Sets member variable to string parameter. Sets working directory.
+
+Input:
+
+ $string -> Working directory
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetWorkingDir( "/samples" );
+
+ undef( $w2v );
+
+=head3 SetWord2VecExeDir
+
+Description:
+
+ Sets member variable to string parameter. Sets word2vec executable file directory.
+
+Input:
+
+ $string -> Word2vec directory
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetWord2VecExeDir( "/word2vec" );
+
+ undef( $w2v );
+
+=head3 SetVocabularyHash
+
+Description:
+
+ Sets vocabulary/dictionary array to de-referenced array reference parameter.
+
+ Warning: This will overwrite any existing vocabulary/dictionary array data.
+
+Input:
+
+ $arrayReference -> Vocabulary/Dictionary array reference of word2vec word vectors.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ReadTrainedVectorDataFromFile( "samples/samplevectors.bin" );
+ my @vocab = $w2v->GetVocabularyHash();
+ $w2v->SetVocabularyHash( \@vocab );
+
+ undef( $w2v );
+
+=head3 ClearVocabularyHash
+
+Description:
+
+ Clears vocabulary/dictionary array.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->ClearVocabularyHash();
+
+ undef( $w2v );
+
+=head3 AddWordVectorToVocabHash
+
+Description:
+
+ Adds word vector string to vocabulary/dictionary.
+
+Input:
+
+ $string -> Word2vec word vector string
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+
+ # Note: This is representational data of word2vec's word vector format and not actual data.
+ $w2v->AddWordVectorToVocabHash( "of 0.4346 -0.1235 0.5789 0.2347 -0.0056 -0.0001" );
+
+ undef( $w2v );
+
+=head3 SetOverwriteOldFile
+
+Description:
+
+ Sets member variable to integer parameter. Enables overwriting output file if one already exists.
+
+Input:
+
+ $value -> '1' = Overwrite exiting file / '0' = Graceful termination when file with same name exists
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec;
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->SetOverwriteOldFile( 1 );
+
+ undef( $w2v );
+
+=head2 Debug Functions
+
+=head3 GetTime
+
+Description:
+
+ Returns current time string in "Hour:Minute:Second" format.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> XX:XX:XX ("Hour:Minute:Second")
+
+Example:
+
+ use Word2vec::Word2vec:
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $time = $w2v->GetTime();
+
+ print( "Current Time: $time\n" ) if defined( $time );
+
+ undef( $w2v );
+
+=head3 GetDate
+
+Description:
+
+ Returns current month, day and year string in "Month/Day/Year" format.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> XX/XX/XXXX ("Month/Day/Year")
+
+Example:
+
+ use Word2vec::Word2vec:
+
+ my $w2v = Word2vec::Word2vec->new();
+ my $date = $w2v->GetDate();
+
+ print( "Current Date: $date\n" ) if defined( $date );
+
+ undef( $w2v );
+
+=head3 WriteLog
+
+Description:
+
+ Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.
+
+Input:
+
+ $string -> String to print to the console/log file.
+ $value  -> 0 = Do not print newline character after string, all else prints new line character including 'undef'.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Word2vec:
+
+ my $w2v = Word2vec::Word2vec->new();
+ $w2v->WriteLog( "Hello World" );
+
+ undef( $w2v );
+
+=head1 Author
+
+ Clint Cuffy, Virginia Commonwealth University
+
+=head1 COPYRIGHT
+
+Copyright (c) 2016
+
+ Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to:
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut

@@ -1,0 +1,657 @@
+=head1 NAME
+
+Word2vec::Spearmans - Spearman's Rank Correlation Score Module
+
+=head1 SYNOPSIS
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetPrecision( 8 );
+ my $score = $spearmans->CalculateSpearmans( "MiniMayoSRS.comp_results", "MiniMayoSRS.coders", undef );
+ print( "Spearman's Rank Correlation Score: $score\n" );
+ undef( $spearmans );
+
+ # Or
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetIsFileOfWords( 1 );
+ my $score = $spearmans->CalculateSpearmans( "MiniMayoSRS.terms.comp_results", "MiniMayoSRS.terms.coders", undef );
+ print( "Spearman's Rank Correlation Score: $score\n" );
+ undef( $spearmans );
+
+=head1 DESCRIPTION
+
+Word2vec::Spearmans is a Spearman's Rank Correlation Score Module for the Word2vec::Inteface package.
+
+=head2 Main Functions
+
+=head3 new
+
+Description:
+
+ Returns a new 'Word2vec::Spearmans' module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0
+    precision                   = 4
+    isFileOfWords               = undef
+    N                           = undef
+    aCount                      = -1
+    bCount                      = -1
+    NValue                      = -1
+
+Input:
+
+ $debugLog                    -> Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -> Instructs module to print debug statements to a log file. (1 = True / 0 = False)
+ $isFileOfWords               -> Specifies the word option, default is Auto-Detect. (undef = Auto-Detect, 0 = CUI Terms, 1 = Word Terms)
+ $N                           -> Specifies the N option, default is undef. (defined = Print N / undef = Do Not Print N)
+ $aCount                      -> Term count for $aFile post Spearman's Rank Correlation calculation.
+ $bCount                      -> Term count for $bFile post Spearman's Rank Correlation calculation.
+ $NValue                      -> N Value post Spearmans's Rank Correlation calculation.
+
+ Warning: Only debugLog, writeLog, precision, word and N variables should be specified.
+
+Output:
+
+ Word2vec::Spearmans object.
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+
+ undef( $spearmans );
+
+=head3 DESTROY
+
+Description:
+
+ Removes member variables and file handle from memory.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+
+ $spearmans->DESTROY();
+ undef( $spearmans );
+
+=head3 CalculateSpearmans
+
+Description:
+
+ Calculates Spearman's Rank Correlation Score between two data-sets (files) using _precision, _isWordOfFile and _printN Variables.
+
+ Note: _precision, _isFileOfWords and _printN variables must be set prior to calling this function or default values will be used.
+
+Input:
+
+ $fileA                  -> File To Process
+ $fileB                  -> File To Process
+ $includeCountsInResults -> Specifies whether to return file counts in score. (undef = False / defined = True)
+
+Output:
+
+ $value -> Spearman's Rank Correlation Score or "undef"
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetPrecision( 8 );
+ my $score = $spearmans->CalculateSpearmans( "MiniMayoSRS.comp_results", "MiniMayoSRS.coders", undef );
+ print( "Spearman's Rank Correlation Score: $score\n" ) if defined( $score );
+ print( "Spearman's Rank Correlation Score: undef\n" ) if !defined( $score );
+ undef( $spearmans );
+
+ # Or
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetIsFileOfWords( 1 );
+ my $score = $spearmans->CalculateSpearmans( "MiniMayoSRS.terms.comp_results", "MiniMayoSRS.terms.coders", 1 );
+ print( "Spearman's Rank Correlation Score: $score\n" ) if defined( $score );
+ print( "Spearman's Rank Correlation Score: undef\n" ) if !defined( $score );
+ undef( $spearmans );
+
+=head3 IsFileWordOrCUIFile
+
+Description:
+
+ Determines if a file is composed of CUI or word terms by checking the first line.
+
+Input:
+
+ $string -> File Path
+
+Output:
+
+ $string -> "undef" = Unable to determine, "cui" = CUI Term File, "word" = Word Term File
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans       = Word2vec::Spearmans->new();
+ my $isWordOrCuiFile = $spearmans->IsFileWordOrCUIFile( "samples/MiniMayoSRS.terms" );
+
+ print( "MiniMayoSRS.terms File Is A \"$isWordOrCuiFile\" File\n" ) if defined( $isWordOrCuiFile );
+ print( "Unable To Determine Type Of File\n" )                      if !defined( $isWordOrCuiFile
+
+ undef( $spearmans );
+
+=head3 _IsCUI
+
+Description:
+
+ Checks to see whether passed string argument is a word or CUI term.
+
+ Note: This is an internal function and should not be called.
+
+Input:
+
+ $value -> String
+
+Output:
+
+ $value -> 0 = Word Term, 1 = CUI Term
+
+Example:
+
+ This is a private function and should not be utilized.
+
+=head3 _ResetVariables
+
+Description:
+
+ Resets _aCount, _bCount and _NValue variables.
+
+ Note: This is an internal function and should not be called.
+
+Input:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ This is a private function and should not be utilized.
+
+=head2 Accessor Functions
+
+=head3 GetDebugLog
+
+Description:
+
+ Returns the _debugLog member variable set during Word2vec::Spearmans object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> 0 = False, 1 = True
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ my $debugLog = $spearmans->GetDebugLog();
+
+ print( "Debug Logging Enabled\n" ) if $debugLog == 1;
+ print( "Debug Logging Disabled\n" ) if $debugLog == 0;
+
+ undef( $spearmans );
+
+=head3 GetWriteLog
+
+Description:
+
+ Returns the _writeLog member variable set during Word2vec::Spearmans object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> 0 = False, 1 = True
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ my $writeLog = $spearmans->GetWriteLog();
+
+ print( "Write Logging Enabled\n" ) if $writeLog == 1;
+ print( "Write Logging Disabled\n" ) if $writeLog == 0;
+
+ undef( $spearmans );
+
+=head3 GetFileHandle
+
+Description:
+
+ Returns file handle used by WriteLog() method.
+
+Input:
+
+ None
+
+Output:
+
+ $fileHandle -> Returns file handle blob used by 'WriteLog()' function or undefined.
+
+Example:
+
+ <This should not be called.>
+
+=head3 GetPrecision
+
+Description:
+
+ Returns floating point precision value.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Spearmans Float Precision Value
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ my $value     = $spearmans->GetPrecision();
+
+ print( "Float Precision Value: $value\n" ) if defined( $value );
+ undef( $spearmans );
+
+=head3 GetIsFileOfWords
+
+Description:
+
+ Returns the variable indicating whether the files to be parsed are files consisting of words or CUI terms.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> "undef = Auto-Detect, 0 = CUI Terms, 1 = Word Terms"
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans     = Word2vec::Spearmans->new();
+ my $isFileOfWords = $spearmans->GetIsFileOfWords();
+
+ print( "IsFileOfWords Is Undefined\n" ) if !defined( $isFileOfWords );
+ print( "IsFileOfWords Value: $isFileOfWords\n" )   if defined( $isFileOfWords );
+ undef( $spearmans );
+
+=head3 GetPrintN
+
+Description:
+
+ Returns the variable indicating whether to print NValue.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> "undef" = Do not print NValue, "defined" = Print NValue
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans     = Word2vec::Spearmans->new();
+ my $printN        = $spearmans->GetPrintN();
+ print "Print N\n"        if defined( $printN );
+ print "Do Not Print N\n" if !defined( $printN );
+
+ undef( $spearmans );
+
+=head3 GetACount
+
+ Returns the non-negative count for file A.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ print "A Count: " . $spearmans->GetACount() . "\n";
+
+ undef( $spearmans );
+
+=head3 GetBCount
+
+ Returns the non-negative count for file B.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ print "B Count: " . $spearmans->GetBCount() . "\n";
+
+ undef( $spearmans );
+
+=head3 SpGetNValue
+
+ Returns the N value.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ print "N Value: " . $spearmans->GetNValue() . "\n";
+
+ undef( $spearmans );
+
+=head2 Mutator Functions
+
+=head3 SetPrecision
+
+Description:
+
+ Sets number of decimal places after the decimal point of the Spearman's Rank Correlation Score to represent.
+
+Input:
+
+ $value -> Integer
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetPrecision( 8 );
+ my $score = $spearmans->CalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $spearmans );
+
+=head3 SetIsFileOfWords
+
+ Specifies the main method to auto-detect if file consists of CUI or Word terms, or manual override with user setting.
+
+Input:
+
+ $value -> "undef" = Auto-Detect, 0 = CUI Terms, 1 = Word Terms
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetIsFileOfWords( undef );
+ my $score = $spearmans->CalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $spearmans );
+
+=head3 SetPrintN
+
+ Specifies the main method print _NValue post Spearmans::CalculateSpearmans() function completion.
+
+Input:
+
+ $value -> "undef" = Do Not Print _NValue, "defined" = Print _NValue
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->SetPrintN( 1 );
+ my $score = $spearmans->CalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $spearmans );
+
+=head3 _SetACount
+
+Description:
+
+ Sets _aCount variable.
+
+ Note: This is an internal function and should not be called.
+
+Input:
+
+ $value -> Integer
+
+Output:
+
+ None
+
+Example:
+
+ This is a private function and should not be utilized.
+
+=head3 _SetBCount
+
+Description:
+
+ Sets _bCount variable.
+
+ Note: This is an internal function and should not be called.
+
+Input:
+
+ $value -> Integer
+
+Output:
+
+ None
+
+Example:
+
+ This is a private function and should not be utilized.
+
+=head3 _SetNValue
+
+Description:
+
+ Sets _NValue variable.
+
+ Note: This is an internal function and should not be called.
+
+Input:
+
+ $value -> Integer
+
+Output:
+
+ None
+
+Example:
+
+ This is a private function and should not be utilized.
+
+=head2 Debug Functions
+
+=head3 GetTime
+
+Description:
+
+ Returns current time string in "Hour:Minute:Second" format.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> XX:XX:XX ("Hour:Minute:Second")
+
+Example:
+
+ use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans->new();
+ my $time = $spearmans->GetTime();
+
+ print( "Current Time: $time\n" ) if defined( $time );
+
+ undef( $spearmans );
+
+=head3 GetDate
+
+Description:
+
+ Returns current month, day and year string in "Month/Day/Year" format.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> XX/XX/XXXX ("Month/Day/Year")
+
+Example:
+
+ use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans->new();
+ my $date = $spearmans->GetDate();
+
+ print( "Current Date: $date\n" ) if defined( $date );
+
+ undef( $spearmans );
+
+=head3 WriteLog
+
+Description:
+
+ Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.
+
+Input:
+
+ $string -> String to print to the console/log file.
+ $value  -> 0 = Do not print newline character after string, all else prints new line character including 'undef'.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans->new();
+ $spearmans->WriteLog( "Hello World" );
+
+ undef( $spearmans );
+
+=head1 Author
+
+ Bridget T McInnes, Virginia Commonwealth University
+ Clint Cuffy, Virginia Commonwealth University
+
+=head1 COPYRIGHT
+
+Copyright (c) 2016
+
+ Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to:
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut

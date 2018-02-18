@@ -1,0 +1,502 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Main-Functions">Main Functions</a>
+        <ul>
+          <li><a href="#new">new</a></li>
+          <li><a href="#DESTROY">DESTROY</a></li>
+          <li><a href="#CreateTree">CreateTree</a></li>
+          <li><a href="#CreateBST">CreateBST</a></li>
+          <li><a href="#BSTContainsSearch">BSTContainsSearch</a></li>
+          <li><a href="#BSTExactSearch">BSTExactSearch</a></li>
+          <li><a href="#DeleteBSTNodes">DeleteBSTNodes</a></li>
+        </ul>
+      </li>
+      <li><a href="#Accessor-Functions">Accessor Functions</a>
+        <ul>
+          <li><a href="#GetDebugLog">GetDebugLog</a></li>
+          <li><a href="#GetWriteLog">GetWriteLog</a></li>
+          <li><a href="#GetRootNode">GetRootNode</a></li>
+        </ul>
+      </li>
+      <li><a href="#Mutator-Functions">Mutator Functions</a>
+        <ul>
+          <li><a href="#SetRootNode">SetRootNode</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec::Bst - xmltow2v Basic Binary Search Tree Module</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $rootNode = $bst-&gt;CreateBST( $sortedArrayRef, 0, $arySize, undef );
+ $bst-&gt;SetRootNode( $rootNode );
+
+ my $node1 = $bst-&gt;BSTExactSearch( $rootNode, &quot;Coffee&quot; );
+ my $node2 = $bst-&gt;BSTContainsSearch( $rootNode, &quot;Coffee&quot; );
+
+ print( &quot;Exact Phrase Match Found - Search Word: \&quot;Coffee\&quot;\n&quot; ) if defined( $node1 );
+ print( &quot;Exact Phrase: \&quot;Coffee\&quot; Not Found\n&quot; ) if !defined( $node1 );
+ print( &quot;Phrase Containing Word: \&quot;Coffee\&quot; Found\n&quot; ) if defined( $node2 );
+ print( &quot;Phrase Containing Word: \&quot;Coffee\&quot; Not Found\n&quot; ) if !defined( $node2 );
+
+ undef( @sortedArray );
+ $bst-&gt;DESTROY();
+ undef( $bst );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Word2vec::Bst is a basic binary search tree module for use with Word2vec::Xmltow2v. This module expects a sorted array passed as a function parameter (array reference) to create a balanced binary search tree.</p>
+
+<h2 id="Main-Functions">Main Functions</h2>
+
+<h3 id="new">new</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns a new &#39;Word2vec::Bst&#39; module object.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code>  Word2vec::Bst object.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+ my $bst = Word2vec::Bst-&gt;new();
+
+ print( &quot;Word2vec::Bst object creation successful\n&quot; ) if defined( $bst );
+ print( &quot;Word2vec::Bst object creation un-successful\n&quot; ) if !defined( $bst );
+
+ print( &quot;Removing Tree From Memory\n&quot; ) if defined( $bst );
+ $bst-&gt;DESTROY() if defined( $bst );
+ undef( $bst );</code></pre>
+
+<h3 id="DESTROY">DESTROY</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes binary search tree from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> See above example for &quot;new&quot; function.
+
+ Note: Destroy function is also automatically called during global destruction when exiting the program.</code></pre>
+
+<h3 id="CreateTree">CreateTree</h3>
+
+<p>Description:</p>
+
+<pre><code> Creates binary search tree with required function parameters and sets member variable root node in &#39;Word2vec::Bst&#39; object.
+
+ Note: The array must be sorted before calling this method to create a balanced tree.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $arrayReference -&gt; Reference to an array containing sorted string data.
+ $startIndex     -&gt; Beginning index of sorted array which the function incorporates into the binary tree.
+ $endIndex       -&gt; Last index of the sorted array which the function incorporates into the binary tree.
+ $parentNode     -&gt; Parent node parameter of type &#39;Word2vec::Node&#39;. Set to &#39;undef&#39; during tree instantiation.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value          -&gt; &#39;0&#39; if successful / &#39;-1&#39; if un-successful.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree Creation Un-Successful\n&quot; ) if $result == -1;
+
+ $bst-&gt;DESTROY() if defined( $bst );
+ undef( $bst );</code></pre>
+
+<h3 id="CreateBST">CreateBST</h3>
+
+<p>Description:</p>
+
+<pre><code> Creates binary search tree with required function parameters. Returns the root node.
+
+ Note: The array must be sorted before calling this method to create a balanced tree.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $arrayReference  -&gt; Reference to an array containing sorted string data.
+ $startIndex      -&gt; Beginning index of sorted array which the function incorporates into the binary tree.
+ $endIndex        -&gt; Last index of the sorted array which the function incorporates into the binary tree.
+ $parentNode      -&gt; Parent node parameter of type &#39;Word2vec::Node&#39;. Set to &#39;undef&#39; during tree instantiation.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Node -&gt; Binary Search Tree root node or &#39;undef&#39;.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $rootNode = $bst-&gt;CreateBST( $sortedArrayRef, 0, $arySize, undef );
+ $bst-&gt;SetRootNode( $rootNode );
+
+ $bst-&gt;DESTROY() if defined( $bst );
+ undef( $bst );</code></pre>
+
+<h3 id="BSTContainsSearch">BSTContainsSearch</h3>
+
+<p>Description:</p>
+
+<pre><code> Searches binary search tree nodes to see if &#39;node-&gt;data&#39; contains passed string parameter,
+ beginning with the passed node parameter and propagates down the tree until found.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> Word2vec::Node   -&gt; Starting tree node to search. (ie. Begin at root node)
+ string           -&gt; Search word/phrase.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Node -&gt; Returns binary search tree node or &#39;undef&#39; if not found.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree - Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree - Creation Un-successful\n&quot; ) if $result == -1;
+ die &quot;&quot; if $result == -1;
+
+ my $node = $bst-&gt;BSTContainsSearch( $rootNode, &quot;Coffee&quot; );
+
+ print( &quot;Phrase Containing Word: \&quot;Coffee\&quot; Found\n&quot; ) if defined( $node );
+ print( &quot;Phrase Containing Word: \&quot;Coffee\&quot; Not Found\n&quot; ) if !defined( $node );
+
+ undef( @sortedArray );
+ $bst-&gt;DESTROY();
+ undef( $bst );</code></pre>
+
+<h3 id="BSTExactSearch">BSTExactSearch</h3>
+
+<p>Description:</p>
+
+<pre><code> Searches binary search tree for passed string parameter, beginning with passed node and propagates
+ down the tree until found.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> Word2vec::Node   -&gt; Starting tree node to search. (ie. Begin at root node)
+ string           -&gt; Search word/phrase.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Node -&gt; Returns binary search tree node or &#39;undef&#39; if not found.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree - Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree - Creation Un-successful\n&quot; ) if $result == -1;
+ die &quot;&quot; if $result == -1;
+
+ my $node = $bst-&gt;BSTExactSearch( $rootNode, &quot;Money&quot; );
+
+ print( &quot;Exact Phrase Match Found - Search Word: \&quot;Money\&quot;\n&quot; ) if defined( $node );
+ print( &quot;Exact Phrase: \&quot;Money\&quot; Not Found\n&quot; ) if !defined( $node );
+
+ undef( @sortedArray );
+ $bst-&gt;DESTROY();
+ undef( $bst );</code></pre>
+
+<h3 id="DeleteBSTNodes">DeleteBSTNodes</h3>
+
+<p>Description:</p>
+
+<pre><code> Recursive function that deletes all parameter node&#39;s left and right children that propagates downward. Called by
+ DESTROY() function to remove tree from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> Word2vec::Node -&gt; Starting node of tree to remove from memory. (ie. root node)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree - Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree - Creation Un-successful\n&quot; ) if $result == -1;
+ die &quot;&quot; if $result == -1;
+
+ print( &quot;Destroying Binary Search Tree\n&quot; );
+
+ $bst-&gt;DESTROY();
+
+ undef( @sortedArray );
+ undef( $bst );</code></pre>
+
+<h2 id="Accessor-Functions">Accessor Functions</h2>
+
+<h3 id="GetDebugLog">GetDebugLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _debugLog member variable set during Word2vec::Bst object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $debugLog = $bst-&gt;GetDebugLog();
+
+ print( &quot;Debug Logging Enabled\n&quot; ) if $debugLog == 1;
+ print( &quot;Debug Logging Disabled\n&quot; ) if $debugLog == 0;
+
+ undef( $bst );</code></pre>
+
+<h3 id="GetWriteLog">GetWriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _writeLog member variable set during Word2vec::Bst object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $writeLog = $bst-&gt;GetWriteLog();
+
+ print( &quot;Write Logging Enabled\n&quot; ) if $writeLog == 1;
+ print( &quot;Write Logging Disabled\n&quot; ) if $writeLog == 0;
+
+ undef( $bst );</code></pre>
+
+<h3 id="GetRootNode">GetRootNode</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns binary search tree root node.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Node -&gt; Binary Search Tree Root Node</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree - Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree - Creation Un-successful\n&quot; ) if $result == -1;
+ die &quot;&quot; if $result == -1;
+
+ my $rootNode = $bst-&gt;GetRootNode();
+
+ print( &quot;BST Root Node Exists\n&quot; ) if defined( $rootNode );
+ print( &quot;BST Root Node Does Not Exist\n&quot; ) if !defined( $rootNode );
+
+ print( &quot;Root Node Contains Data: &quot; . $rootNode-&gt;data . &quot;\n&quot; ) if defined( $rootNode ) &amp;&amp; defined( $rootNode-&gt;data );
+
+ print( &quot;Destroying Binary Search Tree\n&quot; );
+
+ $bst-&gt;DESTROY();
+
+ undef( @sortedArray );
+ undef( $bst );</code></pre>
+
+<h2 id="Mutator-Functions">Mutator Functions</h2>
+
+<h3 id="SetRootNode">SetRootNode</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets binary search tree root node to passed node parameter.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> Word2vec::Node -&gt; Binary Search Tree node which will be set to the root node of the tree.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Bst;
+
+ my @sortedArray = ( &quot;Cookie&quot;, &quot;Lungs&quot;, &quot;Money&quot;, &quot;Veterinarian&quot;, &quot;Dog&quot;, &quot;Urn&quot;, &quot;Heart&quot;, &quot;Coffee Grounds&quot; );
+ @sortedArray = sort( @sortedArray );
+
+ my $sortedArrayRef = \@sortedArray;
+ my $arySize = @sortedArray;
+
+ my $bst = Word2vec::Bst-&gt;new();
+ my $result = $bst-&gt;CreateTree( $sortedArrayRef, 0, $arySize, undef );
+
+ print( &quot;Binary Search Tree - Created Successfully\n&quot; ) if $result == 0;
+ print( &quot;Binary Search Tree - Creation Un-successful\n&quot; ) if $result == -1;
+ die &quot;&quot; if $result == -1;
+
+ my $rootNode = $bst-&gt;GetRootNode();
+
+ print( &quot;BST Root Node Exists\n&quot; ) if defined( $rootNode );
+ print( &quot;BST Root Node Does Not Exist\n&quot; ) if !defined( $rootNode );
+
+ $bst-&gt;SetRootNode( $rootNode ) if defined( $rootNode );
+
+ print( &quot;Destroying Binary Search Tree\n&quot; );
+
+ $bst-&gt;DESTROY();
+
+ undef( @sortedArray );
+ undef( $bst );</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+

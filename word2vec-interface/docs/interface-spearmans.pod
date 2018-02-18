@@ -1,0 +1,252 @@
+=head3 SpCalculateSpearmans
+
+ Calculates Spearman's Rank Correlation Score between two data-sets.
+
+Input:
+
+ $fileA                  -> Data set to compare
+ $fileB                  -> Data set to compare
+ $includeCountsInResults -> Specifies whether to return file counts in score. (undef = False / defined = True)
+
+Output:
+
+ $value                  -> "undef" or Spearman's Rank Correlation Score
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $score     = $interface->SpCalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $interface );
+
+=head3 SpIsFileWordOrCUIFile
+
+Description:
+
+ Determines if a file is composed of CUI or word terms by checking the first line.
+
+Input:
+
+ $string -> File Path
+
+Output:
+
+ $string -> "undef" = Unable to determine, "cui" = CUI Term File, "word" = Word Term File
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface       = Word2vec::Interface->new();
+ my $isWordOrCuiFile = $interface->SpIsFileWordOrCUIFile( "samples/MiniMayoSRS.terms" );
+
+ print( "MiniMayoSRS.terms File Is A \"$isWordOrCuiFile\" File\n" ) if defined( $isWordOrCuiFile );
+ print( "Unable To Determine Type Of File\n" )                      if !defined( $isWordOrCuiFile );
+
+ undef( $interface );
+
+=head3 SpGetPrecision
+
+ Returns the number of decimal places after the decimal point of the Spearman's Rank Correlation Score to represent.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ print "Spearman's Precision: " . $interface->SpGetPrecision() . "\n";
+
+ undef( $interface );
+
+=head3 SpGetIsFileOfWords
+
+ Returns the variable indicating whether the files to be parsed are files consisting of words or CUI terms.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> "undef" = Auto-Detect, 0 = CUI Terms, 1 = Word Terms
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface     = Word2vec::Interface->new();
+ my $isFileOfWords = $interface->SpGetIsFileOfWords();
+ print "Is File Of Words?: $isFileOfWords\n" if defined( $isFileOfWords );
+ print "Is File Of Words?: undef\n" if !defined( $isFileOfWords );
+
+ undef( $interface );
+
+=head3 SpGetPrintN
+
+ Returns the variable indicating whether the to print NValue.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> "undef" = Do not print NValue, "defined" = Print NValue
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $printN    = $interface->SpGetPrintN();
+ print "Print N\n"        if defined( $printN );
+ print "Do Not Print N\n" if !defined( $printN );
+
+ undef( $interface );
+
+=head3 SpGetACount
+
+ Returns the non-negative count for file A.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ print "A Count: " . $interface->SpGetACount() . "\n";
+
+ undef( $interface );
+
+=head3 SpGetBCount
+
+ Returns the non-negative count for file B.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ print "B Count: " . $interface->SpGetBCount() . "\n";
+
+ undef( $interface );
+
+=head3 SpGetNValue
+
+ Returns the N value.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Integer
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ print "N Value: " . $interface->SpGetNValue() . "\n";
+
+ undef( $interface );
+
+=head3 SpSetPrecision
+
+ Sets number of decimal places after the decimal point of the Spearman's Rank Correlation Score to represent.
+
+Input:
+
+ $value -> Integer
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->SpSetPrecision( 8 );
+ my $score = $interface->SpCalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $interface );
+
+=head3 SpSetIsFileOfWords
+
+ Specifies the main method to auto-detect if file consists of CUI or Word terms, or manual override with user setting.
+
+Input:
+
+ $value -> "undef" = Auto-Detect, 0 = CUI Terms, 1 = Word Terms
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->SpSetIsFileOfWords( undef );
+ my $score = $interface->SpCalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $interface );
+
+=head3 SpSetPrintN
+
+ Specifies the main method print _NValue post Spearmans::CalculateSpearmans() function completion.
+
+Input:
+
+ $value -> "undef" = Do Not Print _NValue, "defined" = Print _NValue
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->SpSetPrintN( 1 );
+ my $score = $interface->SpCalculateSpearmans( "samples/MiniMayoSRS.term.comp_results", "Similarity/MiniMayoSRS.terms.coders", undef );
+ print "Spearman's Rank Correlation Score: $score\n" if defined( $score );
+ print "Spearman's Rank Correlation Score: undef\n" if !defined( $score );
+
+ undef( $interface );

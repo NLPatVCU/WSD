@@ -1,0 +1,146 @@
+=-=-=-=-=-=-=
+- Commands  -
+=-=-=-=-=-=-=
+
+
+=-=-=-=-=-=-=-=-=-=
+- Global Commands -
+=-=-=-=-=-=-=-=-=-=
+--debuglog
+--writelog
+--ignorecompileerrors
+--ignorefilechecks
+
+
+=-=-=-=-=-=-=-=-=-=-=-=
+- Interface Commands  -
+=-=-=-=-=-=-=-=-=-=-=-=
+--help
+
+--version
+
+--test
+
+--cos word2vec_binary_file word_1 word_2
+
+--cosmulti word2vec_binary_file word_A1:wordA2 wordB1:wordB2
+
+--cosavg word2vec_binary_file word_A1:wordA2 wordB1:wordB2
+
+--cos2v word2vec_binary_fileA wordA word2vec_binary_fileB wordB
+
+--multiwordcosuserinput word2vec_binary_file
+
+--addvectors word2vec_binary_file "vector_data_a" "vector_data_b"
+
+--subtractvectors word2vec_binary_file "vector_data_a" "vector_data_b"
+
+--w2vtrain -trainfile text_corpus -outputfile word2vec_binary_filename -size _ -window _ -mincount _ -sample _ -negative _ -alpha _ -hs _ -binary _ -threads _ -iter _ -cbow _ -classes _ -read-vocab _ -save-vocab _ -debug _ overwrite _
+  Note: Any option not specified will result in word2vec training using default option.
+
+--w2ptrain -trainfile text_corpus -outputfile phrase_text_file -min-count _ -threshold _ -debug _ -overwrite _
+  Note: All options not specified will result in word2phrase training using default options.
+
+--compiletextcorpus -workdir _ -savedir _ -startdate _ -enddate _ -title _ -abstract _ -qparse _ -compwordfile _ -sentenceperline _ -threads _ -overwrite _
+  Note: All options not specified will result in text corpus compilation using default options.
+
+--converttotextvectors input_file output_file
+
+--converttobinaryvectors input_file output_file
+
+--converttosparsevectors input_file output_file
+
+--compoundifyfile input_file output_file compound_word_file
+
+--sortvectorfile vector_binary_file -overwrite _
+
+--findsimilarterms vector_binary_file term number_of_similar_terms
+
+--similarity -sim similarity_file -vectors vector_binary_file -s -a -c -all  <- Note: Computations Will Be Completed Based On These Specifications, No Options Implies "-all". -s = Summed, -a = Average, -c = Compounds
+
+--similarity -sim similarity_directory_of_files -vectors vector_binary_file -s -a -c -all
+Note #1: Specifiying no "-sim" argument implies performing all standard "MiniMayoSRS, MayoSRS UMNSRS_reduced_rel and UMNSRS_reduced_sim" similarity file comparisons.
+Note #2: When specifying a directory, it must contain files with extension ".sim" for comparison. Specifying a file does not require the "*.sim" file extension name.
+
+--wsd
+
+--wsd -dir directory_of_sval_files -vectors vector_binary_file
+
+--wsd -dir directory_of_sval_files -vectors vector_binary_file -stoplist stoplist_file_path
+
+--wsd -instances instance_file_path -senses senses_file_path -vectors vector_binary_file -stoplist stoplist_file_path
+
+--wsd -list list_file_path
+
+* Note: The option -lowmemusage can be added to any --wsd command to enable low memory usage at the expense of speed.
+        -lowmemusage 1 => Enable Low Memory Usage (Default Setting)
+        -lowmemusage 0 => Disable Low Memory Usage
+
+
+=-=-=-=-=-=-=
+- Examples  -
+=-=-=-=-=-=-=
+--cos "../../samples/samplevectors.bin" medicine medical
+
+--cosmulti "../../samples/samplevectors.bin" new:york ny
+
+--cosavg "../../samples/samplevectors.bin" new:york british:ny
+
+--cos2v "../../samples/samplevectors.bin" medicine "../../samples/samplevectors.bin" medical
+
+--multiwordcosuserinput "../../samples/samplevectors.bin"
+
+--w2vtrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/tempvectors.bin" -size 200 -window 8 -sample 0.0001 -negative 25 -hs 0 -binary 0 -threads 20 -iter 15 -cbow 1 -overwrite 0
+  Note: All options not specified will result in word2vec training using default options.
+
+--w2ptrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/phrasecorpus.txt" -min-count 10 -threshold -200
+  Note: All options not specified will result in word2phrase training using default options.
+
+--compiletextcorpus -workdir "../../samples" -savedir "../../samples/textcorpus.txt" -startdate 01/01/1900 -enddate 99/99/9999 -title 1 -abstract 1 -qparse 1 -compwordfile "../../samples/compoundword.txt" -sentenceperline 0 -threads 2 -overwrite 1
+
+--converttotextvectors "../../samples/samplevectors.bin" convtextvectors.bin
+
+--converttobinaryvectors "../../samples/samplevectors.bin" convbinvectors.bin
+
+--converttosparsevectors "../../samples/samplesparsevectors.bin" convsparsevectors.bin
+
+--compoundifyfile "../../samples/precompoundexample.txt" "../../samples/postcompoundexample.txt" "../../samples/compoundword.txt"
+
+--similarity -sim MiniMayoSRS.terms -vectors "../vectorsv3.bin" -s -a
+
+--similarity -sim MiniMayoSRS.terms -vectors "../vectorsv3.bin" -all
+
+--sortvectorfile "../vectors.bin" -overwrite 1
+
+--sortvectorfile "../vectors.bin" -overwrite 0
+
+--findsimilarterms "../vectors.bin" heart 10
+
+--wsd
+
+--wsd -lowmemusage
+
+--wsd -list "../../wsd/abbrevlist.txt"
+
+--wsd -dir "../../wsd" -vectors "../../vectorsv3.bin"
+
+--wsd -dir "../../wsd" -vectors "../../vectorsv3.bin" -lowmemusage 0
+
+--wsd -dir "../../wsd" -vectors "../../vectorsv3.bin" -stoplist "../../wsd/stoplist"
+
+--wsd -instances "../../wsd/ACE.instances.sval" -senses "../../wsd/ACE.senses.sval" -vectors vectors.bin -stoplist "../../wsd/stoplist"
+
+
+=-=-=-=-=-=-=-=-=-=-=-=
+- Combining Commands  -
+=-=-=-=-=-=-=-=-=-=-=-=
+Below is an example of training word2vec vectors and computing cosine similarity between two words using the same trained vector data.
+
+--w2vtrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/tempvectors.bin" -size 200 -window 8 -sample 0.0001 -negative 25 -hs 0 -binary 0 -threads 20 -iter 15 -cbow 1 -overwrite 0 --cos vectors.bin heart attack
+
+Below is an example of compiling a text corpus given a directory of multiple files, training the textcorpus in word2vec and fetching a cosine similarity result via the trained vector data.
+
+--compiletextcorpus -workdir "../../samples" -savedir "../../samples/textcorpus.txt" -startdate 01/01/1900 -enddate 99/99/9999 -title 1 -abstract 1 -qparse 1 -compwordfile "../../samples/compoundword.txt" -threads 2 -overwrite 1 --w2vtrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/tempvectors.bin" -size 200 -window 8 -sample 0.0001 -negative 25 -hs 0 -binary 0 -threads 20 -iter 15 -cbow 1 -overwrite 1 --cos "../../samples/tempvectors.bin" of the
+
+
+

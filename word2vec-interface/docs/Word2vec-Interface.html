@@ -1,0 +1,729 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#USAGE">USAGE</a>
+    <ul>
+      <li><a href="#Command-Line-Arguments">Command-Line Arguments</a>
+        <ul>
+          <li><a href="#test">--test</a></li>
+          <li><a href="#cos">--cos</a></li>
+          <li><a href="#cosmulti">--cosmulti</a></li>
+          <li><a href="#cosavg">--cosavg</a></li>
+          <li><a href="#cos2v">--cos2v</a></li>
+          <li><a href="#multiwordcosuserinput">--multiwordcosuserinput</a></li>
+          <li><a href="#addvectors">--addvectors</a></li>
+          <li><a href="#subtractvectors">--subtractvectors</a></li>
+          <li><a href="#w2vtrain">--w2vtrain</a></li>
+          <li><a href="#w2ptrain">--w2ptrain</a></li>
+          <li><a href="#compiletextcorpus">--compiletextcorpus</a></li>
+          <li><a href="#converttotextvectors">--converttotextvectors</a></li>
+          <li><a href="#converttobinaryvectors">--converttobinaryvectors</a></li>
+          <li><a href="#converttosparsevectors">--converttosparsevectors</a></li>
+          <li><a href="#compoundifyfile">--compoundifyfile</a></li>
+          <li><a href="#sortvectorfile">--sortvectorfile</a></li>
+          <li><a href="#spearmans">--spearmans</a></li>
+          <li><a href="#similarity">--similarity</a></li>
+          <li><a href="#wsd">--wsd</a></li>
+          <li><a href="#clean">--clean</a></li>
+          <li><a href="#version">--version</a></li>
+          <li><a href="#help">--help</a></li>
+        </ul>
+      </li>
+      <li><a href="#Debugging-Arguments">Debugging Arguments</a>
+        <ul>
+          <li><a href="#debuglog">--debuglog</a></li>
+          <li><a href="#writelog">--writelog</a></li>
+        </ul>
+      </li>
+      <li><a href="#Command-Line-Notes">Command-Line Notes</a></li>
+    </ul>
+  </li>
+  <li><a href="#SYSTEM-REQUIREMENTS">SYSTEM REQUIREMENTS</a></li>
+  <li><a href="#CONTACT-US">CONTACT US</a></li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec-Interface.pl - Word2Vec Package Driver</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p>This program houses a set of functions and utilities for use with UMLS Similarity.</p>
+
+<h1 id="USAGE">USAGE</h1>
+
+<p>Usage: Word2vec-Interface.pl [OPTIONS]</p>
+
+<h2 id="Command-Line-Arguments">Command-Line Arguments</h2>
+
+<p>Displays the quick summary of the program options.</p>
+
+<h3 id="test">--test</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes word2vec file and run-time checks.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> interface.pm --test</code></pre>
+
+<h3 id="cos">--cos</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes cosine similarity of two words given a trained vector file.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Cosine Similarity Value</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --cos &quot;samples/samplevectors.bin&quot; heart angina</code></pre>
+
+<h3 id="cosmulti">--cosmulti</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes cosine similarity between multiple words given a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each parameter.
+
+   ie: --cosmulti &quot;vectors.bin&quot; acute:heart:attack chronic:obstructive:pulmonary:disease</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path (String)
+ wordA1:wordA2      (String)
+ wordB1:wordB2      (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Cosine Similarity Value</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --cosmulti &quot;samples/samplevectors.bin&quot; heart:attack myocardial:infarction</code></pre>
+
+<h3 id="cosavg">--cosavg</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes cosine similarity average between multiple words given a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each parameter.
+
+   ie: --cosavg &quot;vectors.bin&quot; heart:attack six:sea:snakes:were:sailing</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path (String)
+ wordA1:wordA2      (String)
+ wordB1:wordB2      (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Cosine Similarity Value</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --cosavg &quot;samples/samplevectors.bin&quot; heart:attack myocardial:infarction</code></pre>
+
+<h3 id="cos2v">--cos2v</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes cosine similarity between two words, each in differing trained vector data files.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_data_fileA_path (String)
+ wordA                  (String)
+ vector_data_fileB_path (String)
+ wordB                  (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Cosine Similarity Value</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --cos2v &quot;samples/medline_vectors.bin&quot; heart &quot;samples/pubmed_vectors.bin&quot; infarction</code></pre>
+
+<h3 id="multiwordcosuserinput">--multiwordcosuserinput</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes cosine similarity based on user input on a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each comparison string.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --multiwordcosuserinput &quot;samples/samplevectors.bin&quot;</code></pre>
+
+<h3 id="addvectors">--addvectors</h3>
+
+<p>Description:</p>
+
+<pre><code> Adds two word vectors and prints the value.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Summed word vectors string</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --addvectors &quot;samples/samplevectors.bin&quot; heart attack</code></pre>
+
+<h3 id="subtractvectors">--subtractvectors</h3>
+
+<p>Description:</p>
+
+<pre><code> Subtracts two word vectors and outputs the value.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Difference between word vectors string.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --subtractvectors &quot;vectors.bin&quot; heart attack</code></pre>
+
+<h3 id="w2vtrain">--w2vtrain</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes word2vec training based on user-specified options.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> -trainfile       file_path         (String)
+ -outputfile      file_path         (String)
+ -size            x                 (Integer)
+ -window          x                 (Integer)
+ -mincount        x                 (Integer)
+ -sample          x.x               (Float)
+ -negative        x                 (Integer)
+ -alpha           x.x               (Float)
+ -hs              x                 (Integer)
+ -binary          x                 (Integer)
+ -threads         x                 (Integer)
+ -iter            x                 (Integer)
+ -cbow            x                 (Integer)
+ -classes         x                 (Integer)
+ -read-vocab      file_path         (String)
+ -save-vocab      file_path         (String)
+ -debug           x                 (Integer)
+ -overwrite       x                 (Integer)
+
+ Note: Minimal required parameters to run are -trainfile and -outputfile. All other parameters not specified will be set to default settings.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --w2vtrain -trainfile &quot;../../samples/textcorpus.txt&quot; -outputfile &quot;../../samples/tempvectors.bin&quot; -size 200 -window 8 -sample 0.0001 -negative 25 -hs 0 -binary 0 -threads 20 -iter 15 -cbow 1 -overwrite 1</code></pre>
+
+<h3 id="w2ptrain">--w2ptrain</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes word2phrase conversion based on user-specified options and text corpus.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> -trainfile     file_path       (String)
+ -outputfile    file_path       (String)
+ -mincount      x               (Integer)
+ -threshold     x               (Integer)
+ -debug         x               (Integer)
+ -overwrite     x               (Integer)
+
+ Note: Minimal required parameters to run are -trainfile and -outputfile. All other parameters not specified will be set to default settings.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --w2ptrain -trainfile &quot;../../samples/textcorpus.txt&quot; -outputfile &quot;../../samples/phrasecorpus.txt&quot; -min-count 10 -threshold -200 -overwrite 1</code></pre>
+
+<h3 id="compiletextcorpus">--compiletextcorpus</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes Medline XML-To-W2V text corpus generation based on user-specified options.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> -workdir       file_path       (String)
+ -savedir       file_path       (String)
+ -startdate     &quot;XX/XX/XXXX&quot;    (String)
+ -enddate       &quot;XX/XX/XXXX&quot;    (String)
+ -title         x               (Integer)
+ -abstract      x               (Integer)
+ -qparse        x               (Integer)
+ -compwordfile  file_path       (String)
+ -threads       x               (Integer)
+ -overwrite     x               (Integer)
+
+ Note: Minimal required parameter to run is &quot;-workdir&quot;. All other parameters not specified will be set to default settings.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --compiletextcorpus -workdir &quot;../../samples&quot;
+ Word2vec-Interface.pl --compiletextcorpus -workdir &quot;../../samples&quot; -savedir &quot;../../samples/textcorpus.txt&quot; -startdate 01/01/1900 -enddate 99/99/9999 -title 1 -abstract 1 -qparse 1 -compwordfile &quot;../../samples/compoundword.txt&quot; -threads 2 -overwrite 1</code></pre>
+
+<h3 id="converttotextvectors">--converttotextvectors</h3>
+
+<p>Description:</p>
+
+<pre><code> Converts user-specified word2vec binary formatted file to human-readable text.
+
+ Note: This will freely convert all formats to plain text format.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file_path  (String)
+ output_file_path (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl ---converttotextvectors &quot;binaryvectors.bin&quot; &quot;textvectors.bin&quot;</code></pre>
+
+<h3 id="converttobinaryvectors">--converttobinaryvectors</h3>
+
+<p>Description:</p>
+
+<pre><code> Converts user-specified vector text data to word2vec binary formatted file.
+
+ Note: This will freely convert all formats to word2vec binary format.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file_path  (String)
+ output_file_path (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl ---converttobinaryvectors &quot;textvectors.bin&quot; &quot;binaryvectors.bin&quot;</code></pre>
+
+<h3 id="converttosparsevectors">--converttosparsevectors</h3>
+
+<p>Description:</p>
+
+<pre><code> Converts user-specified vector text data to sparse vector data formatted file.
+
+ Note: This will freely convert all formats to sparse vector data format.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file_path  (String)
+ output_file_path (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl ---converttosparsevectors &quot;textvectors.bin&quot; &quot;sparsevectors.bin&quot;</code></pre>
+
+<h3 id="compoundifyfile">--compoundifyfile</h3>
+
+<p>Description:</p>
+
+<pre><code> Compoundifies file based on user-specified compound word file.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file             (String)
+ output_file            (String)
+ compound_word_file     (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Compoundified file using &#39;compound_word_file&#39; data at &#39;output_file&#39; path.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --compoundifyfile &quot;samples/textcorpus.txt&quot; &quot;samples/compoundedtext.txt&quot; &quot;samples/compoundword.txt&quot;</code></pre>
+
+<h3 id="sortvectorfile">--sortvectorfile</h3>
+
+<p>Description:</p>
+
+<pre><code> Sorts specified vector file in alphanumeric order.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file                                           (String)
+ -overwrite    1 = Overwrite / 0 = Save to new file   (Integer)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Generates a sorted vector file consisting either replacing the old file or saving to the file &quot;sortedvectors.bin&quot;.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --sortvectorfile &quot;vectors.bin&quot;
+
+ Or
+
+ Word2vec-Interface.pl --sortvectorfile &quot;vectors.bin&quot; -overwrite 1
+
+ Or
+
+ Word2vec-Interface.pl --sortvectorfile &quot;vectors.bin&quot; -overwrite 0</code></pre>
+
+<h3 id="spearmans">--spearmans</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes Spearman&#39;s Rank Correlation Score between two files of a specific format.
+
+ File Format:
+ &quot;score(float)&lt;&gt;term1&lt;&gt;term2&quot;
+ &quot;score(float)&lt;&gt;term3&lt;&gt;term4&quot;
+
+ Note: Optional Parameters: -n -&gt; Prints N value with Spearman&#39;s Rank Correlation Score</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> input_file_a     (String)
+ input_file_b     (String)
+ (Optional Parameters)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Spearman&#39;s Rank Correlation Score.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --spearmans &quot;samples/MiniMayoSRS.terms.comp_results&quot; &quot;Similarity/MiniMayoSRS.terms.coders&quot;
+
+ Or
+
+ Word2vec-Interface.pl --spearmans &quot;samples/MiniMayoSRS.terms.comp_results&quot; &quot;Similarity/MiniMayoSRS.terms.coders&quot; -n</code></pre>
+
+<h3 id="similarity">--similarity</h3>
+
+<p>Description:</p>
+
+<pre><code> Computes average, compound and summed cosine similarity values for a list of word comparisons in a specified file or directory.
+ When using a directory of files, files to be parsed must end with &quot;.sim&quot; extension.
+
+ Note: Optional Parameters: -all -&gt; Computes Average, Compound and Summed files
+                            -a   -&gt; Only computes Average file
+                            -c   -&gt; Only computes Compound file
+                            -s   -&gt; Only computes Summed file
+
+       Specifying no optional parameters imples &quot;-all&quot;. Parameters can be combined to produce multiple results. See examples below.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> -sim     input_file             (String)
+ -vectors vector_binary_file     (String)
+ (Optional Parameters)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Generates a text file with a list of cosine similarity values followed by the word pairs.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --similarity -sim &quot;samples/MiniMayoSRS.terms&quot; -vectors &quot;vectors.bin&quot;
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim &quot;samples/MiniMayoSRS.terms&quot; -vectors &quot;vectors.bin&quot; -all
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim &quot;samples/MiniMayoSRS.terms&quot; -vectors &quot;vectors.bin&quot; -a -s
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim &quot;samples/MiniMayoSRS.terms&quot; -vectors &quot;vectors.bin&quot; -c</code></pre>
+
+<h3 id="wsd">--wsd</h3>
+
+<p>Description:</p>
+
+<pre><code> Word Sense Disambiguation: Reads an instance and sense file in SVL format, removes stop words using the user specified stoplist and assigns a sense
+ identification number to an instance identification number using cosine similarity to compare all sense ids to an instance. The highest cosine
+ similarity value between a specific sense and instance is assigned to that particular instance.
+
+ Warning: WSD instance and sense files must be in SVL format.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> No parameters        &lt;- This will prompt the user to input required files for WSD processing. (Must be in SVL format)
+
+ Or
+
+ -instances  file_path              (String)
+ -senses     file_path              (String)
+ -vectors    vector_binary_file     (String)
+ -stoplist   file_path              (String) &lt;- (Not required)
+
+ Or
+
+ -dir        directory_of_files     (String)
+ -vectors    vector_binary_file     (String)
+ -stoplist   file_path              (String) &lt;- (Not required)
+
+ Or
+
+ -list       file_path              (String)
+
+ Note: &quot;-list&quot; parameter requires the input file to meet format specifications for use. See example &quot;samples/wsdlist.txt&quot; for details.
+ Note: &quot;-dir&quot; parameter requires the user to specify the &quot;-vectors&quot; file path. &quot;-stoplist&quot; parameter is not requried.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Examples:</p>
+
+<pre><code> Word2vec-Interface.pl --wsd -instances &quot;ACE.instances.sval&quot; -senses &quot;ACE.senses.sval&quot; -vectors &quot;vectors.bin&quot;
+ Word2vec-Interface.pl --wsd -instances &quot;ACE.instances.sval&quot; -senses &quot;ACE.senses.sval&quot; -vectors &quot;vectors.bin&quot; -stoplist &quot;stoplist&quot;
+
+ Word2vec-Interface.pl --wsd -dir &quot;../../wsd&quot; -vectors vectors.bin
+ Word2vec-Interface.pl --wsd -dir &quot;../../wsd&quot; -vectors vectors.bin -stoplist &quot;../../stoplist&quot;
+
+ Word2vec-Interface.pl --wsd -list &quot;../../wsd/abbrevlist.txt&quot;
+ Word2vec-Interface.pl --wsd -list &quot;../../wsd/abbrevlist.txt&quot; -vectors vectors.bin
+ Word2vec-Interface.pl --wsd -list &quot;../../wsd/abbrevlist.txt&quot; -vectors vectors.bin -stoplist &quot;../../wsd/stoplist&quot;</code></pre>
+
+<h3 id="clean">--clean</h3>
+
+<p>Description:</p>
+
+<pre><code> Cleans up word2vec directory. Removes C object and executable files.
+
+ This is useful when moving the development directory between computers with different CPU architectures (x86/x64) and attempting to run word2vec executable files.
+ Errors could occur when trying to run a 64-bit executable on a 32-bit machine. Cleaning up the word2vec directory and re-building the executable files
+ resolves this issue.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --clean</code></pre>
+
+<h3 id="version">--version</h3>
+
+<p>Description:</p>
+
+<pre><code> Displays the version information.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Displays version information to the console.
+
+ Note: &#39;--debuglog&#39; and &#39;--writelog&#39; can also be combined to print debug statements to the console and write to their log files.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --version</code></pre>
+
+<h3 id="help">--help</h3>
+
+<p>Description:</p>
+
+<pre><code> Displays the quick summary of program options.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Displays help information to the console.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Word2vec-Interface.pl --help</code></pre>
+
+<h2 id="Debugging-Arguments">Debugging Arguments</h2>
+
+<p>List of debugging options.</p>
+
+<h3 id="debuglog">--debuglog</h3>
+
+<p>Description:</p>
+
+<pre><code> Prints debugging statements to the console window.
+
+ Note: This parameter can be specified anywhere within the parameter string.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Prints real-time debug log to the console window.</code></pre>
+
+<p>Examples:</p>
+
+<pre><code> Word2vec-Interface.pl --test --debuglog
+
+ Word2vec-Interface.pl --debuglog --test
+
+ Word2vec-Interface.pl --debuglog --wsd -list &quot;samples/wsd/abbrevlist.txt&quot;
+
+ Word2vec-Interface.pl --debuglog --w2vtrain &quot;samples/textcorpus.txt&quot; &quot;samples/tempvectors.bin&quot;</code></pre>
+
+<h3 id="writelog">--writelog</h3>
+
+<p>Description:</p>
+
+<pre><code> Writes debugging statements to log module files.
+
+ Note: This parameter can be specified anywhere within the parameter string.</code></pre>
+
+<p>Parameters:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Writes debug log statements to specified log files. Each module will write to its respective log file.
+ ie. &#39;interface.pm&#39; module will write to log file &#39;InterfaceLog.txt&#39;.</code></pre>
+
+<p>Examples:</p>
+
+<pre><code> Word2vec-Interface.pl --test --writelog
+
+ Word2vec-Interface.pl --writelog --test
+
+ Word2vec-Interface.pl --writelog --wsd -list &quot;samples/wsd/abbrevlist.txt&quot;
+
+ Word2vec-Interface.pl --writelog --w2vtrain -trainfile &quot;samples/textcorpus.txt&quot; -outputfile &quot;samples/tempvectors.bin&quot;</code></pre>
+
+<h2 id="Command-Line-Notes">Command-Line Notes</h2>
+
+<p>Note that when using command-line parameters, multiple commands are supported.</p>
+
+<p>ie. Word2vec-Interface.pl --compiletextcorpus -workdir &quot;samples&quot; -savedir &quot;samples/textcorpus.txt&quot; --w2vtrain -trainfile &quot;samples/textcorpus.txt&quot; -outputfile &quot;samples/tempvectors.bin&quot; --cos &quot;samples/tempvectors.bin&quot; of the</p>
+
+<p>This string of commands instructs the script to compile a text corpus of the Medline XML files in the &quot;samples&quot; directory. Initiate word2vec training based on the newly compiled text corpus and create a word2vec trained word vector file in the specified directory. Then subsequently use the newly trained vector data to compute the cosine similarity between the words &quot;of&quot; and &quot;the&quot;.</p>
+
+<p>This scripts supports as many continous commands as the user wishes to impose. All commands are checked for errors and the script will exit gracefully if such an event takes place. To obtain a better understanding of any errors, &#39;--debuglog&#39; or &#39;--writelog&#39; commands must be enabled.</p>
+
+<h1 id="SYSTEM-REQUIREMENTS">SYSTEM REQUIREMENTS</h1>
+
+<ul>
+
+<li><p>Perl (version 5.24.0 or better) - http://www.perl.org</p>
+
+</li>
+</ul>
+
+<h1 id="CONTACT-US">CONTACT US</h1>
+
+<pre><code>    If you have trouble installing and executing Word2vec-Interface.pl,
+    please contact us at
+
+    cuffyca at vcu dot edu.</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,346 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Main-Functions">Main Functions</a>
+        <ul>
+          <li><a href="#new">new</a></li>
+          <li><a href="#DESTROY">DESTROY</a></li>
+          <li><a href="#IsFileOrDirectory">IsFileOrDirectory</a></li>
+          <li><a href="#IsWordOrCUITerm">IsWordOrCUITerm</a></li>
+          <li><a href="#GetFilesInDirectory">GetFilesInDirectory</a></li>
+          <li><a href="#GetOSType">GetOSType</a></li>
+        </ul>
+      </li>
+      <li><a href="#Accessor-Functions">Accessor Functions</a>
+        <ul>
+          <li><a href="#GetDebugLog">GetDebugLog</a></li>
+          <li><a href="#GetWriteLog">GetWriteLog</a></li>
+        </ul>
+      </li>
+      <li><a href="#Debug-Functions">Debug Functions</a>
+        <ul>
+          <li><a href="#WriteLog">WriteLog</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec::Util - Word2vec-Interface Utility Module.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ my $result = $util-&gt;IsFileOrDirectory( &quot;../samples/stoplist&quot; );
+
+ print( &quot;Path Type Is A File\n&quot; ) if $result eq &quot;file&quot;;
+ print( &quot;Path Type Is A Directory\n&quot; ) if $result eq &quot;dir&quot;;
+ print( &quot;Path Type Is Unknown\n&quot; ) if $result eq &quot;unknown&quot;;
+
+ undef( $util );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Word2vec::Util is a module of utility functions for the Word2vec::Interface package.</p>
+
+<h2 id="Main-Functions">Main Functions</h2>
+
+<h3 id="new">new</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns a new &quot;Word2vec::Util&quot; module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $debugLog                    -&gt; Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -&gt; Instructs module to print debug statements to a log file. (1 = True / 0 = False)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Util object.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ undef( $util );</code></pre>
+
+<h3 id="DESTROY">DESTROY</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes Word2vec::Util object from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> See above example for &quot;new&quot; function.
+
+ Note: Destroy function is also automatically called during global destruction when exiting the program.</code></pre>
+
+<h3 id="IsFileOrDirectory">IsFileOrDirectory</h3>
+
+<p>Description:</p>
+
+<pre><code> Given a path, returns a string specifying whether this path represents a file or directory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $path   -&gt; String representing path to check</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Returns &quot;file&quot;, &quot;dir&quot; or &quot;unknown&quot;.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ my $result = $util-&gt;IsFileOrDirectory( &quot;../samples/stoplist&quot; );
+
+ print( &quot;Path Type Is A File\n&quot; ) if $result eq &quot;file&quot;;
+ print( &quot;Path Type Is A Directory\n&quot; ) if $result eq &quot;dir&quot;;
+ print( &quot;Path Type Is Unknown\n&quot; ) if $result eq &quot;unknown&quot;;
+
+ undef( $util );</code></pre>
+
+<h3 id="IsWordOrCUITerm">IsWordOrCUITerm</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks whether the passed string argument is word or CUI term.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string   -&gt; Word or CUI string term</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Returns &quot;cui&quot;, &quot;word&quot; or undef</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ my $result = $util-&gt;IsWordOrCUITerm( &quot;Cookie&quot; );
+
+ print( &quot;Passed String Argument Term Type: \&quot;$result\&quot;\n&quot; ) if defined( $result );
+ print( &quot;Cannot Determine String Argument Term Type\n&quot; )    if !defined( $result );
+
+ my $result = $util-&gt;IsWordOrCUITerm( &quot;C08132016&quot; );
+
+ print( &quot;Passed String Argument Term Type: \&quot;$result\&quot;\n&quot; ) if defined( $result );
+ print( &quot;Cannot Determine String Argument Term Type\n&quot; )    if !defined( $result );
+
+ undef( $util );</code></pre>
+
+<h3 id="GetFilesInDirectory">GetFilesInDirectory</h3>
+
+<p>Description:</p>
+
+<pre><code> Given a path and file tag string, returns a string of files consisting of the file tag string in the specified path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $path    -&gt; String representing path
+ $fileTag -&gt; String consisting of file tag to fetch.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string  -&gt; Returns string of file names consisting of $fileTag.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ # Looks in specified path for files including &quot;.sval&quot; in their file name.
+ my $result = $util-&gt;GetFilesInDirectory( &quot;../samples/&quot;, &quot;.sval&quot; );
+
+ print( &quot;Found File Name(s): $result\n&quot; ) if defined( $result );
+
+ undef( $util );</code></pre>
+
+<h3 id="GetOSType">GetOSType</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (string) operating system type.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Operating System String</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+
+ my $result = $util-&gt;GetOSType();
+
+ print( &quot;Current OS Type: $result\n&quot; ) if defined( $result );
+
+ undef( $util );</code></pre>
+
+<h2 id="Accessor-Functions">Accessor Functions</h2>
+
+<h3 id="GetDebugLog">GetDebugLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _debugLog member variable set during Word2vec::Util object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;0&#39; = False, &#39;1&#39; = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new()
+ my $debugLog = $util-&gt;GetDebugLog();
+
+ print( &quot;Debug Logging Enabled\n&quot; ) if $debugLog == 1;
+ print( &quot;Debug Logging Disabled\n&quot; ) if $debugLog == 0;
+
+
+ undef( $util );</code></pre>
+
+<h3 id="GetWriteLog">GetWriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _writeLog member variable set during Word2vec::Util object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;0&#39; = False, &#39;1&#39; = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util;
+
+ my $util = Word2vec::Util-&gt;new();
+ my $writeLog = $util-&gt;GetWriteLog();
+
+ print( &quot;Write Logging Enabled\n&quot; ) if $writeLog == 1;
+ print( &quot;Write Logging Disabled\n&quot; ) if $writeLog == 0;
+
+ undef( $util );</code></pre>
+
+<h2 id="Debug-Functions">Debug Functions</h2>
+
+<h3 id="WriteLog">WriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String to print to the console/log file.
+ $value  -&gt; 0 = Do not print newline character after string, all else prints new line character including &#39;undef&#39;.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Util:
+
+ my $util = Word2vec::Util-&gt;new();
+ $util-&gt;WriteLog( &quot;Hello World&quot; );
+
+ undef( $util );</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+

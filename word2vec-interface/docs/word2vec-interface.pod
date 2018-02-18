@@ -1,0 +1,694 @@
+=head1 NAME
+
+Word2vec-Interface.pl - Word2Vec Package Driver
+
+=head1 SYNOPSIS
+
+This program houses a set of functions and utilities for use with UMLS Similarity.
+
+=head1 USAGE
+
+Usage: Word2vec-Interface.pl [OPTIONS]
+
+=head2 Command-Line Arguments
+
+Displays the quick summary of the program options.
+
+=head3 --test
+
+Description:
+
+ Executes word2vec file and run-time checks.
+
+Parameters:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ interface.pm --test
+
+=head3 --cos
+
+Description:
+
+ Computes cosine similarity of two words given a trained vector file.
+
+Parameters:
+
+ vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)
+
+Output:
+
+ Cosine Similarity Value
+
+Example:
+
+ Word2vec-Interface.pl --cos "samples/samplevectors.bin" heart angina
+
+=head3 --cosmulti
+
+Description:
+
+ Computes cosine similarity between multiple words given a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each parameter.
+
+   ie: --cosmulti "vectors.bin" acute:heart:attack chronic:obstructive:pulmonary:disease
+
+Parameters:
+
+ vector_binary_path (String)
+ wordA1:wordA2      (String)
+ wordB1:wordB2      (String)
+
+Output:
+
+ Cosine Similarity Value
+
+Example:
+
+ Word2vec-Interface.pl --cosmulti "samples/samplevectors.bin" heart:attack myocardial:infarction
+
+=head3 --cosavg
+
+Description:
+
+ Computes cosine similarity average between multiple words given a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each parameter.
+
+   ie: --cosavg "vectors.bin" heart:attack six:sea:snakes:were:sailing
+
+Parameters:
+
+ vector_binary_path (String)
+ wordA1:wordA2      (String)
+ wordB1:wordB2      (String)
+
+Output:
+
+ Cosine Similarity Value
+
+Example:
+
+ Word2vec-Interface.pl --cosavg "samples/samplevectors.bin" heart:attack myocardial:infarction
+
+=head3 --cos2v
+
+Description:
+
+ Computes cosine similarity between two words, each in differing trained vector data files.
+
+Parameters:
+
+ vector_data_fileA_path (String)
+ wordA                  (String)
+ vector_data_fileB_path (String)
+ wordB                  (String)
+
+Output:
+
+ Cosine Similarity Value
+
+Example:
+
+ Word2vec-Interface.pl --cos2v "samples/medline_vectors.bin" heart "samples/pubmed_vectors.bin" infarction
+
+=head3 --multiwordcosuserinput
+
+Description:
+
+ Computes cosine similarity based on user input on a trained vector file.
+
+ Note: There is no limit to the number of words that can be concatenated with the colon character for each comparison string.
+
+Parameters:
+
+ vector_binary_path
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl --multiwordcosuserinput "samples/samplevectors.bin"
+
+=head3 --addvectors
+
+Description:
+
+ Adds two word vectors and prints the value.
+
+Parameters:
+
+ vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)
+
+Output:
+
+ Summed word vectors string
+
+Example:
+
+ Word2vec-Interface.pl --addvectors "samples/samplevectors.bin" heart attack
+
+=head3 --subtractvectors
+
+Description:
+
+ Subtracts two word vectors and outputs the value.
+
+Parameters:
+
+ vector_binary_path (String)
+ wordA              (String)
+ wordB              (String)
+
+Output:
+
+ Difference between word vectors string.
+
+Example:
+
+ Word2vec-Interface.pl --subtractvectors "vectors.bin" heart attack
+
+=head3 --w2vtrain
+
+Description:
+
+ Executes word2vec training based on user-specified options.
+
+Parameters:
+
+ -trainfile       file_path         (String)
+ -outputfile      file_path         (String)
+ -size            x                 (Integer)
+ -window          x                 (Integer)
+ -mincount        x                 (Integer)
+ -sample          x.x               (Float)
+ -negative        x                 (Integer)
+ -alpha           x.x               (Float)
+ -hs              x                 (Integer)
+ -binary          x                 (Integer)
+ -threads         x                 (Integer)
+ -iter            x                 (Integer)
+ -cbow            x                 (Integer)
+ -classes         x                 (Integer)
+ -read-vocab      file_path         (String)
+ -save-vocab      file_path         (String)
+ -debug           x                 (Integer)
+ -overwrite       x                 (Integer)
+
+ Note: Minimal required parameters to run are -trainfile and -outputfile. All other parameters not specified will be set to default settings.
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl --w2vtrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/tempvectors.bin" -size 200 -window 8 -sample 0.0001 -negative 25 -hs 0 -binary 0 -threads 20 -iter 15 -cbow 1 -overwrite 1
+
+=head3 --w2ptrain
+
+Description:
+
+ Executes word2phrase conversion based on user-specified options and text corpus.
+
+Parameters:
+
+ -trainfile     file_path       (String)
+ -outputfile    file_path       (String)
+ -mincount      x               (Integer)
+ -threshold     x               (Integer)
+ -debug         x               (Integer)
+ -overwrite     x               (Integer)
+
+ Note: Minimal required parameters to run are -trainfile and -outputfile. All other parameters not specified will be set to default settings.
+
+Example:
+
+ Word2vec-Interface.pl --w2ptrain -trainfile "../../samples/textcorpus.txt" -outputfile "../../samples/phrasecorpus.txt" -min-count 10 -threshold -200 -overwrite 1
+
+=head3 --compiletextcorpus
+
+Description:
+
+ Executes Medline XML-To-W2V text corpus generation based on user-specified options.
+
+Parameters:
+
+ -workdir       file_path       (String)
+ -savedir       file_path       (String)
+ -startdate     "XX/XX/XXXX"    (String)
+ -enddate       "XX/XX/XXXX"    (String)
+ -title         x               (Integer)
+ -abstract      x               (Integer)
+ -qparse        x               (Integer)
+ -compwordfile  file_path       (String)
+ -threads       x               (Integer)
+ -overwrite     x               (Integer)
+
+ Note: Minimal required parameter to run is "-workdir". All other parameters not specified will be set to default settings.
+
+Example:
+
+ Word2vec-Interface.pl --compiletextcorpus -workdir "../../samples"
+ Word2vec-Interface.pl --compiletextcorpus -workdir "../../samples" -savedir "../../samples/textcorpus.txt" -startdate 01/01/1900 -enddate 99/99/9999 -title 1 -abstract 1 -qparse 1 -compwordfile "../../samples/compoundword.txt" -threads 2 -overwrite 1
+
+=head3 --converttotextvectors
+
+Description:
+
+ Converts user-specified word2vec binary formatted file to human-readable text.
+
+ Note: This will freely convert all formats to plain text format.
+
+Parameters:
+
+ input_file_path  (String)
+ output_file_path (String)
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl ---converttotextvectors "binaryvectors.bin" "textvectors.bin"
+
+=head3 --converttobinaryvectors
+
+Description:
+
+ Converts user-specified vector text data to word2vec binary formatted file.
+
+ Note: This will freely convert all formats to word2vec binary format.
+
+Parameters:
+
+ input_file_path  (String)
+ output_file_path (String)
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl ---converttobinaryvectors "textvectors.bin" "binaryvectors.bin"
+
+=head3 --converttosparsevectors
+
+Description:
+
+ Converts user-specified vector text data to sparse vector data formatted file.
+
+ Note: This will freely convert all formats to sparse vector data format.
+
+Parameters:
+
+ input_file_path  (String)
+ output_file_path (String)
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl ---converttosparsevectors "textvectors.bin" "sparsevectors.bin"
+
+=head3 --compoundifyfile
+
+Description:
+
+ Compoundifies file based on user-specified compound word file.
+
+Parameters:
+
+ input_file             (String)
+ output_file            (String)
+ compound_word_file     (String)
+
+Output:
+
+ Compoundified file using 'compound_word_file' data at 'output_file' path.
+
+Example:
+
+ Word2vec-Interface.pl --compoundifyfile "samples/textcorpus.txt" "samples/compoundedtext.txt" "samples/compoundword.txt"
+
+=head3 --sortvectorfile
+
+Description:
+
+ Sorts specified vector file in alphanumeric order.
+
+Parameters:
+
+ input_file                                           (String)
+ -overwrite    1 = Overwrite / 0 = Save to new file   (Integer)
+
+Output:
+
+ Generates a sorted vector file consisting either replacing the old file or saving to the file "sortedvectors.bin".
+
+Example:
+
+ Word2vec-Interface.pl --sortvectorfile "vectors.bin"
+
+ Or
+
+ Word2vec-Interface.pl --sortvectorfile "vectors.bin" -overwrite 1
+
+ Or
+
+ Word2vec-Interface.pl --sortvectorfile "vectors.bin" -overwrite 0
+
+=head3 --findsimilarterms
+
+Description:
+
+ Prints the nearest n terms using cosine similarity as the metric of determining similar terms.
+
+Parameters:
+
+ vector_binary_file          (String)
+ term                        (String)
+ number_of_similar_neighbors (Integer)
+
+Output:
+
+ "number_of_similar_neighbors" value nearest similar terms using cosine similarity.
+
+Example:
+
+ Word2vec-Interface.pl --findsimilarterms vectors.bin heart 10
+
+=head3 --spearmans
+
+Description:
+
+ Computes Spearman's Rank Correlation Score between two files of a specific format.
+
+ File Format:
+ "score(float)<>term1<>term2"
+ "score(float)<>term3<>term4"
+
+ Note: Optional Parameters: -n -> Prints N value with Spearman's Rank Correlation Score
+
+Parameters:
+
+ input_file_a     (String)
+ input_file_b     (String)
+ (Optional Parameters)
+
+Output:
+
+ Spearman's Rank Correlation Score.
+
+Example:
+
+ Word2vec-Interface.pl --spearmans "samples/MiniMayoSRS.terms.comp_results" "Similarity/MiniMayoSRS.terms.coders"
+
+ Or
+
+ Word2vec-Interface.pl --spearmans "samples/MiniMayoSRS.terms.comp_results" "Similarity/MiniMayoSRS.terms.coders" -n
+
+=head3 --similarity
+
+Description:
+
+ Computes average, compound and summed cosine similarity values for a list of word comparisons in a specified file or directory.
+ When using a directory of files, files to be parsed must end with ".sim" extension.
+
+ Note: Optional Parameters: -all -> Computes Average, Compound and Summed files
+                            -a   -> Only computes Average file
+                            -c   -> Only computes Compound file
+                            -s   -> Only computes Summed file
+
+       Specifying no optional parameters imples "-all". Parameters can be combined to produce multiple results. See examples below.
+
+Parameters:
+
+ -sim     input_file             (String)
+ -vectors vector_binary_file     (String)
+ (Optional Parameters)
+
+Output:
+
+ Generates a text file with a list of cosine similarity values followed by the word pairs.
+
+Example:
+
+ Word2vec-Interface.pl --similarity -sim "samples/MiniMayoSRS.terms" -vectors "vectors.bin"
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim "samples/MiniMayoSRS.terms" -vectors "vectors.bin" -all
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim "samples/MiniMayoSRS.terms" -vectors "vectors.bin" -a -s
+
+ Or
+
+ Word2vec-Interface.pl --similarity -sim "samples/MiniMayoSRS.terms" -vectors "vectors.bin" -c
+
+=head3 --wsd
+
+Description:
+
+ Word Sense Disambiguation: Reads an instance and sense file in SVL format, removes stop words using the user specified stoplist and assigns a sense
+ identification number to an instance identification number using cosine similarity to compare all sense ids to an instance. The highest cosine
+ similarity value between a specific sense and instance is assigned to that particular instance.
+
+ Warning: WSD instance and sense files must be in SVL format.
+
+Parameters:
+
+ No parameters        <- This will prompt the user to input required files for WSD processing. (Must be in SVL format)
+
+ Or
+
+ -instances  file_path              (String)
+ -senses     file_path              (String)
+ -vectors    vector_binary_file     (String)
+ -stoplist   file_path              (String) <- (Not required)
+
+ Or
+
+ -dir        directory_of_files     (String)
+ -vectors    vector_binary_file     (String)
+ -stoplist   file_path              (String) <- (Not required)
+
+ Or
+
+ -list       file_path              (String)
+
+ Note: "-list" parameter requires the input file to meet format specifications for use. See example "samples/wsdlist.txt" for details.
+ Note: "-dir" parameter requires the user to specify the "-vectors" file path. "-stoplist" parameter is not requried.
+
+Output:
+
+ None
+
+Examples:
+
+ Word2vec-Interface.pl --wsd -instances "ACE.instances.sval" -senses "ACE.senses.sval" -vectors "vectors.bin"
+ Word2vec-Interface.pl --wsd -instances "ACE.instances.sval" -senses "ACE.senses.sval" -vectors "vectors.bin" -stoplist "stoplist"
+
+ Word2vec-Interface.pl --wsd -dir "../../wsd" -vectors vectors.bin
+ Word2vec-Interface.pl --wsd -dir "../../wsd" -vectors vectors.bin -stoplist "../../stoplist"
+
+ Word2vec-Interface.pl --wsd -list "../../wsd/abbrevlist.txt"
+ Word2vec-Interface.pl --wsd -list "../../wsd/abbrevlist.txt" -vectors vectors.bin
+ Word2vec-Interface.pl --wsd -list "../../wsd/abbrevlist.txt" -vectors vectors.bin -stoplist "../../wsd/stoplist"
+
+=head3 --clean
+
+Description:
+
+ Cleans up word2vec directory. Removes C object and executable files.
+
+ This is useful when moving the development directory between computers with different CPU architectures (x86/x64) and attempting to run word2vec executable files.
+ Errors could occur when trying to run a 64-bit executable on a 32-bit machine. Cleaning up the word2vec directory and re-building the executable files
+ resolves this issue.
+
+Parameters:
+
+ None
+
+Output:
+
+ None
+
+Example:
+
+ Word2vec-Interface.pl --clean
+
+=head3 --version
+
+Description:
+
+ Displays the version information.
+
+Parameters:
+
+ None
+
+Output:
+
+ Displays version information to the console.
+
+ Note: '--debuglog' and '--writelog' can also be combined to print debug statements to the console and write to their log files.
+
+Example:
+
+ Word2vec-Interface.pl --version
+
+=head3 --help
+
+Description:
+
+ Displays the quick summary of program options.
+
+Parameters:
+
+ None
+
+Output:
+
+ Displays help information to the console.
+
+Example:
+
+ Word2vec-Interface.pl --help
+
+=head2 Debugging Arguments
+
+List of debugging options.
+
+=head3 --debuglog
+
+Description:
+
+ Prints debugging statements to the console window.
+
+ Note: This parameter can be specified anywhere within the parameter string.
+
+Parameters:
+
+ None
+
+Output:
+
+ Prints real-time debug log to the console window.
+
+Examples:
+
+ Word2vec-Interface.pl --test --debuglog
+
+ Word2vec-Interface.pl --debuglog --test
+
+ Word2vec-Interface.pl --debuglog --wsd -list "samples/wsd/abbrevlist.txt"
+
+ Word2vec-Interface.pl --debuglog --w2vtrain "samples/textcorpus.txt" "samples/tempvectors.bin"
+
+=head3 --writelog
+
+Description:
+
+ Writes debugging statements to log module files.
+
+ Note: This parameter can be specified anywhere within the parameter string.
+
+Parameters:
+
+ None
+
+Output:
+
+ Writes debug log statements to specified log files. Each module will write to its respective log file.
+ ie. 'interface.pm' module will write to log file 'InterfaceLog.txt'.
+
+Examples:
+
+ Word2vec-Interface.pl --test --writelog
+
+ Word2vec-Interface.pl --writelog --test
+
+ Word2vec-Interface.pl --writelog --wsd -list "samples/wsd/abbrevlist.txt"
+
+ Word2vec-Interface.pl --writelog --w2vtrain -trainfile "samples/textcorpus.txt" -outputfile "samples/tempvectors.bin"
+
+=head2 Command-Line Notes
+
+Note that when using command-line parameters, multiple commands are supported.
+
+ie. Word2vec-Interface.pl --compiletextcorpus -workdir "samples" -savedir "samples/textcorpus.txt" --w2vtrain -trainfile "samples/textcorpus.txt" -outputfile "samples/tempvectors.bin" --cos "samples/tempvectors.bin" of the
+
+This string of commands instructs the script to compile a text corpus of the Medline XML files in the "samples" directory.
+Initiate word2vec training based on the newly compiled text corpus and create a word2vec trained word vector file in the
+specified directory. Then subsequently use the newly trained vector data to compute the cosine similarity between the words
+"of" and "the".
+
+This scripts supports as many continous commands as the user wishes to impose. All commands are checked for errors and the script will exit gracefully if such an event takes place.
+To obtain a better understanding of any errors, '--debuglog' or '--writelog' commands must be enabled.
+
+=head1 SYSTEM REQUIREMENTS
+
+=over
+
+=item * Perl (version 5.24.0 or better) - http://www.perl.org
+
+=back
+
+=head1 CONTACT US
+
+    If you have trouble installing and executing Word2vec-Interface.pl,
+    please contact us at
+
+    cuffyca at vcu dot edu.
+
+=head1 Author
+
+ Clint Cuffy, Virginia Commonwealth University
+
+=head1 COPYRIGHT
+
+Copyright (c) 2016
+
+ Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to:
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut

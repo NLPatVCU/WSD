@@ -1,0 +1,1603 @@
+=head3 XTWConvertMedlineXMLToW2V
+
+Description:
+
+ Parses specified parameter Medline XML file or directory of files, creating a text corpus. Returns 0 if successful or -1 during an error.
+
+ Note: Supports plain Medline XML or gun-zipped XML files.
+
+Input:
+
+ $filePath -> XML file path to parse. (This can be a single file or directory of XML/XML.gz files).
+
+Output:
+
+ $value    -> '0' = Successful / '-1' = Un-Successful
+
+Example:
+
+ use Word2vec::Interface;
+
+ $interface = Word2vec::Interface->new();      # Note: Specifying no parameters implies default settings
+ $interface->XTWSetSavePath( "testCorpus.txt" );
+ $interface->XTWSetStoreTitle( 1 );
+ $interface->XTWSetStoreAbstract( 1 );
+ $interface->XTWSetBeginDate( "01/01/2004" );
+ $interface->XTWSetEndDate( "08/13/2016" );
+ $interface->XTWSetOverwriteExistingFile( 1 );
+ $interface->XTWConvertMedlineXMLToW2V( "/xmlDirectory/" );
+ undef( $interface );
+
+=head3 XTWCreateCompoundWordBST
+
+Description:
+
+ Creates a binary search tree using compound word data in memory and stores root node. This also clears the compound word array afterwards.
+
+ Warning: Compound word file must be loaded into memory using XTWReadCompoundWordDataFromFile() prior to calling this method. This function
+          will also delete the compound word array upon completion as it will no longer be necessary.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWReadCompoundWordDataFromFile( "samples/compoundword.txt" );
+ $interface->CreateCompoundWordBST();
+
+=head3 XTWCompoundifyString
+
+Description:
+
+ Compoundifies string parameter based on compound word data in memory using the compound word binary search tree.
+
+ Warning: Compound word file must be loaded into memory using XTWReadCompoundWordDataFromFile() prior to calling this method.
+
+Input:
+
+ $string -> String to compoundify
+
+Output:
+
+ $string -> Compounded string or "(null)" if string parameter is not defined.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWReadCompoundWordDataFromFile( "samples/compoundword.txt" );
+ $interface->CreateCompoundWordBST();
+ my $compoundedString = $interface->CompoundifyString( "String to compoundify" );
+ print( "Compounded String: $compoundedString\n" );
+
+ undef( $interface );
+
+=head3 XTWReadCompoundWordDataFromFile
+
+Description:
+
+ Reads compound word file and stores in memory. $autoSetMaxCompWordLength parameter is not required to be set. This
+ parameter instructs the method to auto set the maximum compound word length dependent on the longest compound word found.
+
+ Note: $autoSetMaxCompWordLength options: defined = True and Undefined = False.
+
+Input:
+
+ $filePath                 -> Compound word file path
+ $autoSetMaxCompWordLength -> Maximum length of a given compoundified phrase the module's compoundify algorithm will permit.
+
+ Note: Calling this method with $autoSetMaxCompWordLength defined will automatically set the maxCompoundWordLength variable to the longest compound phrase.
+
+Output:
+
+ $value                    -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWReadCompoundWordDataFromFile( "samples/compoundword.txt", 1 );
+
+ undef( $interface );
+
+=head3 XTWSaveCompoundWordListToFile
+
+Description:
+
+ Saves compound word data in memory to a specified file location.
+
+Input:
+
+ $savePath -> Path to save compound word list to file.
+
+Output:
+
+ $value    -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWReadCompoundWordDataFromFile( "samples/compoundword.txt" );
+ $interface->XTWSaveCompoundWordDataFromFile( "samples/newcompoundword.txt" );
+ undef( $interface );
+
+=head3 XTWReadTextFromFile
+
+Description:
+
+ Reads a plain text file with utf8 encoding in memory. Returns string data if successful and "(null)" if unsuccessful.
+
+Input:
+
+ $filePath -> Text file to read into memory
+
+Output:
+
+ $string   -> String data if successful or "(null)" if un-successful.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $textData = $interface->XTWReadTextFromFile( "samples/textcorpus.txt" );
+ print( "Text Data: $textData\n" );
+ undef( $interface );
+
+=head3 XTWSaveTextToFile
+
+Description:
+
+ Saves a plain text file with utf8 encoding in a specified location.
+
+Input:
+
+ $savePath -> Path to save string data.
+ $string   -> String to save
+
+Output:
+
+ $value    -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $result = $interface->XTWSaveTextToFile( "text.txt", "Hello world!" );
+
+ print( "File saved\n" ) if $result == 0;
+ print( "File unable to save\n" ) if $result == -1;
+
+ undef( $interface );
+
+=head3 XTWReadXMLDataFromFile
+
+Description:
+
+ Reads an XML file from a specified location. Returns string in memory if successful and "(null)" if unsuccessful.
+
+Input:
+
+ $filePath -> File to read given path
+
+Output:
+
+ $value    -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ Warning: This is a private function and is called by XML::Twig parsing functions. It should not be called outside of xmltow2v module.
+
+=head3 XTWSaveTextCorpusToFile
+
+Description:
+
+ Saves text corpus data to specified file path. This method will append to any existing file if $appendToFile parameter
+ is defined or "overwrite" option is disabled. Enabling "overwrite" option will overwrite any existing files.
+
+Input:
+
+ $savePath     -> Path to save the text corpus
+ $appendToFile -> Specifies whether the module will overwrite any existing data or append to existing text corpus data.
+
+ Note: Leaving this variable undefined will fetch the "Overwrite" member variable and set the value to this parameter.
+
+Output:
+
+ $value        -> '0' = Successful / '-1' = Un-successful
+
+Example:
+
+ Warning: This is a private function and is called by XML::Twig parsing functions. It should not be called outside of xmltow2v module.
+
+=head3 XTWIsDateInSpecifiedRange
+
+Description:
+
+ Checks to see if $date is within $beginDate and $endDate range. Returns 1 if true and 0 if false.
+
+ Note: Date Format: XX/XX/XXXX (Month/Day/Year)
+
+Input:
+
+ $date      -> Date to check against minimum and maximum data range. (String)
+ $beginDate -> Minimum date range (String)
+ $endDate   -> Maximum date range (String)
+
+Output:
+
+ $value     -> '1' = True/Date is within specified range Or '0' = False/Date is not within specified range.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ print( "Is \"01/01/2004\" within the date range: \"02/21/1985\" to \"08/13/2016\"?\n" );
+ print( "Yes\n" ) if $interface->XTWIsDateInSpecifiedRange( "01/01/2004", "02/21/1985", "08/13/2016" ) == 1;
+ print( "No\n" ) if $interface->XTWIsDateInSpecifiedRange( "01/01/2004", "02/21/1985", "08/13/2016" ) == 0;
+
+ undef( $interface );
+
+=head3 XTWIsFileOrDirectory
+
+Description:
+
+ Checks to see if specified path is a file or directory.
+
+Input:
+
+ $path   -> File or directory path. (String)
+
+Output:
+
+ $string -> Returns: "file" = file, "dir" = directory and "unknown" if the path is not a file or directory (undefined).
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $path = "path/to/a/directory";
+
+ print( "Is \"$path\" a file or directory? " . $interface->XTWIsFileOrDirectory( $path ) . "\n" );
+
+ $path = "path/to/a/file.file";
+
+ print( "Is \"$path\" a file or directory? " . $interface->XTWIsFileOrDirectory( $path ) . "\n" );
+
+ undef( $interface );
+
+=head3 XTWRemoveSpecialCharactersFromString
+
+Description:
+
+ Removes special characters from string parameter, removes extra spaces and converts text to lowercase.
+
+ Note: This method is called when parsing and compiling Medline title/abstract data.
+
+Input:
+
+ $string -> String passed to remove special characters from and convert to lowercase.
+
+Output:
+
+ $string -> String with all special characters removed and converted to lowercase.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+
+ my $str = "Heart Attack is$ an!@ also KNOWN as an Acute MYOCARDIAL inFARCTion!";
+
+ print( "Original String: $str\n" );
+
+ $str = $interface->XTWRemoveSpecialCharactersFromString( $str );
+
+ print( "Modified String: $str\n" );
+
+ undef( $interface );
+
+=head3 XTWGetFileType
+
+Description:
+
+ Returns file data type (string).
+
+Input:
+
+ $filePath -> File to check located at file path
+
+Output:
+
+ $string   -> File type
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new()
+ my $fileType = $interface->XTWGetFileType( "samples/textcorpus.txt" );
+
+ undef( $interface );
+
+=head3 XTWDateCheck
+
+Description:
+
+ Checks specified begin and end date strings for formatting and logic errors.
+
+Input:
+
+ None
+
+Output:
+
+ $value   -> "0" = Passed Checks / "-1" = Failed Checks
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new()
+ print "Passed Date Checks\n" if ( $interface->_DateCheck() == 0 );
+ print "Failed Date Checks\n" if ( $interface->_DateCheck() == -1 );
+
+ undef( $interface );
+
+=head2 XMLToW2V Accessor Functions
+
+=head3 XTWGetDebugLog
+
+Description:
+
+ Returns the _debugLog member variable set during Word2vec::Interface object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '0' = False, '1' = True
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new()
+ my $debugLog = $interface->XTWGetDebugLog();
+
+ print( "Debug Logging Enabled\n" ) if $debugLog == 1;
+ print( "Debug Logging Disabled\n" ) if $debugLog == 0;
+
+
+ undef( $interface );
+
+=head3 XTWGetWriteLog
+
+Description:
+
+ Returns the _writeLog member variable set during Word2vec::Interface object initialization of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '0' = False, '1' = True
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $writeLog = $interface->XTWGetWriteLog();
+
+ print( "Write Logging Enabled\n" ) if $writeLog == 1;
+ print( "Write Logging Disabled\n" ) if $writeLog == 0;
+
+ undef( $interface );
+
+=head3 XTWGetStoreTitle
+
+Description:
+
+ Returns the _storeTitle member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $storeTitle = $interface->XTWGetStoreTitle();
+
+ print( "Store Title Option: Enabled\n" ) if $storeTitle == 1;
+ print( "Store Title Option: Disabled\n" ) if $storeTitle == 0;
+
+ undef( $interface );
+
+=head3 XTWGetStoreAbstract
+
+Description:
+
+ Returns the _storeAbstract member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $storeAbstract = $interface->XTWGetStoreAbstract();
+
+ print( "Store Abstract Option: Enabled\n" ) if $storeAbsract == 1;
+ print( "Store Abstract Option: Disabled\n" ) if $storeAbstract == 0;
+
+ undef( $interface );
+
+=head3 XTWGetQuickParse
+
+Description:
+
+ Returns the _quickParse member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $quickParse = $interface->XTWGetQuickParse();
+
+ print( "Quick Parse Option: Enabled\n" ) if $quickParse == 1;
+ print( "Quick Parse Option: Disabled\n" ) if $quickParse == 0;
+
+ undef( $interface );
+
+=head3 XTWGetCompoundifyText
+
+Description:
+
+ Returns the _compoundifyText member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $compoundify = $interface->XTWGetCompoundifyText();
+
+ print( "Compoundify Text Option: Enabled\n" ) if $compoundify == 1;
+ print( "Compoundify Text Option: Disabled\n" ) if $compoundify == 0;
+
+ undef( $interface );
+
+=head3 XTWGetStoreAsSentencePerLine
+
+Description:
+
+ Returns the _storeAsSentencePerLine member variable set during Word2vec::Xmltow2v object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = True / '0' = False
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $storeAsSentencePerLine = $interface->GetStoreAsSentencePerLine();
+
+ print( "Store As Sentence Per Line: Enabled\n" )  if $storeAsSentencePerLine == 1;
+ print( "Store As Sentence Per Line: Disabled\n" ) if $storeAsSentencePerLine == 0;
+
+ undef( $interface );
+
+=head3 XTWGetNumOfThreads
+
+Description:
+
+ Returns the _numOfThreads member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Number of threads
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $numOfThreads = $interface->XTWGetNumOfThreads();
+
+ print( "Number of threads: $numOfThreads\n" );
+
+ undef( $interface );
+
+=head3 XTWGetWorkingDir
+
+Description:
+
+ Returns the _workingDir member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Working directory string
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $workingDirectory = $interface->XTWGetWorkingDir();
+
+ print( "Working Directory: $workingDirectory\n" );
+
+ undef( $interface );
+
+=head3 XTWGetSavePath
+
+Description:
+
+ Returns the _saveDir member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Save directory string
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $savePath = $interface->XTWGetSavePath();
+
+ print( "Save Directory: $savePath\n" );
+
+ undef( $interface );
+
+=head3 XTWGetBeginDate
+
+Description:
+
+ Returns the _beginDate member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $date -> Beginning date range - Format: XX/XX/XXXX (Mon/Day/Year)
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $date = $interface->XTWGetBeginDate();
+
+ print( "Date: $date\n" );
+
+ undef( $interface );
+
+=head3 XTWGetEndDate
+
+Description:
+
+ Returns the _endDate member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $date -> End date range - Format: XX/XX/XXXX (Mon/Day/Year).
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $date = $interface->XTWGetEndDate();
+
+ print( "Date: $date\n" );
+
+ undef( $interface );
+
+=head3 XTWGetXMLStringToParse
+
+Returns the XML data (string) to be parsed.
+
+Description:
+
+ Returns the _xmlStringToParse member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Medline XML data string
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $xmlStr = $interface->XTWGetXMLStringToParse();
+
+ print( "XML String: $xmlStr\n" );
+
+ undef( $interface );
+
+=head3 XTWGetTextCorpusStr
+
+Description:
+
+ Returns the _textCorpusStr member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Text corpus string
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $str = $interface->XTWGetTextCorpusStr();
+
+ print( "Text Corpus: $str\n" );
+
+ undef( $interface );
+
+=head3 XTWGetFileHandle
+
+Description:
+
+ Returns the _fileHandle member variable set during Word2vec::Interface object instantiation of new function.
+
+ Warning: This is a private function. File handle is used by 'xmltow2v::WriteLog()' method. Do not manipulate this file handle as errors can result.
+
+Input:
+
+ None
+
+Output:
+
+ $fileHandle -> Returns file handle for WriteLog() method.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $fileHandle = $interface->XTWGetFileHandle();
+
+ undef( $interface );
+
+=head3 XTWGetTwigHandler
+
+Returns XML::Twig handler.
+
+Description:
+
+ Returns the _twigHandler member variable set during Word2vec::Interface object instantiation of new function.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Output:
+
+ $twigHandler -> XML::Twig handler.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $xmlHandler = $interface->XTWGetTwigHandler();
+
+ undef( $interface );
+
+=head3 XTWGetParsedCount
+
+Description:
+
+ Returns the _parsedCount member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Number of parsed Medline articles.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $numOfParsed = $interface->XTWGetParsedCount();
+
+ print( "Number of parsed Medline articles: $numOfParsed\n" );
+
+ undef( $interface );
+
+=head3 XTWGetTempStr
+
+Description:
+
+ Returns the _tempStr member variable set during Word2vec::Interface object instantiation of new function.
+
+ Warning: This is a private function and should not be called or manipulated. Used by module as a temporary storage
+          location for parsed Medline 'Title' and 'Abstract' flag string data.
+
+Input:
+
+ None
+
+Output:
+
+ $string -> Temporary string storage location.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $tempStr = $interface->XTWGetTempStr();
+
+ print( "Temp String: $tempStr\n" );
+
+ undef( $interface );
+
+=head3 XTWGetTempDate
+
+Description:
+
+ Returns the _tempDate member variable set during Word2vec::Interface object instantiation of new function.
+ Used by module as a temporary storage location for parsed Medline 'DateCreated' flag string data.
+
+Input:
+
+ None
+
+Output:
+
+ $date -> Date string - Format: XX/XX/XXXX (Mon/Day/Year).
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $date = $interface->XTWGetTempDate();
+
+ print( "Temp Date: $date\n" );
+
+ undef( $interface );
+
+=head3 XTWGetCompoundWordAry
+
+Description:
+
+ Returns the _compoundWordAry member array reference set during Word2vec::Interface object instantiation of new function.
+
+ Warning: Compound word data must be loaded in memory first via XTWReadCompoundWordDataFromFile().
+
+Input:
+
+ None
+
+Output:
+
+ $arrayReference -> Compound word array reference.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $arrayReference = $interface->XTWGetCompoundWordAry();
+ my @compoundWord = @{ $arrayReference };
+
+ print( "Compound Word Array: @compoundWord\n" );
+
+ undef( $interface );
+
+=head3 XTWGetCompoundWordBST
+
+Description:
+
+ Returns the _compoundWordBST member variable set during Word2vec::Interface object instantiation of new function.
+
+Input:
+
+ None
+
+Output:
+
+ $bst -> Compound word binary search tree.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $bst = $interface->XTWGetCompoundWordBST();
+
+ undef( $interface );
+
+=head3 XTWGetMaxCompoundWordLength
+
+Description:
+
+ Returns the _maxCompoundWordLength member variable set during Word2vec::Interface object instantiation of new function.
+
+ Note: If not defined, it is automatically set to and returns 20.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> Maximum number of compound words in a given phrase.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $compoundWordLength = $interface->XTWGetMaxCompoundWordLength();
+
+ print( "Maximum Compound Word Length: $compoundWordLength\n" );
+
+ undef( $interface );
+
+=head3 XTWGetOverwriteExistingFile
+
+Description:
+
+ Returns the _overwriteExisitingFile member variable set during Word2vec::Interface object instantiation of new function.
+ Enables overwriting of existing text corpus if set to '1' or appends to the existing text corpus if set to '0'.
+
+Input:
+
+ None
+
+Output:
+
+ $value -> '1' = Overwrite existing file / '0' = Append to exiting file.
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ my $overwriteExitingFile = $interface->XTWGetOverwriteExistingFile();
+
+ print( "Overwrite Existing File? YES\n" ) if ( $overwriteExistingFile == 1 );
+ print( "Overwrite Existing File? NO\n" ) if ( $overwriteExistingFile == 0 );
+
+ undef( $interface );
+
+=head2 XMLToW2V Mutator Functions
+
+=head3 XTWSetStoreTitle
+
+Description:
+
+ Sets member variable to passed integer parameter. Instructs module to store article title if true or omit if false.
+
+Input:
+
+ $value -> '1' = Store Titles / '0' = Omit Titles
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetStoreTitle( 1 );
+
+ undef( $interface );
+
+=head3 XTWSetStoreAbstract
+
+Description:
+
+ Sets member variable to passed integer parameter. Instructs module to store article abstracts if true or omit if false.
+
+Input:
+
+ $value -> '1' = Store Abstracts / '0' = Omit Abstracts
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetStoreAbstract( 1 );
+
+ undef( $interface );
+
+=head3 XTWSetWorkingDir
+
+Description:
+
+ Sets member variable to passed string parameter. Represents the working directory.
+
+Input:
+
+ $string -> Working directory string
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetWorkingDir( "/samples/" );
+
+ undef( $interface );
+
+=head3 XTWSetSavePath
+
+Description:
+
+ Sets member variable to passed integer parameter. Represents the text corpus save path.
+
+Input:
+
+ $string -> Text corpus save path
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetSavePath( "samples/textcorpus.txt" );
+
+ undef( $interface );
+
+=head3 XTWSetQuickParse
+
+Description:
+
+ Sets member variable to passed integer parameter. Instructs module to utilize quick parse
+ routines to speed up text corpus compilation. This method is somewhat less accurate due to its non-exhaustive nature.
+
+Input:
+
+ $value -> '1' = Enable Quick Parse / '0' = Disable Quick Parse
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetQuickParse( 1 );
+
+ undef( $interface );
+
+=head3 XTWSetCompoundifyText
+
+Description:
+
+ Sets member variable to passed integer parameter. Instructs module to utilize 'compoundify' option if true.
+
+ Warning: This requires compound word data to be loaded into memory with XTWReadCompoundWordDataFromFile() method prior
+          to executing text corpus compilation.
+
+Input:
+
+ $value -> '1' = Compoundify text / '0' = Do not compoundify text
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetCompoundifyText( 1 );
+
+ undef( $interface );
+
+=head3 XTWSetStoreAsSentencePerLine
+
+Description:
+
+ Sets member variable to passed integer parameter. Instructs module to utilize 'storeAsSentencePerLine' option if true.
+
+Input:
+
+ $value -> '1' = Store as sentence per line / '0' = Do not store as sentence per line
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetStoreAsSentencePerLine( 1 );
+
+ undef( $interface );
+
+=head3 XTWSetNumOfThreads
+
+Description:
+
+ Sets member variable to passed integer parameter. Sets the requested number of threads to parse Medline XML files
+ and compile the text corpus.
+
+Input:
+
+ $value -> Integer (Positive value)
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetNumOfThreads( 4 );
+
+ undef( $interface );
+
+=head3 XTWSetBeginDate
+
+Description:
+
+ Sets member variable to passed string parameter. Sets beginning date range for earliest articles to store, by
+ 'DateCreated' Medline tag, within the text corpus during compilation.
+
+ Note: Expected format - "XX/XX/XXXX" (Mon/Day/Year)
+
+Input:
+
+ $string -> Date string - Format: "XX/XX/XXXX"
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetBeginDate( "01/01/2004" );
+
+ undef( $interface );
+
+=head3 XTWSetEndDate
+
+Description:
+
+ Sets member variable to passed string parameter. Sets ending date range for latest article to store, by
+ 'DateCreated' Medline tag, within the text corpus during compilation.
+
+ Note: Expected format - "XX/XX/XXXX" (Mon/Day/Year)
+
+Input:
+
+ $string -> Date string - Format: "XX/XX/XXXX"
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetEndDate( "08/13/2016" );
+
+ undef( $interface );
+
+=head3 XTWSetXMLStringToParse
+
+Description:
+
+ Sets member variable to passed string parameter. This string normally consists of Medline XML data to be
+ parsed for text corpus compilation.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> String
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetXMLStringToParse( "Hello World!" );
+
+ undef( $interface );
+
+=head3 XTWSetTextCorpusStr
+
+Description:
+
+ Sets member variable to passed string parameter. Overwrites any stored text corpus data in memory to the string parameter.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> String
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetTextCorpusStr( "Hello World!" );
+
+ undef( $interface );
+
+=head3 XTWAppendStrToTextCorpus
+
+Description:
+
+ Sets member variable to passed string parameter. Appends string parameter to text corpus string in memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> String
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWAppendStrToTextCorpus( "Hello World!" );
+
+ undef( $interface );
+
+=head3 XTWClearTextCorpus
+
+Description:
+
+ Clears text corpus data in memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWClearTextCorpus();
+
+ undef( $interface );
+
+=head3 XTWSetTempStr
+
+Description:
+
+ Sets member variable to passed string parameter. Sets temporary member string to passed string parameter.
+ (Temporary placeholder for Medline Title and Abstract data).
+
+ Note: This removes special characters and converts all characters to lowercase.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> String
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetTempStr( "Hello World!" );
+
+ undef( $interface );
+
+=head3 XTWAppendToTempStr
+
+Description:
+
+ Appends string parameter to temporary member string in memory.
+
+ Note: This removes special characters and converts all characters to lowercase.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> String
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWAppendToTempStr( "Hello World!" );
+
+ undef( $interface );
+
+=head3 XTWClearTempStr
+
+ Clears the temporary string storage in memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWClearTempStr();
+
+ undef( $interface );
+
+=head3 XTWSetTempDate
+
+Description:
+
+ Sets member variable to passed string parameter. Sets temporary date string to passed string.
+
+ Note: Date Format - "XX/XX/XXXX" (Mon/Day/Year)
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $string -> Date string - Format: "XX/XX/XXXX"
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetTempDate( "08/13/2016" );
+
+ undef( $interface );
+
+=head3 XTWClearTempDate
+
+Description:
+
+ Clears the temporary date storage location in memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWClearTempDate();
+
+ undef( $interface );
+
+=head3 XTWSetCompoundWordAry
+
+Description:
+
+ Sets member variable to de-referenced passed array reference parameter. Stores compound word array by
+ de-referencing array reference parameter.
+
+ Note: Clears previous data if existing.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $arrayReference -> Array reference of compound words
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my @compoundWordAry = ( "big dog", "respiratory failure", "seven large masses" );
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetCompoundWordAry( \@compoundWordAry );
+
+ undef( $interface );
+
+=head3 XTWClearCompoundWordAry
+
+Description:
+
+ Clears compound word array in memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWClearCompoundWordAry();
+
+ undef( $interface );
+
+=head3 XTWSetCompoundWordBST
+
+Description:
+
+ Sets member variable to passed Word2vec::Bst parameter. Sets compound word binary search tree to passed binary tree parameter.
+
+ Note: Un-defines previous binary tree if existing.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ Word2vec::Bst -> Binary Search Tree
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my @compoundWordAry = ( "big dog", "respiratory failure", "seven large masses" );
+ @compoundWordAry = sort( @compoundWordAry );
+
+ my $arySize = @compoundWordAry;
+
+ my $bst = Word2vec::Bst;
+ $bst->CreateTree( \@compoundWordAry, 0, $arySize, undef );
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetCompoundWordBST( $bst );
+
+ undef( $interface );
+
+=head3 XTWClearCompoundWordBST
+
+Description:
+
+ Clears/Un-defines existing compound word binary search tree from memory.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ None
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWClearCompoundWordBST();
+
+ undef( $interface );
+
+=head3 XTWSetMaxCompoundWordLength
+
+Description:
+
+ Sets member variable to passed integer parameter. Sets maximum number of compound words in a phrase for comparison.
+
+ ie. "medical campus of Virginia Commonwealth University" can be interpreted as a compound word of 6 words.
+ Setting this variable to 3 will only attempt compoundifying a maximum amount of three words.
+ The result would be "medical_campus_of Virginia commonwealth university" even-though an exact representation
+ of this compounded string can exist. Setting this variable to 6 will result in compounding all six words if
+ they exists in the compound word array/bst.
+
+ Warning: This is a private function and should not be called or manipulated.
+
+Input:
+
+ $value -> Integer
+
+Ouput:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetMaxCompoundWordLength( 8 );
+
+ undef( $interface );
+
+=head3 XTWSetOverwriteExistingFile
+
+Description:
+
+ Sets member variable to passed integer parameter. Sets option to overwrite existing text corpus during compilation
+ if 1 or append to existing text corpus if 0.
+
+Input:
+
+ $value -> '1' = Overwrite existing text corpus / '0' = Append to existing text corpus during compilation.
+
+Output:
+
+ None
+
+Example:
+
+ use Word2vec::Interface;
+
+ my $interface = Word2vec::Interface->new();
+ $interface->XTWSetOverWriteExistingFile( 1 );
+
+ undef( $xmltow2v );

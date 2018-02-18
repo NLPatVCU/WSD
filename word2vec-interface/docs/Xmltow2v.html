@@ -1,0 +1,2280 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Main-Functions">Main Functions</a>
+        <ul>
+          <li><a href="#new">new</a></li>
+          <li><a href="#DESTROY">DESTROY</a></li>
+          <li><a href="#ConvertMedlineXMLToW2V">ConvertMedlineXMLToW2V</a></li>
+          <li><a href="#ThreadedConvert">_ThreadedConvert</a></li>
+          <li><a href="#ParseXMLString">_ParseXMLString</a></li>
+          <li><a href="#CheckParseRequirements">_CheckParseRequirements</a></li>
+          <li><a href="#CheckForNullData">_CheckForNullData</a></li>
+          <li><a href="#RemoveXMLVersion">_RemoveXMLVersion</a></li>
+          <li><a href="#ParseMedlineCitationSet">_ParseMedlineCitationSet</a></li>
+          <li><a href="#ParseMedlineArticle">_ParseMedlineArticle</a></li>
+          <li><a href="#ParseDateCreated">_ParseDateCreated</a></li>
+          <li><a href="#ParseArticle">_ParseArticle</a></li>
+          <li><a href="#ParseJournal">_ParseJournal</a></li>
+          <li><a href="#ParseOtherAbstract">_ParseOtherAbstract</a></li>
+          <li><a href="#QuickParseDateCreated">_QuickParseDateCreated</a></li>
+          <li><a href="#QuickParseJournal">_QuickParseJournal</a></li>
+          <li><a href="#QuickParseArticle">_QuickParseArticle</a></li>
+          <li><a href="#QuickParseOtherAbstract">_QuickParseOtherAbstract</a></li>
+          <li><a href="#CreateCompoundWordBST">CreateCompoundWordBST</a></li>
+          <li><a href="#CompoundifyString">CompoundifyString</a></li>
+          <li><a href="#CompoundifySearch">_CompoundifySearch</a></li>
+          <li><a href="#ReadCompoundWordDataFromFile">ReadCompoundWordDataFromFile</a></li>
+          <li><a href="#SaveCompoundWordListToFile">SaveCompoundWordListToFile</a></li>
+          <li><a href="#ReadTextFromFile">ReadTextFromFile</a></li>
+          <li><a href="#SaveTextToFile">SaveTextToFile</a></li>
+          <li><a href="#ReadXMLDataFromFile">_ReadXMLDataFromFile</a></li>
+          <li><a href="#SaveTextCorpusToFile">_SaveTextCorpusToFile</a></li>
+          <li><a href="#IsDateInSpecifiedRange">IsDateInSpecifiedRange</a></li>
+          <li><a href="#IsFileOrDirectory">IsFileOrDirectory</a></li>
+          <li><a href="#RemoveSpecialCharactersFromString">RemoveSpecialCharactersFromString</a></li>
+          <li><a href="#GetFileType">GetFileType</a></li>
+          <li><a href="#DateCheck">_DateCheck</a></li>
+        </ul>
+      </li>
+      <li><a href="#Accessor-Functions">Accessor Functions</a>
+        <ul>
+          <li><a href="#GetDebugLog">GetDebugLog</a></li>
+          <li><a href="#GetWriteLog">GetWriteLog</a></li>
+          <li><a href="#GetStoreTitle">GetStoreTitle</a></li>
+          <li><a href="#GetStoreAbstract">GetStoreAbstract</a></li>
+          <li><a href="#GetQuickParse">GetQuickParse</a></li>
+          <li><a href="#GetCompoundifyText">GetCompoundifyText</a></li>
+          <li><a href="#GetStoreAsSentencePerLine">GetStoreAsSentencePerLine</a></li>
+          <li><a href="#GetNumOfThreads">GetNumOfThreads</a></li>
+          <li><a href="#GetWorkingDir">GetWorkingDir</a></li>
+          <li><a href="#GetSavePath">GetSavePath</a></li>
+          <li><a href="#GetBeginDate">GetBeginDate</a></li>
+          <li><a href="#GetEndDate">GetEndDate</a></li>
+          <li><a href="#GetXMLStringToParse">GetXMLStringToParse</a></li>
+          <li><a href="#GetTextCorpusStr">GetTextCorpusStr</a></li>
+          <li><a href="#GetFileHandle">GetFileHandle</a></li>
+          <li><a href="#GetTwigHandler">GetTwigHandler</a></li>
+          <li><a href="#GetParsedCount">GetParsedCount</a></li>
+          <li><a href="#GetTempStr">GetTempStr</a></li>
+          <li><a href="#GetTempDate">GetTempDate</a></li>
+          <li><a href="#GetCompoundWordAry">GetCompoundWordAry</a></li>
+          <li><a href="#GetCompoundWordBST">GetCompoundWordBST</a></li>
+          <li><a href="#GetMaxCompoundWordLength">GetMaxCompoundWordLength</a></li>
+          <li><a href="#GetOverwriteExistingFile">GetOverwriteExistingFile</a></li>
+        </ul>
+      </li>
+      <li><a href="#Mutator-Functions">Mutator Functions</a>
+        <ul>
+          <li><a href="#SetStoreTitle">SetStoreTitle</a></li>
+          <li><a href="#SetStoreAbstract">SetStoreAbstract</a></li>
+          <li><a href="#SetWorkingDir">SetWorkingDir</a></li>
+          <li><a href="#SetSavePath">SetSavePath</a></li>
+          <li><a href="#SetQuickParse">SetQuickParse</a></li>
+          <li><a href="#SetCompoundifyText">SetCompoundifyText</a></li>
+          <li><a href="#SetStoreAsSentencePerLine">SetStoreAsSentencePerLine</a></li>
+          <li><a href="#SetNumOfThreads">SetNumOfThreads</a></li>
+          <li><a href="#SetBeginDate">SetBeginDate</a></li>
+          <li><a href="#SetEndDate">SetEndDate</a></li>
+          <li><a href="#SetXMLStringToParse">SetXMLStringToParse</a></li>
+          <li><a href="#SetTextCorpusStr">SetTextCorpusStr</a></li>
+          <li><a href="#AppendStrToTextCorpus">AppendStrToTextCorpus</a></li>
+          <li><a href="#ClearTextCorpus">ClearTextCorpus</a></li>
+          <li><a href="#SetTempStr">SetTempStr</a></li>
+          <li><a href="#AppendToTempStr">AppendToTempStr</a></li>
+          <li><a href="#ClearTempStr">ClearTempStr</a></li>
+          <li><a href="#SetTempDate">SetTempDate</a></li>
+          <li><a href="#ClearTempDate">ClearTempDate</a></li>
+          <li><a href="#SetCompoundWordAry">SetCompoundWordAry</a></li>
+          <li><a href="#ClearCompoundWordAry">ClearCompoundWordAry</a></li>
+          <li><a href="#SetCompoundWordBST">SetCompoundWordBST</a></li>
+          <li><a href="#ClearCompoundWordBST">ClearCompoundWordBST</a></li>
+          <li><a href="#SetMaxCompoundWordLength">SetMaxCompoundWordLength</a></li>
+          <li><a href="#SetOverwriteExistingFile">SetOverwriteExistingFile</a></li>
+        </ul>
+      </li>
+      <li><a href="#Debug-Functions">Debug Functions</a>
+        <ul>
+          <li><a href="#GetTime">GetTime</a></li>
+          <li><a href="#GetDate">GetDate</a></li>
+          <li><a href="#WriteLog">WriteLog</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec::Xmltow2v - Medline XML-To-W2V Module.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ # Parameters: Debug Output = True, Write Log = False, StoreTitle = True, StoreAbstract = True, Quick Parse = True, CompoundifyText = True, Use Multi-Threading (Default = 1 Thread Per CPU Core)
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new( 1, 0, 1, 1, 1, 1, 2 );      # Note: Specifying no parameters implies default settings.
+ $xmlconv-&gt;SetWorkingDir( &quot;Medline/XML/Directory/Here&quot; );
+ $xmlconv-&gt;SetSavePath( &quot;textcorpus.txt&quot; );
+ $xmlconv-&gt;SetStoreTitle( 1 );
+ $xmlconv-&gt;SetStoreAbstract( 1 );
+ $xmlconv-&gt;SetBeginDate( &quot;01/01/2004&quot; );
+ $xmlconv-&gt;SetEndDate( &quot;08/13/2016&quot; );
+ $xmlconv-&gt;SetOverwriteExistingFile( 1 );
+
+ # If Compound Word File Exists, Store It In Memory And Create Compound Word Binary Search Tree
+ $xmlconv-&gt;ReadCompoundWordDataFromFile( &quot;compoundword.txt&quot;, 1 );
+ $xmlconv-&gt;CreateCompoundWordBST();
+
+ # Parse XML Files or Directory Of Files
+ $xmlconv-&gt;ConvertMedlineXMLToW2V( &quot;/xmlDirectory/&quot; );
+ undef( $xmlconv );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Word2vec::Xmltow2v is a XML-to-text module which converts Medline XML article title and abstract data, given a date range, into a plain text corpus for use with Word2vec::Interface. It also &quot;compoundifies&quot; during text corpus compilation given a compound word file.</p>
+
+<h2 id="Main-Functions">Main Functions</h2>
+
+<h3 id="new">new</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns a new &#39;Word2vec::Xmltow2v&#39; module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0
+    storeTitle                  = 1
+    storeAbstract               = 1
+    quickParse                  = 0
+    compoundifyText             = 0
+    storeAsSentencePerLine      = 0
+    numOfThreads                = Number of CPUs/CPU cores (1 thread per core/CPU)
+    workingDir                  = Current Directory
+    savePath                    = Current Directory
+    beginDate                   = &quot;00/00/0000&quot;
+    endDate                     = &quot;99/99/9999&quot;
+    xmlStringToParse            = &quot;(null)&quot;
+    textCorpusString            = &quot;&quot;
+    twigHandler                 = 0
+    parsedCount                 = 0
+    tempDate                    = &quot;&quot;
+    tempStr                     = &quot;&quot;
+    outputFileName              = &quot;textcorpus.txt&quot;
+    compoundWordAry             = ()
+    compoundWordBST             = Word2vec::Bst-&gt;new()
+    maxCompoundWordLength       = 0
+    overwriteExistingFile       = 0</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $debugLog                    -&gt; Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -&gt; Instructs module to print debug statements to a log file. (1 = True / 0 = False)
+ $storeTitle                  -&gt; Instructs module to store Medline article titles during text corpus compilation. (1 = True / 0 = False)
+ $storeAbstract               -&gt; Instructs module to store Medline article abstracts during text corpus compilation. (1 = True / 0 = False)
+ $quickParse                  -&gt; Instructs module to utilize quick XML parsing Functions for known Medline article title and abstract tags. (1 = True / 0 = False)
+ $compoundifyText             -&gt; Instructs module to compoundify text on the fly given a compound word file. This is automatically set
+                                 when reading the compound word file to memory regardless of user setting. (1 = True / 0 = False)
+ $storeAsSentencePerLine      -&gt; Instructs module to store parsed medline data as a length single sentence or separate sentences on new lines based on period character. (1 = True / 0 = False)
+ $numOfThreads                -&gt; Specifies the number of worker threads which parse Medline XML files simultaneously to create the text corpus.
+                                 This speeds up text corpus generation by the number of physical cores present an a given machine. (Positive integer value)
+                                 ie. Using four threads of a Intel i7 core machine speeds up text corpus generation roughly four times faster than being single threaded.
+ $workingDir                  -&gt; Specifies the current working directory. (String)
+ $savePath                    -&gt; Specifies the save path for text corpus generation. (String)
+ $beginDate                   -&gt; Specifies the beginning date range for Medline article text corpus composition. (Format: XX/XX/XXXX)
+ $endDate                     -&gt; Specifies the ending date range for Medline article text corpus composition. (Format: XX/XX/XXXX)
+ $xmlStringToParse            -&gt; Storage location for the current Medline XML file in memory. (String)
+ $textCorpusString            -&gt; Temporary storage location for text corpus generation in memory. (String)
+ $twigHandler                 -&gt; XML::Twig object location.
+ $parsedCount                 -&gt; Number of parsed Medline articles during text corpus generation.
+ $tempDate                    -&gt; Temporary storage location for current Medline article date during text corpus compilation.
+ $tempStr                     -&gt; Temporary storage location for current Medline article title/abstract during text corpus compilation.
+ $outputFileName              -&gt; Output file path/name.
+ $compoundWordAry             -&gt; Storage location for compound words, used to compoundify text. (Array) &lt;- Depreciated
+ $compoundWordBST             -&gt; Storage location for compound words, used to compoundify text. (Binary Search Tree) &lt;- Supersedes &#39;$compoundWordAry&#39;
+ $maxCompoundWordLength       -&gt; Maximum number of words able to be compoundified in one phrase. ie &quot;six_sea_snakes_were_sailing&quot; = 5 compoundified words.
+                                 The compounding algorithm will attempt to compoundify no more than this set value, even-though the compound word list could
+                                 possibly contain larger compounded phrases.
+ $overwriteExistingFile       -&gt; Instructs the module to either overwrite any existing text corpus files or append to the existing file.
+
+ Note: It is not recommended to specify all new() parameters, as it has not been thoroughly tested. Maximum recommended parameters to be specified include:
+       &quot;debugLog, writeLog, storeTitle, storeAbstract, quickParse, compoundifyText, numOfThreads, workingDir, savePath, beginDate, endDate&quot;</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Xmltow2v object.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();  # Note: Specifying no parameters implies default settings as listed above.
+
+ undef( $xmlconv );
+
+ # Or
+
+ use Word2vec::Xmltow2v;
+
+ # Parameters: Debug Output = True, Write Log = False, StoreTitle = True, StoreAbstract = True, Quick Parse = True, CompoundifyText = True, Use Multi-Threading (2 Threads)
+ my $xmlconv = new xmltow2v( 1, 0, 1, 1, 1, 1, 2 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="DESTROY">DESTROY</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes module objects and variables from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+
+ $xmlconv-&gt;DESTROY();
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ConvertMedlineXMLToW2V">ConvertMedlineXMLToW2V</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses specified parameter Medline XML file or directory of files, creating a text corpus. Returns 0 if successful or -1 during an error.
+
+ Note: Supports plain Medline XML or gun-zipped XML files.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $filePath -&gt; XML file path to parse. (This can be a single file or directory of XML/XML.gz files).</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value    -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-Successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ $xmlconv = new xmltow2v();      # Note: Specifying no parameters implies default settings
+ $xmlconv-&gt;SetSavePath( &quot;testCorpus.txt&quot; );
+ $xmlconv-&gt;SetStoreTitle( 1 );
+ $xmlconv-&gt;SetStoreAbstract( 1 );
+ $xmlconv-&gt;SetBeginDate( &quot;01/01/2004&quot; );
+ $xmlconv-&gt;SetEndDate( &quot;08/13/2016&quot; );
+ $xmlconv-&gt;SetOverwriteExistingFile( 1 );
+ $xmlconv-&gt;ConvertMedlineXMLToW2V( &quot;/xmlDirectory/&quot; );
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ThreadedConvert">_ThreadedConvert</h3>
+
+<p>Description:</p>
+
+<pre><code> Multi-Threaded Medline XML to text corpus conversion function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $directory -&gt; File directory or directory of files to parse.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value     -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function called by &#39;ConvertMedlineXMLToW2V()&#39;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseXMLString">_ParseXMLString</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses passed string parameter for Medline XML article title and abstract data and appends found data to the text corpus.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Medline XML string data to parse.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function called by &quot;ConvertMedlineXMLToW2V()&quot; and &quot;_ThreadedConvert()&quot;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="CheckParseRequirements">_CheckParseRequirements</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks passed string parameter to see if it contains relevant data and XML::Twig handler is initialized.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String data to check</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value  -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function called &quot;_ParseXMLString()&quot;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="CheckForNullData">_CheckForNullData</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks passed string parameter for &quot;(null)&quot; string.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String data to be checked.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value  -&gt; &#39;1&#39; = True/Null data or &#39;0&#39; = False/Valid data</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function called by &quot;new()&quot; and &quot;_ParseXMLString()&quot;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="RemoveXMLVersion">_RemoveXMLVersion</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes the XML Version string prior to parsing the XML string data. (Depreciated)</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Medline XML string data</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function called by &quot;new()&quot; and &quot;_ParseXMLString()&quot;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseMedlineCitationSet">_ParseMedlineCitationSet</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;MedlineCitationSet&#39; tag data in Medline XML file.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $twigHandler -&gt; XML::Twig handler
+ $root        -&gt; Beginning of XML directory to parse. ( Directory in Medline XML string data )</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseMedlineArticle">_ParseMedlineArticle</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;MedlineArticle&#39; tag data in Medline XML file.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $medlineArticle -&gt; Current Medline article directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value          -&gt; &#39;1&#39; = Finished parsing Medline article.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseDateCreated">_ParseDateCreated</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;DateCreated&#39; tag data in Medline XML file.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $article -&gt; Current Medline article in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $date    -&gt; &#39;XX/XX/XXXX&#39; (Month/Day/Year)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseArticle">_ParseArticle</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Article&#39; tag data in Medline XML file. Fetches &#39;ArticleTitle&#39;, &#39;Journal&#39; and &#39;Abstract&#39; XML tags.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $article -&gt; Current Medline article in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseJournal">_ParseJournal</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Journal&#39; tag data in Medline XML file. Fetches &#39;Title&#39; XML tag.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $journalRoot -&gt; Current Medline journal directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ParseOtherAbstract">_ParseOtherAbstract</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Abstract&#39; tag data in Medline XML file. Fetches &#39;AbstractText&#39; XML tag.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $abstractRoot -&gt; Current Medline abstract directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="QuickParseDateCreated">_QuickParseDateCreated</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;DateCreated&#39; tag data in Medline XML file. Used when &#39;QuickParse&#39; member variable is enabled. Sets $tempDate member variable to parsed &#39;DateCreated&#39; tag data.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $twigHandler -&gt; &#39;XML::Twig&#39; handler
+ $article     -&gt; Current Medline article directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="QuickParseJournal">_QuickParseJournal</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Journal&#39; tag data in Medline XML file. Fetches &#39;Title&#39; XML tag. Used when &#39;QuickParse&#39; member variable is enabled.
+ Sets $tempStr to parsed data and stores in text corpus.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $twigHandler -&gt; &#39;XML::Twig&#39; handler.
+ $journalRoot -&gt; Current Medline journal directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="QuickParseArticle">_QuickParseArticle</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Article&#39; tag data in Medline XML file. Fetches &#39;ArticleTitle&#39; and &#39;Abstract&#39; XML tags. Used when &#39;QuickParse&#39; member variable is enabled.
+ Sets $tempStr to parsed data and stores in text corpus.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $twigHandler -&gt; &#39;XML::Twig&#39; handler.
+ $article     -&gt; Current Medline article directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="QuickParseOtherAbstract">_QuickParseOtherAbstract</h3>
+
+<p>Description:</p>
+
+<pre><code> Parses &#39;Abstract&#39; tag data in Medline XML file. Fetches &#39;AbstractText&#39; XML tag. Used when &#39;QuickParse&#39; member variable is enabled.
+ Sets $tempStr to parsed data and stores in text corpus.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $twigHandler -&gt; &#39;XML::Twig&#39; handler.
+ $anstractRoot -&gt; Current Medline abstract directory in XML data (XML::Twig directory)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by xmltow2v&#39;s XML::Twig handler. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="CreateCompoundWordBST">CreateCompoundWordBST</h3>
+
+<p>Description:</p>
+
+<pre><code> Creates a binary search tree using compound word data in memory and stores root node. This also clears the compound word array afterwards.
+
+ Warning: Compound word file must be loaded into memory using ReadCompoundWordDataFromFile() prior to calling this method. This function
+          will also delete the compound word array upon completion as it will no longer be necessary.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ReadCompoundWordDataFromFile( &quot;samples/compoundword.txt&quot; );
+ $xmlconv-&gt;CreateCompoundWordBST();</code></pre>
+
+<h3 id="CompoundifyString">CompoundifyString</h3>
+
+<p>Description:</p>
+
+<pre><code> Compoundifies string parameter based on compound word data in memory using the compound word binary search tree.
+
+ Warning: Compound word file must be loaded into memory using ReadCompoundWordDataFromFile() prior to calling this method.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String to compoundify</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Compounded string or &quot;(null)&quot; if string parameter is not defined.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ReadCompoundWordDataFromFile( &quot;samples/compoundword.txt&quot; );
+ $xmlconv-&gt;CreateCompoundWordBST();
+ my $compoundedString = $xmlconv-&gt;CompoundifyString( &quot;String to compoundify&quot; );
+ print( &quot;Compounded String: $compoundedString\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="CompoundifySearch">_CompoundifySearch</h3>
+
+<p>Description:</p>
+
+<pre><code> Recursive method used by CompoundifyString() to fetch compound word data in binary search tree.
+
+ Warning: This function requires specific parameters and should not be called outside of CompoundifyString() method.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $stringArrayRef -&gt; Array reference containing string data
+ $oldNode        -&gt; Last &#39;Word2vec::Node&#39; data match was found
+ $searchStr      -&gt; Search phrase
+ $index          -&gt; Current string array index</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Node  -&gt; Last node containing positive search phrase match</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by &#39;CompoundifyString()&#39;. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="ReadCompoundWordDataFromFile">ReadCompoundWordDataFromFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Reads compound word file and stores in memory. $autoSetMaxCompWordLength parameter is not required to be set. This
+ parameter instructs the method to auto set the maximum compound word length dependent on the longest compound word found.
+
+ Note: $autoSetMaxCompWordLength options: defined = True and Undefined = False.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $filePath                 -&gt; Compound word file path
+ $autoSetMaxCompWordLength -&gt; Maximum length of a given compoundified phrase the module&#39;s compoundify algorithm will permit.
+
+ Note: Calling this method with $autoSetMaxCompWordLength defined will automatically set the maxCompoundWordLength variable to the longest compound phrase.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value                    -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ReadCompoundWordDataFromFile( &quot;samples/compoundword.txt&quot;, 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SaveCompoundWordListToFile">SaveCompoundWordListToFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Saves compound word data in memory to a specified file location.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $savePath -&gt; Path to save compound word list to file.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value    -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ReadCompoundWordDataFromFile( &quot;samples/compoundword.txt&quot; );
+ $xmlconv-&gt;SaveCompoundWordDataFromFile( &quot;samples/newcompoundword.txt&quot; );
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ReadTextFromFile">ReadTextFromFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Reads a plain text file with utf8 encoding in memory. Returns string data if successful and &quot;(null)&quot; if unsuccessful.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $filePath -&gt; Text file to read into memory</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string   -&gt; String data if successful or &quot;(null)&quot; if un-successful.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $textData = $xmlconv-&gt;ReadTextFromFile( &quot;samples/textcorpus.txt&quot; );
+ print( &quot;Text Data: $textData\n&quot; );
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SaveTextToFile">SaveTextToFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Saves a plain text file with utf8 encoding in a specified location.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $savePath -&gt; Path to save string data.
+ $string   -&gt; String to save</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value    -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $result = $xmlconv-&gt;SaveTextToFile( &quot;text.txt&quot;, &quot;Hello world!&quot; );
+
+ print( &quot;File saved\n&quot; ) if $result == 0;
+ print( &quot;File unable to save\n&quot; ) if $result == -1;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ReadXMLDataFromFile">_ReadXMLDataFromFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Reads an XML file from a specified location. Returns string in memory if successful and &quot;(null)&quot; if unsuccessful.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $filePath -&gt; File to read given path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value    -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by XML::Twig parsing functions. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="SaveTextCorpusToFile">_SaveTextCorpusToFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Saves text corpus data to specified file path. This method will append to any existing file if $appendToFile parameter
+ is defined or &quot;overwrite&quot; option is disabled. Enabling &quot;overwrite&quot; option will overwrite any existing files.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $savePath     -&gt; Path to save the text corpus
+ $appendToFile -&gt; Specifies whether the module will overwrite any existing data or append to existing text corpus data.
+
+ Note: Leaving this variable undefined will fetch the &quot;Overwrite&quot; member variable and set the value to this parameter.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value        -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> Warning: This is a private function and is called by XML::Twig parsing functions. It should not be called outside of xmltow2v module.</code></pre>
+
+<h3 id="IsDateInSpecifiedRange">IsDateInSpecifiedRange</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks to see if $date is within $beginDate and $endDate range. Returns 1 if true and 0 if false.
+
+ Note: Date Format: XX/XX/XXXX (Month/Day/Year)</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $date      -&gt; Date to check against minimum and maximum data range. (String)
+ $beginDate -&gt; Minimum date range (String)
+ $endDate   -&gt; Maximum date range (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value     -&gt; &#39;1&#39; = True/Date is within specified range Or &#39;0&#39; = False/Date is not within specified range.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ print( &quot;Is \&quot;01/01/2004\&quot; within the date range: \&quot;02/21/1985\&quot; to \&quot;08/13/2016\&quot;?\n&quot; );
+ print( &quot;Yes\n&quot; ) if $xmlconv-&gt;IsDateInSpecifiedRange( &quot;01/01/2004&quot;, &quot;02/21/1985&quot;, &quot;08/13/2016&quot; ) == 1;
+ print( &quot;No\n&quot; ) if $xmlconv-&gt;IsDateInSpecifiedRange( &quot;01/01/2004&quot;, &quot;02/21/1985&quot;, &quot;08/13/2016&quot; ) == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="IsFileOrDirectory">IsFileOrDirectory</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks to see if specified path is a file or directory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $path   -&gt; File or directory path. (String)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Returns: &quot;file&quot; = file, &quot;dir&quot; = directory and &quot;unknown&quot; if the path is not a file or directory (undefined).</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $path = &quot;path/to/a/directory&quot;;
+
+ print( &quot;Is \&quot;$path\&quot; a file or directory? &quot; . $xmlconv-&gt;IsFileOrDirectory( $path ) . &quot;\n&quot; );
+
+ $path = &quot;path/to/a/file.file&quot;;
+
+ print( &quot;Is \&quot;$path\&quot; a file or directory? &quot; . $xmlconv-&gt;IsFileOrDirectory( $path ) . &quot;\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="RemoveSpecialCharactersFromString">RemoveSpecialCharactersFromString</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes special characters from string parameter, removes extra spaces and converts text to lowercase.
+
+ Note: This method is called when parsing and compiling Medline title/abstract data.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String passed to remove special characters from and convert to lowercase.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; String with all special characters removed and converted to lowercase.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+
+ my $str = &quot;Heart Attack is$ an!@ also KNOWN as an Acute MYOCARDIAL inFARCTion!&quot;;
+
+ print( &quot;Original String: $str\n&quot; );
+
+ $str = $xmlconv-&gt;RemoveSpecialCharactersFromString( $str );
+
+ print( &quot;Modified String: $str\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetFileType">GetFileType</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns file data type (string).</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $filePath -&gt; File to check located at file path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string   -&gt; File type</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $fileType = $xmlconv-&gt;GetFileType( &quot;samples/textcorpus.txt&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="DateCheck">_DateCheck</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks specified begin and end date strings for formatting and logic errors.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value   -&gt; &quot;0&quot; = Passed Checks / &quot;-1&quot; = Failed Checks</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ print &quot;Passed Date Checks\n&quot; if ( $xmlconv-&gt;_DateCheck() == 0 );
+ print &quot;Failed Date Checks\n&quot; if ( $xmlconv-&gt;_DateCheck() == -1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h2 id="Accessor-Functions">Accessor Functions</h2>
+
+<h3 id="GetDebugLog">GetDebugLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _debugLog member variable set during Word2vec::Xmltow2v object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;0&#39; = False, &#39;1&#39; = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $debugLog = $xmlconv-&gt;GetDebugLog();
+
+ print( &quot;Debug Logging Enabled\n&quot; ) if $debugLog == 1;
+ print( &quot;Debug Logging Disabled\n&quot; ) if $debugLog == 0;
+
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetWriteLog">GetWriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _writeLog member variable set during Word2vec::Xmltow2v object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;0&#39; = False, &#39;1&#39; = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $writeLog = $xmlconv-&gt;GetWriteLog();
+
+ print( &quot;Write Logging Enabled\n&quot; ) if $writeLog == 1;
+ print( &quot;Write Logging Disabled\n&quot; ) if $writeLog == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetStoreTitle">GetStoreTitle</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _storeTitle member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = True / &#39;0&#39; = False</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $storeTitle = $xmlconv-&gt;GetStoreTitle();
+
+ print( &quot;Store Title Option: Enabled\n&quot; ) if $storeTitle == 1;
+ print( &quot;Store Title Option: Disabled\n&quot; ) if $storeTitle == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetStoreAbstract">GetStoreAbstract</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _storeAbstract member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = True / &#39;0&#39; = False</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $storeAbstract = $xmlconv-&gt;GetStoreAbstract();
+
+ print( &quot;Store Abstract Option: Enabled\n&quot; ) if $storeAbsract == 1;
+ print( &quot;Store Abstract Option: Disabled\n&quot; ) if $storeAbstract == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetQuickParse">GetQuickParse</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _quickParse member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = True / &#39;0&#39; = False</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $quickParse = $xmlconv-&gt;GetQuickParse();
+
+ print( &quot;Quick Parse Option: Enabled\n&quot; ) if $quickParse == 1;
+ print( &quot;Quick Parse Option: Disabled\n&quot; ) if $quickParse == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetCompoundifyText">GetCompoundifyText</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _compoundifyText member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = True / &#39;0&#39; = False</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $compoundify = $xmlconv-&gt;GetCompoundifyText();
+
+ print( &quot;Compoundify Text Option: Enabled\n&quot; )  if $compoundify == 1;
+ print( &quot;Compoundify Text Option: Disabled\n&quot; ) if $compoundify == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetStoreAsSentencePerLine">GetStoreAsSentencePerLine</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _storeAsSentencePerLine member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = True / &#39;0&#39; = False</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $storeAsSentencePerLine = $xmlconv-&gt;GetStoreAsSentencePerLine();
+
+ print( &quot;Store As Sentence Per Line: Enabled\n&quot; )  if $storeAsSentencePerLine == 1;
+ print( &quot;Store As Sentence Per Line: Disabled\n&quot; ) if $storeAsSentencePerLine == 0;
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetNumOfThreads">GetNumOfThreads</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _numOfThreads member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Number of threads</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $numOfThreads = $xmlconv-&gt;GetNumOfThreads();
+
+ print( &quot;Number of threads: $numOfThreads\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetWorkingDir">GetWorkingDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _workingDir member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Working directory string</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $workingDirectory = $xmlconv-&gt;GetWorkingDir();
+
+ print( &quot;Working Directory: $workingDirectory\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetSavePath">GetSavePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _saveDir member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Save directory string</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $savePath = $xmlconv-&gt;GetSavePath();
+
+ print( &quot;Save Directory: $savePath\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetBeginDate">GetBeginDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _beginDate member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $date -&gt; Beginning date range - Format: XX/XX/XXXX (Mon/Day/Year)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $date = $xmlconv-&gt;GetBeginDate();
+
+ print( &quot;Date: $date\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetEndDate">GetEndDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _endDate member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $date -&gt; End date range - Format: XX/XX/XXXX (Mon/Day/Year).</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $date = $xmlconv-&gt;GetEndDate();
+
+ print( &quot;Date: $date\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetXMLStringToParse">GetXMLStringToParse</h3>
+
+<p>Returns the XML data (string) to be parsed.</p>
+
+<p>Description:</p>
+
+<pre><code> Returns the _xmlStringToParse member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Medline XML data string</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $xmlStr = $xmlconv-&gt;GetXMLStringToParse();
+
+ print( &quot;XML String: $xmlStr\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetTextCorpusStr">GetTextCorpusStr</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _textCorpusStr member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Text corpus string</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $str = $xmlconv-&gt;GetTextCorpusStr();
+
+ print( &quot;Text Corpus: $str\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetFileHandle">GetFileHandle</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _fileHandle member variable set during Word2vec::Xmltow2v object instantiation of new function.
+
+ Warning: This is a private function. File handle is used by WriteLog() method. Do not manipulate this file handle as errors can result.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $fileHandle -&gt; Returns file handle for WriteLog() method.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $fileHandle = $xmlconv-&gt;GetFileHandle();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetTwigHandler">GetTwigHandler</h3>
+
+<p>Returns XML::Twig handler.</p>
+
+<p>Description:</p>
+
+<pre><code> Returns the _twigHandler member variable set during Word2vec::Xmltow2v object instantiation of new function.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $twigHandler -&gt; XML::Twig handler.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $xmlHandler = $xmlconv-&gt;GetTwigHandler();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetParsedCount">GetParsedCount</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _parsedCount member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Number of parsed Medline articles.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $numOfParsed = $xmlconv-&gt;GetParsedCount();
+
+ print( &quot;Number of parsed Medline articles: $numOfParsed\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetTempStr">GetTempStr</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _tempStr member variable set during Word2vec::Xmltow2v object instantiation of new function.
+
+ Warning: This is a private function and should not be called or manipulated. Used by module as a temporary storage
+          location for parsed Medline &#39;Title&#39; and &#39;Abstract&#39; flag string data.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Temporary string storage location.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $tempStr = $xmlconv-&gt;GetTempStr();
+
+ print( &quot;Temp String: $tempStr\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetTempDate">GetTempDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _tempDate member variable set during Word2vec::Xmltow2v object instantiation of new function.
+ Used by module as a temporary storage location for parsed Medline &#39;DateCreated&#39; flag string data.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $date -&gt; Date string - Format: XX/XX/XXXX (Mon/Day/Year).</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $date = $xmlconv-&gt;GetTempDate();
+
+ print( &quot;Temp Date: $date\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetCompoundWordAry">GetCompoundWordAry</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _compoundWordAry member array reference set during Word2vec::Xmltow2v object instantiation of new function.
+
+ Warning: Compound word data must be loaded in memory first via ReadCompoundWordDataFromFile().</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $arrayReference -&gt; Compound word array reference.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $arrayReference = $xmlconv-&gt;GetCompoundWordAry();
+ my @compoundWord = @{ $arrayReference };
+
+ print( &quot;Compound Word Array: @compoundWord\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetCompoundWordBST">GetCompoundWordBST</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _compoundWordBST member variable set during Word2vec::Xmltow2v object instantiation of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $bst -&gt; Compound word binary search tree.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $bst = $xmlconv-&gt;GetCompoundWordBST();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetMaxCompoundWordLength">GetMaxCompoundWordLength</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _maxCompoundWordLength member variable set during Word2vec::Xmltow2v object instantiation of new function.
+
+ Note: If not defined, it is automatically set to and returns 20.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Maximum number of compound words in a given phrase.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $compoundWordLength = $xmlconv-&gt;GetMaxCompoundWordLength();
+
+ print( &quot;Maximum Compound Word Length: $compoundWordLength\n&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetOverwriteExistingFile">GetOverwriteExistingFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _overwriteExisitingFile member variable set during Word2vec::Xmltow2v object instantiation of new function.
+ Enables overwriting of existing text corpus if set to &#39;1&#39; or appends to the existing text corpus if set to &#39;0&#39;.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Overwrite existing file / &#39;0&#39; = Append to exiting file.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $overwriteExitingFile = $xmlconv-&gt;GetOverwriteExistingFile();
+
+ print( &quot;Overwrite Existing File? YES\n&quot; ) if ( $overwriteExistingFile == 1 );
+ print( &quot;Overwrite Existing File? NO\n&quot; ) if ( $overwriteExistingFile == 0 );
+
+ undef( $xmlconv );</code></pre>
+
+<h2 id="Mutator-Functions">Mutator Functions</h2>
+
+<h3 id="SetStoreTitle">SetStoreTitle</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Instructs module to store article title if true or omit if false.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Store Titles / &#39;0&#39; = Omit Titles</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetStoreTitle( 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetStoreAbstract">SetStoreAbstract</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Instructs module to store article abstracts if true or omit if false.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Store Abstracts / &#39;0&#39; = Omit Abstracts</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetStoreAbstract( 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetWorkingDir">SetWorkingDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Represents the working directory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Working directory string</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetWorkingDir( &quot;/samples/&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetSavePath">SetSavePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Represents the text corpus save path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Text corpus save path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetSavePath( &quot;samples/textcorpus.txt&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetQuickParse">SetQuickParse</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Instructs module to utilize quick parse
+ routines to speed up text corpus compilation. This method is somewhat less accurate due to its non-exhaustive nature.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Enable Quick Parse / &#39;0&#39; = Disable Quick Parse</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetQuickParse( 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetCompoundifyText">SetCompoundifyText</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Instructs module to utilize &#39;compoundify&#39; option if true.
+
+ Warning: This requires compound word data to be loaded into memory with ReadCompoundWordDataFromFile() method prior
+          to executing text corpus compilation.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Compoundify text / &#39;0&#39; = Do not compoundify text</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetCompoundifyText( 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetStoreAsSentencePerLine">SetStoreAsSentencePerLine</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Instructs module to utilize &#39;storeAsSentencePerLine&#39; option if true.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Store as sentence per line / &#39;0&#39; = Do not store as sentence per line</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetStoreAsSentencePerLine( 1 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetNumOfThreads">SetNumOfThreads</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Sets the requested number of threads to parse Medline XML files
+ and compile the text corpus.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer (Positive value)</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetNumOfThreads( 4 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetBeginDate">SetBeginDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Sets beginning date range for earliest articles to store, by
+ &#39;DateCreated&#39; Medline tag, within the text corpus during compilation.
+
+ Note: Expected format - &quot;XX/XX/XXXX&quot; (Mon/Day/Year)</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Date string - Format: &quot;XX/XX/XXXX&quot;</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetBeginDate( &quot;01/01/2004&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetEndDate">SetEndDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Sets ending date range for latest article to store, by
+ &#39;DateCreated&#39; Medline tag, within the text corpus during compilation.
+
+ Note: Expected format - &quot;XX/XX/XXXX&quot; (Mon/Day/Year)</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Date string - Format: &quot;XX/XX/XXXX&quot;</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetEndDate( &quot;08/13/2016&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetXMLStringToParse">SetXMLStringToParse</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. This string normally consists of Medline XML data to be
+ parsed for text corpus compilation.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetXMLStringToParse( &quot;Hello World!&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetTextCorpusStr">SetTextCorpusStr</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Overwrites any stored text corpus data in memory to the string parameter.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetTextCorpusStr( &quot;Hello World!&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="AppendStrToTextCorpus">AppendStrToTextCorpus</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Appends string parameter to text corpus string in memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;AppendStrToTextCorpus( &quot;Hello World!&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ClearTextCorpus">ClearTextCorpus</h3>
+
+<p>Description:</p>
+
+<pre><code> Clears text corpus data in memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ClearTextCorpus();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetTempStr">SetTempStr</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Sets temporary member string to passed string parameter.
+ (Temporary placeholder for Medline Title and Abstract data).
+
+ Note: This removes special characters and converts all characters to lowercase.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetTempStr( &quot;Hello World!&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="AppendToTempStr">AppendToTempStr</h3>
+
+<p>Description:</p>
+
+<pre><code> Appends string parameter to temporary member string in memory.
+
+ Note: This removes special characters and converts all characters to lowercase.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;AppendToTempStr( &quot;Hello World!&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ClearTempStr">ClearTempStr</h3>
+
+<pre><code> Clears the temporary string storage in memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ClearTempStr();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetTempDate">SetTempDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed string parameter. Sets temporary date string to passed string.
+
+ Note: Date Format - &quot;XX/XX/XXXX&quot; (Mon/Day/Year)
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Date string - Format: &quot;XX/XX/XXXX&quot;</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetTempDate( &quot;08/13/2016&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ClearTempDate">ClearTempDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Clears the temporary date storage location in memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ClearTempDate();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetCompoundWordAry">SetCompoundWordAry</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to de-referenced passed array reference parameter. Stores compound word array by
+ de-referencing array reference parameter.
+
+ Note: Clears previous data if existing.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $arrayReference -&gt; Array reference of compound words</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my @compoundWordAry = ( &quot;big dog&quot;, &quot;respiratory failure&quot;, &quot;seven large masses&quot; );
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetCompoundWordAry( \@compoundWordAry );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ClearCompoundWordAry">ClearCompoundWordAry</h3>
+
+<p>Description:</p>
+
+<pre><code> Clears compound word array in memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ClearCompoundWordAry();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetCompoundWordBST">SetCompoundWordBST</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed Word2vec::Bst parameter. Sets compound word binary search tree to passed binary tree parameter.
+
+ Note: Un-defines previous binary tree if existing.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> Word2vec::Bst -&gt; Binary Search Tree</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my @compoundWordAry = ( &quot;big dog&quot;, &quot;respiratory failure&quot;, &quot;seven large masses&quot; );
+ @compoundWordAry = sort( @compoundWordAry );
+
+ my $arySize = @compoundWordAry;
+
+ my $bst = Word2vec::Bst;
+ $bst-&gt;CreateTree( \@compoundWordAry, 0, $arySize, undef );
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetCompoundWordBST( $bst );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="ClearCompoundWordBST">ClearCompoundWordBST</h3>
+
+<p>Description:</p>
+
+<pre><code> Clears/Un-defines existing compound word binary search tree from memory.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;ClearCompoundWordBST();
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetMaxCompoundWordLength">SetMaxCompoundWordLength</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Sets maximum number of compound words in a phrase for comparison.
+
+ ie. &quot;medical campus of Virginia Commonwealth University&quot; can be interpreted as a compound word of 6 words.
+ Setting this variable to 3 will only attempt compoundifying a maximum amount of three words.
+ The result would be &quot;medical_campus_of Virginia commonwealth university&quot; even-though an exact representation
+ of this compounded string can exist. Setting this variable to 6 will result in compounding all six words if
+ they exists in the compound word array/bst.
+
+ Warning: This is a private function and should not be called or manipulated.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Ouput:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;SetMaxCompoundWordLength( 8 );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="SetOverwriteExistingFile">SetOverwriteExistingFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets member variable to passed integer parameter. Sets option to overwrite existing text corpus during compilation
+ if 1 or append to existing text corpus if 0.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &#39;1&#39; = Overwrite existing text corpus / &#39;0&#39; = Append to existing text corpus during compilation.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v;
+
+ my $xmltow2v = Word2vec::Xmltow2v-&gt;new();
+ $xmltow2v-&gt;SetOverWriteExistingFile( 1 );
+
+ undef( $xmltow2v );</code></pre>
+
+<h2 id="Debug-Functions">Debug Functions</h2>
+
+<h3 id="GetTime">GetTime</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current time string in &quot;Hour:Minute:Second&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX:XX:XX (&quot;Hour:Minute:Second&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v:
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $time = $xmlconv-&gt;GetTime();
+
+ print( &quot;Current Time: $time\n&quot; ) if defined( $time );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="GetDate">GetDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current month, day and year string in &quot;Month/Day/Year&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX/XX/XXXX (&quot;Month/Day/Year&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v:
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ my $date = $xmlconv-&gt;GetDate();
+
+ print( &quot;Current Date: $date\n&quot; ) if defined( $date );
+
+ undef( $xmlconv );</code></pre>
+
+<h3 id="WriteLog">WriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String to print to the console/log file.
+ $value  -&gt; 0 = Do not print newline character after string, all else prints new line character including &#39;undef&#39;.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Xmltow2v:
+
+ my $xmlconv = Word2vec::Xmltow2v-&gt;new();
+ $xmlconv-&gt;WriteLog( &quot;Hello World&quot; );
+
+ undef( $xmlconv );</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+

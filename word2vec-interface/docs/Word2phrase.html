@@ -1,0 +1,842 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Main-Functions">Main Functions</a>
+        <ul>
+          <li><a href="#new">new</a></li>
+          <li><a href="#DESTROY">DESTROY</a></li>
+          <li><a href="#ExecuteTraining">ExecuteTraining</a></li>
+          <li><a href="#ExecuteStringTraining">ExecuteStringTraining</a></li>
+          <li><a href="#GetOSType">GetOSType</a></li>
+        </ul>
+      </li>
+      <li><a href="#Accessor-Functions">Accessor Functions</a>
+        <ul>
+          <li><a href="#GetDebugLog">GetDebugLog</a></li>
+          <li><a href="#GetWriteLog">GetWriteLog</a></li>
+          <li><a href="#GetFileHandle">GetFileHandle</a></li>
+          <li><a href="#GetTrainFilePath">GetTrainFilePath</a></li>
+          <li><a href="#GetOutputFilePath">GetOutputFilePath</a></li>
+          <li><a href="#GetMinCount">GetMinCount</a></li>
+          <li><a href="#GetThreshold">GetThreshold</a></li>
+          <li><a href="#GetW2PDebug">GetW2PDebug</a></li>
+          <li><a href="#GetWorkingDir">GetWorkingDir</a></li>
+          <li><a href="#GetWord2PhraseExeDir">GetWord2PhraseExeDir</a></li>
+          <li><a href="#GetOverwriteOldFile">GetOverwriteOldFile</a></li>
+        </ul>
+      </li>
+      <li><a href="#Mutator-Functions">Mutator Functions</a>
+        <ul>
+          <li><a href="#SetTrainFilePath">SetTrainFilePath</a></li>
+          <li><a href="#SetOutputFilePath">SetOutputFilePath</a></li>
+          <li><a href="#SetMinCount">SetMinCount</a></li>
+          <li><a href="#SetThreshold">SetThreshold</a></li>
+          <li><a href="#SetW2PDebug">SetW2PDebug</a></li>
+          <li><a href="#SetWorkingDir">SetWorkingDir</a></li>
+          <li><a href="#SetWord2PhraseExeDir">SetWord2PhraseExeDir</a></li>
+          <li><a href="#SetOverwriteOldFile">SetOverwriteOldFile</a></li>
+        </ul>
+      </li>
+      <li><a href="#Debug-Functions">Debug Functions</a>
+        <ul>
+          <li><a href="#GetTime">GetTime</a></li>
+          <li><a href="#GetDate">GetDate</a></li>
+          <li><a href="#WriteLog">WriteLog</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec::Word2phrase - word2vec&#39;s word2phrase wrapper module.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetMinCount( 12 );
+ $w2p-&gt;SetMaxCount( 20 );
+ $w2p-&gt;SetTrainFilePath( &quot;textCorpus.txt&quot; );
+ $w2p-&gt;SetOutputFilePath( &quot;phraseTextCorpus.txt&quot; );
+ $w2p-&gt;ExecuteTraining();
+ undef( $w2p );
+
+ # or
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;ExecuteTraining( $trainFilePath, $outputFilePath, $minCount, $threshold, $debug, $overwrite );
+ undef( $w2p );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Word2vec::Word2phrase is a word2vec package tool that &quot;compoundifies&quot; bi-grams in a text corpus based on a minimum and maximum frequency.</p>
+
+<h2 id="Main-Functions">Main Functions</h2>
+
+<h3 id="new">new</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns a new &#39;Word2vec::Word2phrase&#39; module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0
+    trainFilePath               = &quot;&quot;
+    outputFilePath              = &quot;&quot;
+    minCount                    = 5
+    threshold                   = 100
+    setW2PDebug                 = 2
+    workingDir                  = Current Directory
+    word2PhraseExeDir           = Word2Phrase Executable Directory
+    overwriteOldFile            = 0</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $debugLog                    -&gt; Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -&gt; Instructs module to print debug statements to a log file. (1 = True / 0 = False)
+ $trainFilePath               -&gt; Specifies the training text corpus for word2phrase training. (String)
+ $outputFilePath              -&gt; Specifies the output path for post word2phrase training. (String)
+ $minCount                    -&gt; Specifies the minimum range value for bi-gram &#39;compoundification&#39;. (Positive Integer)
+ $threshold                   -&gt; Specifies the maximum range value for bi-gram &#39;compoundification&#39;. (Positive Integer)
+ $setW2PDebug                 -&gt; Specifies the word2phrase debug information parameter value to show during training. (Integer)
+ $workingDir                  -&gt; Specifies the current working directory. (String)
+ $word2PhraseExeDir           -&gt; Specifies word2phrase executable directory. (String)
+ $overwriteOldFile            -&gt; Instructs the module to either overwrite any existing data with the same output file name and path. ( &#39;1&#39; or &#39;0&#39; )
+
+ Note: It is not recommended to specify all new() parameters, as it has not been thoroughly tested.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Word2phrase object.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+
+ undef( $w2p );</code></pre>
+
+<h3 id="DESTROY">DESTROY</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes member variables and file handle from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+
+ $w2p-&gt;DESTROY();
+ undef( $w2p );</code></pre>
+
+<h3 id="ExecuteTraining">ExecuteTraining</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes word2phrase training based on parameters. Parameter variables have higher precedence than member variables.
+ Any parameter specified will override its respective member variable.
+
+ Note: If no parameters are specified, this module executes word2phrase training based on preset member
+ variables. Returns string regarding training status.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $trainFilePath  -&gt; Training text corpus file path
+ $outputFilePath -&gt; Vector binary file path
+ $minCount       -&gt; Minimum bi-gram frequency (Positive Integer)
+ $threshold      -&gt; Maximum bi-gram frequency (Positive Integer)
+ $debug          -&gt; Displays word2phrase debug information during training. (0 = None, 1 = Show Debug Information, 2 = Show Even More Debug Information)
+ $overwrite      -&gt; Overwrites old training file when executing training. (0 = False / 1 = True)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value          -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetMinCount( 12 );
+ $w2p-&gt;SetMaxCount( 20 );
+ $w2p-&gt;SetTrainFilePath( &quot;textCorpus.txt&quot; );
+ $w2p-&gt;SetOutputFilePath( &quot;phraseTextCorpus.txt&quot; );
+ $w2p-&gt;ExecuteTraining();
+ undef( $w2p );
+
+ # Or
+
+ use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;ExecuteTraining( &quot;textCorpus.txt&quot;, &quot;phraseTextCorpus.txt&quot;, 12, 20, 2, 1 );
+ undef( $w2p );</code></pre>
+
+<h3 id="ExecuteStringTraining">ExecuteStringTraining</h3>
+
+<p>Description:</p>
+
+<pre><code> Executes word2phrase training based on parameters. Parameter variables have higher precedence than member variables.
+ Any parameter specified will override its respective member variable.
+
+ Note: If no parameters are specified, this module executes word2phrase training based on preset member
+ variables. Returns string regarding training status.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $trainingString -&gt; String to train
+ $outputFilePath -&gt; Vector binary file path
+ $minCount       -&gt; Minimum bi-gram frequency (Positive Integer)
+ $threshold      -&gt; Maximum bi-gram frequency (Positive Integer)
+ $debug          -&gt; Displays word2phrase debug information during training. (0 = None, 1 = Show Debug Information, 2 = Show Even More Debug Information)
+ $overwrite      -&gt; Overwrites old training file when executing training. (0 = False / 1 = True)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value          -&gt; &#39;0&#39; = Successful / &#39;-1&#39; = Un-successful</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetMinCount( 12 );
+ $w2p-&gt;SetMaxCount( 20 );
+ $w2p-&gt;SetTrainFilePath( &quot;large string to train here&quot; );
+ $w2p-&gt;SetOutputFilePath( &quot;phraseTextCorpus.txt&quot; );
+ $w2p-&gt;ExecuteTraining();
+ undef( $w2p );
+
+ # Or
+
+ use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;ExecuteTraining( &quot;large string to train here&quot;, &quot;phraseTextCorpus.txt&quot;, 12, 20, 2, 1 );
+ undef( $w2p );</code></pre>
+
+<h3 id="GetOSType">GetOSType</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the operating system type string.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Operating system string.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $operatingSystem = $w2p-&gt;GetOSType();
+ print( &quot;Operating System: $operatingSystem\n&quot; ) if defined( $operatingSystem );
+ undef( $w2p );</code></pre>
+
+<h2 id="Accessor-Functions">Accessor Functions</h2>
+
+<h3 id="GetDebugLog">GetDebugLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _debugLog member variable set during Word2vec::Word2phrase object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $debugLog = $w2p-&gt;GetDebugLog();
+
+ print( &quot;Debug Logging Enabled\n&quot; ) if $debugLog == 1;
+ print( &quot;Debug Logging Disabled\n&quot; ) if $debugLog == 0;
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetWriteLog">GetWriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _writeLog member variable set during Word2vec::Word2phrase object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $writeLog = $w2p-&gt;GetWriteLog();
+
+ print( &quot;Write Logging Enabled\n&quot; ) if $writeLog == 1;
+ print( &quot;Write Logging Disabled\n&quot; ) if $writeLog == 0;
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetFileHandle">GetFileHandle</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns file handle used by WriteLog() method.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $fileHandle -&gt; Returns file handle blob used by &#39;WriteLog()&#39; function or undefined.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> &lt;This should not be called.&gt;</code></pre>
+
+<h3 id="GetTrainFilePath">GetTrainFilePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (string) training file path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; word2phrase training file path</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $filePath = $w2p-&gt;GetTrainFilePath();
+
+ print( &quot;Output File Path: $filePath\n&quot; ) if defined( $filePath );
+ undef( $w2p );</code></pre>
+
+<h3 id="GetOutputFilePath">GetOutputFilePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (string) output file path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; word2phrase output file path</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $filePath = $w2p-&gt;GetOutputFilePath();
+
+ print( &quot;Output File Path: $filePath\n&quot; ) if defined( $filePath );
+ undef( $w2p );</code></pre>
+
+<h3 id="GetMinCount">GetMinCount</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (integer) minimum bi-gram range.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt;  Minimum bi-gram frequency (Positive Integer)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $mincount = $w2p-&gt;GetMinCount();
+
+ print( &quot;MinCount: $mincount\n&quot; ) if defined( $mincount );
+ undef( $w2p );</code></pre>
+
+<h3 id="GetThreshold">GetThreshold</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (integer) maximum bi-gram range.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt;  Maximum bi-gram frequency (Positive Integer)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $mincount = $w2p-&gt;GetThreshold();
+
+ print( &quot;MinCount: $mincount\n&quot; ) if defined( $mincount );
+ undef( $w2p );</code></pre>
+
+<h3 id="GetW2PDebug">GetW2PDebug</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns word2phrase debug parameter value.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = No debugging, 1 = Show debugging, 2 = Show even more debugging</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $w2pdebug = $w2p-&gt;GetW2PDebug();
+
+ print( &quot;Word2Phrase Debug Level: $w2pdebug\n&quot; ) if defined( $w2pdebug );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetWorkingDir">GetWorkingDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (string) working directory path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Current working directory path</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $workingDir = $w2p-&gt;GetWorkingDir();
+
+ print( &quot;Working Directory: $workingDir\n&quot; ) if defined( $workingDir );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetWord2PhraseExeDir">GetWord2PhraseExeDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns (string) word2phrase executable directory path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; Word2Phrase executable directory path</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $workingDir = $w2p-&gt;GetWord2PhraseExeDir();
+
+ print( &quot;Word2Phrase Executable Directory: $workingDir\n&quot; ) if defined( $workingDir );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetOverwriteOldFile">GetOverwriteOldFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the current value of the overwrite training file variable.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 1 = True/Overwrite or 0 = False/Append to current file</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $overwrite = $w2p-&gt;GetOverwriteOldFile();
+
+ if defined( $overwrite )
+ {
+    print( &quot;Overwrite Old File: &quot; );
+    print( &quot;Yes\n&quot; ) if $overwrite == 1;
+    print( &quot;No\n&quot; ) if $overwrite == 0;
+ }
+
+ undef( $w2p );</code></pre>
+
+<h2 id="Mutator-Functions">Mutator Functions</h2>
+
+<h3 id="SetTrainFilePath">SetTrainFilePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets training file path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Training file path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetTrainFilePath( &quot;filePath&quot; );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetOutputFilePath">SetOutputFilePath</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets word2phrase output file path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; word2phrase output file path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase;
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetOutputFilePath( &quot;filePath&quot; );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetMinCount">SetMinCount</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets minimum range value.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Minimum frequency value (Positive integer)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetMinCount( 1 );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetThreshold">SetThreshold</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets maximum range value.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Maximum frequency value (Positive integer)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetThreshold( 100 );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetW2PDebug">SetW2PDebug</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets word2phrase debug parameter.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; word2phrase debug parameter (0 = No debug info, 1 = Show debug info, 2 = Show more debug info.)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetW2PDebug( 2 );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetWorkingDir">SetWorkingDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets working directory path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Current working directory path.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetWorkingDir( &quot;filePath&quot; );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetWord2PhraseExeDir">SetWord2PhraseExeDir</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets word2phrase executable file directory path.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; Word2Phrase executable directory path.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetWord2PhraseExeDir( &quot;filePath&quot; );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="SetOverwriteOldFile">SetOverwriteOldFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Enables overwriting word2phrase output file if one already exists with the same output file name.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer: 1 = Overwrite old file, 0 = No not overwrite old file.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;SetOverwriteOldFile( 1 );
+
+ undef( $w2p );</code></pre>
+
+<h2 id="Debug-Functions">Debug Functions</h2>
+
+<h3 id="GetTime">GetTime</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current time string in &quot;Hour:Minute:Second&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX:XX:XX (&quot;Hour:Minute:Second&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $time = $w2p-&gt;GetTime();
+
+ print( &quot;Current Time: $time\n&quot; ) if defined( $time );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="GetDate">GetDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current month, day and year string in &quot;Month/Day/Year&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX/XX/XXXX (&quot;Month/Day/Year&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ my $date = $w2p-&gt;GetDate();
+
+ print( &quot;Current Date: $date\n&quot; ) if defined( $date );
+
+ undef( $w2p );</code></pre>
+
+<h3 id="WriteLog">WriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String to print to the console/log file.
+ $value  -&gt; 0 = Do not print newline character after string, all else prints new line character including &#39;undef&#39;.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Word2phrase:
+
+ my $w2p = Word2vec::Word2phrase-&gt;new();
+ $w2p-&gt;WriteLog( &quot;Hello World&quot; );
+
+ undef( $w2p );</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+

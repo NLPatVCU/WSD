@@ -1,0 +1,720 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Main-Functions">Main Functions</a>
+        <ul>
+          <li><a href="#new">new</a></li>
+          <li><a href="#DESTROY">DESTROY</a></li>
+          <li><a href="#CalculateSpearmans">CalculateSpearmans</a></li>
+          <li><a href="#IsFileWordOrCUIFile">IsFileWordOrCUIFile</a></li>
+          <li><a href="#IsCUI">_IsCUI</a></li>
+          <li><a href="#ResetVariables">_ResetVariables</a></li>
+        </ul>
+      </li>
+      <li><a href="#Accessor-Functions">Accessor Functions</a>
+        <ul>
+          <li><a href="#GetDebugLog">GetDebugLog</a></li>
+          <li><a href="#GetWriteLog">GetWriteLog</a></li>
+          <li><a href="#GetFileHandle">GetFileHandle</a></li>
+          <li><a href="#GetPrecision">GetPrecision</a></li>
+          <li><a href="#GetIsFileOfWords">GetIsFileOfWords</a></li>
+          <li><a href="#GetPrintN">GetPrintN</a></li>
+          <li><a href="#GetACount">GetACount</a></li>
+          <li><a href="#GetBCount">GetBCount</a></li>
+          <li><a href="#SpGetNValue">SpGetNValue</a></li>
+        </ul>
+      </li>
+      <li><a href="#Mutator-Functions">Mutator Functions</a>
+        <ul>
+          <li><a href="#SetPrecision">SetPrecision</a></li>
+          <li><a href="#SetIsFileOfWords">SetIsFileOfWords</a></li>
+          <li><a href="#SetPrintN">SetPrintN</a></li>
+          <li><a href="#SetACount">_SetACount</a></li>
+          <li><a href="#SetBCount">_SetBCount</a></li>
+          <li><a href="#SetNValue">_SetNValue</a></li>
+        </ul>
+      </li>
+      <li><a href="#Debug-Functions">Debug Functions</a>
+        <ul>
+          <li><a href="#GetTime">GetTime</a></li>
+          <li><a href="#GetDate">GetDate</a></li>
+          <li><a href="#WriteLog">WriteLog</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#Author">Author</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>Word2vec::Spearmans - Spearman&#39;s Rank Correlation Score Module</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetPrecision( 8 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;MiniMayoSRS.comp_results&quot;, &quot;MiniMayoSRS.coders&quot;, undef );
+ print( &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; );
+ undef( $spearmans );
+
+ # Or
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetIsFileOfWords( 1 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;MiniMayoSRS.terms.comp_results&quot;, &quot;MiniMayoSRS.terms.coders&quot;, undef );
+ print( &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; );
+ undef( $spearmans );</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>Word2vec::Spearmans is a Spearman&#39;s Rank Correlation Score Module for the Word2vec::Inteface package.</p>
+
+<h2 id="Main-Functions">Main Functions</h2>
+
+<h3 id="new">new</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns a new &#39;Word2vec::Spearmans&#39; module object.
+
+ Note: Specifying no parameters implies default options.
+
+ Default Parameters:
+    debugLog                    = 0
+    writeLog                    = 0
+    precision                   = 4
+    isFileOfWords               = undef
+    N                           = undef
+    aCount                      = -1
+    bCount                      = -1
+    NValue                      = -1</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $debugLog                    -&gt; Instructs module to print debug statements to the console. (1 = True / 0 = False)
+ $writeLog                    -&gt; Instructs module to print debug statements to a log file. (1 = True / 0 = False)
+ $isFileOfWords               -&gt; Specifies the word option, default is Auto-Detect. (undef = Auto-Detect, 0 = CUI Terms, 1 = Word Terms)
+ $N                           -&gt; Specifies the N option, default is undef. (defined = Print N / undef = Do Not Print N)
+ $aCount                      -&gt; Term count for $aFile post Spearman&#39;s Rank Correlation calculation.
+ $bCount                      -&gt; Term count for $bFile post Spearman&#39;s Rank Correlation calculation.
+ $NValue                      -&gt; N Value post Spearmans&#39;s Rank Correlation calculation.
+
+ Warning: Only debugLog, writeLog, precision, word and N variables should be specified.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> Word2vec::Spearmans object.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="DESTROY">DESTROY</h3>
+
+<p>Description:</p>
+
+<pre><code> Removes member variables and file handle from memory.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+
+ $spearmans-&gt;DESTROY();
+ undef( $spearmans );</code></pre>
+
+<h3 id="CalculateSpearmans">CalculateSpearmans</h3>
+
+<p>Description:</p>
+
+<pre><code> Calculates Spearman&#39;s Rank Correlation Score between two data-sets (files) using _precision, _isWordOfFile and _printN Variables.
+
+ Note: _precision, _isFileOfWords and _printN variables must be set prior to calling this function or default values will be used.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $fileA                  -&gt; File To Process
+ $fileB                  -&gt; File To Process
+ $includeCountsInResults -&gt; Specifies whether to return file counts in score. (undef = False / defined = True)</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Spearman&#39;s Rank Correlation Score or &quot;undef&quot;</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetPrecision( 8 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;MiniMayoSRS.comp_results&quot;, &quot;MiniMayoSRS.coders&quot;, undef );
+ print( &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; ) if defined( $score );
+ print( &quot;Spearman&#39;s Rank Correlation Score: undef\n&quot; ) if !defined( $score );
+ undef( $spearmans );
+
+ # Or
+
+ use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetIsFileOfWords( 1 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;MiniMayoSRS.terms.comp_results&quot;, &quot;MiniMayoSRS.terms.coders&quot;, 1 );
+ print( &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; ) if defined( $score );
+ print( &quot;Spearman&#39;s Rank Correlation Score: undef\n&quot; ) if !defined( $score );
+ undef( $spearmans );</code></pre>
+
+<h3 id="IsFileWordOrCUIFile">IsFileWordOrCUIFile</h3>
+
+<p>Description:</p>
+
+<pre><code> Determines if a file is composed of CUI or word terms by checking the first line.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; File Path</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; &quot;undef&quot; = Unable to determine, &quot;cui&quot; = CUI Term File, &quot;word&quot; = Word Term File</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans       = Word2vec::Spearmans-&gt;new();
+ my $isWordOrCuiFile = $spearmans-&gt;IsFileWordOrCUIFile( &quot;samples/MiniMayoSRS.terms&quot; );
+
+ print( &quot;MiniMayoSRS.terms File Is A \&quot;$isWordOrCuiFile\&quot; File\n&quot; ) if defined( $isWordOrCuiFile );
+ print( &quot;Unable To Determine Type Of File\n&quot; )                      if !defined( $isWordOrCuiFile
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="IsCUI">_IsCUI</h3>
+
+<p>Description:</p>
+
+<pre><code> Checks to see whether passed string argument is a word or CUI term.
+
+ Note: This is an internal function and should not be called.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; String</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = Word Term, 1 = CUI Term</code></pre>
+
+<p>Example:</p>
+
+<pre><code> This is a private function and should not be utilized.</code></pre>
+
+<h3 id="ResetVariables">_ResetVariables</h3>
+
+<p>Description:</p>
+
+<pre><code> Resets _aCount, _bCount and _NValue variables.
+
+ Note: This is an internal function and should not be called.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> This is a private function and should not be utilized.</code></pre>
+
+<h2 id="Accessor-Functions">Accessor Functions</h2>
+
+<h3 id="GetDebugLog">GetDebugLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _debugLog member variable set during Word2vec::Spearmans object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ my $debugLog = $spearmans-&gt;GetDebugLog();
+
+ print( &quot;Debug Logging Enabled\n&quot; ) if $debugLog == 1;
+ print( &quot;Debug Logging Disabled\n&quot; ) if $debugLog == 0;
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetWriteLog">GetWriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the _writeLog member variable set during Word2vec::Spearmans object initialization of new function.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; 0 = False, 1 = True</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ my $writeLog = $spearmans-&gt;GetWriteLog();
+
+ print( &quot;Write Logging Enabled\n&quot; ) if $writeLog == 1;
+ print( &quot;Write Logging Disabled\n&quot; ) if $writeLog == 0;
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetFileHandle">GetFileHandle</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns file handle used by WriteLog() method.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $fileHandle -&gt; Returns file handle blob used by &#39;WriteLog()&#39; function or undefined.</code></pre>
+
+<p>Example:</p>
+
+<pre><code> &lt;This should not be called.&gt;</code></pre>
+
+<h3 id="GetPrecision">GetPrecision</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns floating point precision value.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Spearmans Float Precision Value</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ my $value     = $spearmans-&gt;GetPrecision();
+
+ print( &quot;Float Precision Value: $value\n&quot; ) if defined( $value );
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetIsFileOfWords">GetIsFileOfWords</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the variable indicating whether the files to be parsed are files consisting of words or CUI terms.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &quot;undef = Auto-Detect, 0 = CUI Terms, 1 = Word Terms&quot;</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans     = Word2vec::Spearmans-&gt;new();
+ my $isFileOfWords = $spearmans-&gt;GetIsFileOfWords();
+
+ print( &quot;IsFileOfWords Is Undefined\n&quot; ) if !defined( $isFileOfWords );
+ print( &quot;IsFileOfWords Value: $isFileOfWords\n&quot; )   if defined( $isFileOfWords );
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetPrintN">GetPrintN</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns the variable indicating whether to print NValue.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; &quot;undef&quot; = Do not print NValue, &quot;defined&quot; = Print NValue</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans     = Word2vec::Spearmans-&gt;new();
+ my $printN        = $spearmans-&gt;GetPrintN();
+ print &quot;Print N\n&quot;        if defined( $printN );
+ print &quot;Do Not Print N\n&quot; if !defined( $printN );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetACount">GetACount</h3>
+
+<pre><code> Returns the non-negative count for file A.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ print &quot;A Count: &quot; . $spearmans-&gt;GetACount() . &quot;\n&quot;;
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetBCount">GetBCount</h3>
+
+<pre><code> Returns the non-negative count for file B.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ print &quot;B Count: &quot; . $spearmans-&gt;GetBCount() . &quot;\n&quot;;
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="SpGetNValue">SpGetNValue</h3>
+
+<pre><code> Returns the N value.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ print &quot;N Value: &quot; . $spearmans-&gt;GetNValue() . &quot;\n&quot;;
+
+ undef( $spearmans );</code></pre>
+
+<h2 id="Mutator-Functions">Mutator Functions</h2>
+
+<h3 id="SetPrecision">SetPrecision</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets number of decimal places after the decimal point of the Spearman&#39;s Rank Correlation Score to represent.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetPrecision( 8 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;samples/MiniMayoSRS.term.comp_results&quot;, &quot;Similarity/MiniMayoSRS.terms.coders&quot;, undef );
+ print &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; if defined( $score );
+ print &quot;Spearman&#39;s Rank Correlation Score: undef\n&quot; if !defined( $score );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="SetIsFileOfWords">SetIsFileOfWords</h3>
+
+<pre><code> Specifies the main method to auto-detect if file consists of CUI or Word terms, or manual override with user setting.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &quot;undef&quot; = Auto-Detect, 0 = CUI Terms, 1 = Word Terms</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetIsFileOfWords( undef );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;samples/MiniMayoSRS.term.comp_results&quot;, &quot;Similarity/MiniMayoSRS.terms.coders&quot;, undef );
+ print &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; if defined( $score );
+ print &quot;Spearman&#39;s Rank Correlation Score: undef\n&quot; if !defined( $score );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="SetPrintN">SetPrintN</h3>
+
+<pre><code> Specifies the main method print _NValue post Spearmans::CalculateSpearmans() function completion.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; &quot;undef&quot; = Do Not Print _NValue, &quot;defined&quot; = Print _NValue</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans;
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;SetPrintN( 1 );
+ my $score = $spearmans-&gt;CalculateSpearmans( &quot;samples/MiniMayoSRS.term.comp_results&quot;, &quot;Similarity/MiniMayoSRS.terms.coders&quot;, undef );
+ print &quot;Spearman&#39;s Rank Correlation Score: $score\n&quot; if defined( $score );
+ print &quot;Spearman&#39;s Rank Correlation Score: undef\n&quot; if !defined( $score );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="SetACount">_SetACount</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets _aCount variable.
+
+ Note: This is an internal function and should not be called.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> This is a private function and should not be utilized.</code></pre>
+
+<h3 id="SetBCount">_SetBCount</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets _bCount variable.
+
+ Note: This is an internal function and should not be called.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> This is a private function and should not be utilized.</code></pre>
+
+<h3 id="SetNValue">_SetNValue</h3>
+
+<p>Description:</p>
+
+<pre><code> Sets _NValue variable.
+
+ Note: This is an internal function and should not be called.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $value -&gt; Integer</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> This is a private function and should not be utilized.</code></pre>
+
+<h2 id="Debug-Functions">Debug Functions</h2>
+
+<h3 id="GetTime">GetTime</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current time string in &quot;Hour:Minute:Second&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX:XX:XX (&quot;Hour:Minute:Second&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ my $time = $spearmans-&gt;GetTime();
+
+ print( &quot;Current Time: $time\n&quot; ) if defined( $time );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="GetDate">GetDate</h3>
+
+<p>Description:</p>
+
+<pre><code> Returns current month, day and year string in &quot;Month/Day/Year&quot; format.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> None</code></pre>
+
+<p>Output:</p>
+
+<pre><code> $string -&gt; XX/XX/XXXX (&quot;Month/Day/Year&quot;)</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ my $date = $spearmans-&gt;GetDate();
+
+ print( &quot;Current Date: $date\n&quot; ) if defined( $date );
+
+ undef( $spearmans );</code></pre>
+
+<h3 id="WriteLog">WriteLog</h3>
+
+<p>Description:</p>
+
+<pre><code> Prints passed string parameter to the console, log file or both depending on user options.
+
+ Note: printNewLine parameter prints a new line character following the string if the parameter
+ is undefined and does not if parameter is 0.</code></pre>
+
+<p>Input:</p>
+
+<pre><code> $string -&gt; String to print to the console/log file.
+ $value  -&gt; 0 = Do not print newline character after string, all else prints new line character including &#39;undef&#39;.</code></pre>
+
+<p>Output:</p>
+
+<pre><code> None</code></pre>
+
+<p>Example:</p>
+
+<pre><code> use Word2vec::Spearmans:
+
+ my $spearmans = Word2vec::Spearmans-&gt;new();
+ $spearmans-&gt;WriteLog( &quot;Hello World&quot; );
+
+ undef( $spearmans );</code></pre>
+
+<h1 id="Author">Author</h1>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ Clint Cuffy, Virginia Commonwealth University</code></pre>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p>Copyright (c) 2016</p>
+
+<pre><code> Bridget T McInnes, Virginia Commonwealth University
+ btmcinnes at vcu dot edu
+
+ Clint Cuffy, Virginia Commonwealth University
+ cuffyca at vcu dot edu</code></pre>
+
+<p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program; if not, write to:</p>
+
+<pre><code> The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</code></pre>
+
+
+</body>
+
+</html>
+
+
