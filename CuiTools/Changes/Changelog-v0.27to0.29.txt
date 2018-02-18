@@ -1,0 +1,16 @@
+Changes made in CuiTools version 0.27 during version 0.29
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1) modified how the target words are found in the prolog2mm conversion
+    program to work with any input
+
+(2) modified documentation
+
+(3) added the metamap version option - default is 2010
+
+(Changelog-v0.27to0.29 Last Updated on 11/31/2010 by Bridget)
+

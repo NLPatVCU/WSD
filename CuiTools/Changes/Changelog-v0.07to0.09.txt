@@ -1,0 +1,22 @@
+Changes made in CuiTools version 0.07 during version 0.09
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)    Added nlm2mm program that converts the NLM-WSD data 
+       set to mm format using information from MMTx rather 
+       than the dataset itself. 
+
+(2)    Added test cases for the nlm2mm program
+
+(3)    Changed the environment variable METAMAPHOME back to 
+       MMTX_PATH - so it is like the MMTx documentation.
+
+(4)    Moved makedata.sh Demo to make-originalNLM-data.sh
+
+(5)    Added make-MMTxNLM-data.sh Demo for the nlm2mm program.
+
+(Changelog-v0.07to0.09 Last Updated on 08/28/2007 by Bridget)
+

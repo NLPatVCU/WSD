@@ -1,0 +1,307 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>unsupervised-disambiguate.pl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#usage">USAGE</a></li>
+	<li><a href="#input">INPUT</a></li>
+	<ul>
+
+		<li><a href="#required_arguments_">Required Arguments:</a></li>
+		<ul>
+
+			<li><a href="#source">SOURCE</a></li>
+		</ul>
+
+		<li><a href="#required_options_">Required Options:</a></li>
+		<ul>
+
+			<ul>
+
+				<li><a href="#__senses__dir_file_">-senses [DIR|FILE]</a></li>
+			</ul>
+
+		</ul>
+
+		<li><a href="#first_order_options_">First-order Options:</a></li>
+		<ul>
+
+			<li><a href="#__cuidef">-cuidef</a></li>
+			<li><a href="#__config_configuration_file">-config CONFIGURATION FILE</a></li>
+			<li><a href="#__summary_file">-summary FILE</a></li>
+		</ul>
+
+		<li><a href="#second_order_options">Second-order Options</a></li>
+		<ul>
+
+			<li><a href="#__training__dir_file_">-training [DIR|FILE]</a></li>
+			<li><a href="#__stop_stopfile">-stop STOPFILE</a></li>
+			<ul>
+
+				<li><a href="#__ngramcount_options">-ngramcount &quot;OPTIONS&quot;</a></li>
+			</ul>
+
+		</ul>
+
+		<li><a href="#program_options_">Program Options;</a></li>
+		<ul>
+
+			<li><a href="#__context__o1_o2_">-context [o1|o2]</a></li>
+			<li><a href="#__directory">-directory</a></li>
+			<li><a href="#__help">-help</a></li>
+			<li><a href="#__version">-version</a></li>
+		</ul>
+
+	</ul>
+
+	<li><a href="#output">OUTPUT</a></li>
+	<li><a href="#the__mm_format">THE .mm FORMAT</a></li>
+	<li><a href="#program_requirements">PROGRAM REQUIREMENTS</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>unsupervised-disambiguate.pl</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>This is a wrapper program for unsupervised word sense 
+disambiguation using CuiTools programs.</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The program takes as input the data directory (SOURCE) and 
+returns the results stored in the results directory.</p>
+<p>For unsupervised WSD, the program will extract the specified 
+features as well as the context of the potential concepts and 
+create vectors (using SenseCluster functions). These vectors 
+will be analyzed using the cosine measure and the instance 
+vector that is closest to the possible concept vector will 
+be assigned that concept.</p>
+<p>
+</p>
+<hr />
+<h1><a name="usage">USAGE</a></h1>
+<p>perl unsupervised-disambiguate.pl [OPTIONS] SOURCE</p>
+<p>
+</p>
+<hr />
+<h1><a name="input">INPUT</a></h1>
+<p>
+</p>
+<h2><a name="required_arguments_">Required Arguments:</a></h2>
+<p>
+</p>
+<h3><a name="source">SOURCE</a></h3>
+<p>Directory containing the CuiTools xml-like .mm formatted file.</p>
+<p>
+</p>
+<h2><a name="required_options_">Required Options:</a></h2>
+<p>
+</p>
+<h4><a name="__senses__dir_file_">--senses [DIR|FILE]</a></h4>
+<p>Directory containing the sense information that corresponds to
+each of the datasets in the SOURCE directory. This is located 
+in the default_options directory. This directory is called:</p>
+<pre>
+    NLM-WSD.target_word.choices</pre>
+<p>And can also be downloaded downloaded from:</p>
+<pre>
+    <a href="http://wsd.nih.gov">http://wsd.nih.gov</a></pre>
+<p>If you are using another dataset, the expected format is:</p>
+<p>&lt;TAG&gt;|&lt;TERM&gt;|&lt;Semanticc Type&gt;|&lt;CUI&gt;</p>
+<p>For example, one of the possible concepts for the target word 
+adjustment is:</p>
+<p>Adjustment &lt;1&gt; (Individual Adjustment)|inbe, Individual Behavior|C0376209</p>
+<p>The expected name of the file is &lt;target word&gt;.choices. For 
+our adjustment example, the name of the sense file is 
+&quot;adjustment.choices&quot;</p>
+<p>
+</p>
+<h2><a name="first_order_options_">First-order Options:</a></h2>
+<p>
+</p>
+<h3><a name="__cuidef">--cuidef</a></h3>
+<p>Use the extended UMLS CUI definition of the possible concepts as context 
+[Default].</p>
+<p>This definition comes from the UMLS-Interface package using the command: 
+    <code>getExtendedDefinition($cui)</code>;</p>
+<p>The definitions to include in this are defined in the configuration 
+file.</p>
+<p>
+</p>
+<h3><a name="__config_configuration_file">--config CONFIGURATION FILE</a></h3>
+<p>The configuration file for the --cuidef option. This is used by the UMLS-Interface 
+package to create the extended definition. The default is to use all of the UMLS 
+and all relations to create the extended definition.</p>
+<p>
+</p>
+<h3><a name="__summary_file">--summary FILE</a></h3>
+<p>File containing a text description of each possible concept for each 
+possible target word in the source directory. The format is as follows:</p>
+<pre>
+    &lt;tw&gt;.&lt;concept&gt;.&lt;summary&gt;
+    ...</pre>
+<p>
+</p>
+<h2><a name="second_order_options">Second-order Options</a></h2>
+<p>
+</p>
+<h3><a name="__training__dir_file_">--training [DIR|FILE]</a></h3>
+<p>Directory containing the training data that corresponds to 
+each of the data sets in the SOURCE directory 
+or 
+a file containing the training data</p>
+<p>The following format for the file(s) (either in the directory 
+or passed into the command line) is as follows:</p>
+<p>The expected name for each of the corresponding training files 
+is :</p>
+<pre>
+    &lt;target word&gt;.trainingdata</pre>
+<p>For example, the target word adjustment would have the 
+file &quot;adjustment.trainingdata&quot; located in the training 
+directory.</p>
+<p>
+</p>
+<h3><a name="__stop_stopfile">--stop STOPFILE</a></h3>
+<p>A file of Perl regexes that define the stop list of words to be excluded from 
+the features.</p>
+<p>STOPFILE could be specified with two modes -</p>
+<p>AND mode - declared by including '@stop.mode=AND' on the first line of the
+STOPFILE.
+         - ignores word pairs in which both words are stop words.</p>
+<p>OR mode - declared by including '@stop.mode=OR' on the first line of the
+STOPFILE.
+        - ignores word pairs in which either word is a stop word.</p>
+<p>Both modes exclude stop words from unigram features.</p>
+<p>Default is OR mode.</p>
+<p>
+</p>
+<h4><a name="__ngramcount_options">--ngramcount &quot;OPTIONS&quot;</a></h4>
+<p>The Ngram Statistic Package (NSP) count.pl program is used to obtain 
+the counts for hte first and second-order co-occurrence vectors. The 
+options specify any additional options to be passed to count.pl program.</p>
+<pre>
+ Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</pre>
+<p>Current 1st order options are:
+ --ngram 1 
+ --newLine 
+ --token $ENV{CUITOOLSHOME}/default_options/token.regex
+ --remove 2 
+ --uremove 150 
+ --stop $ENV{CUITOOLSHOME}/default_options/stoplist $directory/$tw.unigrams $opt_training</p>
+<p>Current 2nd order options are:
+ --ngram 2 
+ --extended 
+ --newLine 
+ --token $ENV{CUITOOLSHOME}/default_options/token.regex 
+ --remove 2 
+ --uremove 150 
+ --stop $ENV{CUITOOLSHOME}/default_options/stoplist</p>
+<p>
+</p>
+<h2><a name="program_options_">Program Options;</a></h2>
+<p>
+</p>
+<h3><a name="__context__o1_o2_">--context [o1|o2]</a></h3>
+<p>First order (o1) or second order (o2) context are used.</p>
+<p>
+</p>
+<h3><a name="__directory">--directory</a></h3>
+<p>The prefix that the directories for the log and results files.</p>
+<p>Default: dir</p>
+<p>The results file location: &lt;directory&gt;.results
+The vector files location: &lt;directory&gt;.logs</p>
+<p>The log files directory also contains any log file 
+associated with the unsupervised-disambiguate program.</p>
+<p>
+</p>
+<h3><a name="__help">--help</a></h3>
+<p>Displays the quick summary of program options.</p>
+<p>
+</p>
+<h3><a name="__version">--version</a></h3>
+<p>Displays the version information.</p>
+<p>
+</p>
+<hr />
+<h1><a name="output">OUTPUT</a></h1>
+<p>mm2arff.pl creates one file in arff format. This file can be used as input 
+training data to the WEKA data mining package.</p>
+<p>
+</p>
+<hr />
+<h1><a name="the__mm_format">THE .mm FORMAT</a></h1>
+<p>See README.mm.format</p>
+<p>
+</p>
+<hr />
+<h1><a name="program_requirements">PROGRAM REQUIREMENTS</a></h1>
+<ul>
+<li><strong><a name="perl" class="item">Perl (version 5.8.5 or better) - <a href="http://www.perl.org">http://www.perl.org</a></a></strong>
+
+</li>
+<li><strong><a name="text_nsp_http_search_cpan_org_dist_text_nsp" class="item">Text::NSP - <a href="http://search.cpan.org/dist/Text-NSP">http://search.cpan.org/dist/Text-NSP</a></a></strong>
+
+</li>
+</ul>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<pre>
+ Bridget T. McInnes, University of Minnesota</pre>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007,</p>
+<pre>
+ Bridget T. McInnes, University of Minnesota
+ bthomson at cs.umn.edu</pre>
+<pre>
+ Ted Pedersen, University of Minnesota Duluth
+ tpederse at d.umn.edu</pre>
+<p>This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with
+this program; if not, write to</p>
+<pre>
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</pre>
+
+</body>
+
+</html>

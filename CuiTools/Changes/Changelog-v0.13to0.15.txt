@@ -1,0 +1,13 @@
+Changes made in CuiTools version 0.13 during version 0.15
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)    Made minor changes throughout the code
+
+(2)    Added bigram option to disambiguate.pl and mm2arff.pl
+
+(Changelog-v0.13to0.15 Last Updated on 05/05/2008 by Bridget)
+

@@ -1,0 +1,32 @@
+Changes made in CuiTools version 0.19 during version 0.21
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1) removed the UMLS::CuiTools::UMLS.pm module
+
+(2) add the requirement of using the UMLS::Interface module
+    (in replace of UMLS::CuiTools::UMLS.pm)
+
+(3) removed the --cuistdef option if you want to specify both 
+    use --cuidef and --stdef
+
+(4) added the --pardef option which uses the concepts parent CUIs
+    definition(s) to represent its context
+
+(5) added the --chddef option which uses the concepts child CUIs
+    definition(s) to represent its context
+
+(6) modified the --cuidef option so that the definition comes 
+    from the UMLS::Interface module
+
+(7) modified the --stdef option so that the definition comes 
+    from the UMLS::interface module
+
+(8) updated the test cases to reflect the change in modules
+
+
+(Changelog-v0.19to0.21 Last Updated on 01/20/2009 by Bridget)
+

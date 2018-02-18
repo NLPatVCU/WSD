@@ -1,0 +1,1132 @@
+2,20c2,7
+<   <lexelt item="adjustment" senses="UK,None">
+<     <instance id="1" alias="adjustment">
+<       <answer instance="1" senseid="UK"/>
+<       <context line="<title>Flow-mediated dilation in 9- to 11-year-old children: the influence of intrauterine and childhood factors.  </title> BACKGROUND: Early life factors, particularly size at birth, may influence later risk of cardiovascular disease, but a mechanism for this influence has not been established.  We have examined the relation between birth weight and endothelial function (a key event in atherosclerosis) in a population-based study of children, taking into account classic cardiovascular risk factors in childhood.  METHODS AND RESULTS: We studied 333 British children aged 9 to 11 years in whom information on birth weight, maternal factors, and risk factors (including blood pressure, lipid fractions, preload and postload glucose levels, smoking exposure, and socioeconomic status) was available.  A noninvasive ultrasound technique was used to assess the ability of the brachial artery to dilate in response to increased blood flow (induced by forearm cuff occlusion and release), an endothelium-dependent response.  Birth weight showed a significant, graded, positive association with flow-mediated dilation (0.027 mm/kg; 95% CI, 0.003 to 0.051 mm/kg; P=.02).  Childhood cardiovascular risk factors (blood pressure, total and LDL cholesterol, and salivary cotinine level) showed no relation with flow-mediated dilation, but HDL cholesterol level was inversely related (-0.067 mm/mmol; 95% CI, -0.021 to -0.113 mm/mmol; P=.005).  The relation between birth weight and flow-mediated dilation was not affected <local>by adjustment </local> for childhood body build, parity, cardiovascular risk factors, social class, or ethnicity.  CONCLUSIONS: Low birth weight is associated with impaired endothelial function in childhood, a key early event in atherogenesis.  Growth in utero may be associated with long-term changes in vascular function that are manifest by the first decade of life and that may influence the long-term risk of cardiovascular disease. "/>
+<         <sentence tw="" id="11.tx.1" line="<title>Flow-mediated dilation in 9- to 11-year-old children: the influence of intrauterine and childhood factors. ">
+<           <phrase tw="" head="<title" line="<title">
+<             <token word="<title" pos="NONE">
+<               <mapping rank="1" score="1000" umls_cui="C1519530" umls_concept="Person Role Title" semantic_types="idcn"/>
+<               <mapping rank="2" score="1000" umls_cui="C1704446" umls_concept="name title" semantic_types="idcn"/>
+<               <mapping rank="3" score="1000" umls_cui="C1705823" umls_concept="Object Title" semantic_types="inpr"/>
+<               <mapping rank="4" score="1000" umls_cui="C1705824" umls_concept="Trial Title" semantic_types="inpr"/>
+<             </token>
+<             <token word="title" pos="noun">
+<             </token>
+<           </phrase>
+<           <phrase tw="" head="dilation" line=">Flow-mediated dilation in 9-">
+<             <token word=">flow" pos="NONE">
+<               <mapping rank="1,2,3,4,5,6" score="593" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+<             </token>
+---
+>   <lexelt item="adjustment" senses="M2,None">
+>     <instance id="9337195" alias="adjustment">
+>       <answer instance="9337195.211.7" senseid="M2"/>
+>       <context line="Flow-mediated dilation in 9- to 11-year-old children: the influence of intrauterine and childhood factors.  BACKGROUND: Early life factors, particularly size at birth, may influence later risk of cardiovascular disease, but a mechanism for this influence has not been established.  We have examined the relation between birth weight and endothelial function (a key event in atherosclerosis) in a population-based study of children, taking into account classic cardiovascular risk factors in childhood.  METHODS AND RESULTS: We studied 333 British children aged 9 to 11 years in whom information on birth weight, maternal factors, and risk factors (including blood pressure, lipid fractions, preload and postload glucose levels, smoking exposure, and socioeconomic status) was available.  A noninvasive ultrasound technique was used to assess the ability of the brachial artery to dilate in response to increased blood flow (induced by forearm cuff occlusion and release), an endothelium-dependent response.  Birth weight showed a significant, graded, positive association with flow-mediated dilation (0.027 mm/kg; 95% CI, 0.003 to 0.051 mm/kg; P=.02).  Childhood cardiovascular risk factors (blood pressure, total and LDL cholesterol, and salivary cotinine level) showed no relation with flow-mediated dilation, but HDL cholesterol level was inversely related (-0.067 mm/mmol; 95% CI, -0.021 to -0.113 mm/mmol; P=.005).  The relation between birth weight and flow-mediated dilation was not affected >by adjustment> for childhood body build, parity, cardiovascular risk factors, social class, or ethnicity.  CONCLUSIONS: Low birth weight is associated with impaired endothelial function in childhood, a key early event in atherogenesis.  Growth in utero may be associated with long-term changes in vascular function that are manifest by the first decade of life and that may influence the long-term risk of cardiovascular disease.  "/>
+>         <sentence tw="" id="9337195.tx.1" line="Flow-mediated dilation in 9- to 11-year-old children: the influence of intrauterine and childhood factors. ">
+>           <phrase tw="" head="dilation" line="Flow-mediated dilation">
+22,28c9
+<               <mapping rank="1,2,3" score="593" umls_cui="C0086597" umls_concept="Mediate" semantic_types="socb"/>
+<               <mapping rank="4,5,6" score="593" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+<             </token>
+<             <token word="dilation" pos="NONE">
+<               <mapping rank="1,4" score="760" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+<               <mapping rank="2,5" score="760" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+<               <mapping rank="3,6" score="760" umls_cui="C0700124" umls_concept="Dilated" semantic_types="ftcn"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+31,32c12
+<             </token>
+<             <token word="9" pos="NONE">
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+34a15,17
+>               <mapping rank="1" score="827" umls_cui="C0392800" umls_concept="Dilation procedure" semantic_types="topp"/>
+>               <mapping rank="2" score="827" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+>               <mapping rank="3" score="827" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+35a19,20
+>           </phrase>
+>           <phrase tw="" head="" line="in 9-">
+41c26
+<           <phrase tw="" head="" line="to 11-year-old children">
+---
+>           <phrase tw="" head="children" line="to 11-year-old children">
+47,48c32,33
+<               <mapping rank="1" score="645" umls_cui="C0439234" umls_concept="year" semantic_types="tmco"/>
+<               <mapping rank="2" score="645" umls_cui="C0439508" umls_concept="per year" semantic_types="tmco"/>
+---
+>               <mapping rank="1,2" score="645" umls_cui="C0439508" umls_concept="/year" semantic_types="tmco"/>
+>               <mapping rank="3,4" score="645" umls_cui="C0439234" umls_concept="year" semantic_types="tmco"/>
+50a36
+>               <mapping rank="1,2,3,4" score="645" umls_cui="C0580836" umls_concept="Old" semantic_types="tmco"/>
+52a39,40
+>               <mapping rank="1,3" score="812" umls_cui="C0008059" umls_concept="Child" semantic_types="aggp"/>
+>               <mapping rank="2,4" score="812" umls_cui="C0680063" umls_concept="Offspring" semantic_types="famg"/>
+56,57d43
+<             <token word=":" pos="NONE">
+<             </token>
+59c45
+<           <phrase tw="" head="intrauterine" line="the influence of intrauterine">
+---
+>           <phrase tw="" head="" line="the influence">
+63a50,51
+>           </phrase>
+>           <phrase tw="" head="intrauterine" line="of intrauterine">
+67c55
+<               <mapping rank="1" score="699" umls_cui="C0021399" umls_concept="Influentials" semantic_types="idcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0694756" umls_concept="Intrauterine" semantic_types="bsoj"/>
+76c64
+<               <mapping rank="1,2" score="694" umls_cui="C0231335" umls_concept="Childhood" semantic_types="tmco"/>
+---
+>               <mapping rank="1" score="694" umls_cui="C0231335" umls_concept="Childhood" semantic_types="tmco"/>
+80d67
+<               <mapping rank="2" score="827" umls_cui="C2827422" umls_concept="Mathematical Factor" semantic_types="cnce"/>
+84,90c71,74
+<         <sentence tw="" id="11.tx.2" line="</title> BACKGROUND: Early life factors, particularly size at birth, may influence later risk of cardiovascular disease, but a mechanism for this influence has not been established. ">
+<           <phrase tw="" head="</title" line="</title">
+<             <token word="</title" pos="NONE">
+<               <mapping rank="1" score="1000" umls_cui="C1519530" umls_concept="Person Role Title" semantic_types="idcn"/>
+<               <mapping rank="2" score="1000" umls_cui="C1704446" umls_concept="name title" semantic_types="idcn"/>
+<               <mapping rank="3" score="1000" umls_cui="C1705823" umls_concept="Object Title" semantic_types="inpr"/>
+<               <mapping rank="4" score="1000" umls_cui="C1705824" umls_concept="Trial Title" semantic_types="inpr"/>
+---
+>         <sentence tw="" id="9337195.tx.2" line="BACKGROUND: Early life factors, particularly size at birth, may influence later risk of cardiovascular disease, but a mechanism for this influence has not been established. ">
+>           <phrase tw="" head="factors" line="childhood factors.">
+>             <token word="childhood" pos="noun">
+>               <mapping rank="1" score="694" umls_cui="C0231335" umls_concept="Childhood" semantic_types="tmco"/>
+92c76,77
+<             <token word="title" pos="noun">
+---
+>             <token word="factors" pos="noun">
+>               <mapping rank="1" score="827" umls_cui="C1521761" umls_concept="Factor" semantic_types="ftcn"/>
+95,98c80
+<           <phrase tw="" head=">" line="> BACKGROUND">
+<             <token word=">" pos="NONE">
+<               <mapping rank="1" score="1000" umls_cui="C1706907" umls_concept="Background" semantic_types="cnce"/>
+<             </token>
+---
+>           <phrase tw="" head="background" line="BACKGROUND">
+99a82
+>               <mapping rank="1" score="1000" umls_cui="C1706907" umls_concept="Background" semantic_types="cnce"/>
+103,104d85
+<             <token word=":" pos="NONE">
+<             </token>
+106c87
+<           <phrase tw="" head="factors" line="Early life factors,">
+---
+>           <phrase tw="" head="factors" line="Early life factors">
+108c89
+<               <mapping rank="1,2" score="660" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+---
+>               <mapping rank="1" score="660" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+111c92
+<               <mapping rank="1,2" score="660" umls_cui="C0376558" umls_concept="Life" semantic_types="idcn"/>
+---
+>               <mapping rank="1" score="660" umls_cui="C0376558" umls_concept="Life" semantic_types="idcn"/>
+115d95
+<               <mapping rank="2" score="793" umls_cui="C2827422" umls_concept="Mathematical Factor" semantic_types="cnce"/>
+118c98
+<           <phrase tw="" head="size" line="particularly size at birth,">
+---
+>           <phrase tw="" head="size" line="particularly size">
+119a100,101
+>               <mapping rank="1" score="594" umls_cui="C0457784" umls_concept="Particulate" semantic_types="sbst"/>
+>               <mapping rank="2" score="594" umls_cui="C1882299" umls_concept="Particulates in Medical Device Environment" semantic_types="phpr"/>
+122c104
+<               <mapping rank="1,2,3" score="770" umls_cui="C0456389" umls_concept="size" semantic_types="spco"/>
+---
+>               <mapping rank="1,2" score="861" umls_cui="C0456389" umls_concept="size" semantic_types="spco"/>
+123a106,107
+>           </phrase>
+>           <phrase tw="" head="birth" line="at birth">
+126a111,112
+>               <mapping rank="1" score="1000" umls_cui="C0005615" umls_concept="Birth" semantic_types="orgf"/>
+>               <mapping rank="2" score="1000" umls_cui="C1550722" umls_concept="Entity Name Part Qualifier - birth" semantic_types="idcn"/>
+141c127
+<           <phrase tw="" head="risk" line="risk of cardiovascular disease,">
+---
+>           <phrase tw="" head="risk" line="risk">
+143c129
+<               <mapping rank="1" score="881" umls_cui="C1113685" umls_concept="cardiovascular disorder risk" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0035647" umls_concept="Risk" semantic_types="qlco"/>
+144a131,132
+>           </phrase>
+>           <phrase tw="" head="cardiovascular disease" line="of cardiovascular disease">
+148c136,137
+<               <mapping rank="1" score="" umls_cui="C1113685" umls_concept="cardiovascular disorder risk" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1555754" umls_concept="Allopathic & Osteopathic Physicians - Cardiovascular Disease" semantic_types="prog"/>
+>               <mapping rank="2" score="1000" umls_cui="C0007222" umls_concept="Cardiovascular Diseases" semantic_types="dsyn"/>
+155c144
+<           <phrase tw="" head="influence" line="a mechanism for this influence">
+---
+>           <phrase tw="" head="mechanism" line="a mechanism">
+158a148,149
+>               <mapping rank="1" score="1000" umls_cui="C1706376" umls_concept="Mechanism Component of Device" semantic_types="medd"/>
+>               <mapping rank="2" score="1000" umls_cui="C0441712" umls_concept="Mechanisms" semantic_types="ftcn"/>
+159a151,152
+>           </phrase>
+>           <phrase tw="" head="" line="for this influence">
+165d157
+<               <mapping rank="2" score="760" umls_cui="C1706376" umls_concept="Mechanism Component of Device" semantic_types="mnob"/>
+183,184c175,176
+<               <mapping rank="1" score="1000" umls_cui="C0443211" umls_concept="Established" semantic_types="qlco"/>
+<               <mapping rank="2" score="1000" umls_cui="C1272684" umls_concept="Accepted" semantic_types="qlco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1272684" umls_concept="Accepted" semantic_types="idcn,qlco"/>
+>               <mapping rank="2" score="1000" umls_cui="C0443211" umls_concept="Established" semantic_types="qlco"/>
+188c180,186
+<         <sentence tw="" id="11.tx.3" line="We have examined the relation between birth weight and endothelial function (a key event in atherosclerosis) in a population-based study of children, taking into account classic cardiovascular risk factors in childhood. ">
+---
+>         <sentence tw="" id="9337195.tx.3" line="We have examined the relation between birth weight and endothelial function (a key event in atherosclerosis) in a population-based study of children, taking into account classic cardiovascular risk factors in childhood. ">
+>           <phrase tw="" head="established" line="established.">
+>             <token word="established" pos="verb">
+>               <mapping rank="1" score="1000" umls_cui="C1272684" umls_concept="Accepted" semantic_types="idcn,qlco"/>
+>               <mapping rank="2" score="1000" umls_cui="C0443211" umls_concept="Established" semantic_types="qlco"/>
+>             </token>
+>           </phrase>
+202c200
+<           <phrase tw="" head="birth weight" line="the relation between birth weight">
+---
+>           <phrase tw="" head="relation" line="the relation">
+205a204
+>               <mapping rank="1" score="1000" umls_cui="C0080103" umls_concept="Relatives" semantic_types="famg"/>
+206a206,207
+>           </phrase>
+>           <phrase tw="" head="birth weight" line="between birth weight">
+210c211
+<               <mapping rank="2" score="760" umls_cui="C0869014" umls_concept="Relations" semantic_types="socb"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0005612" umls_concept="Birth Weight" semantic_types="orga"/>
+219c220,221
+<               <mapping rank="1,2,3,4" score="694" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+---
+>               <mapping rank="1,2,3,4,5" score="694" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+>               <mapping rank="10,6,7,8,9" score="694" umls_cui="C0669365" umls_concept="NOS3 protein, human" semantic_types="aapp,enzy"/>
+222,225c224,228
+<               <mapping rank="1" score="861" umls_cui="C0031843" umls_concept="physiological aspects" semantic_types="phsf"/>
+<               <mapping rank="2" score="861" umls_cui="C0542341" umls_concept="Function" semantic_types="ftcn"/>
+<               <mapping rank="3" score="861" umls_cui="C0700205" umls_concept="Function Axis" semantic_types="clas"/>
+<               <mapping rank="4" score="861" umls_cui="C1705273" umls_concept="Mathematical Operator" semantic_types="inpr"/>
+---
+>               <mapping rank="1,6" score="861" umls_cui="C0542341" umls_concept="Function" semantic_types="ftcn"/>
+>               <mapping rank="10,5" score="861" umls_cui="C0031843" umls_concept="physiological aspects" semantic_types="phsf"/>
+>               <mapping rank="2,7" score="861" umls_cui="C0700205" umls_concept="Function Axis" semantic_types="clas"/>
+>               <mapping rank="3,8" score="861" umls_cui="C1315032" umls_concept="Functional status scoring systems" semantic_types="clas"/>
+>               <mapping rank="4,9" score="861" umls_cui="C1705273" umls_concept="Mathematical Operator" semantic_types="inpr"/>
+230c233
+<           <phrase tw="" head="atherosclerosis" line="a key event in atherosclerosis">
+---
+>           <phrase tw="" head="event" line="a key event">
+233c236
+<             <token word="key" pos="noun">
+---
+>             <token word="key" pos="adj">
+235a239
+>               <mapping rank="1" score="861" umls_cui="C0441471" umls_concept="Event" semantic_types="evnt"/>
+236a241,242
+>           </phrase>
+>           <phrase tw="" head="atherosclerosis" line="in atherosclerosis">
+240c246
+<               <mapping rank="1" score="760" umls_cui="C0441471" umls_concept="Event" semantic_types="evnt"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0004153" umls_concept="Atherosclerosis" semantic_types="dsyn"/>
+245c251
+<           <phrase tw="" head="children" line="in a population-based study of children,">
+---
+>           <phrase tw="" head="study" line="in a population-based study">
+251,252c257
+<               <mapping rank="1,2" score="581" umls_cui="C0150312" umls_concept="Present" semantic_types="qnco"/>
+<               <mapping rank="3,4" score="581" umls_cui="C0332285" umls_concept="Within" semantic_types="spco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1709599" umls_concept="Population Based Study" semantic_types="resa"/>
+255c260
+<               <mapping rank="1,2,3,4" score="814" umls_cui="C1709599" umls_concept="Population Based Study" semantic_types="resa"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1709599" umls_concept="Population Based Study" semantic_types="resa"/>
+256a262,263
+>           </phrase>
+>           <phrase tw="" head="children" line="of children">
+260c267,268
+<               <mapping rank="1,2,3,4" score="814" umls_cui="C1709599" umls_concept="Population Based Study" semantic_types="resa"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0008059" umls_concept="Child" semantic_types="aggp"/>
+>               <mapping rank="2" score="1000" umls_cui="C0680063" umls_concept="Offspring" semantic_types="famg"/>
+263c271
+<           <phrase tw="" head="factors" line="taking into account classic cardiovascular risk factors">
+---
+>           <phrase tw="" head="" line="taking">
+265d272
+<               <mapping rank="1,2,3,4,5,6" score="714" umls_cui="C1515187" umls_concept="Take" semantic_types="hlca"/>
+266a274,275
+>           </phrase>
+>           <phrase tw="" head="risk factors" line="into account classic cardiovascular risk factors">
+269a279
+>               <mapping rank="1,2" score="637" umls_cui="C1551359" umls_concept="account" semantic_types="idcn"/>
+272,279c282,283
+<               <mapping rank="1,2" score="748" umls_cui="C1551359" umls_concept="account - ActClass" semantic_types="idcn"/>
+<               <mapping rank="3,4" score="748" umls_cui="C2741673" umls_concept="Account number:Identifier:Point in time:^Patient:Nominal" semantic_types="clna"/>
+<               <mapping rank="5,6" score="748" umls_cui="C2981730" umls_concept="Financial Account" semantic_types="clas"/>
+<             </token>
+<             <token word="cardiovascular risk" pos="noun">
+<               <mapping rank="1,2,3,4,5,6" score="748" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+<               <mapping rank="1,3,5" score="748" umls_cui="C0439658" umls_concept="classic behavior" semantic_types="qlco"/>
+<               <mapping rank="2,4,6" score="748" umls_cui="C0439858" umls_concept="classical example" semantic_types="qlco"/>
+---
+>               <mapping rank="1" score="637" umls_cui="C0439658" umls_concept="classic behavior" semantic_types="qlco"/>
+>               <mapping rank="2" score="637" umls_cui="C0439858" umls_concept="classical example" semantic_types="qlco"/>
+281,282c285,289
+<             <token word="factors" pos="noun">
+<               <mapping rank="1,2,3,4,5,6" score="800" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+---
+>             <token word="cardiovascular" pos="adj">
+>               <mapping rank="1,2" score="873" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+>             </token>
+>             <token word="risk factors" pos="noun">
+>               <mapping rank="1,2" score="873" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+293c300,307
+<         <sentence tw="" id="11.tx.4" line="METHODS AND RESULTS: We studied 333 British children aged 9 to 11 years in whom information on birth weight, maternal factors, and risk factors (including blood pressure, lipid fractions, preload and postload glucose levels, smoking exposure, and socioeconomic status) was available. ">
+---
+>         <sentence tw="" id="9337195.tx.4" line="METHODS AND RESULTS: We studied 333 British children aged 9 to 11 years in whom information on birth weight, maternal factors, and risk factors (including blood pressure, lipid fractions, preload and postload glucose levels, smoking exposure, and socioeconomic status) was available. ">
+>           <phrase tw="" head="childhood" line="in childhood.">
+>             <token word="in" pos="prep">
+>             </token>
+>             <token word="childhood" pos="noun">
+>               <mapping rank="1" score="1000" umls_cui="C0231335" umls_concept="Childhood" semantic_types="tmco"/>
+>             </token>
+>           </phrase>
+296,297c310,311
+<               <mapping rank="1" score="1000" umls_cui="C0025663" umls_concept="Methods" semantic_types="inpr"/>
+<               <mapping rank="2" score="1000" umls_cui="C0025664" umls_concept="Methods aspects" semantic_types="inpr"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0025664" umls_concept="Methodology" semantic_types="inpr"/>
+>               <mapping rank="2" score="1000" umls_cui="C0025663" umls_concept="Methods" semantic_types="inpr"/>
+307,309c321
+<               <mapping rank="1" score="966" umls_cui="C1274040" umls_concept="Result" semantic_types="ftcn"/>
+<               <mapping rank="2" score="966" umls_cui="C1546471" umls_concept="What subject filter - Result" semantic_types="idcn"/>
+<               <mapping rank="3" score="966" umls_cui="C2825142" umls_concept="Experimental Result" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1274040" umls_concept="result" semantic_types="ftcn"/>
+313,314d324
+<             <token word=":" pos="NONE">
+<             </token>
+322,323c332,333
+<               <mapping rank="1" score="966" umls_cui="C0557651" umls_concept="Room of building - Study" semantic_types="mnob"/>
+<               <mapping rank="2" score="966" umls_cui="C2603343" umls_concept="Study" semantic_types="resa"/>
+---
+>               <mapping rank="1" score="966" umls_cui="C0008976" umls_concept="Clinical Trials" semantic_types="resa"/>
+>               <mapping rank="2" score="966" umls_cui="C0557651" umls_concept="Study" semantic_types="mnob,resa"/>
+339,340c349
+<               <mapping rank="1" score="1000" umls_cui="C0001779" umls_concept="Age" semantic_types="orga"/>
+<               <mapping rank="3" score="1000" umls_cui="C1999167" umls_concept="Old age" semantic_types="popg"/>
+---
+>               <mapping rank="1" score="966" umls_cui="C0001779" umls_concept="Age" semantic_types="orga"/>
+343c352
+<           <phrase tw="" head="" line="9 to 11 years">
+---
+>           <phrase tw="" head="" line="9">
+345a355,356
+>           </phrase>
+>           <phrase tw="" head="years" line="to 11 years">
+350a362
+>               <mapping rank="1" score="861" umls_cui="C0439234" umls_concept="year" semantic_types="tmco"/>
+353c365
+<           <phrase tw="" head="" line="in whom information on birth weight,">
+---
+>           <phrase tw="" head="information" line="in whom information">
+359,360c371
+<               <mapping rank="1" score="586" umls_cui="C0150312" umls_concept="Present" semantic_types="qnco"/>
+<               <mapping rank="2" score="586" umls_cui="C0332285" umls_concept="Within" semantic_types="spco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1533716" umls_concept="Information" semantic_types="idcn"/>
+361a373,374
+>           </phrase>
+>           <phrase tw="" head="birth weight" line="on birth weight">
+365c378
+<               <mapping rank="1,2" score="" umls_cui="C1533716" umls_concept="Information" semantic_types="idcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0005612" umls_concept="Birth Weight" semantic_types="orga"/>
+368,374c381,383
+<           <phrase tw="" head="factors" line="maternal factors,">
+<             <token word="maternal" pos="adj">
+<               <mapping rank="1,2" score="694" umls_cui="C2347083" umls_concept="Maternal Relative" semantic_types="famg"/>
+<             </token>
+<             <token word="factors" pos="noun">
+<               <mapping rank="1" score="827" umls_cui="C1521761" umls_concept="Factor" semantic_types="ftcn"/>
+<               <mapping rank="2" score="827" umls_cui="C2827422" umls_concept="Mathematical Factor" semantic_types="cnce"/>
+---
+>           <phrase tw="" head="factors" line="maternal factors">
+>             <token word="maternal factors" pos="noun">
+>               <mapping rank="1" score="930" umls_cui="C0065743" umls_concept="mating factor" semantic_types="aapp,horm"/>
+383,384c392,393
+<               <mapping rank="1" score="1000" umls_cui="C0035648" umls_concept="risk factors" semantic_types="qnco"/>
+<               <mapping rank="2" score="1000" umls_cui="C1553898" umls_concept="Act Code - risk factors" semantic_types="idcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0455624" umls_concept="History of - risk factor" semantic_types="fndg"/>
+>               <mapping rank="2" score="1000" umls_cui="C0035648" umls_concept="risk factors" semantic_types="idcn,qnco"/>
+389c398
+<           <phrase tw="" head="" line="including">
+---
+>           <phrase tw="" head="including" line="including">
+390a400,401
+>               <mapping rank="1" score="966" umls_cui="C0332257" umls_concept="Including" semantic_types="ftcn"/>
+>               <mapping rank="2" score="966" umls_cui="C1552866" umls_concept="include" semantic_types="idcn"/>
+393c404
+<           <phrase tw="" head="blood pressure" line="blood pressure,">
+---
+>           <phrase tw="" head="blood pressure" line="blood pressure">
+400c411
+<           <phrase tw="" head="fractions" line="lipid fractions,">
+---
+>           <phrase tw="" head="fractions" line="lipid fractions">
+405c416
+<               <mapping rank="1" score="861" umls_cui="C1264633" umls_concept="Fraction of" semantic_types="qnco"/>
+---
+>               <mapping rank="1" score="861" umls_cui="C1264633" umls_concept="Fractions" semantic_types="qnco"/>
+416,417c427,428
+<           <phrase tw="" head="glucose levels" line="postload glucose levels,">
+<             <token word="postload" pos="adj">
+---
+>           <phrase tw="" head="levels" line="postload glucose levels">
+>             <token word="postload" pos="noun">
+420c431
+<               <mapping rank="1" score="901" umls_cui="C0428548" umls_concept="Glucose level - finding" semantic_types="lbtr"/>
+---
+>               <mapping rank="1" score="884" umls_cui="C0428548" umls_concept="Glucose level - finding" semantic_types="lbtr"/>
+425,427c436,438
+<               <mapping rank="1" score="1000" umls_cui="C0037369" umls_concept="Smoking" semantic_types="inbe"/>
+<               <mapping rank="2" score="1000" umls_cui="C0453996" umls_concept="Tobacco smoking behavior" semantic_types="inbe"/>
+<               <mapping rank="3" score="1000" umls_cui="C1881674" umls_concept="Medical Device Emits Smoke" semantic_types="phpr"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0037369" umls_concept="Smoking" semantic_types="inbe,phpr"/>
+>               <mapping rank="2" score="1000" umls_cui="C1519384" umls_concept="Smoking History" semantic_types="fndg"/>
+>               <mapping rank="3" score="1000" umls_cui="C0453996" umls_concept="Tobacco smoking behavior" semantic_types="inbe"/>
+430c441
+<           <phrase tw="" head="exposure" line="exposure,">
+---
+>           <phrase tw="" head="exposure" line="exposure">
+432,433c443,446
+<               <mapping rank="1" score="1000" umls_cui="C0274281" umls_concept=" NOS','Injury due to exposure to external cause" semantic_types="inpo"/>
+<               <mapping rank="2" score="1000" umls_cui="C0332157" umls_concept="Exposure to" semantic_types="clna"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0332157" umls_concept="Exposure" semantic_types="clna"/>
+>               <mapping rank="2" score="1000" umls_cui="C0728853" umls_concept="Exposure NOS" semantic_types="phpr"/>
+>               <mapping rank="3" score="1000" umls_cui="C0274281" umls_concept=" NOS','Exposure, NOS" semantic_types="inpo"/>
+>               <mapping rank="4" score="1000" umls_cui="C2220266" umls_concept="exposure history" semantic_types="fndg"/>
+453c466
+<               <mapping rank="1" score="1000" umls_cui="C0470187" umls_concept="Availability of" semantic_types="ftcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0470187" umls_concept="Availability" semantic_types="ftcn"/>
+457c470,475
+<         <sentence tw="" id="11.tx.5" line="A noninvasive ultrasound technique was used to assess the ability of the brachial artery to dilate in response to increased blood flow (induced by forearm cuff occlusion and release), an endothelium-dependent response. ">
+---
+>         <sentence tw="" id="9337195.tx.5" line="A noninvasive ultrasound technique was used to assess the ability of the brachial artery to dilate in response to increased blood flow (induced by forearm cuff occlusion and release), an endothelium-dependent response. ">
+>           <phrase tw="" head="available" line="available.">
+>             <token word="available" pos="adj">
+>               <mapping rank="1" score="1000" umls_cui="C0470187" umls_concept="Availability" semantic_types="ftcn"/>
+>             </token>
+>           </phrase>
+462,466d479
+<               <mapping rank="1" score="660" umls_cui="C0205303" umls_concept="Non-invasive" semantic_types="ftcn"/>
+<               <mapping rank="2" score="660" umls_cui="C2986496" umls_concept="Noninvasive" semantic_types="clas"/>
+<             </token>
+<             <token word="ultrasound" pos="noun">
+<               <mapping rank="1,2" score="901" umls_cui="C0041618" umls_concept="Ultrasonography" semantic_types="diap"/>
+468,469c481,482
+<             <token word="technique" pos="noun">
+<               <mapping rank="1,2" score="901" umls_cui="C0041618" umls_concept="Ultrasonography" semantic_types="diap"/>
+---
+>             <token word="ultrasound technique" pos="noun">
+>               <mapping rank="1" score="901" umls_cui="C0701813" umls_concept="Ultrasound technique" semantic_types="diap"/>
+478c491,494
+<               <mapping rank="1" score="1000" umls_cui="C1273517" umls_concept="Used by" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="966" umls_cui="C0457083" umls_concept="Usage" semantic_types="ftcn"/>
+>               <mapping rank="2" score="966" umls_cui="C1947944" umls_concept="Use" semantic_types="inpr"/>
+>               <mapping rank="3" score="966" umls_cui="C1524063" umls_concept="Using" semantic_types="ftcn"/>
+>               <mapping rank="4" score="966" umls_cui="C0042153" umls_concept="utilization qualifier" semantic_types="ftcn"/>
+481c497
+<           <phrase tw="" head="to" line="to">
+---
+>           <phrase tw="" head="" line="to">
+483d498
+<               <mapping rank="1" score="1000" umls_cui="C1883351" umls_concept="To" semantic_types="qlco"/>
+491c506
+<           <phrase tw="" head="brachial artery" line="the ability of the brachial artery to">
+---
+>           <phrase tw="" head="ability" line="the ability">
+494a510
+>               <mapping rank="1" score="1000" umls_cui="C0085732" umls_concept="Ability" semantic_types="orga"/>
+495a512,513
+>           </phrase>
+>           <phrase tw="" head="brachial artery" line="of the brachial artery to">
+501c519,520
+<               <mapping rank="1,2" score="748" umls_cui="C0085732" umls_concept="Ability" semantic_types="orga"/>
+---
+>               <mapping rank="1" score="901" umls_cui="C1278940" umls_concept="Entire brachial artery" semantic_types="bpoc"/>
+>               <mapping rank="2" score="901" umls_cui="C0006087" umls_concept="Structure of brachial artery" semantic_types="bpoc"/>
+506c525
+<           <phrase tw="" head="dilate" line="dilate in response">
+---
+>           <phrase tw="" head="dilate" line="dilate">
+508c527,528
+<               <mapping rank="1,2,3,4" score="790" umls_cui="C0700124" umls_concept="Dilated" semantic_types="ftcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1322279" umls_concept="Dilate procedure" semantic_types="topp"/>
+>               <mapping rank="2" score="1000" umls_cui="C0700124" umls_concept="Dilated" semantic_types="ftcn"/>
+509a530,531
+>           </phrase>
+>           <phrase tw="" head="response" line="in response">
+512a535,537
+>               <mapping rank="1" score="1000" umls_cui="C1704632" umls_concept="Disease Response" semantic_types="fndg"/>
+>               <mapping rank="2" score="1000" umls_cui="C1706817" umls_concept="Response" semantic_types="inpr"/>
+>               <mapping rank="3" score="1000" umls_cui="C0871261" umls_concept="response" semantic_types="clna"/>
+518,521c543
+<             <token word="increased" pos="adj">
+<               <mapping rank="1" score="1000" umls_cui="C0232341" umls_concept="Increased vascular flow" semantic_types="fndg"/>
+<             </token>
+<             <token word="blood flow" pos="noun">
+---
+>             <token word="increased blood flow" pos="noun">
+527c549
+<           <phrase tw="" head="occlusion" line="induced by forearm cuff occlusion">
+---
+>           <phrase tw="" head="induced" line="induced">
+528a551
+>               <mapping rank="1" score="1000" umls_cui="C0205263" umls_concept="Induced" semantic_types="ftcn"/>
+529a553,554
+>           </phrase>
+>           <phrase tw="" head="occlusion" line="by forearm cuff occlusion">
+532a558
+>               <mapping rank="1,10,2,3,4,5,6,7,8,9" score="660" umls_cui="C0016536" umls_concept="Forearm" semantic_types="blor"/>
+535c561,562
+<               <mapping rank="1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23,24,3,4,5,6,7,8,9" score="760" umls_cui="C0016536" umls_concept="Forearm" semantic_types="bpoc"/>
+---
+>               <mapping rank="1,2,3,4,5" score="660" umls_cui="C1550244" umls_concept="Cuff - body part" semantic_types="bpoc"/>
+>               <mapping rank="10,6,7,8,9" score="660" umls_cui="C1706501" umls_concept="Cuff Device Component" semantic_types="medd"/>
+538,540c565,569
+<               <mapping rank="1,2,3,4,5,6" score="760" umls_cui="C0441107" umls_concept="Cuffs device" semantic_types="medd"/>
+<               <mapping rank="10,11,12,7,8,9" score="760" umls_cui="C1550244" umls_concept="Cuff - body part" semantic_types="bpoc"/>
+<               <mapping rank="13,14,15,16,17,18" score="760" umls_cui="C1706501" umls_concept="Cuff Device Component" semantic_types="medd"/>
+---
+>               <mapping rank="1,6" score="827" umls_cui="C1110554" umls_concept="Cardiovascular occlusion" semantic_types="patf"/>
+>               <mapping rank="10,5" score="827" umls_cui="C1882137" umls_concept="Occlusion within Medical Device" semantic_types="phpr"/>
+>               <mapping rank="2,7" score="827" umls_cui="C0028778" umls_concept="Obstruction" semantic_types="inbe,patf"/>
+>               <mapping rank="3,8" score="827" umls_cui="C1947917" umls_concept=" NOS','Occluded" semantic_types="ftcn"/>
+>               <mapping rank="4,9" score="827" umls_cui="C0441597" umls_concept="Occlusion - action" semantic_types="ftcn"/>
+549c578,581
+<               <mapping rank="1" score="1000" umls_cui="C0030685" umls_concept="Patient Discharge" semantic_types="hlca"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0439180" umls_concept="% release" semantic_types="qnco"/>
+>               <mapping rank="2" score="1000" umls_cui="C1283071" umls_concept="Release" semantic_types="ftcn,topp"/>
+>               <mapping rank="3" score="1000" umls_cui="C0391871" umls_concept="Released" semantic_types="ftcn"/>
+>               <mapping rank="4" score="1000" umls_cui="C0680255" umls_concept="release" semantic_types="hlca"/>
+554c586
+<           <phrase tw="" head="" line=",">
+---
+>           <phrase tw="" head="" line="">
+560,561c592,594
+<               <mapping rank="1" score="660" umls_cui="C0009649" umls_concept="Conditioning, Classical" semantic_types="menp"/>
+<               <mapping rank="1" score="660" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C1701901" umls_concept="Conditional" semantic_types="ftcn,qlco"/>
+>               <mapping rank="1,2,3,4,5,6" score="660" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+>               <mapping rank="4,5,6" score="660" umls_cui="C0851827" umls_concept="Dependent - ability" semantic_types="qlco"/>
+564c597,599
+<               <mapping rank="1" score="901" umls_cui="C0009649" umls_concept="Conditioning, Classical" semantic_types="menp"/>
+---
+>               <mapping rank="1,4" score="827" umls_cui="C1704632" umls_concept="Disease Response" semantic_types="fndg"/>
+>               <mapping rank="2,5" score="827" umls_cui="C1706817" umls_concept="Response" semantic_types="inpr"/>
+>               <mapping rank="3,6" score="827" umls_cui="C0871261" umls_concept="response" semantic_types="clna"/>
+568c603,617
+<         <sentence tw="" id="11.tx.6" line="Birth weight showed a significant, graded, positive association with flow-mediated dilation (0.027 mm/kg; 95% CI, 0.003 to 0.051 mm/kg; P=.02). ">
+---
+>         <sentence tw="" id="9337195.tx.6" line="Birth weight showed a significant, graded, positive association with flow-mediated dilation (0.027 mm/kg; 95% CI, 0.003 to 0.051 mm/kg; P=.02). ">
+>           <phrase tw="" head="response" line="an endothelium-dependent response.">
+>             <token word="an" pos="det">
+>             </token>
+>             <token word="endothelium dependent" pos="adj">
+>               <mapping rank="1,2,3" score="660" umls_cui="C1701901" umls_concept="Conditional" semantic_types="ftcn,qlco"/>
+>               <mapping rank="1,2,3,4,5,6" score="660" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+>               <mapping rank="4,5,6" score="660" umls_cui="C0851827" umls_concept="Dependent - ability" semantic_types="qlco"/>
+>             </token>
+>             <token word="response" pos="noun">
+>               <mapping rank="1,4" score="827" umls_cui="C1704632" umls_concept="Disease Response" semantic_types="fndg"/>
+>               <mapping rank="2,5" score="827" umls_cui="C1706817" umls_concept="Response" semantic_types="inpr"/>
+>               <mapping rank="3,6" score="827" umls_cui="C0871261" umls_concept="response" semantic_types="clna"/>
+>             </token>
+>           </phrase>
+579c628
+<           <phrase tw="" head="significant" line="a significant,">
+---
+>           <phrase tw="" head="significant" line="a significant">
+583,585c632
+<               <mapping rank="1" score="1000" umls_cui="C0237881" umls_concept="Statistical Significance" semantic_types="qnco"/>
+<               <mapping rank="2" score="1000" umls_cui="C0750502" umls_concept="Significant" semantic_types="idcn"/>
+<               <mapping rank="3" score="1000" umls_cui="C1546944" umls_concept="Event Seriousness - Significant" semantic_types="qlco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0750502" umls_concept="Significant" semantic_types="idcn,qlco"/>
+592d638
+<               <mapping rank="3" score="966" umls_cui="C3244287" umls_concept="School Grade" semantic_types="fndg"/>
+595c641
+<           <phrase tw="" head="" line=",">
+---
+>           <phrase tw="" head="" line="">
+597c643
+<           <phrase tw="" head="association" line="positive association with flow-mediated dilation">
+---
+>           <phrase tw="" head="association" line="positive association">
+599,602c645,647
+<               <mapping rank="1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23,24,3,4,5,6,7,8,9" score="586" umls_cui="C0439178" umls_concept="percent positive cells" semantic_types="qnco"/>
+<               <mapping rank="25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48" score="586" umls_cui="C1446409" umls_concept="Positive" semantic_types="qlco"/>
+<               <mapping rank="49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72" score="586" umls_cui="C1514241" umls_concept="Positive Finding" semantic_types="fndg"/>
+<               <mapping rank="73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96" score="586" umls_cui="C2825490" umls_concept="Positive Charge" semantic_types="qlco"/>
+---
+>               <mapping rank="1,2,3,4" score="694" umls_cui="C1446409" umls_concept="Positive" semantic_types="qlco"/>
+>               <mapping rank="10,11,12,9" score="694" umls_cui="C0439178" umls_concept="percent positive cells" semantic_types="qnco"/>
+>               <mapping rank="5,6,7,8" score="694" umls_cui="C1514241" umls_concept="Positive Finding" semantic_types="fndg"/>
+605,608c650,653
+<               <mapping rank="1,2,25,26,27,28,29,3,30,4,49,5,50,51,52,53,54,6,73,74,75,76,77,78" score="753" umls_cui="C0004083" umls_concept="Mental association" semantic_types="menp"/>
+<               <mapping rank="10,11,12,31,32,33,34,35,36,55,56,57,58,59,60,7,79,8,80,81,82,83,84,9" score="753" umls_cui="C0439849" umls_concept="Relationships" semantic_types="qlco"/>
+<               <mapping rank="13,14,15,16,17,18,37,38,39,40,41,42,61,62,63,64,65,66,85,86,87,88,89,90" score="753" umls_cui="C0596306" umls_concept="Chemical Association" semantic_types="phpr"/>
+<               <mapping rank="19,20,21,22,23,24,43,44,45,46,47,48,67,68,69,70,71,72,91,92,93,94,95,96" score="753" umls_cui="C0699792" umls_concept="Relationship by association" semantic_types="socb"/>
+---
+>               <mapping rank="1,5,9" score="861" umls_cui="C0596306" umls_concept="Chemical Association" semantic_types="phpr"/>
+>               <mapping rank="10,2,6" score="861" umls_cui="C0004083" umls_concept="Mental association" semantic_types="menp"/>
+>               <mapping rank="11,3,7" score="861" umls_cui="C0699792" umls_concept="Relationship by association" semantic_types="socb"/>
+>               <mapping rank="12,4,8" score="861" umls_cui="C0439849" umls_concept="Relationships" semantic_types="qlco"/>
+609a655,656
+>           </phrase>
+>           <phrase tw="" head="dilation" line="with flow-mediated dilation">
+612a660
+>               <mapping rank="1,2,3" score="660" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+615c663
+<               <mapping rank="1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23,24,25,26,27,28,29,3,30,31,32,33,34,35,36,37,38,39,4,40,41,42,43,44,45,46,47,48,49,5,50,51,52,53,54,55,56,57,58,59,6,60,61,62,63,64,65,66,67,68,69,7,70,71,72,73,74,75,76,77,78,79,8,80,81,82,83,84,85,86,87,88,89,9,90,91,92,93,94,95,96" score="586" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+618,619c666,668
+<               <mapping rank="1,13,14,15,19,2,20,21,25,26,27,3,31,32,33,37,38,39,43,44,45,49,50,51,55,56,57,61,62,63,67,68,69,7,73,74,75,79,8,80,81,85,86,87,9,91,92,93" score="586" umls_cui="C0086597" umls_concept="Mediate" semantic_types="socb"/>
+<               <mapping rank="10,11,12,16,17,18,22,23,24,28,29,30,34,35,36,4,40,41,42,46,47,48,5,52,53,54,58,59,6,60,64,65,66,70,71,72,76,77,78,82,83,84,88,89,90,94,95,96" score="586" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+---
+>               <mapping rank="1" score="827" umls_cui="C0392800" umls_concept="Dilation procedure" semantic_types="topp"/>
+>               <mapping rank="2" score="827" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+>               <mapping rank="3" score="827" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+622,624c671
+<           <phrase tw="" head="mm" line="(0.027 mm/kg">
+<             <token word="0027" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="(0.027 mm">
+628,629d674
+<               <mapping rank="1" score="812" umls_cui="C0022718" umls_concept="Kyrgyzstan" semantic_types="geoa"/>
+<               <mapping rank="2" score="812" umls_cui="C0439209" umls_concept="Kilogram" semantic_types="qnco"/>
+630a676,677
+>           </phrase>
+>           <phrase tw="" head="kg" line="/kg">
+631a679,680
+>               <mapping rank="1" score="1000" umls_cui="C0439209" umls_concept="Kilogram" semantic_types="qnco"/>
+>               <mapping rank="2" score="1000" umls_cui="C0022718" umls_concept="Kyrgyzstan" semantic_types="geoa"/>
+634,636c683
+<           <phrase tw="" head="" line="; 95% CI,">
+<             <token word=";" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="; 95% CI">
+642,646c689
+<           <phrase tw="" head="mm" line="0.003 to 0.051 mm/kg">
+<             <token word="0003" pos="NONE">
+<             </token>
+<             <token word="0051" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="0.003">
+648a692,693
+>           </phrase>
+>           <phrase tw="" head="" line="to 0.051 mm">
+654,655d698
+<               <mapping rank="1" score="748" umls_cui="C0022718" umls_concept="Kyrgyzstan" semantic_types="geoa"/>
+<               <mapping rank="2" score="748" umls_cui="C0439209" umls_concept="Kilogram" semantic_types="qnco"/>
+656a700,701
+>           </phrase>
+>           <phrase tw="" head="kg" line="/kg">
+657a703,704
+>               <mapping rank="1" score="1000" umls_cui="C0439209" umls_concept="Kilogram" semantic_types="qnco"/>
+>               <mapping rank="2" score="1000" umls_cui="C0022718" umls_concept="Kyrgyzstan" semantic_types="geoa"/>
+660,665c707,708
+<           <phrase tw="" head=";" line="; P=.02">
+<             <token word=";" pos="NONE">
+<               <mapping rank="1" score="861" umls_cui="C0369773" umls_concept="P Blood group antibodies" semantic_types="aapp,imft"/>
+<               <mapping rank="2" score="861" umls_cui="C2603361" umls_concept="P prime" semantic_types="clna"/>
+<             </token>
+<             <token word="p" pos="adj">
+---
+>           <phrase tw="" head="" line="; P">
+>             <token word="p" pos="noun">
+666a710,711
+>           </phrase>
+>           <phrase tw="" head="" line="=.02">
+673,674c718,721
+<         <sentence tw="" id="11.tx.7" line="Childhood cardiovascular risk factors (blood pressure, total and LDL cholesterol, and salivary cotinine level) showed no relation with flow-mediated dilation, but HDL cholesterol level was inversely related (-0.067 mm/mmol; 95% CI, -0.021 to -0.113 mm/mmol; P=.005). ">
+<           <phrase tw="" head="factors" line="Childhood cardiovascular risk factors">
+---
+>         <sentence tw="" id="9337195.tx.7" line="Childhood cardiovascular risk factors (blood pressure, total and LDL cholesterol, and salivary cotinine level) showed no relation with flow-mediated dilation, but HDL cholesterol level was inversely related (-0.067 mm/mmol; 95% CI, -0.021 to -0.113 mm/mmol; P=.005). ">
+>           <phrase tw="" head="" line=").">
+>           </phrase>
+>           <phrase tw="" head="risk factors" line="Childhood cardiovascular risk factors">
+678,679c725,726
+<             <token word="cardiovascular risk" pos="noun">
+<               <mapping rank="1" score="906" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+---
+>             <token word="cardiovascular" pos="adj">
+>               <mapping rank="1" score="912" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+681,682c728,729
+<             <token word="factors" pos="noun">
+<               <mapping rank="1" score="906" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+---
+>             <token word="risk factors" pos="noun">
+>               <mapping rank="1" score="912" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+685c732
+<           <phrase tw="" head="blood pressure" line="(blood pressure,">
+---
+>           <phrase tw="" head="blood pressure" line="(blood pressure">
+702,703c749,750
+<           <phrase tw="" head="cholesterol" line="LDL cholesterol,">
+<             <token word="ldl" pos="noun">
+---
+>           <phrase tw="" head="cholesterol" line="LDL cholesterol">
+>             <token word="ldl cholesterol" pos="noun">
+705,709c752
+<               <mapping rank="2" score="1000" umls_cui="C0202117" umls_concept="Low density lipoprotein cholesterol measurement" semantic_types="lbpr"/>
+<             </token>
+<             <token word="cholesterol" pos="noun">
+<               <mapping rank="1" score="1000" umls_cui="C0023824" umls_concept=" LDL','LDL Cholesterol Lipoproteins" semantic_types="bacs,strd"/>
+<               <mapping rank="2" score="1000" umls_cui="C0202117" umls_concept="Low density lipoprotein cholesterol measurement" semantic_types="lbpr"/>
+---
+>               <mapping rank="2" score="1000" umls_cui="C0428474" umls_concept="Serum LDL cholesterol measurement" semantic_types="lbpr"/>
+718c761
+<               <mapping rank="1,2,3,4" score="660" umls_cui="C0442040" umls_concept="Salivary" semantic_types="spco"/>
+---
+>               <mapping rank="1,2" score="660" umls_cui="C0442040" umls_concept="Salivary" semantic_types="spco"/>
+721c764
+<               <mapping rank="1,2,3,4" score="660" umls_cui="C0010194" umls_concept="Cotinine" semantic_types="orch,phsu"/>
+---
+>               <mapping rank="1,2" score="660" umls_cui="C0010194" umls_concept="Cotinine" semantic_types="orch,phsu"/>
+723a767
+>               <mapping rank="1" score="827" umls_cui="C0441889" umls_concept="Degree" semantic_types="qlco,qnco"/>
+725,726d768
+<               <mapping rank="3" score="827" umls_cui="C1547707" umls_concept="Floor - story of building" semantic_types="geoa"/>
+<               <mapping rank="4" score="827" umls_cui="C2946261" umls_concept="Level" semantic_types="phsu"/>
+736c778
+<           <phrase tw="" head="flow" line="no relation with flow-mediated dilation,">
+---
+>           <phrase tw="" head="relation" line="no relation">
+740c782
+<               <mapping rank="1,10,11,12,2,3,4,5,6,7,8,9" score="617" umls_cui="C1882092" umls_concept="No Flow Medical Device Problem" semantic_types="phpr"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0080103" umls_concept="Relatives" semantic_types="famg"/>
+741a784,785
+>           </phrase>
+>           <phrase tw="" head="dilation" line="with flow-mediated dilation">
+745c789
+<               <mapping rank="10,11,12,7,8,9" score="753" umls_cui="C0869014" umls_concept="Relations" semantic_types="socb"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+747a792
+>               <mapping rank="1,2,3" score="660" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+750c795,797
+<               <mapping rank="1,10,11,12,2,3,4,5,6,7,8,9" score="617" umls_cui="C1882092" umls_concept="No Flow Medical Device Problem" semantic_types="phpr"/>
+---
+>               <mapping rank="1" score="827" umls_cui="C0392800" umls_concept="Dilation procedure" semantic_types="topp"/>
+>               <mapping rank="2" score="827" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+>               <mapping rank="3" score="827" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+758,761c805,813
+<             <token word="hdl cholesterol" pos="noun">
+<               <mapping rank="1" score="1000" umls_cui="C0202069" umls_concept="HDL cholesterol test" semantic_types="medd"/>
+<               <mapping rank="2" score="1000" umls_cui="C0392885" umls_concept="High density lipoprotein measurement" semantic_types="lbpr"/>
+<               <mapping rank="3" score="1000" umls_cui="C0428471" umls_concept="HDL - High density lipoprotein cholesterol level result" semantic_types="lbtr"/>
+---
+>             <token word="hdl" pos="noun">
+>               <mapping rank="3,4" score="734" umls_cui="C0023822" umls_concept=" HDL','High Density Lipoprotein Cholesterol" semantic_types="bacs,lipd"/>
+>               <mapping rank="5,6" score="734" umls_cui="C0428472" umls_concept="Serum HDL cholesterol measurement" semantic_types="lbpr"/>
+>             </token>
+>             <token word="cholesterol" pos="noun">
+>               <mapping rank="1" score="901" umls_cui="C0428466" umls_concept="Cholesterol level test result" semantic_types="lbtr"/>
+>               <mapping rank="2" score="901" umls_cui="C0201950" umls_concept="Cholesterol measurement test" semantic_types="lbpr"/>
+>               <mapping rank="3,4" score="734" umls_cui="C0023822" umls_concept=" HDL','High Density Lipoprotein Cholesterol" semantic_types="bacs,lipd"/>
+>               <mapping rank="5,6" score="734" umls_cui="C0428472" umls_concept="Serum HDL cholesterol measurement" semantic_types="lbpr"/>
+764,766c816,819
+<               <mapping rank="1" score="1000" umls_cui="C0202069" umls_concept="HDL cholesterol test" semantic_types="medd"/>
+<               <mapping rank="2" score="1000" umls_cui="C0392885" umls_concept="High density lipoprotein measurement" semantic_types="lbpr"/>
+<               <mapping rank="3" score="1000" umls_cui="C0428471" umls_concept="HDL - High density lipoprotein cholesterol level result" semantic_types="lbtr"/>
+---
+>               <mapping rank="1" score="901" umls_cui="C0428466" umls_concept="Cholesterol level test result" semantic_types="lbtr"/>
+>               <mapping rank="2" score="901" umls_cui="C0201950" umls_concept="Cholesterol measurement test" semantic_types="lbpr"/>
+>               <mapping rank="3,5" score="827" umls_cui="C0441889" umls_concept="Degree" semantic_types="qlco,qnco"/>
+>               <mapping rank="4,6" score="827" umls_cui="C0456079" umls_concept="Disease classification level" semantic_types="clas"/>
+773c826
+<           <phrase tw="" head="" line="inversely">
+---
+>           <phrase tw="" head="inversely" line="inversely">
+774a828
+>               <mapping rank="1" score="928" umls_cui="C0439850" umls_concept="Inverse" semantic_types="qlco"/>
+779,780c833,834
+<               <mapping rank="1" score="1000" umls_cui="C0439849" umls_concept="Relationships" semantic_types="qlco"/>
+<               <mapping rank="2" score="1000" umls_cui="C0445223" umls_concept="Related personal status" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0445223" umls_concept="Related personal status" semantic_types="fndg"/>
+>               <mapping rank="2" score="1000" umls_cui="C0439849" umls_concept="Relationships" semantic_types="qlco"/>
+783,785c837
+<           <phrase tw="" head="mm" line="(-0.067 mm/mmol">
+<             <token word="0067" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="(-0.067 mm">
+789d840
+<               <mapping rank="1" score="812" umls_cui="C0439190" umls_concept="millimole" semantic_types="qnco"/>
+790a842,843
+>           </phrase>
+>           <phrase tw="" head="mmol" line="/mmol">
+791a845
+>               <mapping rank="1" score="1000" umls_cui="C0439190" umls_concept="mmol" semantic_types="qnco"/>
+794,796c848
+<           <phrase tw="" head="" line="; 95% CI, -">
+<             <token word=";" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="; 95% CI">
+802,806c854
+<           <phrase tw="" head="mm" line="0.021 to -0.113 mm/mmol">
+<             <token word="0021" pos="NONE">
+<             </token>
+<             <token word="0113" pos="NONE">
+<             </token>
+---
+>           <phrase tw="" head="" line="0.021">
+808a857,858
+>           </phrase>
+>           <phrase tw="" head="" line="to -0.113 mm">
+814d863
+<               <mapping rank="1" score="748" umls_cui="C0439190" umls_concept="millimole" semantic_types="qnco"/>
+815a865,866
+>           </phrase>
+>           <phrase tw="" head="mmol" line="/mmol">
+816a868
+>               <mapping rank="1" score="1000" umls_cui="C0439190" umls_concept="mmol" semantic_types="qnco"/>
+819,824c871,872
+<           <phrase tw="" head=";" line="; P=.005">
+<             <token word=";" pos="NONE">
+<               <mapping rank="1" score="861" umls_cui="C0369773" umls_concept="P Blood group antibodies" semantic_types="aapp,imft"/>
+<               <mapping rank="2" score="861" umls_cui="C2603361" umls_concept="P prime" semantic_types="clna"/>
+<             </token>
+<             <token word="p" pos="adj">
+---
+>           <phrase tw="" head="" line="; P">
+>             <token word="p" pos="noun">
+825a874,875
+>           </phrase>
+>           <phrase tw="" head="" line="=.005">
+832,833c882,885
+<         <sentence tw="" id="11.tx.8" line="The relation between birth weight and flow-mediated dilation was not affected <local>by adjustment </local> for childhood body build, parity, cardiovascular risk factors, social class, or ethnicity. ">
+<           <phrase tw="" head="birth weight" line="The relation between birth weight">
+---
+>         <sentence tw="yes" id="9337195.tx.8" line="The relation between birth weight and flow-mediated dilation was not affected >by adjustment> for childhood body build, parity, cardiovascular risk factors, social class, or ethnicity. ">
+>           <phrase tw="" head="" line=").">
+>           </phrase>
+>           <phrase tw="" head="relation" line="The relation">
+836a889
+>               <mapping rank="1" score="1000" umls_cui="C0080103" umls_concept="Relatives" semantic_types="famg"/>
+837a891,892
+>           </phrase>
+>           <phrase tw="" head="birth weight" line="between birth weight">
+841c896
+<               <mapping rank="2" score="760" umls_cui="C0869014" umls_concept="Relations" semantic_types="socb"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0005612" umls_concept="Birth Weight" semantic_types="orga"/>
+850c905
+<               <mapping rank="1,2,3,4,5,6" score="660" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0806140" umls_concept="Flow" semantic_types="npop"/>
+853,854c908
+<               <mapping rank="1,2,3" score="660" umls_cui="C0086597" umls_concept="Mediate" semantic_types="socb"/>
+<               <mapping rank="4,5,6" score="660" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+---
+>               <mapping rank="1,2,3" score="660" umls_cui="C0127400" umls_concept="Mediator brand of benfluorex hydrochloride" semantic_types="orch,phsu"/>
+857,859c911,913
+<               <mapping rank="1,4" score="827" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+<               <mapping rank="2,5" score="827" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+<               <mapping rank="3,6" score="827" umls_cui="C0700124" umls_concept="Dilated" semantic_types="ftcn"/>
+---
+>               <mapping rank="1" score="827" umls_cui="C0392800" umls_concept="Dilation procedure" semantic_types="topp"/>
+>               <mapping rank="2" score="827" umls_cui="C0393293" umls_concept="Endoscopic dilatation" semantic_types="topp"/>
+>               <mapping rank="3" score="827" umls_cui="C0012359" umls_concept="Pathological Dilatation" semantic_types="patf"/>
+874,881c928
+<               <mapping rank="2" score="1000" umls_cui="C1314939" umls_concept="Involvement with" semantic_types="ftcn"/>
+<             </token>
+<           </phrase>
+<           <phrase tw="" head="<local" line="<local">
+<             <token word="<local" pos="NONE">
+<               <mapping rank="1" score="1000" umls_cui="C0205276" umls_concept="Local" semantic_types="spco"/>
+<             </token>
+<             <token word="local" pos="adj">
+---
+>               <mapping rank="2" score="1000" umls_cui="C1314939" umls_concept="Involvement" semantic_types="ftcn"/>
+885,886d931
+<             <token word=">" pos="NONE">
+<             </token>
+888c933
+<           <phrase tw="" head="adjustment" line="by adjustment">
+---
+>           <phrase tw="adjustment" head="adjustment" line="by adjustment">
+891,893c936,938
+<             <token word="adjustment" pos="noun">
+<               <mapping rank="1" score="1000" umls_cui="C0376209" umls_concept="Individual Adjustment" semantic_types="inbe"/>
+<               <mapping rank="2" score="1000" umls_cui="C0456081" umls_concept="Adjustment Action" semantic_types="ftcn"/>
+---
+>             <target word="adjustment" pos="noun">
+>               <mapping rank="1" score="1000" umls_cui="C0456081" umls_concept="Adjustment Action" semantic_types="ftcn"/>
+>               <mapping rank="2" score="1000" umls_cui="C0376209" umls_concept="Individual Adjustment" semantic_types="inbe"/>
+895,902c940
+<             </token>
+<           </phrase>
+<           <phrase tw="" head="</local" line="</local">
+<             <token word="</local" pos="NONE">
+<               <mapping rank="1" score="1000" umls_cui="C0205276" umls_concept="Local" semantic_types="spco"/>
+<             </token>
+<             <token word="local" pos="adj">
+<             </token>
+---
+>             </target>
+905,906d942
+<             <token word=">" pos="NONE">
+<             </token>
+908c944
+<           <phrase tw="" head="body build" line="for childhood body build,">
+---
+>           <phrase tw="" head="" line="for childhood body build">
+914,917d949
+<             <token word="body build" pos="noun">
+<               <mapping rank="1" score="901" umls_cui="C0037669" umls_concept="Somatotype" semantic_types="orga"/>
+<               <mapping rank="2" score="901" umls_cui="C1318474" umls_concept="Assessment of body build" semantic_types="diap"/>
+<             </token>
+919c951
+<           <phrase tw="" head="parity" line="parity,">
+---
+>           <phrase tw="" head="parity" line="parity">
+921,922c953
+<               <mapping rank="1" score="1000" umls_cui="C0030563" umls_concept="Parity" semantic_types="fndg"/>
+<               <mapping rank="2" score="1000" umls_cui="C0595999" umls_concept="Parity:Number:Point in time:^Patient:Quantitative:Reported" semantic_types="clna"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0030563" umls_concept="PARITY" semantic_types="fndg"/>
+925,927c956,958
+<           <phrase tw="" head="factors" line="cardiovascular risk factors,">
+<             <token word="cardiovascular risk" pos="noun">
+<               <mapping rank="1" score="983" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+---
+>           <phrase tw="" head="risk factors" line="cardiovascular risk factors">
+>             <token word="cardiovascular" pos="adj">
+>               <mapping rank="1" score="988" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+929,930c960,961
+<             <token word="factors" pos="noun">
+<               <mapping rank="1" score="983" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+---
+>             <token word="risk factors" pos="noun">
+>               <mapping rank="1" score="988" umls_cui="C0850624" umls_concept="cardiovascular risk factor" semantic_types="dsyn"/>
+933c964
+<           <phrase tw="" head="social class" line="social class,">
+---
+>           <phrase tw="" head="social class" line="social class">
+949c980,986
+<         <sentence tw="" id="11.tx.9" line="CONCLUSIONS: Low birth weight is associated with impaired endothelial function in childhood, a key early event in atherogenesis. ">
+---
+>         <sentence tw="" id="9337195.tx.9" line="CONCLUSIONS: Low birth weight is associated with impaired endothelial function in childhood, a key early event in atherogenesis. ">
+>           <phrase tw="" head="ethnicity" line="ethnicity.">
+>             <token word="ethnicity" pos="noun">
+>               <mapping rank="1" score="1000" umls_cui="C0015031" umls_concept="Ethnic group" semantic_types="popg"/>
+>               <mapping rank="2" score="1000" umls_cui="C0243103" umls_concept="Ethnicity aspects" semantic_types="qlco"/>
+>             </token>
+>           </phrase>
+952c989
+<               <mapping rank="1" score="1000" umls_cui="C1707478" umls_concept="Conclusion" semantic_types="idcn"/>
+---
+>               <mapping rank="1" score="966" umls_cui="C1707478" umls_concept="Conclusion" semantic_types="idcn"/>
+956,957d992
+<             <token word=":" pos="NONE">
+<             </token>
+961,962c996
+<               <mapping rank="1" score="1000" umls_cui="C0021288" umls_concept="Low Birth Weight Infant" semantic_types="podg"/>
+<               <mapping rank="2" score="1000" umls_cui="C0024032" umls_concept="Low Birth Weights" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0024032" umls_concept=" Low','Low Birth Weights" semantic_types="fndg"/>
+969,971c1003,1004
+<           <phrase tw="" head="function" line="associated with impaired endothelial function">
+<             <token word="associated" pos="verb">
+<               <mapping rank="1,2,3,4,5,6,7,8" score="806" umls_cui="C0332281" umls_concept="Associated with" semantic_types="qlco"/>
+---
+>           <phrase tw="" head="" line="associated">
+>             <token word="associated" pos="prep">
+972a1006,1007
+>           </phrase>
+>           <phrase tw="" head="function" line="with impaired endothelial function">
+976c1011,1012
+<               <mapping rank="1,2,3,4,5,6,7,8" score="806" umls_cui="C0332281" umls_concept="Associated with" semantic_types="qlco"/>
+---
+>               <mapping rank="1,10,2,3,4,5,6,7,8,9" score="660" umls_cui="C0221099" umls_concept="Impaired" semantic_types="ftcn"/>
+>               <mapping rank="11,12,13,14,15,16,17,18,19,20" score="660" umls_cui="C0684336" umls_concept="Impaired health" semantic_types="fndg"/>
+979,980c1015,1016
+<               <mapping rank="1,2,3,4" score="760" umls_cui="C0221099" umls_concept="Impaired" semantic_types="ftcn"/>
+<               <mapping rank="5,6,7,8" score="760" umls_cui="C0684336" umls_concept="Impaired health" semantic_types="patf"/>
+---
+>               <mapping rank="1,11,12,13,14,15,2,3,4,5" score="660" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+>               <mapping rank="10,16,17,18,19,20,6,7,8,9" score="660" umls_cui="C0669365" umls_concept="NOS3 protein, human" semantic_types="aapp,enzy"/>
+983c1019,1023
+<               <mapping rank="1,2,3,4,5,6,7,8" score="760" umls_cui="C0014257" umls_concept="Endothelium" semantic_types="tisu"/>
+---
+>               <mapping rank="1,11,16,6" score="827" umls_cui="C0542341" umls_concept="Function" semantic_types="ftcn"/>
+>               <mapping rank="10,15,20,5" score="827" umls_cui="C0031843" umls_concept="physiological aspects" semantic_types="phsf"/>
+>               <mapping rank="12,17,2,7" score="827" umls_cui="C0700205" umls_concept="Function Axis" semantic_types="clas"/>
+>               <mapping rank="13,18,3,8" score="827" umls_cui="C1315032" umls_concept="Functional status scoring systems" semantic_types="clas"/>
+>               <mapping rank="14,19,4,9" score="827" umls_cui="C1705273" umls_concept="Mathematical Operator" semantic_types="inpr"/>
+986c1026
+<           <phrase tw="" head="childhood" line="in childhood,">
+---
+>           <phrase tw="" head="childhood" line="in childhood">
+993c1033
+<           <phrase tw="" head="atherogenesis" line="a key early event in atherogenesis.">
+---
+>           <phrase tw="" head="event" line="a key early event">
+996c1036
+<             <token word="key" pos="noun">
+---
+>             <token word="key" pos="adj">
+998a1039
+>               <mapping rank="1" score="660" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+1001c1042
+<               <mapping rank="1" score="586" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+---
+>               <mapping rank="1" score="827" umls_cui="C0441471" umls_concept="Event" semantic_types="evnt"/>
+1002a1044,1045
+>           </phrase>
+>           <phrase tw="" head="atherogenesis" line="in atherogenesis.">
+1006c1049
+<               <mapping rank="1" score="753" umls_cui="C0441471" umls_concept="Event" semantic_types="evnt"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1563937" umls_concept="Atherogenesis" semantic_types="patf"/>
+1010c1053,1060
+<         <sentence tw="" id="11.tx.10" line="Growth in utero may be associated with long-term changes in vascular function that are manifest by the first decade of life and that may influence the long-term risk of cardiovascular disease.">
+---
+>         <sentence tw="" id="9337195.tx.10" line="Growth in utero may be associated with long-term changes in vascular function that are manifest by the first decade of life and that may influence the long-term risk of cardiovascular disease. ">
+>           <phrase tw="" head="atherogenesis" line="in atherogenesis.">
+>             <token word="in" pos="prep">
+>             </token>
+>             <token word="atherogenesis" pos="noun">
+>               <mapping rank="1" score="1000" umls_cui="C1563937" umls_concept="Atherogenesis" semantic_types="patf"/>
+>             </token>
+>           </phrase>
+1014c1064
+<               <mapping rank="2" score="1000" umls_cui="C0220844" umls_concept="growth aspects" semantic_types="phsf"/>
+---
+>               <mapping rank="2" score="1000" umls_cui="C1457898" umls_concept="Growth & development aspects" semantic_types="ftcn"/>
+1016c1066
+<               <mapping rank="4" score="1000" umls_cui="C2911660" umls_concept="Growth action" semantic_types="acty"/>
+---
+>               <mapping rank="4" score="1000" umls_cui="C0220844" umls_concept="growth aspects" semantic_types="phsf"/>
+1019,1021c1069,1073
+<           <phrase tw="" head="in utero" line="in utero">
+<             <token word="in utero" pos="adj">
+<               <mapping rank="1" score="1000" umls_cui="C1708480" umls_concept="In Utero" semantic_types="aggp"/>
+---
+>           <phrase tw="" head="utero" line="in utero">
+>             <token word="in" pos="prep">
+>             </token>
+>             <token word="utero" pos="noun">
+>               <mapping rank="1" score="1000" umls_cui="C0042149" umls_concept="Uterus" semantic_types="bpoc"/>
+1032c1084
+<           <phrase tw="" head="long term" line="associated with long-term">
+---
+>           <phrase tw="" head="associated" line="associated">
+1034c1086
+<               <mapping rank="1" score="833" umls_cui="C0332281" umls_concept="Associated with" semantic_types="qlco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0332281" umls_concept="Associated" semantic_types="qlco"/>
+1035a1088,1089
+>           </phrase>
+>           <phrase tw="" head="long term" line="with long-term">
+1039,1040c1093
+<               <mapping rank="1" score="833" umls_cui="C0332281" umls_concept="Associated with" semantic_types="qlco"/>
+<               <mapping rank="1" score="833" umls_cui="C0443252" umls_concept="Long-term" semantic_types="tmco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0443252" umls_concept="Long-term" semantic_types="tmco"/>
+1043c1096
+<           <phrase tw="" head="changes" line="changes in vascular function">
+---
+>           <phrase tw="" head="changes" line="changes">
+1045,1046c1098,1100
+<               <mapping rank="1" score="770" umls_cui="C0392747" umls_concept="Changing" semantic_types="ftcn"/>
+<               <mapping rank="2" score="770" umls_cui="C0443172" umls_concept="Changed status" semantic_types="qnco"/>
+---
+>               <mapping rank="1" score="966" umls_cui="C1705241" umls_concept="Change" semantic_types="qnco"/>
+>               <mapping rank="2" score="966" umls_cui="C0443172" umls_concept="Changed status" semantic_types="qnco"/>
+>               <mapping rank="3" score="966" umls_cui="C0392747" umls_concept="Changing" semantic_types="ftcn"/>
+1047a1102,1103
+>           </phrase>
+>           <phrase tw="" head="vascular" line="in vascular">
+1050,1051c1106,1117
+<             <token word="vascular function" pos="noun">
+<               <mapping rank="1,2,3" score="" umls_cui="C0232337" umls_concept="Vascular function" semantic_types="clna"/>
+---
+>             <token word="vascular" pos="adj">
+>               <mapping rank="1" score="1000" umls_cui="C1558950" umls_concept="VASCULAR" semantic_types="fndg"/>
+>               <mapping rank="2" score="1000" umls_cui="C1801960" umls_concept="Vascular" semantic_types="qlco"/>
+>             </token>
+>           </phrase>
+>           <phrase tw="" head="function" line="function">
+>             <token word="function" pos="verb">
+>               <mapping rank="1" score="1000" umls_cui="C0542341" umls_concept="Function" semantic_types="ftcn"/>
+>               <mapping rank="2" score="1000" umls_cui="C0700205" umls_concept="Function Axis" semantic_types="clas"/>
+>               <mapping rank="3" score="1000" umls_cui="C1315032" umls_concept="Functional status scoring systems" semantic_types="clas"/>
+>               <mapping rank="4" score="1000" umls_cui="C1705273" umls_concept="Mathematical Operator" semantic_types="inpr"/>
+>               <mapping rank="5" score="1000" umls_cui="C0031843" umls_concept="physiological aspects" semantic_types="phsf"/>
+1062c1128
+<           <phrase tw="" head="manifest" line="manifest by the first decade of life">
+---
+>           <phrase tw="" head="manifest" line="manifest">
+1064c1130
+<               <mapping rank="1,2" score="748" umls_cui="C0205319" umls_concept="Manifest" semantic_types="ftcn"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0205319" umls_concept="Manifest" semantic_types="ftcn"/>
+1065a1132,1133
+>           </phrase>
+>           <phrase tw="" head="" line="by the first decade">
+1070a1139,1140
+>               <mapping rank="1" score="694" umls_cui="C0205435" umls_concept="First" semantic_types="qnco"/>
+>               <mapping rank="2" score="694" umls_cui="C1279901" umls_concept="Firstly" semantic_types="qlco"/>
+1073a1144,1145
+>           </phrase>
+>           <phrase tw="" head="life" line="of life">
+1077c1149
+<               <mapping rank="2" score="581" umls_cui="C1279901" umls_concept="Firstly" semantic_types="qlco"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C0376558" umls_concept="Life" semantic_types="idcn"/>
+1096c1168
+<           <phrase tw="" head="cardiovascular disease" line="the long-term risk of cardiovascular disease.">
+---
+>           <phrase tw="" head="risk" line="the long-term risk">
+1099,1100c1171,1175
+<             <token word="long term risk" pos="noun">
+<               <mapping rank="1" score="" umls_cui="C0443252" umls_concept="Long-term" semantic_types="tmco"/>
+---
+>             <token word="long term" pos="adj">
+>               <mapping rank="1" score="734" umls_cui="C0443252" umls_concept="Long-term" semantic_types="tmco"/>
+>             </token>
+>             <token word="risk" pos="noun">
+>               <mapping rank="1" score="827" umls_cui="C0035647" umls_concept="Risk" semantic_types="qlco"/>
+1101a1177,1178
+>           </phrase>
+>           <phrase tw="" head="cardiovascular disease" line="of cardiovascular disease.">
+1105c1182,1183
+<               <mapping rank="1" score="804" umls_cui="C1113685" umls_concept="cardiovascular disorder risk" semantic_types="fndg"/>
+---
+>               <mapping rank="1" score="1000" umls_cui="C1555754" umls_concept="Allopathic & Osteopathic Physicians - Cardiovascular Disease" semantic_types="prog"/>
+>               <mapping rank="2" score="1000" umls_cui="C0007222" umls_concept="Cardiovascular Diseases" semantic_types="dsyn"/>

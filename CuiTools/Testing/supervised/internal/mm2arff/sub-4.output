@@ -1,0 +1,7 @@
+@RELATION art
+@ATTRIBUTE Sense {art,art_gallery}
+@DATA
+art % art.40001
+art_gallery % art.40002
+art % art.40004
+art % art.40005

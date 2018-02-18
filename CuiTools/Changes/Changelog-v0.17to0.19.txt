@@ -1,0 +1,54 @@
+Changes made in CuiTools version 0.17 during version 0.19
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+Changes to supervised disambiguation programs:
+
+(1)    Added --ngramcount, --cuicount and --stcount options 
+       replacing --unigram, --bigram, --trigram, --cui and --st. 
+       This now allows us to use all the functionality of 
+       NSP's count.pl program for not only ngrams but cuis 
+       and semantic types as well.
+
+(2)    Added --ngrammeasure, --ngramstat, --cuimeasure, --cuistat, 
+       --stmeasure and --ststat which utilizes the NSP statistic.pl
+       program for feature selection
+
+(3)    Added the MeSH terms (--mesh) feature 
+
+(4)    Added confidence and standard deviation information 
+       to our --cv option
+
+(5)    Added a test option   
+     
+(6)    Added a --lc option to be used with the --ngramcount 
+       options - it lowercases all of the words
+
+(7)    Updated the mm2plain file to allow for input data that 
+       does not contain the <head> tags
+
+(8)    Added a --nspconfig option to all for multiple calls of 
+       --ngramcount, --cuicount and --stcount 
+
+(9)    Added a --javaparam in order to change the size of the 
+       java virtual machines memory
+
+(10)   Noticed --wekaparam wasn't working correctly - fixed it
+       You can now use the -s NUM option t set the random number 
+       seed for cross-validation
+
+(11)   Added the --conflatedcui option so rather than taking the 
+       top CUI if there exist more than one possible CUI in the 
+       MetaMap or MMTx output - we push them together creating 
+       one large CUI and use that as a feature.
+
+(12)   Removed plain2mm program and replaced it with plain2prolog
+       so now to the get the mm format you need to run plain2prolog 
+       and then prolog2mm - this reduced the redundancy in my 
+       various programs
+
+(Changelog-v0.17to0.19 Last Updated on 07/07/2008 by Bridget)
+

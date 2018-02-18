@@ -1,0 +1,19 @@
+args('metamap14.BINARY.Linux --lexicon db -Z 2014AA -q 20160202140940.plain2prolog.log/tmp.mmtx.input.20160202140940 20160202140940.plain2prolog.log/tmp.mmtx.output.20160202140940',[lexicon-db,mm_data_year-'2014AA',machine_output-[],infile-'20160202140940.plain2prolog.log/tmp.mmtx.input.20160202140940',outfile-'20160202140940.plain2prolog.log/tmp.mmtx.output.20160202140940']).
+aas([]).
+neg_list([]).
+utterance('00000000.tx.1',"On the Physiological Action of Narcissia, an Alkaloid obtained from the bulb. ",0/78,[]).
+phrase('On the Physiological Action of Narcissia,',[prep([lexmatch([on]),inputmatch(['On']),tag(prep),tokens([on])]),det([lexmatch([the]),inputmatch([the]),tag(det),tokens([the])]),mod([lexmatch([physiological]),inputmatch(['Physiological']),tag(adj),tokens([physiological])]),head([lexmatch([action]),inputmatch(['Action']),tag(noun),tokens([action])]),prep([lexmatch([of]),inputmatch([of]),tag(prep),tokens([of])]),mod([inputmatch(['Narcissia']),tag(noun),tokens([narcissia])]),punc([inputmatch([',']),tokens([])])],0/41,[]).
+candidates(9,2,0,7,[]).
+mappings([map(-712,[ev(-586,'C1720176','On','Upon - dosing instruction fragment',[on],[ftcn],[[[1,1],[1,1],0]],no,no,['MTH','NCI','SNOMEDCT_US'],[0/2],0,0),ev(-790,'C0442687','Physiological action','Physiological action',[physiological,action],[phsf],[[[3,3],[1,1],0],[[4,4],[2,2],0]],yes,no,['SNOMEDCT_US'],[7/20],0,0),ev(-586,'C2993599','Narcissia','Narcissia',[narcissia],[euka],[[[6,6],[1,1],0]],no,no,['NCBI'],[31/9],0,0)]),map(-712,[ev(-586,'C1720294','On','On (qualifier value)',[on],[inpr],[[[1,1],[1,1],0]],no,no,['SNOMEDCT_US'],[0/2],0,0),ev(-790,'C0442687','Physiological action','Physiological action',[physiological,action],[phsf],[[[3,3],[1,1],0],[[4,4],[2,2],0]],yes,no,['SNOMEDCT_US'],[7/20],0,0),ev(-586,'C2993599','Narcissia','Narcissia',[narcissia],[euka],[[[6,6],[1,1],0]],no,no,['NCBI'],[31/9],0,0)])]).
+phrase('an Alkaloid',[det([lexmatch([an]),inputmatch([an]),tag(det),tokens([an])]),head([lexmatch([alkaloid]),inputmatch(['Alkaloid']),tag(noun),tokens([alkaloid])])],42/11,[]).
+candidates(2,0,0,2,[]).
+mappings([map(-1000,[ev(-1000,'C0002062','Alkaloid','Alkaloids',[alkaloid],[orch,phsu],[[[1,1],[1,1],0]],yes,no,['MTH','SNOMEDCT_US'],[45/8],0,0)]),map(-1000,[ev(-1000,'C0301258','Alkaloid','Plant alkaloid',[alkaloid],[bacs,hops,orch],[[[1,1],[1,1],0]],yes,no,['CHV','MSH','SNM','SNOMEDCT_US'],[45/8],0,0)])]).
+phrase('obtained from the bulb.',[verb([lexmatch([obtained]),inputmatch([obtained]),tag(verb),tokens([obtained])]),prep([lexmatch([from]),inputmatch([from]),tag(prep),tokens([from])]),det([lexmatch([the]),inputmatch([the]),tag(det),tokens([the])]),mod([lexmatch([bulb]),inputmatch([bulb]),tag(noun),tokens([bulb])]),punc([inputmatch(['.']),tokens([])])],54/23,[]).
+candidates(11,7,0,4,[]).
+mappings([map(-708,[ev(-770,'C1301820','Obtained','Obtain',[obtained],[ftcn],[[[1,1],[1,1],0]],yes,no,['MTH','SNOMEDCT_US'],[54/8],0,0),ev(-770,'C0025148','Bulb','Medulla Oblongata',[bulb],[bpoc],[[[4,4],[1,1],0]],yes,no,['AOD','FMA','MSH','MTH','NCI','NLMSubSyn','SNOMEDCT_US'],[72/4],0,0)]),map(-708,[ev(-770,'C1301820','Obtained','Obtain',[obtained],[ftcn],[[[1,1],[1,1],0]],yes,no,['MTH','SNOMEDCT_US'],[54/8],0,0),ev(-770,'C1449865','Bulb','plant bulb',[bulb],[plnt],[[[4,4],[1,1],0]],yes,no,['LCH','MSH','MTH','NCI','SNOMEDCT_US'],[72/4],0,0)]),map(-708,[ev(-770,'C1301820','Obtained','Obtain',[obtained],[ftcn],[[[1,1],[1,1],0]],yes,no,['MTH','SNOMEDCT_US'],[54/8],0,0),ev(-770,'C1947952','Bulb','anatomical bulb',[bulb],[anst],[[[4,4],[1,1],0]],yes,no,['MTH','NCI'],[72/4],0,0)])]).
+'EOU'.
+utterance('00000000.tx.2',"Unknown",78/7,[]).
+phrase('Unknown',[head([lexmatch([unknown]),inputmatch(['Unknown']),tag(adj),tokens([unknown])])],78/7,[]).
+candidates(1,0,0,1,[]).
+mappings([map(-1000,[ev(-1000,'C0439673','Unknown','Unknown',[unknown],[qlco],[[[1,1],[1,1],0]],yes,no,['CHV','MTH','NCI'],[78/7],0,0)])]).
+'EOU'.

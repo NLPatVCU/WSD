@@ -1,0 +1,1026 @@
+<corpus lang='en'>
+  <lexelt item="EMG" senses="M1,None">
+    <instance id="17135703" alias="EMG">
+      <answer instance="17135703.31.x" senseid="M1"/>
+      <context line="Measurement and modeling of stimulus-evoked electromyography in lengthened and shortened muscles for spinal cord injured subjects during an electrically-elicited fatigue process.  This study compares the amplitude and temporal features of stimulus-evoked EMG of paralyzed muscle, rectus femoris (RF), in both lengthened and shortened positions of six spinal cord injured (SCI) subjects during an electrically elicited fatigue process.  The torque output and evoked EMG were fitted by hyperbolic tangent functions from which their amplitude residual levels and temporal inflection times can be extracted.  Furthermore, a structural EMG model of Fuglevand et al (1992 Biol. Cybern. 67 143-53) was modified to include type I (slow twitch) and type II (fast twitch) of motor unit (MU) fibers with viable parameters obtained from paralyzed muscles to observe their amplitude and temporal changes.  Our results showed that the amplitude of stimulus-evoked EMG decreased earlier in the lengthened muscle with a shorter inflection time (48.53 +/- 8.7 s versus 55.13 +/- 4.03 s) than that of the shortened position during 120 s of stimulation time (p < 0.05).  Similarly, the peak-to-peak duration (PTPd) of the evoked EMG increased faster at an earlier time to a higher asymptotical value in lengthened muscle (2.23 +/- 0.74 versus 1.77 +/- 0.54), compared to that of a shortened one (p < 0.05).  These observations coincided with the higher rising rate and larger final value of the temporal coefficients, i.e., longer duration, in both type I and II MUs of lengthened muscles.  From the observation of all parameters, the fatigue process in lengthened muscle proceeds faster than that in shortened muscle. "/>
+        <sentence tw="" id="17135703.tx.1" line="Measurement and modeling of stimulus-evoked electromyography in lengthened and shortened muscles for spinal cord injured subjects during an electrically-elicited fatigue process. ">
+          <phrase tw="" head="measurement" line="Measurement">
+            <token word="measurement" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0242485" umls_concept="Measurement" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="modeling" line="modeling">
+            <token word="modeling" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0870071" umls_concept="Modeling" semantic_types="inpr,resa"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="electromyography" line="of stimulus-evoked electromyography">
+            <token word="of" pos="prep">
+            </token>
+            <token word="stimulus" pos="noun">
+              <mapping rank="1" score="660" umls_cui="C0234402" umls_concept="Stimulus" semantic_types="phpr"/>
+            </token>
+            <token word="evoked" pos="adj">
+              <mapping rank="1" score="660" umls_cui="C1444748" umls_concept="Trigger" semantic_types="qlco"/>
+            </token>
+            <token word="electromyography" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="lengthened" line="in lengthened">
+            <token word="in" pos="prep">
+            </token>
+            <token word="lengthened" pos="conj">
+              <mapping rank="1" score="1000" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="muscles" line="shortened muscles">
+            <token word="shortened" pos="adj">
+              <mapping rank="1,2" score="694" umls_cui="C1282927" umls_concept="Shortened" semantic_types="qlco"/>
+            </token>
+            <token word="muscles" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+              <mapping rank="2" score="861" umls_cui="C1995013" umls_concept="Set of muscles" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="subjects" line="for spinal cord injured subjects">
+            <token word="for" pos="prep">
+            </token>
+            <token word="spinal cord" pos="noun">
+              <mapping rank="1,2,3" score="694" umls_cui="C1278836" umls_concept="Entire spinal cord" semantic_types="bpoc"/>
+              <mapping rank="4,5,6" score="694" umls_cui="C0037925" umls_concept="Spinal Cord" semantic_types="bpoc"/>
+            </token>
+            <token word="injured" pos="adj">
+              <mapping rank="1,2,3,4,5,6" score="645" umls_cui="C0332664" umls_concept="Injured" semantic_types="ftcn"/>
+            </token>
+            <token word="subjects" pos="noun">
+              <mapping rank="1,4" score="779" umls_cui="C2349001" umls_concept="Human Study Subject" semantic_types="humn"/>
+              <mapping rank="2,5" score="779" umls_cui="C0681850" umls_concept="Subject" semantic_types="grup"/>
+              <mapping rank="3,6" score="779" umls_cui="C1706203" umls_concept="Subject - topic" semantic_types="idcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="process" line="during an electrically-elicited fatigue process.">
+            <token word="during" pos="prep">
+            </token>
+            <token word="an" pos="det">
+            </token>
+            <token word="electrically" pos="adv">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="645" umls_cui="C0013790" umls_concept="Electricity" semantic_types="npop"/>
+            </token>
+            <token word="elicited" pos="adj">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="612" umls_cui="C0449265" umls_concept="Eliciting" semantic_types="qlco"/>
+            </token>
+            <token word="fatigue" pos="noun">
+              <mapping rank="1,2,3" score="645" umls_cui="C2364051" umls_concept="Actual Fatigue" semantic_types="fndg"/>
+              <mapping rank="4,5,6" score="645" umls_cui="C0015672" umls_concept="Fatigue" semantic_types="sosy"/>
+              <mapping rank="7,8,9" score="645" umls_cui="C2024893" umls_concept="fatigue" semantic_types="fndg"/>
+            </token>
+            <token word="process" pos="noun">
+              <mapping rank="1,4,7" score="812" umls_cui="C1522240" umls_concept="Process" semantic_types="phpr"/>
+              <mapping rank="2,5,8" score="812" umls_cui="C1951340" umls_concept="Process Pharmacologic Substance" semantic_types="phsu"/>
+              <mapping rank="3,6,9" score="812" umls_cui="C1184743" umls_concept="bony process" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+        </sentence>
+        <sentence tw="yes" id="17135703.tx.2" line="This study compares the amplitude and temporal features of stimulus-evoked EMG of paralyzed muscle, rectus femoris (RF), in both lengthened and shortened positions of six spinal cord injured (SCI) subjects during an electrically elicited fatigue process. ">
+          <phrase tw="" head="process" line="during an electrically-elicited fatigue process.">
+            <token word="during" pos="prep">
+            </token>
+            <token word="an" pos="det">
+            </token>
+            <token word="electrically" pos="adv">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="645" umls_cui="C0013790" umls_concept="Electricity" semantic_types="npop"/>
+            </token>
+            <token word="elicited" pos="adj">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="612" umls_cui="C0449265" umls_concept="Eliciting" semantic_types="qlco"/>
+            </token>
+            <token word="fatigue" pos="noun">
+              <mapping rank="1,2,3" score="645" umls_cui="C2364051" umls_concept="Actual Fatigue" semantic_types="fndg"/>
+              <mapping rank="4,5,6" score="645" umls_cui="C0015672" umls_concept="Fatigue" semantic_types="sosy"/>
+              <mapping rank="7,8,9" score="645" umls_cui="C2024893" umls_concept="fatigue" semantic_types="fndg"/>
+            </token>
+            <token word="process" pos="noun">
+              <mapping rank="1,4,7" score="812" umls_cui="C1522240" umls_concept="Process" semantic_types="phpr"/>
+              <mapping rank="2,5,8" score="812" umls_cui="C1951340" umls_concept="Process Pharmacologic Substance" semantic_types="phsu"/>
+              <mapping rank="3,6,9" score="812" umls_cui="C1184743" umls_concept="bony process" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="study" line="This study">
+            <token word="this" pos="det">
+            </token>
+            <token word="study" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0008976" umls_concept="Clinical Trials" semantic_types="resa"/>
+              <mapping rank="2" score="1000" umls_cui="C0557651" umls_concept="Study" semantic_types="mnob,resa"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="compares">
+            <token word="compares" pos="verb">
+            </token>
+          </phrase>
+          <phrase tw="" head="amplitude" line="the amplitude">
+            <token word="the" pos="det">
+            </token>
+            <token word="amplitude" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C2346753" umls_concept="Amplitude" semantic_types="spco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="features" line="temporal features">
+            <token word="temporal" pos="adj">
+              <mapping rank="1,2,3,4" score="694" umls_cui="C0442043" umls_concept="Temporal - Regional site descriptor" semantic_types="spco"/>
+              <mapping rank="5,6,7,8" score="694" umls_cui="C2362314" umls_concept="Temporal -Temporal Qualifier" semantic_types="tmco"/>
+            </token>
+            <token word="features" pos="noun">
+              <mapping rank="1,5" score="827" umls_cui="C1706388" umls_concept="Array Feature" semantic_types="cnce"/>
+              <mapping rank="2,6" score="827" umls_cui="C1521970" umls_concept="Characteristics" semantic_types="qlco"/>
+              <mapping rank="3,7" score="827" umls_cui="C2348519" umls_concept="Feature" semantic_types="qlco"/>
+              <mapping rank="4,8" score="827" umls_cui="C2346469" umls_concept="Image Feature" semantic_types="qlco"/>
+            </token>
+          </phrase>
+          <phrase tw="EMG" head="emg" line="of stimulus-evoked EMG">
+            <token word="of" pos="prep">
+            </token>
+            <token word="stimulus" pos="noun">
+              <mapping rank="1" score="660" umls_cui="C0234402" umls_concept="Stimulus" semantic_types="phpr"/>
+            </token>
+            <token word="evoked" pos="adj">
+              <mapping rank="1" score="660" umls_cui="C1444748" umls_concept="Trigger" semantic_types="qlco"/>
+            </token>
+            <target word="emg" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </target>
+          </phrase>
+          <phrase tw="" head="muscle" line="of paralyzed muscle">
+            <token word="of" pos="prep">
+            </token>
+            <token word="paralyzed" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C0522224" umls_concept="Paralysed" semantic_types="fndg"/>
+            </token>
+            <token word="muscle" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="rectus femoris" line="rectus femoris (RF)">
+            <token word="rectus femoris" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0224441" umls_concept="Entire rectus femoris" semantic_types="bpoc"/>
+              <mapping rank="2" score="1000" umls_cui="C0584894" umls_concept="Rectus femoris muscle structure" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="in">
+            <token word="in" pos="prep">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="both">
+            <token word="both" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="lengthened" line="lengthened">
+            <token word="lengthened" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="positions" line="shortened positions">
+            <token word="shortened" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C1282927" umls_concept="Shortened" semantic_types="qlco"/>
+            </token>
+            <token word="positions" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0733755" umls_concept="Position" semantic_types="spco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="subjects" line="of six spinal cord injured (SCI) subjects">
+            <token word="of" pos="prep">
+            </token>
+            <token word="six" pos="word_numeral">
+              <mapping rank="1,2,3,4,5,6" score="637" umls_cui="C0205452" umls_concept="Six" semantic_types="qnco"/>
+            </token>
+            <token word="spinal cord" pos="noun">
+              <mapping rank="1,2,3" score="673" umls_cui="C1278836" umls_concept="Entire spinal cord" semantic_types="bpoc"/>
+              <mapping rank="4,5,6" score="673" umls_cui="C0037925" umls_concept="Spinal Cord" semantic_types="bpoc"/>
+            </token>
+            <token word="injured" pos="adj">
+              <mapping rank="1,2,3,4,5,6" score="637" umls_cui="C0332664" umls_concept="Injured" semantic_types="ftcn"/>
+            </token>
+            <token word="subjects" pos="noun">
+              <mapping rank="1,4" score="771" umls_cui="C2349001" umls_concept="Human Study Subject" semantic_types="humn"/>
+              <mapping rank="2,5" score="771" umls_cui="C0681850" umls_concept="Subject" semantic_types="grup"/>
+              <mapping rank="3,6" score="771" umls_cui="C1706203" umls_concept="Subject - topic" semantic_types="idcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="process" line="during an electrically elicited fatigue process.">
+            <token word="during" pos="prep">
+            </token>
+            <token word="an" pos="det">
+            </token>
+            <token word="electrically" pos="adv">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="645" umls_cui="C0013790" umls_concept="Electricity" semantic_types="npop"/>
+            </token>
+            <token word="elicited" pos="adj">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="612" umls_cui="C0449265" umls_concept="Eliciting" semantic_types="qlco"/>
+            </token>
+            <token word="fatigue" pos="noun">
+              <mapping rank="1,2,3" score="645" umls_cui="C2364051" umls_concept="Actual Fatigue" semantic_types="fndg"/>
+              <mapping rank="4,5,6" score="645" umls_cui="C0015672" umls_concept="Fatigue" semantic_types="sosy"/>
+              <mapping rank="7,8,9" score="645" umls_cui="C2024893" umls_concept="fatigue" semantic_types="fndg"/>
+            </token>
+            <token word="process" pos="noun">
+              <mapping rank="1,4,7" score="812" umls_cui="C1522240" umls_concept="Process" semantic_types="phpr"/>
+              <mapping rank="2,5,8" score="812" umls_cui="C1951340" umls_concept="Process Pharmacologic Substance" semantic_types="phsu"/>
+              <mapping rank="3,6,9" score="812" umls_cui="C1184743" umls_concept="bony process" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.3" line="The torque output and evoked EMG were fitted by hyperbolic tangent functions from which their amplitude residual levels and temporal inflection times can be extracted. ">
+          <phrase tw="" head="process" line="during an electrically elicited fatigue process.">
+            <token word="during" pos="prep">
+            </token>
+            <token word="an" pos="det">
+            </token>
+            <token word="electrically" pos="adv">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="645" umls_cui="C0013790" umls_concept="Electricity" semantic_types="npop"/>
+            </token>
+            <token word="elicited" pos="adj">
+              <mapping rank="1,2,3,4,5,6,7,8,9" score="612" umls_cui="C0449265" umls_concept="Eliciting" semantic_types="qlco"/>
+            </token>
+            <token word="fatigue" pos="noun">
+              <mapping rank="1,2,3" score="645" umls_cui="C2364051" umls_concept="Actual Fatigue" semantic_types="fndg"/>
+              <mapping rank="4,5,6" score="645" umls_cui="C0015672" umls_concept="Fatigue" semantic_types="sosy"/>
+              <mapping rank="7,8,9" score="645" umls_cui="C2024893" umls_concept="fatigue" semantic_types="fndg"/>
+            </token>
+            <token word="process" pos="noun">
+              <mapping rank="1,4,7" score="812" umls_cui="C1522240" umls_concept="Process" semantic_types="phpr"/>
+              <mapping rank="2,5,8" score="812" umls_cui="C1951340" umls_concept="Process Pharmacologic Substance" semantic_types="phsu"/>
+              <mapping rank="3,6,9" score="812" umls_cui="C1184743" umls_concept="bony process" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="output" line="The torque output">
+            <token word="the" pos="det">
+            </token>
+            <token word="torque" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C0376590" umls_concept="Torque" semantic_types="phpr"/>
+            </token>
+            <token word="output" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C1709366" umls_concept="Output" semantic_types="cnce"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="emg" line="evoked EMG">
+            <token word="evoked" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C1444748" umls_concept="Trigger" semantic_types="qlco"/>
+            </token>
+            <token word="emg" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="were">
+            <token word="were" pos="aux">
+            </token>
+          </phrase>
+          <phrase tw="" head="fitted" line="fitted">
+            <token word="fitted" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C0009951" umls_concept="Convulsions" semantic_types="dsyn"/>
+              <mapping rank="2" score="1000" umls_cui="C0424576" umls_concept="Fit" semantic_types="acty,fndg"/>
+              <mapping rank="3" score="1000" umls_cui="C0036572" umls_concept="Seizures" semantic_types="sosy"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="functions" line="by hyperbolic tangent functions">
+            <token word="by" pos="prep">
+            </token>
+            <token word="hyperbolic" pos="adj">
+            </token>
+            <token word="tangent" pos="adj">
+              <mapping rank="1" score="560" umls_cui="C0558067" umls_concept="Tangential thinking" semantic_types="mobd"/>
+            </token>
+            <token word="functions" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0542341" umls_concept="Function" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="from which">
+            <token word="from" pos="prep">
+            </token>
+            <token word="which" pos="pron">
+            </token>
+          </phrase>
+          <phrase tw="" head="levels" line="their amplitude residual levels">
+            <token word="their" pos="pron">
+            </token>
+            <token word="amplitude" pos="noun">
+              <mapping rank="1" score="660" umls_cui="C2346753" umls_concept="Amplitude" semantic_types="spco"/>
+            </token>
+            <token word="residual" pos="adj">
+              <mapping rank="1" score="660" umls_cui="C1609982" umls_concept="Residual" semantic_types="qlco"/>
+            </token>
+            <token word="levels" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0441889" umls_concept="Degree" semantic_types="qlco,qnco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="times" line="temporal inflection times">
+            <token word="temporal" pos="adj">
+              <mapping rank="1" score="660" umls_cui="C0442043" umls_concept="Temporal - Regional site descriptor" semantic_types="spco"/>
+              <mapping rank="2" score="660" umls_cui="C2362314" umls_concept="Temporal -Temporal Qualifier" semantic_types="tmco"/>
+            </token>
+            <token word="inflection" pos="noun">
+              <mapping rank="1,2" score="660" umls_cui="C0870703" umls_concept="Inflection" semantic_types="idcn"/>
+            </token>
+            <token word="times" pos="noun">
+              <mapping rank="1,2" score="827" umls_cui="C1632851" umls_concept="Times" semantic_types="qnco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="can">
+            <token word="can" pos="modal">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="be">
+            <token word="be" pos="aux">
+            </token>
+          </phrase>
+          <phrase tw="" head="extracted" line="extracted.">
+            <token word="extracted" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C0185115" umls_concept="Extraction" semantic_types="topp"/>
+            </token>
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.4" line="Furthermore, a structural EMG model of Fuglevand et al (1992 Biol. Cybern. 67 143-53) was modified to include type I (slow twitch) and type II (fast twitch) of motor unit (MU) fibers with viable parameters obtained from paralyzed muscles to observe their amplitude and temporal changes. ">
+          <phrase tw="" head="extracted" line="extracted.">
+            <token word="extracted" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C0185115" umls_concept="Extraction" semantic_types="topp"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="Furthermore">
+            <token word="furthermore" pos="adv">
+            </token>
+          </phrase>
+          <phrase tw="" head="model" line="a structural EMG model">
+            <token word="a" pos="det">
+            </token>
+            <token word="structural" pos="adj">
+              <mapping rank="1" score="913" umls_cui="C0026349" umls_concept=" Structural','Models, Structural" semantic_types="mnob"/>
+            </token>
+            <token word="emg" pos="noun">
+              <mapping rank="1" score="660" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </token>
+            <token word="model" pos="noun">
+              <mapping rank="1" score="913" umls_cui="C0026349" umls_concept=" Structural','Models, Structural" semantic_types="mnob"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="of Fuglevand">
+            <token word="of" pos="prep">
+            </token>
+            <token word="fuglevand" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="et">
+            <token word="et" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="al">
+            <token word="al" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="(1992 Biol. Cybern. 67 143-53">
+            <token word="1992" pos="integer">
+            </token>
+            <token word="biol" pos="noun">
+            </token>
+            <token word="cybern" pos="noun">
+            </token>
+            <token word="67" pos="integer">
+            </token>
+            <token word="143" pos="integer">
+            </token>
+            <token word="53" pos="integer">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=")">
+          </phrase>
+          <phrase tw="" head="" line="was">
+            <token word="was" pos="aux">
+            </token>
+          </phrase>
+          <phrase tw="" head="modified" line="modified">
+            <token word="modified" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C0205349" umls_concept="Altered" semantic_types="ftcn"/>
+              <mapping rank="2" score="1000" umls_cui="C0392747" umls_concept="Changing" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="to">
+            <token word="to" pos="adv">
+            </token>
+          </phrase>
+          <phrase tw="" head="include" line="include">
+            <token word="include" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C1552866" umls_concept="include" semantic_types="idcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="i" line="type I">
+            <token word="type i" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0441729" umls_concept="Type 1" semantic_types="clas"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="slow twitch" line="(slow twitch">
+            <token word="slow twitch" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0231530" umls_concept="Muscle twitch" semantic_types="sosy"/>
+              <mapping rank="1" score="861" umls_cui="C0439834" umls_concept="Slow" semantic_types="qlco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=")">
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="ii" line="type II">
+            <token word="type ii" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0441730" umls_concept="Type 2" semantic_types="clas"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="fast twitch" line="(fast twitch">
+            <token word="fast twitch" pos="adj">
+              <mapping rank="1" score="861" umls_cui="C0456962" umls_concept="Fast" semantic_types="qlco"/>
+              <mapping rank="1,2" score="861" umls_cui="C0231530" umls_concept="Muscle twitch" semantic_types="sosy"/>
+              <mapping rank="2" score="861" umls_cui="C0015663" umls_concept="Fasting" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=")">
+          </phrase>
+          <phrase tw="" head="fibers" line="of motor unit (MU) fibers">
+            <token word="of" pos="prep">
+            </token>
+            <token word="motor unit" pos="noun">
+              <mapping rank="1" score="734" umls_cui="C0231502" umls_concept="Neuron-muscle motor unit" semantic_types="bpoc"/>
+            </token>
+            <token word="fibers" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C1304649" umls_concept="Tissue fiber" semantic_types="tisu"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="parameters" line="with viable parameters">
+            <token word="with" pos="prep">
+            </token>
+            <token word="viable" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C0443348" umls_concept="Viable" semantic_types="qlco"/>
+            </token>
+            <token word="parameters" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0449381" umls_concept="Observation parameter" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="obtained" line="obtained">
+            <token word="obtained" pos="verb">
+              <mapping rank="1" score="1000" umls_cui="C1301820" umls_concept="Obtain" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="muscles" line="from paralyzed muscles to">
+            <token word="from" pos="prep">
+            </token>
+            <token word="paralyzed" pos="noun">
+              <mapping rank="1,2" score="660" umls_cui="C0522224" umls_concept="Paralysed" semantic_types="fndg"/>
+            </token>
+            <token word="muscles" pos="noun">
+              <mapping rank="1" score="827" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+              <mapping rank="2" score="827" umls_cui="C1995013" umls_concept="Set of muscles" semantic_types="bpoc"/>
+            </token>
+            <token word="to" pos="adv">
+            </token>
+          </phrase>
+          <phrase tw="" head="observe" line="observe">
+            <token word="observe" pos="verb">
+              <mapping rank="1" score="966" umls_cui="C1441672" umls_concept="Observed" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="amplitude" line="their amplitude">
+            <token word="their" pos="pron">
+            </token>
+            <token word="amplitude" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C2346753" umls_concept="Amplitude" semantic_types="spco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="changes" line="temporal changes.">
+            <token word="temporal" pos="adj">
+              <mapping rank="1,2" score="694" umls_cui="C0442043" umls_concept="Temporal - Regional site descriptor" semantic_types="spco"/>
+              <mapping rank="3,4" score="694" umls_cui="C2362314" umls_concept="Temporal -Temporal Qualifier" semantic_types="tmco"/>
+            </token>
+            <token word="changes" pos="noun">
+              <mapping rank="1,3" score="827" umls_cui="C1705241" umls_concept="Change" semantic_types="qnco"/>
+              <mapping rank="2,4" score="827" umls_cui="C0392747" umls_concept="Changing" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.5" line="Our results showed that the amplitude of stimulus-evoked EMG decreased earlier in the lengthened muscle with a shorter inflection time (48.53 +/- 8.7 s versus 55.13 +/- 4.03 s) than that of the shortened position during 120 s of stimulation time (p < 0.05). ">
+          <phrase tw="" head="changes" line="temporal changes.">
+            <token word="temporal" pos="adj">
+              <mapping rank="1,2" score="694" umls_cui="C0442043" umls_concept="Temporal - Regional site descriptor" semantic_types="spco"/>
+              <mapping rank="3,4" score="694" umls_cui="C2362314" umls_concept="Temporal -Temporal Qualifier" semantic_types="tmco"/>
+            </token>
+            <token word="changes" pos="noun">
+              <mapping rank="1,3" score="827" umls_cui="C1705241" umls_concept="Change" semantic_types="qnco"/>
+              <mapping rank="2,4" score="827" umls_cui="C0392747" umls_concept="Changing" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="results" line="Our results">
+            <token word="our" pos="pron">
+            </token>
+            <token word="results" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C1274040" umls_concept="result" semantic_types="ftcn"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="showed" line="showed">
+            <token word="showed" pos="verb">
+              <mapping rank="1" score="966" umls_cui="C1547282" umls_concept="Show" semantic_types="inpr"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="that">
+            <token word="that" pos="compl">
+            </token>
+          </phrase>
+          <phrase tw="" head="amplitude" line="the amplitude">
+            <token word="the" pos="det">
+            </token>
+            <token word="amplitude" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C2346753" umls_concept="Amplitude" semantic_types="spco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="emg" line="of stimulus-evoked EMG decreased earlier">
+            <token word="of" pos="prep">
+            </token>
+            <token word="stimulus" pos="noun">
+              <mapping rank="1,2" score="637" umls_cui="C0234402" umls_concept="Stimulus" semantic_types="phpr"/>
+            </token>
+            <token word="evoked" pos="adj">
+              <mapping rank="1,2" score="637" umls_cui="C1444748" umls_concept="Trigger" semantic_types="qlco"/>
+            </token>
+            <token word="emg" pos="noun">
+              <mapping rank="1,2" score="804" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </token>
+            <token word="decreased" pos="adv">
+              <mapping rank="1" score="637" umls_cui="C0205216" umls_concept="Decreased" semantic_types="qnco"/>
+              <mapping rank="2" score="637" umls_cui="C0392756" umls_concept="Reduced" semantic_types="qlco"/>
+            </token>
+            <token word="earlier" pos="adv">
+              <mapping rank="1,2" score="604" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="muscle" line="in the lengthened muscle">
+            <token word="in" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="lengthened" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+            <token word="muscle" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="time" line="with a shorter inflection time">
+            <token word="with" pos="prep">
+            </token>
+            <token word="a" pos="det">
+            </token>
+            <token word="shorter" pos="adj">
+              <mapping rank="1" score="627" umls_cui="C1806781" umls_concept="Short" semantic_types="qnco"/>
+              <mapping rank="2" score="627" umls_cui="C2350002" umls_concept="Short Value" semantic_types="qnco"/>
+            </token>
+            <token word="inflection" pos="noun">
+              <mapping rank="1,2" score="660" umls_cui="C0870703" umls_concept="Inflection" semantic_types="idcn"/>
+            </token>
+            <token word="time" pos="noun">
+              <mapping rank="1,2" score="827" umls_cui="C0040223" umls_concept="Time" semantic_types="tmco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="(48.53 +">
+            <token word="48 53" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="/- 8.7 s">
+            <token word="8 7" pos="real_number">
+            </token>
+            <token word="s" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="versus">
+            <token word="versus" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="55.13 +">
+            <token word="55 13" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="/- 4.03 s)">
+            <token word="4 03" pos="real_number">
+            </token>
+            <token word="s" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="than that">
+            <token word="than" pos="prep">
+            </token>
+            <token word="that" pos="pron">
+            </token>
+          </phrase>
+          <phrase tw="" head="position" line="of the shortened position">
+            <token word="of" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="shortened" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C1282927" umls_concept="Shortened" semantic_types="qlco"/>
+            </token>
+            <token word="position" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0733755" umls_concept="Position" semantic_types="spco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="during 120 s">
+            <token word="during" pos="prep">
+            </token>
+            <token word="120" pos="integer">
+            </token>
+            <token word="s" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="time" line="of stimulation time">
+            <token word="of" pos="prep">
+            </token>
+            <token word="stimulation" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C1948023" umls_concept="Stimulation" semantic_types="npop"/>
+              <mapping rank="2" score="694" umls_cui="C1292856" umls_concept="Stimulation procedure" semantic_types="topp"/>
+            </token>
+            <token word="time" pos="noun">
+              <mapping rank="1,2" score="861" umls_cui="C0040223" umls_concept="Time" semantic_types="tmco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="(p">
+            <token word="p" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="< 0.05">
+            <token word="0 05" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=").">
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.6" line="Similarly, the peak-to-peak duration (PTPd) of the evoked EMG increased faster at an earlier time to a higher asymptotical value in lengthened muscle (2.23 +/- 0.74 versus 1.77 +/- 0.54), compared to that of a shortened one (p < 0.05). ">
+          <phrase tw="" head="" line=").">
+          </phrase>
+          <phrase tw="" head="" line="Similarly">
+            <token word="similarly" pos="adv">
+            </token>
+          </phrase>
+          <phrase tw="" head="duration" line="the peak-to-peak duration">
+            <token word="the" pos="det">
+            </token>
+            <token word="peak" pos="noun">
+              <mapping rank="1" score="645" umls_cui="C0444505" umls_concept="Peak level" semantic_types="qnco"/>
+            </token>
+            <token word="to" pos="adv">
+            </token>
+            <token word="peak" pos="adj">
+            </token>
+            <token word="duration" pos="noun">
+              <mapping rank="1" score="812" umls_cui="C0449238" umls_concept="Duration" semantic_types="tmco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="ptpd" line="(PTPd">
+            <token word="ptpd" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C1419114" umls_concept="PTPRD gene" semantic_types="gngm"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=")">
+          </phrase>
+          <phrase tw="" head="emg" line="of the evoked EMG increased faster">
+            <token word="of" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="evoked" pos="adj">
+              <mapping rank="1,2,3,4" score="645" umls_cui="C1444748" umls_concept="Trigger" semantic_types="qlco"/>
+            </token>
+            <token word="emg" pos="noun">
+              <mapping rank="1,2,3,4" score="812" umls_cui="C0013839" umls_concept="Electromyography" semantic_types="diap"/>
+            </token>
+            <token word="increased" pos="adv">
+              <mapping rank="1,2" score="645" umls_cui="C0442805" umls_concept="Increase" semantic_types="ftcn"/>
+              <mapping rank="3,4" score="645" umls_cui="C0205217" umls_concept="Increased" semantic_types="qnco"/>
+            </token>
+            <token word="faster" pos="adv">
+              <mapping rank="1,3" score="612" umls_cui="C0456962" umls_concept="Fast" semantic_types="qlco"/>
+              <mapping rank="2,4" score="612" umls_cui="C0015663" umls_concept="Fasting" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="time" line="at an earlier time">
+            <token word="at" pos="prep">
+            </token>
+            <token word="an" pos="det">
+            </token>
+            <token word="earlier" pos="adj">
+              <mapping rank="1" score="661" umls_cui="C1279919" umls_concept="Early" semantic_types="tmco"/>
+            </token>
+            <token word="time" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0040223" umls_concept="Time" semantic_types="tmco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="value" line="to a higher asymptotical value">
+            <token word="to" pos="prep">
+            </token>
+            <token word="a" pos="det">
+            </token>
+            <token word="higher" pos="adj">
+              <mapping rank="1,2,3" score="627" umls_cui="C1299351" umls_concept="Abnormally high" semantic_types="qlco"/>
+              <mapping rank="4,5,6" score="627" umls_cui="C0205250" umls_concept="High" semantic_types="qlco"/>
+              <mapping rank="7,8,9" score="627" umls_cui="C1522410" umls_concept="Highest" semantic_types="qlco"/>
+            </token>
+            <token word="asymptotical" pos="adj">
+            </token>
+            <token word="value" pos="noun">
+              <mapping rank="1,4,7" score="827" umls_cui="C1704610" umls_concept="Data Value" semantic_types="inpr"/>
+              <mapping rank="2,5,8" score="827" umls_cui="C1522609" umls_concept="Numerical value" semantic_types="qnco"/>
+              <mapping rank="3,6,9" score="827" umls_cui="C0042295" umls_concept="Values" semantic_types="qlco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="muscle" line="in lengthened muscle">
+            <token word="in" pos="prep">
+            </token>
+            <token word="lengthened" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+            <token word="muscle" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="(2.23 +">
+            <token word="2 23" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="/- 0.74">
+            <token word="0 74" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="versus">
+            <token word="versus" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="1.77 +">
+            <token word="1 77" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="/- 0.54">
+            <token word="0 54" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=")">
+          </phrase>
+          <phrase tw="" head="" line="">
+          </phrase>
+          <phrase tw="" head="" line="compared">
+            <token word="compared" pos="verb">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="to that">
+            <token word="to" pos="prep">
+            </token>
+            <token word="that" pos="pron">
+            </token>
+          </phrase>
+          <phrase tw="" head="one" line="of a shortened one">
+            <token word="of" pos="prep">
+            </token>
+            <token word="a" pos="det">
+            </token>
+            <token word="shortened" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C1282927" umls_concept="Shortened" semantic_types="qlco"/>
+            </token>
+            <token word="one" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0205447" umls_concept="One" semantic_types="qnco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="(p">
+            <token word="p" pos="noun">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="< 0.05">
+            <token word="0 05" pos="real_number">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line=").">
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.7" line="These observations coincided with the higher rising rate and larger final value of the temporal coefficients, i.e., longer duration, in both type I and II MUs of lengthened muscles. ">
+          <phrase tw="" head="" line=").">
+          </phrase>
+          <phrase tw="" head="observations" line="These observations">
+            <token word="these" pos="det">
+            </token>
+            <token word="observations" pos="noun">
+              <mapping rank="1" score="966" umls_cui="C1964257" umls_concept="Observation - diagnostic procedure" semantic_types="diap"/>
+              <mapping rank="2" score="966" umls_cui="C0302523" umls_concept="Observation in research" semantic_types="resa"/>
+              <mapping rank="3" score="966" umls_cui="C0700325" umls_concept="Patient observation" semantic_types="topp"/>
+              <mapping rank="4" score="966" umls_cui="C0478530" umls_concept="observation" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="coincided">
+            <token word="coincided" pos="verb">
+            </token>
+          </phrase>
+          <phrase tw="" head="rate" line="with the higher rising rate">
+            <token word="with" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="higher" pos="adj">
+              <mapping rank="1" score="627" umls_cui="C1299351" umls_concept="Abnormally high" semantic_types="qlco"/>
+              <mapping rank="2" score="627" umls_cui="C0205250" umls_concept="High" semantic_types="qlco"/>
+              <mapping rank="3" score="627" umls_cui="C1522410" umls_concept="Highest" semantic_types="qlco"/>
+            </token>
+            <token word="rising" pos="noun">
+            </token>
+            <token word="rate" pos="noun">
+              <mapping rank="1,2,3" score="827" umls_cui="C1521828" umls_concept="Rate" semantic_types="qnco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="value" line="larger final value">
+            <token word="larger" pos="adj">
+              <mapping rank="1,2,3,4,5,6" score="660" umls_cui="C1704243" umls_concept="Greater" semantic_types="qnco"/>
+              <mapping rank="10,11,12,7,8,9" score="660" umls_cui="C0549177" umls_concept="Large" semantic_types="qnco"/>
+            </token>
+            <token word="final" pos="adj">
+              <mapping rank="1,2,3,7,8,9" score="660" umls_cui="C0205088" umls_concept="End-stage" semantic_types="tmco"/>
+              <mapping rank="10,11,12,4,5,6" score="660" umls_cui="C1546485" umls_concept="Final" semantic_types="idcn"/>
+            </token>
+            <token word="value" pos="noun">
+              <mapping rank="1,10,4,7" score="827" umls_cui="C1704610" umls_concept="Data Value" semantic_types="inpr"/>
+              <mapping rank="11,2,5,8" score="827" umls_cui="C1522609" umls_concept="Numerical value" semantic_types="qnco"/>
+              <mapping rank="12,3,6,9" score="827" umls_cui="C0042295" umls_concept="Values" semantic_types="qlco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="coefficients" line="of the temporal coefficients">
+            <token word="of" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="temporal" pos="adj">
+              <mapping rank="1" score="694" umls_cui="C0442043" umls_concept="Temporal - Regional site descriptor" semantic_types="spco"/>
+              <mapping rank="2" score="694" umls_cui="C2362314" umls_concept="Temporal -Temporal Qualifier" semantic_types="tmco"/>
+            </token>
+            <token word="coefficients" pos="noun">
+              <mapping rank="1,2" score="827" umls_cui="C1707429" umls_concept="Coefficient" semantic_types="qnco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="i.e.">
+          </phrase>
+          <phrase tw="" head="duration" line="longer duration">
+            <token word="longer duration" pos="noun">
+              <mapping rank="1" score="983" umls_cui="C0439591" umls_concept="Long duration" semantic_types="qlco"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="in">
+            <token word="in" pos="prep">
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="both">
+            <token word="both" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="i" line="type I">
+            <token word="type i" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0441729" umls_concept="Type 1" semantic_types="clas"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="and">
+            <token word="and" pos="conj">
+            </token>
+          </phrase>
+          <phrase tw="" head="mus" line="II MUs">
+            <token word="ii" pos="noun">
+            </token>
+            <token word="mus" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0024944" umls_concept="Mauritius" semantic_types="geoa"/>
+              <mapping rank="2" score="861" umls_cui="C0026809" umls_concept="Mus" semantic_types="mamm"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="muscles" line="of lengthened muscles.">
+            <token word="of" pos="prep">
+            </token>
+            <token word="lengthened" pos="adj">
+              <mapping rank="1,2" score="694" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+            <token word="muscles" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+              <mapping rank="2" score="861" umls_cui="C1995013" umls_concept="Set of muscles" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+        </sentence>
+        <sentence tw="" id="17135703.tx.8" line="From the observation of all parameters, the fatigue process in lengthened muscle proceeds faster than that in shortened muscle.">
+          <phrase tw="" head="muscles" line="of lengthened muscles.">
+            <token word="of" pos="prep">
+            </token>
+            <token word="lengthened" pos="adj">
+              <mapping rank="1,2" score="694" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+            <token word="muscles" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+              <mapping rank="2" score="861" umls_cui="C1995013" umls_concept="Set of muscles" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="observation" line="From the observation">
+            <token word="from" pos="prep">
+            </token>
+            <token word="the" pos="det">
+            </token>
+            <token word="observation" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C1964257" umls_concept="Observation - diagnostic procedure" semantic_types="diap"/>
+              <mapping rank="2" score="1000" umls_cui="C0302523" umls_concept="Observation in research" semantic_types="resa"/>
+              <mapping rank="3" score="1000" umls_cui="C0700325" umls_concept="Patient observation" semantic_types="topp"/>
+              <mapping rank="4" score="1000" umls_cui="C0478530" umls_concept="observation" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="parameters" line="of all parameters">
+            <token word="of" pos="prep">
+            </token>
+            <token word="all" pos="det">
+            </token>
+            <token word="parameters" pos="noun">
+              <mapping rank="1" score="1000" umls_cui="C0449381" umls_concept="Observation parameter" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="process" line="the fatigue process">
+            <token word="the" pos="det">
+            </token>
+            <token word="fatigue" pos="noun">
+              <mapping rank="1,2,3" score="694" umls_cui="C2364051" umls_concept="Actual Fatigue" semantic_types="fndg"/>
+              <mapping rank="4,5,6" score="694" umls_cui="C0015672" umls_concept="Fatigue" semantic_types="sosy"/>
+              <mapping rank="7,8,9" score="694" umls_cui="C2024893" umls_concept="fatigue" semantic_types="fndg"/>
+            </token>
+            <token word="process" pos="noun">
+              <mapping rank="1,4,7" score="861" umls_cui="C1522240" umls_concept="Process" semantic_types="phpr"/>
+              <mapping rank="2,5,8" score="861" umls_cui="C1951340" umls_concept="Process Pharmacologic Substance" semantic_types="phsu"/>
+              <mapping rank="3,6,9" score="861" umls_cui="C1184743" umls_concept="bony process" semantic_types="bpoc"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="muscle" line="in lengthened muscle">
+            <token word="in" pos="prep">
+            </token>
+            <token word="lengthened" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C0392744" umls_concept="Lengthened" semantic_types="ftcn"/>
+            </token>
+            <token word="muscle" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="proceeds">
+            <token word="proceeds" pos="verb">
+            </token>
+          </phrase>
+          <phrase tw="" head="faster" line="faster">
+            <token word="faster" pos="adj">
+              <mapping rank="1" score="966" umls_cui="C0456962" umls_concept="Fast" semantic_types="qlco"/>
+              <mapping rank="2" score="966" umls_cui="C0015663" umls_concept="Fasting" semantic_types="fndg"/>
+            </token>
+          </phrase>
+          <phrase tw="" head="" line="than that">
+            <token word="than" pos="prep">
+            </token>
+            <token word="that" pos="pron">
+            </token>
+          </phrase>
+          <phrase tw="" head="muscle" line="in shortened muscle.">
+            <token word="in" pos="prep">
+            </token>
+            <token word="shortened" pos="noun">
+              <mapping rank="1" score="694" umls_cui="C1282927" umls_concept="Shortened" semantic_types="qlco"/>
+            </token>
+            <token word="muscle" pos="noun">
+              <mapping rank="1" score="861" umls_cui="C0026845" umls_concept="Muscle" semantic_types="tisu"/>
+            </token>
+          </phrase>
+        </sentence>
+    </instance>
+  </lexelt>
+</corpus>

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>NAME</title>
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#the__mm_format">THE .mm FORMAT</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>README.format.mm.pod</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>This file briefly describes the .mm format used by the CuiTools package.</p>
+<p>
+</p>
+<hr />
+<h1><a name="the__mm_format">THE .mm FORMAT</a></h1>
+<p>The .mm format is the xml-like format that is used by the CuiTools package.</p>
+<p>The complete context is displayed in the &lt;context line=``&lt;context&gt;''/&gt; tags.</p>
+<p>The sentences in the context are broken up and displayed in the &lt;sentence 
+tw=``&lt;target word, if exists in the sentence&gt;'' instance=``&lt;id&gt;'' line=``&lt;sentence&gt;'' 
+tags. There may be more than one sentence per context and the sentence id may 
+or may not be available.</p>
+<p>The sentences are broken up and displayed in the &lt;phrase tw=``&lt;target word, 
+if exists in the phrase&gt;'' hw=``&lt;head word of the phrase&gt;'' line=``&lt;phrase&gt;''/&gt; 
+tags. There is more than one phrase associated with a single sentence. 
+The ``tw'' contain the target word if it exists in the phrase.</p>
+<p>The phrases are then broken up into their individual words using the 
+&lt;token word=``&lt;word&gt;'' pos=``&lt;part of speech&gt;'' tags. If the word is the 
+target word then instead of ``token'' the tag will display ``target''. 
+Inside the token tags there may exist a mapping tag which contain 
+information from the National Library of Medicine's MetaMap 
+program. This information includes the concept unique identifiers 
+(CUIs) associated with that token. A mapping tag would look as such:</p>
+<p>&lt;mapping rank=``&lt;rank&gt;'' score=``&lt;score&gt;'' umls_cui=``&lt;the UMLS concept unique identifier&gt;'' umls_concept=``&lt;UMLS concept&gt;'' semantic_types=``&lt;semantic types&gt;''/&gt;</p>
+<p>The CUIs associated with a token are assigned a score and are ranked based 
+on this score by MetaMap. The mapping tag includes the rank and the score 
+information. The UMLS concept unique identifier is an ID, such as ``C0003826'', 
+indicating the the UMLS concept.  The UMLS concept is the written form of the 
+CUIs. The UMLS concept for cui ``C0003826'' is ``Art''. The semantic types are 
+the types that are associated with that cui such as ``ocdi''. There may exist 
+more than one semantic types, in which case they are comma separated. A complete 
+listing of semantic types can be found:
+	<a href="http://mmtx.nlm.nih.gov/semanticTypes.shtml.">http://mmtx.nlm.nih.gov/semanticTypes.shtml.</a></p>
+<p>There may or may  not exist a mapping tag for each token/target tag.</p>
+<p>Example of .mm format for the context line: ``Paul was name Art magazine's 
+top collector''.</p>
+<p>&lt;corpus lang='en'&gt;</p>
+<pre>
+  &lt;lexelt item=&quot;art&quot; senses=&quot;art&quot;&gt;</pre>
+<pre>
+    &lt;instance id=&quot;art.30002&quot; alias=&quot;art&quot;&gt;</pre>
+<pre>
+      &lt;answer instance=&quot;art.30002&quot; senseid=&quot;art&quot;/&gt;</pre>
+<pre>
+      &lt;context line=&quot;Paul was name Art magazine's top collector&quot;/&gt;</pre>
+<pre>
+        &lt;sentence tw=&quot;art&quot; id=&quot;art.30002&quot; line=&quot;Paul was name Art magazine's top collector&quot;&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;&quot; head=&quot;&quot; line=&quot;Paul&quot;&gt;</pre>
+<pre>
+            &lt;token word=&quot;paul&quot; pos=&quot;noun&quot;&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;&quot; head=&quot;&quot; line=&quot;was&quot;&gt;</pre>
+<pre>
+            &lt;token word=&quot;was&quot; pos=&quot;aux&quot;&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;&quot; head=&quot;name&quot; line=&quot;name&quot;&gt;</pre>
+<pre>
+            &lt;token word=&quot;name&quot; pos=&quot;verb&quot;&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;1&quot; score=&quot;1000&quot; umls_cui=&quot;C0027365&quot; umls_concept=&quot;Name&quot; semantic_types=&quot;idcn,inpr&quot;/&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;2&quot; score=&quot;966&quot; umls_cui=&quot;C0233735&quot; umls_concept=&quot;Naming&quot; semantic_types=&quot;menp&quot;/&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;art&quot; head=&quot;magazine&quot; line=&quot;Art magazine&quot;&gt;</pre>
+<pre>
+            &lt;target word=&quot;art&quot; pos=&quot;noun&quot;&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;1&quot; score=&quot;694&quot; umls_cui=&quot;C0003826&quot; umls_concept=&quot;Arts&quot; semantic_types=&quot;ocdi&quot;/&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;2&quot; score=&quot;694&quot; umls_cui=&quot;C0220786&quot; umls_concept=&quot;Products of the Arts&quot; semantic_types=&quot;mnob&quot;/&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;3&quot; score=&quot;694&quot; umls_cui=&quot;C1140123&quot; umls_concept=&quot;WHO Adverse Reaction Terminology&quot; semantic_types=&quot;inpr&quot;/&gt;</pre>
+<pre>
+            &lt;/target&gt;</pre>
+<pre>
+            &lt;token word=&quot;magazine&quot; pos=&quot;noun&quot;&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;1,2,3&quot; score=&quot;861&quot; umls_cui=&quot;C0162443&quot; umls_concept=&quot;Magazines&quot; semantic_types=&quot;inpr,mnob&quot;/&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;&quot; head=&quot;&quot; line=&quot;''s&quot;&gt;</pre>
+<pre>
+            &lt;token word=&quot; s&quot; pos=&quot;aux&quot;&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+          &lt;phrase tw=&quot;&quot; head=&quot;collector&quot; line=&quot;top collector&quot;&gt;</pre>
+<pre>
+            &lt;token word=&quot;top&quot; pos=&quot;noun&quot;&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;1&quot; score=&quot;694&quot; umls_cui=&quot;C1552827&quot; umls_concept=&quot;Table Cell Vertical Align - top&quot; semantic_types=&quot;spco&quot;/&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;2&quot; score=&quot;694&quot; umls_cui=&quot;C0000811&quot; umls_concept=&quot;Termination of pregnancy&quot; semantic_types=&quot;topp&quot;/&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;3&quot; score=&quot;661&quot; umls_cui=&quot;C0076833&quot; umls_concept=&quot;container tops&quot; semantic_types=&quot;medd&quot;/&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+            &lt;token word=&quot;collector&quot; pos=&quot;noun&quot;&gt;</pre>
+<pre>
+              &lt;mapping rank=&quot;1,2,3&quot; score=&quot;827&quot; umls_cui=&quot;C0180011&quot; umls_concept=&quot;Collectors&quot; semantic_types=&quot;medd&quot;/&gt;</pre>
+<pre>
+            &lt;/token&gt;</pre>
+<pre>
+          &lt;/phrase&gt;</pre>
+<pre>
+        &lt;/sentence&gt;</pre>
+<pre>
+    &lt;/instance&gt;</pre>
+<pre>
+  &lt;/lexelt&gt;</pre>
+<p>&lt;/corpus&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>Bridget McInnes, University of Minnesota, Twin Cities</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007-2008,</p>
+<pre>
+ Ted Pedersen, University of Minnesota, Duluth.
+ tpederse at umn.edu</pre>
+<pre>
+ Bridget McInnes, University of Minnesota, Twin Cities
+ bthomson at cs.umn.edu</pre>
+<p>This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with
+this program; if not, write to</p>
+<pre>
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</pre>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+Defaults options set:
+  --binary
+  --seed 1
+  --javaparams "-Xmx2G"
+  --line 
+
+
+User defined options set:
+  --lc
+  --weka weka.classifiers.functions.SMO
+  --wekacv 10
+  --ngramcount "--ngram 1 --frequency 10"
+
+
+              adjustment  69.89
+          blood_pressure  58.00
+                    cold  92.63
+               condition  97.83
+                 culture  89.00
+                  degree  93.85
+              depression 100.00
+           determination 100.00
+               discharge  98.67
+                  energy  99.00
+              evaluation  60.00
+              extraction  94.32
+                 failure  86.21
+                     fat  97.26
+                     fit 100.00
+                   fluid 100.00
+               frequency 100.00
+                ganglion  93.00
+                 glucose  91.00
+                  growth  61.00
+       immunosuppression  63.00
+            implantation  86.73
+              inhibition  98.99
+                japanese  93.67
+                    lead  93.10
+                     man  69.57
+                    mole  98.81
+                  mosaic  70.10
+               nutrition  48.31
+               pathology  84.85
+                pressure 100.00
+               radiation  64.29
+               reduction  72.73
+                  repair  79.41
+              resistance   0.00
+                   scale 100.00
+               secretion  99.00
+             sensitivity  96.08
+                     sex  82.00
+                  single  99.00
+                 strains  98.92
+                 support  80.00
+                 surgery  98.00
+               transient  99.00
+               transport  98.94
+              ultrasound  84.00
+               variation  80.00
+                  weight  60.38
+                   white  51.11
+
+        Overall Accuracy  84.32
+

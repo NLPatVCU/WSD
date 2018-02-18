@@ -1,0 +1,10 @@
+<corpus lang='en'>
+  <lexelt item="">
+    <instance id="" alias="">
+      <answer instance="" senseid=""/>
+      <context>
+        <local><head></head></local>
+      </context>
+    </instance>
+  </lexelt>
+</corpus>

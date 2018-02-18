@@ -1,0 +1,12 @@
+Changes made in CuiTools version 0.23 during version 0.25
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1) added a ngramcount option to be used when creating 
+    the first and second-order vectors. 
+
+(Changelog-v0.23to0.25 Last Updated on 11/31/2010 by Bridget)
+

@@ -1,0 +1,26 @@
+Changes made in CuiTools version 0.15 during version 0.17
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)    Made major organizational changes to the location 
+       of CuiTools
+
+(2)    Renamed the bin/ directory to src/
+
+(3)    Created test cases for each program in src/
+
+(4)    Added the unsupervised programs - the wrapper 
+       for that is unsupervised-disambiguate.pl
+
+(5)    Created online documenation for each of the programs
+
+(6)    Included the warning flags in each of the programs
+
+(7)    Change the location of where the .pm files were stored
+       => they are now not in the intallation bin directory!
+
+(Changelog-v0.15to0.17 Last Updated on 13/06/2008 by Bridget)
+

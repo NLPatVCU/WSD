@@ -1,0 +1,186 @@
+=head1 NAME
+
+Todo List for CuiTools
+
+=head1 SYNOPSIS
+
+Plans for future versions of CuiTools
+
+=head1 DESCRIPTION
+
+=head2 Potential Future Features 
+
+=head3 Supervised
+
+=over 
+=item 1. Generalize --mesh option but allowing data that does not 
+         have pubmed IDs to still use the MeSH option by running 
+         the data through  MTI (Medical Text Indexer).
+
+=item 2. Add a -jd option which obtains the journal descriptors 
+         of the instances by running them through the TC Toolkit
+	 (Text Categorization)
+=back
+
+=head2 Version 0.23
+
+=over
+
+=item 1. add semi-supervised programs and wrapper
+
+=back
+
+=head2 Version 0.21
+
+=over
+
+=item 1. Add mesh feature to unsupervised
+
+=item 2. Add bigram feature to unsupervised
+
+=item 3. Add 2nd order co-occurrences
+
+=item 4. Add --cui feature
+
+=item 5. Add --mesh feature
+
+=item 6. Add highly frequent words surrounding the synonyms
+	 of the possible concept as context
+
+=item 7. Add unambiguous surrounding concepts as context(?)
+
+=item 8. Add the idf stoplit
+
+=back
+
+=head2 Version 0.19
+
+=over
+
+=item 1. report standard deviation with our --cv option
+
+=item 2. check environment variables are set in Makefile.PL
+
+=item 3. add prefix with random number rather than a timestamp to
+         the count files in the mm2arff.pl program so count files 
+	     
+=item 4. include training data and create the ACL-SRW08 demo
+
+=item 5. determine what is causing the following warning in plain2mm.pl
+         '\1 better written as $1 at /usr/local/bin/plain2mm.pl line 267'
+
+=item 6. Add trigram feature to supervised
+
+=item 7. Add Mesh terms feature to supervised
+
+=item 8. Add statistic.pl for feature selection in supervised
+
+=back
+
+=head2 Version 0.17 ToDo
+
+=over 
+
+=item 1. Add the unsupervised 
+
+=back
+
+=head2 Version 0.11 ToDo
+
+=over 
+
+=item 1. Create a wrapper to convert data to the .mm format
+=back
+
+=head2 Version 0.09 ToDo
+
+=over 
+
+=item 1. Add the ability to tag the NLM-WSD data set with current 
+         MMTx information
+
+=item 2. Expand the .mm format checker
+
+=back
+
+=head2 Version 0.07 ToDo
+
+=over 
+
+=item 1. Add MM.pm perl module for the nlm2mm and plain2mm programs
+
+=item 2. Add 10-fold cross validation option that isn't 
+	 conducted by WEKA
+
+=item 3. Back compatibility for the sval2plain program
+
+=item 4. Modify documentation for the .mm and .arff formats
+
+=item 5. Double check the installation documentation
+
+=item 6. Create an initial .mm format checker
+
+=back
+
+=head2 Version 0.05 ToDo
+
+=over
+
+=item 1. Add test options so that a user can train the data on the full
+      input file and test it on the given test file (--test FILE)
+           
+
+=item 2. Add key option for the test file so the keys 
+      do not need to be embedded in the test file.
+      Similar to Senseval-2 set up. (--key FILE)
+
+=item 3. Add Weka parameters so the user can directly pass in weka 
+      parameters through the command line.
+
+=item 4. Add option checks
+
+=item 5. Modularize the mm2arff.pl and the disambiguate.pl 
+      programs - they are getting out of hand.
+
+=item 6. Add split option so the data can be tested on a randomly 
+      selected percentage of the training data. (--split NUMBER)
+
+=item 7. Added a trial option so that the training data can be split 
+      a user defined number of times. The accuracy are totaled and 
+      the average is returned. (--trial NUMBER).
+
+=back
+
+=head2 Version 0.03 ToDo
+
+=over
+
+=item 1. Allow for package to run on non NLM-WSD data
+
+=item 2. Rename formating
+
+=item 3. Allow for information to be extract at the context, sentence 
+      or phrasal levels
+
+=back
+
+=head1 AUTHORS
+
+Bridget T. McInnes <bthomson at cs.umn.edu>
+
+=head1 SEE ALSO
+
+=head1 COPYRIGHT
+
+Copyright (C) 2007-2008 Ted Pedersen, Bridget T. McInnes
+
+Permission is granted to copy, distribute and/or modify this  document  
+under the terms of the GNU Free Documentation License, Version 1.2 or  any  
+later version published by the Free Software Foundation; with no  
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+Note: a copy of the GNU Free Documentation License is available on the web   
+at L<http://www.gnu.org/copyleft/fdl.html> and is included in this    
+distribution as FDL.txt. 
+
+=cut

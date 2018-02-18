@@ -1,0 +1,460 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>INSTALL - [documentation] How to install CuiTools</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#prerequisites">Prerequisites</a></li>
+		<li><a href="#installing">Installing</a></li>
+		<li><a href="#system_requirements">System Requirements</a></li>
+		<ul>
+
+			<li><a href="#programming_languages">Programming Languages</a></li>
+			<li><a href="#cpan_modules">CPAN Modules</a></li>
+			<li><a href="#other_packages">Other Packages</a></li>
+			<li><a href="#data__optional_">Data (Optional)</a></li>
+		</ul>
+
+	</ul>
+
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>INSTALL - [documentation] How to install CuiTools</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+ perl Makefile.PL</pre>
+<pre>
+ make</pre>
+<pre>
+ make test</pre>
+<pre>
+ make install</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="prerequisites">Prerequisites</a></h2>
+<p>CuiTools REQUIRES that the following software and data set to be 
+download and installed. Now having stated that the following is 
+required if you would like to run all the programs in CuiTools. 
+If you are only interested in running the supervised or unsupervised
+portions of CuiTools, I have annotated which software and data is 
+needed for each of them.</p>
+<p>More details on how to obtain and install appear below.</p>
+<p>--Programming Languages</p>
+<pre>
+  - Required for both unsupervised and supervised disambiguation
+    Perl (version 5.8.5 or better)</pre>
+<pre>
+  - Required for unsupervised-disambiguate.pl
+    Perl Data Language (version 2.4.1 or better)</pre>
+<p>--CPAN modules</p>
+<pre>
+  - Required for unsupervised and supervised disambiguation
+    Text::NSP (version 1.01 or better)</pre>
+<pre>
+  - Required for supervised-disambiguate.pl
+    LWP::Simple
+    Config::Simple</pre>
+<pre>
+  - Required for unsupervised-disambiguate.pl
+    Math::SparseVector;
+    Math::SparseMatrix;
+    UMLS::Interface</pre>
+<p>--Additional Packages</p>
+<pre>
+  - Required for unsupervised-disambiguate.pl
+    MetaMap package</pre>
+<pre>
+  - Required for supervised-disambiguate.pl
+    WEKA Data-mining package 
+                     
+--Data (Optional)</pre>
+<pre>
+  - Not required at all 
+    NLM-WSD data set (PMID Version)
+    Senseval data</pre>
+<p>Remember there are ENVIRONMENT VARIABLES that need to be set for 
+these packages. Remember to set the following ones:</p>
+<pre>
+    1. CUITOOLSHOME
+    2. WEKAHOME
+    3. METAMAP_PATH
+    4. NLMWSDHOME</pre>
+<p>For example:</p>
+<pre>
+  # in cshell
+  setenv CUITOOLSHOME /home/btmcinnes/CuiTools</pre>
+<pre>
+  # in bash
+  export CUITOOLSHOME=/home/btmcinnes/CuiTools</pre>
+<p>This can be added to your .cshrc or .bashrc file</p>
+<p>
+</p>
+<h2><a name="installing">Installing</a></h2>
+<p>If you have the super-user access, then you can install CuiTools 
+into system directories via :
+		perl Makefile.PL
+		make
+		make install
+	 	make clean</p>
+<p>The exact location of where CuiTools will be installed depends
+on your system configuration. A message will be printed out after
+make install telling your exactly where it was installed.</p>
+<pre>
+ You will often need root access/superuser privileges to run
+make install. The module can also be installed locally. To do a local
+install, you need to specify a PREFIX option when you run 'perl
+Makefile.PL'. For example,</pre>
+<pre>
+ perl Makefile.PL PREFIX=/home/btmcinnes</pre>
+<p>or</p>
+<pre>
+ perl Makefile.PL LIB=/home/btmcinnes/lib PREFIX=/home/btmcinnes</pre>
+<p>will install UMLS-Interface into /home/btmcinnes. The first method above 
+will install the modules in /home/btmcinnes/lib/perl5/site_perl/5.8.3 
+(assuming you are using version 5.8.3 of Perl; otherwise, the 
+directory will be slightly different). The second method will 
+install the modules in /home/btmcinnes/lib. In either case the executable 
+scripts will be installed in /home/btmcinnes/bin and the man pages will 
+be installed in home/btmcinnes/share.</p>
+<p>Warning: do not put a dash or hyphen in front of PREFIX, LIB or WNHOME.</p>
+<p>In your perl programs that you may write using the modules, you may need
+to add a line like so</p>
+<pre>
+ use lib '/home/btmcinnes/lib/perl5/site_perl/5.8.3';</pre>
+<p>if you used the first method or</p>
+<pre>
+ use lib '/home/btmcinnes/lib';</pre>
+<p>if you used the second method. By doing this, the installed modules are
+found by your program. To run supervised-disambiguate.pl program, you would need
+to do</p>
+<pre>
+ perl -I/home/btmcinnes/lib/perl5/site_perl/5.8.3 supervised-disambiguate.pl</pre>
+<p>or</p>
+<pre>
+ perl -I/home/btmcinnes/lib</pre>
+<p>Of course, you could also add the 'use lib' line to the top of the
+program yourself, but you might not want to do that. You will need to
+replace 5.8.3 with whatever version of Perl you are using. The
+preceding instructions should be sufficient for standard and slightly
+non-standard installations. However, if you need to modify other
+makefile options you should look at the ExtUtils::MakeMaker
+documentation. Modifying other makefile options is not recommended
+unless you really, absolutely, and completely know what you're doing!</p>
+<p>NOTE: If one (or more) of the tests run by 'make test' fails, you will
+see a summary of the tests that failed, followed by a message of the
+form &quot;make: *** [test_dynamic] Error Y&quot; where Y is a number between 1
+and 255 (inclusive). If the number is less than 255, then it indicates
+how many test failed (if more than 254 tests failed, then 254 will still
+be shown). If one or more tests died, then 255 will be shown. For more
+details, see:</p>
+<p><a href="http://search.cpan.org/dist/Test-Simple/lib/Test/Builder.pm#EXIT_CODES">http://search.cpan.org/dist/Test-Simple/lib/Test/Builder.pm#EXIT_CODES</a></p>
+<p>Once Downloaded the environment variable CUITOOLSHOME needs to be set to</p>
+<p>For example:</p>
+<pre>
+  # in cshell
+  setenv CUITOOLSHOME /home/btmcinnes/CuiTools</pre>
+<pre>
+  # in bash
+  export CUITOOLSHOME=/home/btmcinnes/CuiTools</pre>
+<p>This can be added to your .cshrc or .bashrc file</p>
+<p>
+</p>
+<h2><a name="system_requirements">System Requirements</a></h2>
+<p>
+</p>
+<h3><a name="programming_languages">Programming Languages</a></h3>
+<ol>
+<li>
+<p>Perl version 5.8 or later.</p>
+<p>This is required for unsupervised and supervised disambiguation.</p>
+<p>Perl is freely available at <a href="http://www.perl.org.">http://www.perl.org.</a> It is very likely 
+that you will already have Perl installed if you are using a 
+Unix/Linux based system.</p>
+</li>
+<li>
+<p>Perl Data Language (version 2.4.1 or better)</p>
+<p>This is required to use unsupervised-disambiguate.pl.</p>
+<p>CuiTools uses the Perl Data Language (PDL) for efficient   
+computations and storage of high dimensional data structures.</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/PDL/">http://search.cpan.org/dist/PDL/</a></p>
+<p>Note that if you have supervisor access on your machine, and have the 
+MCPAN Perl module available, you can install PDL automatically via:</p>
+<p>perl -MCPAN -e shell
+&gt; install PDL</p>
+<p>If you do not have supervisor access, you will need to install this
+module locally. Note that you can configure the CPAN module to install 
+locally by setting PREFIX and LIB options to directories you have read 
+write authority over.</p>
+<p>Note that PDL has quite a few dependencies, and can be tricky to 
+install. You may want to check with your system adminstrator and see
+if they can install on your behalf before you tackle the local
+install of PDL. All the other code mentioned here can be locally 
+installed quite routinely.</p>
+<p>This is a good description of how to do local installs of Perl modules:
+<a href="http://www.perl.com/pub/a/2002/04/10/mod_perl.html">http://www.perl.com/pub/a/2002/04/10/mod_perl.html</a></p>
+</li>
+</ol>
+<p>
+</p>
+<h3><a name="cpan_modules">CPAN Modules</a></h3>
+<ol>
+<li>
+<p>Ngram Statistics Package (version 1.01 or better).</p>
+<p>This is required for unsupervised and supervised disambiguation.</p>
+<p>CuiTools uses Text-NSP to select a variety of lexical features. 
+Text-NSP is freely available at <a href="http://search.cpan.org/dist/Text-NSP/">http://search.cpan.org/dist/Text-NSP/</a></p>
+<p>perl -MCPAN -e shell
+&gt; install Text::NSP</p>
+<p>or manual installation (http://www.d.umn.edu/~tpederse/nsp.html)</p>
+</li>
+<li>
+<p>LWP::Simple</p>
+<p>This is required to use supervised-disambiguate.pl</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/Math-SparseVector/">http://search.cpan.org/dist/Math-SparseVector/</a></p>
+<p>perl -MCPAN -e shell
+&gt; install LWP::Simple</p>
+<p>or manual installation.</p>
+</li>
+<li>
+<p>Config::Simple</p>
+<p>This is required to use supervised-disambiguate.pl</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/Config-Simple/">http://search.cpan.org/dist/Config-Simple/</a></p>
+<p>perl -MCPAN -e shell
+&gt; install Config::Simple</p>
+<p>or manual installation.</p>
+</li>
+<li>
+<p>Math::SparseVector (version 0.03 or better).</p>
+<p>This is required to use unsupervised-disambiguate.pl.</p>
+<p>This is a Perl module that implements sparse vector operations.</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/Math-SparseVector/">http://search.cpan.org/dist/Math-SparseVector/</a></p>
+<p>perl -MCPAN -e shell
+&gt; install Math::SparseVector</p>
+<p>or manual installation.</p>
+</li>
+<li>
+<p>Math::SparseMatrix (version 0.01 or better).</p>
+<p>This is required for unsupervised-disambiguate.pl</p>
+<p>This is a Perl module that implements sparse matrix operations, 
+in particular the sparse matrix transpose operation.</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/Math-SparseMatrix/">http://search.cpan.org/dist/Math-SparseMatrix/</a></p>
+<p>perl -MCPAN -e shell
+&gt; install Math::SparseMatrix</p>
+<p>or manual installation.</p>
+</li>
+<li>
+<p>UMLS::Interface</p>
+<p>This is required for unsupervised-disambiguate.pl</p>
+<p>This is a Perl module that connects to the Unified Medical Language 
+System (UMLS) stored in a mysql database. If you do not have the 
+UMLS in a mysql database, the package contains instructions on how 
+to go about doing this.</p>
+<p>It is available at: <a href="http://search.cpan.org/dist/UMLS-Interface">http://search.cpan.org/dist/UMLS-Interface</a></p>
+<p>Otherwise, you can install as follows.</p>
+<p>perl -MCPAN -e shell
+&gt; install UMLS::Interface</p>
+</li>
+</ol>
+<p>
+</p>
+<h3><a name="other_packages">Other Packages</a></h3>
+<ol>
+<li>
+<p>WEKA Data Mining Package.</p>
+<p>This is required to use supervised-disambiguate.pl.</p>
+<p>Weka is a collection of machine learning algorithms for data mining 
+tasks. CuiTools uses Weka's machine learning algorithms to perform 
+supervised word sense disambiguation. Weka is freely available at</p>
+<pre>
+           <a href="http://www.cs.waikato.ac.nz/ml/weka/">http://www.cs.waikato.ac.nz/ml/weka/</a></pre>
+<p>IMPORTANT:</p>
+<p>Once downloaded and installed remember to set the environment variable 
+WEKAHOME and add WEKAHOME/weka.jar to your CLASSPATH. This is required 
+by Weka as well as CuiTools.</p>
+<p>For example:</p>
+<pre>
+  # in cshell
+  setenv WEKAHOME /home/btmcinnes/weka/weka-3-5-3
+  setenv CLASSPATH $WEKAHOME/weka.jar:$CLASSPATH</pre>
+<pre>
+  # in bash
+  export WEKAHOME=/home/btmcinnes/weka/weka-3-5-3
+  export CLASSPATH=$WEKAHOME/weka.jar:$CLASSPATH</pre>
+<p>This can be added to your .cshrc or .bashrc file</p>
+</li>
+<li>
+<p>MetaMap</p>
+<p>This is required to use unsupervised-disambiguate.pl - 
+or if you would like to use the NLM-WSD dataset with the MetaMap
+assigned CUIs - see program nlm2mm.pl</p>
+<p>MetaMap is a freely available from the National Library of Medicine. 
+MetaMap maps text to concepts in the UMLS Metathesaurus. The program 
+parses the text into components including sentences, paragraphs, phrases, 
+lexical elements and tokens. It then identifies possible UMLS concepts 
+and chooses the best possible mapping. The information that CuiTools 
+uses from MetaMap is the sentence, phrase, and token information, part 
+of speech and head information of each token, the possible UMLS concepts, 
+the final final mapping concepts and the semantic types associated with 
+each concept.</p>
+<p>MetaMap can be downloaded from:</p>
+<pre>
+     <a href="http://metamap.nlm.nih.gov">http://metamap.nlm.nih.gov</a></pre>
+<p>Although MetaMap is free, in order to download this you need to register. 
+You can register at: 
+	 <a href="http://umlsks.nlm.nih.gov">http://umlsks.nlm.nih.gov</a></p>
+<p>To download:</p>
+<p>When you get to the MetaMap web page, click on the link &quot;Download&quot;. Scroll 
+down and you will see tar.bz2 files that can be downloaded and installed.
+Click on the 2008 version (not the 2007) for your operating system. MetaMap 
+is currently only available for Linux and Solaris. If you are a windows 
+users, there is the MetaMap Transfer program which can be used instead.</p>
+<p>Once downloaded, go to the installation instructions located here:</p>
+<pre>
+     <a href="http://metamap.nlm.nih.gov/#Installation">http://metamap.nlm.nih.gov/#Installation</a></pre>
+<p>Note: downloading takes a while (at least it did for me).</p>
+<p>IMPORTANT:</p>
+<p>Once Downloaded the remember to set the environment variable METAMAP_PATH  
+to the /bin level directory that store the MetaMap programs just downloaded.
+This is required by MetaMap as well as CuiTools.</p>
+<p>For example:</p>
+<pre>
+  # in cshell
+  setenv METAMAP_PATH /home/btmcinnes/metamap/public_mm/bin</pre>
+<pre>
+  # in bash
+  export METAMAP_PATH=/home/btmcinnes/metamap/public_mm/bin</pre>
+<p>This can be added to your .cshrc or .bashrc file</p>
+<p>NOTE:</p>
+<p>The MetaMap command used by this program is:</p>
+<pre>
+    metamap08 -q InputFile OutputFile</pre>
+</li>
+</ol>
+<p>
+</p>
+<h3><a name="data__optional_">Data (Optional)</a></h3>
+<ol>
+<li>
+<p>NLM-WSD Data Set. The National Library of Medicine's Word Sense 
+Disambiguation (NLM-WSD) dataset \cite{WeeberMA01}. The dataset 
+was created to promote the study of WSD in the biomedical domain. 
+It contains 50 highly frequent ambiguous CUIs from the 1998 MEDLINE 
+abstracts. Each ambiguous word in the dataset contains 100 ambiguous 
+instances randomly selected. The instances were manually disambiguated 
+by 11 evaluators who assigned the ambiguous word to a CUI or ``None'' 
+if none of the CUIs described the sense.</p>
+<p>The NLM-WSD data set can be downloaded from:</p>
+<pre>
+    <a href="http://wsd.nlm.nih.gov">http://wsd.nlm.nih.gov</a></pre>
+<p>Although the data set is free, in order to download this you need to register. 
+You can register at: 	 
+    <a href="http://umlsks.nlm.nih.gov">http://umlsks.nlm.nih.gov</a></p>
+<p>To download:</p>
+<p>When you get to the NLM-WSD data set web page, click on the link &quot;Access 
+WSD Test Collection (Restricted)&quot;; this is where you need to be registered.</p>
+<p>NOTE: There are two versions of the NLM-WSD data set: USE THE PMID VERSION!
+So click on &quot;Switch to PMID identification version of the WSD Test Collection&quot;.</p>
+<p>There are three files that need to be downloaded.</p>
+<p>The first in the &quot;Basic Test Collection&quot;:
+    1. Basic Reviewed Set</p>
+<p>The second and third in the &quot;Full Test Collection&quot;:
+    2. Common Files
+    3. Full Reviewed Result Set</p>
+<p>Unpack the files in a directory called NLM-WSD (for example - you can call 
+it anything you would like). You should end up with three directories 
+in the NLM-WSD directory:
+    1. Basic_Reviewed_Results
+    2. common
+    3. Reviewed_Results</p>
+<p>IMPORTANT:</p>
+<p>Once Downloaded the environment variable NLMWSDHOME needs to be set.</p>
+<p>For example:</p>
+<pre>
+  # in cshell
+  setenv NLMWSDHOME /home/btmcinnes/NLM-WSD</pre>
+<pre>
+  # in bash
+  export NLMWSDHOME=/home/btmcinnes/NLM-WSD</pre>
+<p>This can be added to your .cshrc or .bashrc file</p>
+</li>
+<li>
+<p>Senseval Data set.</p>
+<p>Senseval, now called Semeval, are evaluation exercises for the semantic 
+analysis of text. One such exercises is word sense disambiguation. The 
+Senseval data can be used by the CuiTools package. The data from the 
+senseval/semeval evaluations can be download from the senseval website:</p>
+<pre>
+                 <a href="http://www.senseval.org">http://www.senseval.org</a></pre>
+<p>Alternatively, Senseval 1, 2 and 3 data can be downloaded in various formats 
+from:
+             <a href="http://www.d.umn.edu/~tpederse/data.html">http://www.d.umn.edu/~tpederse/data.html</a></p>
+</li>
+</ol>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p><em>README</em></p>
+<p>Project Home page:
+ <a href="http://cuitools.sourceforge.net">http://cuitools.sourceforge.net</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<pre>
+ Bridget T McInnes, University of Minnesota Twin Cities
+ bthomson at cs.umn.edu</pre>
+<pre>
+ Ted Pedersen, University of Minnesota Duluth
+ tpederse at d.umn.edu</pre>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007-2011, Bridget T McInnes and Ted Pedersen</p>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+Texts.</p>
+<p>Note: a copy of the GNU Free Documentation License is available on
+the web at <a href="http://www.gnu.org/copyleft/fdl.html">http://www.gnu.org/copyleft/fdl.html</a> and is included in
+this distribution as FDL.txt.</p>
+
+</body>
+
+</html>

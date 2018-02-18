@@ -1,0 +1,20 @@
+@RELATION art
+@ATTRIBUTE <film> NUMERIC
+@ATTRIBUTE <who_adverse_reaction_terminology> NUMERIC
+@ATTRIBUTE <products_of_the_arts> NUMERIC
+@ATTRIBUTE <arts> NUMERIC
+@ATTRIBUTE <better> NUMERIC
+@ATTRIBUTE <good> NUMERIC
+@ATTRIBUTE <observation_interpretation-better> NUMERIC
+@ATTRIBUTE <language_ability_proficiency-good> NUMERIC
+@ATTRIBUTE <film-layer> NUMERIC
+@ATTRIBUTE <films> NUMERIC
+@ATTRIBUTE <language_proficiency-good> NUMERIC
+@ATTRIBUTE <one> NUMERIC
+@ATTRIBUTE <specimen_quality-good> NUMERIC
+@ATTRIBUTE Sense {art,art_gallery}
+@DATA
+1,0,0,0,0,0,0,0,1,1,0,0,0,art % art.40001
+0,0,0,0,0,0,0,0,0,0,0,0,0,art_gallery % art.40002
+0,0,0,0,0,0,0,0,0,0,0,0,0,art % art.40004
+0,0,0,0,0,0,0,0,0,0,0,0,0,art % art.40005

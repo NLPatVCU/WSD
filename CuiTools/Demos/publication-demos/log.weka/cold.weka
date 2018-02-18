@@ -1,0 +1,50 @@
+
+Time taken to build model: 0.09 seconds
+Time taken to test model on training data: 0.01 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances          90               94.7368 %
+Incorrectly Classified Instances         5                5.2632 %
+Kappa statistic                          0.5971
+Mean absolute error                      0.2163
+Root mean squared error                  0.3091
+Relative absolute error                301.79   %
+Root relative squared error            179.3196 %
+Total Number of Instances               95     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f   <-- classified as
+ 86  0  0  0  0  0 |  a = M1
+  3  3  0  0  0  0 |  b = M2
+  1  0  0  0  0  0 |  c = M3
+  0  0  0  0  0  0 |  d = M4
+  1  0  0  0  1  0 |  e = M5
+  0  0  0  0  0  0 |  f = None
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances          88               92.6316 %
+Incorrectly Classified Instances         7                7.3684 %
+Kappa statistic                          0.3448
+Mean absolute error                      0.2164
+Root mean squared error                  0.3113
+Relative absolute error                295.5059 %
+Root relative squared error            179.6538 %
+Total Number of Instances               95     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f   <-- classified as
+ 86  0  0  0  0  0 |  a = M1
+  4  2  0  0  0  0 |  b = M2
+  1  0  0  0  0  0 |  c = M3
+  0  0  0  0  0  0 |  d = M4
+  2  0  0  0  0  0 |  e = M5
+  0  0  0  0  0  0 |  f = None
+

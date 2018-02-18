@@ -1,0 +1,126 @@
+#!/usr/local/bin/perl
+
+=head1 Name
+
+README.Demos.pod
+
+=head1 Description 
+
+The Demos directory allows a user to run various sample experiments with 
+the CuiTools system. 
+
+In order to run the demos the following environment variables must 
+be set.
+
+ 1. CUITOOLSHOME
+ 1. WEKAHOME
+ 2. NLMWSDHOME
+ 3. METMAP_PATH
+
+Note: The NLMWSDHOME variable does not need to be set in order to use 
+CuiTools because the location of the Reviewed_Results directory 
+from the NLM-WSD data set is read in on the command line. For 
+the Demo's to run easily though, we do require it.
+
+CuiTools provides a wrapper program called disambiguate.pl that can 
+be used to run many different experiments. This wrapper calls many of the 
+other programs found in the package and integrates their functionality for 
+you. We show how disambiguate.pl can be used to carry out target word 
+disambiguation.
+
+CuiTools also allows a user to customize the sequence of operations 
+carried out in their experiments, and examples of that are shown in 
+scripts McInnesPPC07.sh and JoshiPM05.sh.
+
+=head1 converter-demos
+
+These scripts explain how to convert the National Library of Medicine's 
+Word Sense Disambiguation (NLM-WSD) dataset \cite{WeeberMA01} into the 
+.mm format. 
+
+=head2 make-originalNLM-data.sh 
+
+make-originalNLM-data.sh creates a fresh copy of the NLM-WSD data set 
+converted into the CuiTools xml-like .mm format using the MetaMap 
+information that exists in the data set. This data can be used by the 
+diambiguate.pl program.
+
+Note: Before running any demo, make sure to remove the 
+make-originalNLM-data.mm directory if one already exists.
+
+=head2 make-MetaMapNLM-data.sh 
+
+make-MetaMapNLM-data.sh creates a fresh copy of the NLM-WSD data set 
+converted into the CuiTools xml-like .mm format using newly 
+acquired MetaMap information from the current version of MetaMap.
+This data can be used by the diambiguate.pl program.
+
+Note: Before running any demo, make sure to remove the 
+make-MetaMapNLM-data.mm directory if one already exists.
+
+=head1 publication-demos
+
+These scripts run simulation of experiments conducted by ourselves and 
+re-implementation of others
+
+=head2 LeroyR04.sh
+
+This script runs a simulation of the experiments conducted by Leroy and 
+Rindflesch, 2004.
+
+@article{LeroyR05,
+  title={Effects of information and machine learning algorithms on word sense disambiguation with small datasets},
+  author={Leroy, G. and Rindflesch, T.C.},
+  journal={International Journal of Medical Informatics},
+  year={2005}, 
+  volume={74},
+  number={7-8},
+  pages={573-585}}
+
+=head2 JoshiPM05.sh
+
+This script runs a simulation of the experiments conducted by Joshi, Pedersen 
+and Maclin, 2005.
+
+@inproceedings{JoshiPM05,
+ author={Joshi, M. and Pedersen, T. and Maclin, R.},
+ title={A Comparative Study of Support Vectors Machines Applied to the Supervised Word Sense Disambiguation Problem in the Medical Domain},
+ booktitle={Second Indian International Conference on Artificial Intelligence},
+ year={2005}}
+
+=head2 McInnesPC07.sh
+
+This script runs a simulations of the experiments conducted by McInnes, 
+Pedersen and Carlis, 2007.
+
+@article{McInnesPC07,
+ title={Using UMLS Concept Unique Identifiers (CUIs) for Word Sense Disambiguation in the Biomedical Domain},
+ author={McInnes, B.T. and Pedersen, T. and Carlis, J.},
+ journal={In review},
+ year={2007}}
+
+=head1 supervised-demos
+
+=head2 10-fold-demo.sh
+
+This script runs 10-fold cross validation experiments on the NLM-WSD data 
+set. This script is only here to demonstrate how to do this with CuiTools. 
+This script uses the NLM-WSD data set as its data source. This is done 
+only because other Demo's in this package also use that source.
+
+
+=head2 KCUI-MMI.sh and KCUI-Windowing.sh
+
+This script runs my KCUI dissertation experiments using the MMI CUIs 
+as features and the Windowing features. This script uses the NLM-WSD 
+data set as its data source.
+
+@phdthesis{McInnes:PhD,
+ author = {McInnes, B.T.},
+ title = {Supervised and Knowledge-based Methods for Disambiguating Terms in Biomedical Text using the UMLS and MetaMap},
+ school = {University of Minnesota},
+ year = {2009}}
+
+=head1 unsupervised-demos
+
+I don't have any of these yet but I will add some in the near future.

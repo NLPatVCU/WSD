@@ -1,0 +1,16 @@
+@RELATION art
+@ATTRIBUTE issue_in NUMERIC
+@ATTRIBUTE isa NUMERIC
+@ATTRIBUTE method_of NUMERIC
+@ATTRIBUTE conceptual_part_of NUMERIC
+@ATTRIBUTE practices NUMERIC
+@ATTRIBUTE associated_with NUMERIC
+@ATTRIBUTE produces NUMERIC
+@ATTRIBUTE uses NUMERIC
+@ATTRIBUTE causes NUMERIC
+@ATTRIBUTE Sense {art,art_gallery}
+@DATA
+1,1,1,1,1,1,1,1,0,art % art.40001
+1,1,1,1,1,0,1,1,0,art_gallery % art.40002
+1,1,1,1,1,1,1,1,1,art % art.40004
+1,1,1,1,1,1,1,1,0,art % art.40005

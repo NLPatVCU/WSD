@@ -1,0 +1,96 @@
+=head1 NAME
+
+FAQs.CT.pod
+
+=head1 SYNOPSIS
+
+Listing the frequently asked questions about the CuiTools package.
+
+=head1 DESCRIPTION
+
+=head2 Functionality related questions :
+
+=head3 What applications can CuiTools be used for?
+
+CuiTools can be applied to any word sense disambiguation problem.
+
+=head2 Package related questions :
+
+=head3 Can I use CuiTools without installing NSP and WEKA?
+
+No, you will always need NSP and WEKA.
+
+=head3 Can I use CuiTools without MetaMap?
+
+Yes. You only need MetaMap if you would like to run the 
+plain2mm.pl program that converts plain text  to mm format.
+
+=head3 Will CuiTools only run using the NLM-WSD data set
+
+No, CuiTools will run on any data set that is either in 
+the machine prolog output (similar to the NLM-WSD data set) 
+or plain text format.
+
+In plain format each line of the text files contains a single context. 
+where the ambiguous word is identified by <head instance="instance" 
+sense="sense">word</head>.
+
+For example: 
+
+Paul was named <head instance="art.30002" sense="art">Art</head> magazine's top collector.
+
+=head2 Questions on data formatting :
+
+=head3 What is plain text formating
+
+In plain format each line of the text files contains a single context. 
+where the ambiguous word is identified by <head instance="instance" 
+sense="sense">word</head>.
+
+For example: 
+
+Paul was named <head instance="art.30002" sense="art">Art</head> magazine's top collector.
+
+=head3 Why do is the PMID version of the NLM-WSD data set required?
+
+The PMID version is required by the nlm2sval2 package which subsequently 
+means that it is required by the nlm2mm program. If you are not going to 
+use the nlm2mm program then it shouldn't matter which version of the 
+dataset you use.
+
+=head2 Questions on Features :
+
+=head1 SEE ALSO
+
+=head1 AUTHOR
+
+Bridget T. McInnes, University of Minnesota
+bthomson at cs.umn.edu
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007,
+
+Bridget T. McInnes, University of Minnesota
+bthomson at cs.umn.edu
+
+Ted Pedersen, University of Minnesota, Duluth.
+tpederse at umn.edu
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to
+
+The Free Software Foundation, Inc.,
+59 Temple Place - Suite 330,
+Boston, MA  02111-1307, USA.
+
+=cut

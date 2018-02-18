@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>NAME</title>
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synposis">SYNPOSIS</a></li>
+	<li><a href="#the__arff_format">THE .arff FORMAT</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>README.format.arff.pod</p>
+<p>
+</p>
+<hr />
+<h1><a name="synposis">SYNPOSIS</a></h1>
+<p>This file briefly describes the ARFF format used by the WEKA datamining 
+package.</p>
+<p>
+</p>
+<hr />
+<h1><a name="the__arff_format">THE .arff FORMAT</a></h1>
+<p>The .arff format is required by the WEKA data mining package to perform 
+supervised learning. An example of the .arff format when running mm2arff.pl 
+on the above .mm format example with the cui option (mm2arff.pl --cui ex.arff 
+ex.mm) is as follows:</p>
+<p>@RELATION art</p>
+<p>@ATTRIBUTE Name NUMERIC</p>
+<p>@ATTRIBUTE Magazine NUMERIC</p>
+<p>@ATTRIBUTE Top NUMERIC</p>
+<p>@ATTRIBUTE Collectors NUMERIC</p>
+<p>@ATTRIBUTE Sense {art}</p>
+<p>@DATA</p>
+<p>1,1,1,1,art</p>
+<p>The @RELATION tag indicates the attribute of the data set. In this case 
+we are trying to identify the sense of the word art.</p>
+<p>The @ATTRIBUTE &lt;cui&gt; NUMERIC indicates that there is an attribute 
+which in this case is a specific cui and it takes a NUMERIC value. In 
+our case 1 or 0 depending on if that cui exists in the same context 
+as the target word. You can have multiple attributes. The attributes 
+in the arff file are determined by the user defined options for this 
+program.</p>
+<p>The @ATTRIBUTE Sense tag is always there. This indicates the possible 
+senses for all the instances in the data set. Since we were looking 
+at only one instance, we have only one possible sense (``art''). Normally 
+there would be multiple senses, like {art,art_gallery}. The senses 
+are delimited by a comma.</p>
+<p>The @DATA indicates that all the instances with their corresponding 
+features and sense are below.</p>
+<p>So ``1,1,1,1,art'' indicates for this instance the cui's ``Name'', ``Magazine'', 
+``Top'', and ``Collectors'' all exist surrounding the target word and the 
+sense of this instance is ``art''.</p>
+<p>For more information about this format see the WEKA documentation at:</p>
+<p><a href="http://www.cs.waikato.ac.nz/ml/weka/">http://www.cs.waikato.ac.nz/ml/weka/</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>Bridget McInnes, University of Minnesota, Twin Cities</p>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007-2008,</p>
+<pre>
+ Ted Pedersen, University of Minnesota, Duluth.
+ tpederse at umn.edu</pre>
+<pre>
+ Bridget McInnes, University of Minnesota, Twin Cities
+ bthomson at cs.umn.edu</pre>
+<p>This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with
+this program; if not, write to</p>
+<pre>
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</pre>
+
+</body>
+
+</html>

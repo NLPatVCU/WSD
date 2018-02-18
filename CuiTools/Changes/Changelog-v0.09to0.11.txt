@@ -1,0 +1,12 @@
+Changes made in CuiTools version 0.09 during version 0.11
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)    Created a wrapper program called format-data to convert 
+       data into the xml-like .mm format
+
+(Changelog-v0.09to0.11 Last Updated on 09/17/2007 by Bridget)
+

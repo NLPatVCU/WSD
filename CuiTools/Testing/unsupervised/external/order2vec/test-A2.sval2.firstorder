@@ -1,0 +1,22 @@
+interest-n.int8 \s(<[^>]*>)*voice(<[^>]*>)*\s
+interest-n.int8 \s(<[^>]*>)*overloud(<[^>]*>)*\s
+interest-n.int8 \s(<[^>]*>)*father(<[^>]*>)*\s
+interest-n.int9 \s(<[^>]*>)*<sat id="call_for\.068:0">for<\/sat>(<[^>]*>)*\s
+interest-n.int9 \s(<[^>]*>)*item(<[^>]*>)*\s
+interest-n.int9 \s(<[^>]*>)*line(<[^>]*>)*\s
+interest-n.int9 \s(<[^>]*>)*dozen(<[^>]*>)*\s
+interest-n.int9 \s(<[^>]*>)*president(<[^>]*>)*\s
+interest-n.int10 \s(<[^>]*>)*minister(<[^>]*>)*\s
+interest-n.int10 \s(<[^>]*>)*zambia(<[^>]*>)*\s
+interest-n.int10 \s(<[^>]*>)*prime(<[^>]*>)*\s
+interest-n.int10 \s(<[^>]*>)*president(<[^>]*>)*\s
+interest-n.int10 \s(<[^>]*>)*hawke(<[^>]*>)*\s
+interest-n.int11 \s(<[^>]*>)*instruments(<[^>]*>)*\s
+interest-n.int11 \s(<[^>]*>)*usual(<[^>]*>)*\s
+interest-n.int11 \s(<[^>]*>)*<head>chairs<\/head>(<[^>]*>)*\s
+interest-n.int11 \s(<[^>]*>)*ordinary(<[^>]*>)*\s
+interest-n.int12 \s(<[^>]*>)*<sat id="call_for\.068:0">for<\/sat>(<[^>]*>)*\s
+interest-n.int12 \s(<[^>]*>)*minister(<[^>]*>)*\s
+interest-n.int12 \s(<[^>]*>)*pentagon(<[^>]*>)*\s
+interest-n.int12 \s(<[^>]*>)*agreement(<[^>]*>)*\s
+interest-n.int12 \s(<[^>]*>)*bush(<[^>]*>)*\s

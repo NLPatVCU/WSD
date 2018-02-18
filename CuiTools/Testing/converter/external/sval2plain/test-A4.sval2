@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE corpus SYSTEM  "lexical-sample.dtd">
+  <corpus lang='english'>
+    <lexelt item="art.n">
+<instance id="art.40001" docsrc="bnc_ACN_245">
+<answer instance="art.40001" senseid="art%1:06:00::"/>
+<context>
+Their multiscreen projections of slides and film loops have featured in orbital parties, at the Astoria and Heaven, in Rifat Ozbek's 1988/89 fashion shows, and at Energy's recent Docklands all-dayer.
+From their residency at the Fridge during the first summer of love, Halo used slide and film projectors to throw up a collage of op-art patterns, film loops of dancers like E-Boy and Wumni, and unique fractals derived from video feedback.
+&bquo;We're not aware of creating a visual identify for the house scene, because we're right in there.
+We see a dancer at a rave, film him later that week, and project him at the next rave.&equo;
+ Ben Lewis   Halo can be contacted on 071 738 3248.     
+<head>Art</head>you can dance to from the creative group called Halo        
+</context>
+</instance>
+
+<instance id="art.40002" docsrc="bnc_A70_2636">
+<answer instance="art.40002" senseid="art_gallery%1:06:00::"/>
+<context>
+Leeds is well-equipped for sports, with 21 golf courses and 22 sports and leisure centres, but if all this action leaves you feeling in need of a rest, you can always take yourself off to the theatre.
+Leeds has four to choose from.
+Most famous is the Leeds City Varieties, one of the oldest music halls in the country and home of BBC TV's  The Good Old Days  .
+There's also the Grand Theatre, which hosts touring companies and is the permanent home of Opera North.    
+One of Yorkshire's famous sayings is &bquo;Where there's muck, there's brass&equo;.
+And, while there may not be a lot of muck any more, there is still plenty of brass.    
+For, when it comes down to it, there's nothing to beat a brass band.
+There's always one to be heard somewhere during the summer &mdash; in the piazza in front of the <head>art</head>gallery and Town Hall or in a park.
+</context>
+</instance>
+
+<instance id="art.40004" docsrc="bnc_A6U_637">
+<answer instance="art.40004" senseid="art%1:04:00::"/>
+<context>
+When things are on the up and the lodestar of a transformatory politics shines bright, so too does &bquo;the avant-garde project of overcoming the separation of art and life&equo; (p. 171).    
+In this perspective it seems that Callinicos can only mean relatively little with his disclaimers about good art.
+The individual &bquo;good&equo; work might get thrown up, however unpropitious the circumstance.
+But it can only be a quirk; and the force of its &bquo;goodness&equo; is strictly limited and circumscribed.
+Only once, in a fleeting reference to Matisse is there a sense of the boot being on the other foot, of art offering a sense of liberation from social ideology.
+But even this is done in the name of a supposed &bquo;immediate sensuous charge&equo; rather than any more extended critical capacity of <head>art</head>or the aesthetic.
+</context>
+</instance>
+
+<instance id="art.40005" docsrc="bnc_CKV_938">
+<answer instance="art.40005" senseid="art%1:04:00::"/>
+<context>
+The Chairman of the Chambre Nationale, Yannick Guilloux, said the charges brought against Britain must not be seen as the stand of one European country against another but a bid to harmonise tax regulation, at as low a rate as possible, in order to protect the art market within the EC as a whole.
+The Commission normally takes two months to investigate charges, after which it could either instruct Britain to set its VAT rates in conformity with European legislation or proceed to put into effect the long awaited 7th Directive on fiscal matters.
+A meeting of Ministers last month was once again unable to reach agreement on VAT.        
+Manchester hosts a new British art fair    
+A new art fair will take place at the G-Mex Centre, Manchester from 18 to 21 March.
+Paintings, drawings and sculpture from every period of <head>art</head>during the last 350 years will be on display ranging from a Tudor portrait to contemporary British art.
+</context>
+</instance>
+
+</lexelt>
+</corpus>
+
+

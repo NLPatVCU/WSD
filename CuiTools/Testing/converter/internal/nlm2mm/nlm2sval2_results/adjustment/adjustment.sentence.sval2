@@ -1,0 +1,10 @@
+<corpus lang='en'>
+  <lexelt item="adjustment">
+    <instance id="9337195.ab.7" pmid="9337195" alias="adjustment">
+      <answer instance="9337195.ab.7" senseid="M2"/>
+      <context>
+        The relation between birth weight and flow-mediated dilation was not affected <local>by <head>adjustment</head></local> for childhood body build, parity, cardiovascular risk factors, social class, or ethnicity.
+      </context>
+    </instance>
+  </lexelt>
+</corpus>

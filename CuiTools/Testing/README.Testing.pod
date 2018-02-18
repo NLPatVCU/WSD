@@ -1,0 +1,74 @@
+=head1 Name
+
+README.Testing.pod
+
+=head1 Purpose
+
+The purpose of Testing directory is to provide test scripts to test the 
+correct functionality of the programs provided with this distribution. The 
+test scripts can be run to make sure that package is installed properly and 
+all required system paths are set. This also helps us to test backward 
+compatibility of programs when programs are upgraded. 
+
+=head1 Organization 
+
+Testing Dir contains various sub directories, each of which tests individual 
+program of this package. 
+
+Each subdirectory has various .sh test files written in Cshell script. 
+All tests that test behavior of a program under normal conditions can be run
+using a script normal-op.sh(found in each sub-dir). 
+
+All test scripts in all the program directories can be run with a single 
+command testall.sh. 
+
+If everything is fine, you will see 
+
+STATUS : OK 
+messages for each of these tests.
+
+If the package is not installed rightly or paths not set, 
+Tests will show
+
+STATUS : ERROR 
+message.
+
+=head1 Version information
+
+The key files for the various were created using the following version 
+information:
+  
+  UMLS version 2010AA
+
+  UMLS-Interface version 0.91
+
+  MetaMap version 2010
+
+If you are not using these version, we can not gaurantee all of the 
+tests will pass due to changes from version to version. 
+
+=head1 Copying
+
+This suite of programs is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA  02111-1307, USA.
+
+Note: The text of the GNU General Public License is provided in the file
+GPL.txt that you should have received with this distribution.
+
+=head1 Acknowledgment
+
+This work has been partially supported by a National Science Foundation
+Faculty Early CAREER Development award (#0092784).
+
+=cut

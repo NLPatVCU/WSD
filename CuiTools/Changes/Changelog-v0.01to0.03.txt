@@ -1,0 +1,26 @@
+Changes made in CuiTools version 0.01 during version 0.03
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)	Modified the package to be more generalizable. 
+
+(2)	Renamed anything that was 'xml' to 'mm' since the files were not
+	technically xml.
+
+(3)	Added more information into the .mm format to keep better track 
+	of the sentence and phrasal information that surrounds the target 
+	word
+
+(4)	Added program plain2mm.pl which converts plain text to 
+	the CuiTools xml-like .mm format
+
+(5)	Added program sval2plain.pl to convert Senseval2 data into plain
+
+(6)	Allowed --cui --unigram --st and --relation information be obtained 
+	at the context, sentence or phrase level.
+
+(Changelog-v0.01to0.03 Last Updated on 05/16/2007 by Bridget)
+

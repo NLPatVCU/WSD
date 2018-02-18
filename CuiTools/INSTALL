@@ -1,0 +1,456 @@
+NAME
+    INSTALL - [documentation] How to install CuiTools
+
+SYNOPSIS
+     perl Makefile.PL
+
+     make
+
+     make test
+
+     make install
+
+DESCRIPTION
+  Prerequisites
+    CuiTools REQUIRES that the following software and data set to be
+    download and installed. Now having stated that the following is required
+    if you would like to run all the programs in CuiTools. If you are only
+    interested in running the supervised or unsupervised portions of
+    CuiTools, I have annotated which software and data is needed for each of
+    them.
+
+    More details on how to obtain and install appear below.
+
+    --Programming Languages
+
+      - Required for both unsupervised and supervised disambiguation
+        Perl (version 5.8.5 or better)
+
+      - Required for unsupervised-disambiguate.pl
+        Perl Data Language (version 2.4.1 or better)
+
+    --CPAN modules
+
+      - Required for unsupervised and supervised disambiguation
+        Text::NSP (version 1.01 or better)
+
+      - Required for supervised-disambiguate.pl
+        LWP::Simple
+        Config::Simple
+
+      - Required for unsupervised-disambiguate.pl
+        Math::SparseVector;
+        Math::SparseMatrix;
+        UMLS::Interface
+
+    --Additional Packages
+
+      - Required for unsupervised-disambiguate.pl
+        MetaMap package
+
+      - Required for supervised-disambiguate.pl
+        WEKA Data-mining package
+
+    --Data (Optional)
+
+      - Not required at all 
+        NLM-WSD data set (PMID Version)
+        Senseval data
+
+    Remember there are ENVIRONMENT VARIABLES that need to be set for these
+    packages. Remember to set the following ones:
+
+        1. CUITOOLSHOME
+        2. WEKAHOME
+        3. METAMAP_PATH
+        4. NLMWSDHOME
+
+    For example:
+
+      # in cshell
+      setenv CUITOOLSHOME /home/btmcinnes/CuiTools
+
+      # in bash
+      export CUITOOLSHOME=/home/btmcinnes/CuiTools
+
+    This can be added to your .cshrc or .bashrc file
+
+  Installing
+    If you have the super-user access, then you can install CuiTools into
+    system directories via : perl Makefile.PL make make install make clean
+
+    The exact location of where CuiTools will be installed depends on your
+    system configuration. A message will be printed out after make install
+    telling your exactly where it was installed.
+
+     You will often need root access/superuser privileges to run
+    make install. The module can also be installed locally. To do a local
+    install, you need to specify a PREFIX option when you run 'perl
+    Makefile.PL'. For example,
+
+     perl Makefile.PL PREFIX=/home/btmcinnes
+
+    or
+
+     perl Makefile.PL LIB=/home/btmcinnes/lib PREFIX=/home/btmcinnes
+
+    will install UMLS-Interface into /home/btmcinnes. The first method above
+    will install the modules in /home/btmcinnes/lib/perl5/site_perl/5.8.3
+    (assuming you are using version 5.8.3 of Perl; otherwise, the directory
+    will be slightly different). The second method will install the modules
+    in /home/btmcinnes/lib. In either case the executable scripts will be
+    installed in /home/btmcinnes/bin and the man pages will be installed in
+    home/btmcinnes/share.
+
+    Warning: do not put a dash or hyphen in front of PREFIX, LIB or WNHOME.
+
+    In your perl programs that you may write using the modules, you may need
+    to add a line like so
+
+     use lib '/home/btmcinnes/lib/perl5/site_perl/5.8.3';
+
+    if you used the first method or
+
+     use lib '/home/btmcinnes/lib';
+
+    if you used the second method. By doing this, the installed modules are
+    found by your program. To run supervised-disambiguate.pl program, you
+    would need to do
+
+     perl -I/home/btmcinnes/lib/perl5/site_perl/5.8.3 supervised-disambiguate.pl
+
+    or
+
+     perl -I/home/btmcinnes/lib
+
+    Of course, you could also add the 'use lib' line to the top of the
+    program yourself, but you might not want to do that. You will need to
+    replace 5.8.3 with whatever version of Perl you are using. The preceding
+    instructions should be sufficient for standard and slightly non-standard
+    installations. However, if you need to modify other makefile options you
+    should look at the ExtUtils::MakeMaker documentation. Modifying other
+    makefile options is not recommended unless you really, absolutely, and
+    completely know what you're doing!
+
+    NOTE: If one (or more) of the tests run by 'make test' fails, you will
+    see a summary of the tests that failed, followed by a message of the
+    form "make: *** [test_dynamic] Error Y" where Y is a number between 1
+    and 255 (inclusive). If the number is less than 255, then it indicates
+    how many test failed (if more than 254 tests failed, then 254 will still
+    be shown). If one or more tests died, then 255 will be shown. For more
+    details, see:
+
+    http://search.cpan.org/dist/Test-Simple/lib/Test/Builder.pm#EXIT_CODES
+
+    Once Downloaded the environment variable CUITOOLSHOME needs to be set to
+
+    For example:
+
+      # in cshell
+      setenv CUITOOLSHOME /home/btmcinnes/CuiTools
+
+      # in bash
+      export CUITOOLSHOME=/home/btmcinnes/CuiTools
+
+    This can be added to your .cshrc or .bashrc file
+
+  System Requirements
+   Programming Languages
+    1.  Perl version 5.8 or later.
+
+        This is required for unsupervised and supervised disambiguation.
+
+        Perl is freely available at http://www.perl.org. It is very likely
+        that you will already have Perl installed if you are using a
+        Unix/Linux based system.
+
+    2.  Perl Data Language (version 2.4.1 or better)
+
+        This is required to use unsupervised-disambiguate.pl.
+
+        CuiTools uses the Perl Data Language (PDL) for efficient
+        computations and storage of high dimensional data structures.
+
+        It is available at: http://search.cpan.org/dist/PDL/
+
+        Note that if you have supervisor access on your machine, and have
+        the MCPAN Perl module available, you can install PDL automatically
+        via:
+
+        perl -MCPAN -e shell > install PDL
+
+        If you do not have supervisor access, you will need to install this
+        module locally. Note that you can configure the CPAN module to
+        install locally by setting PREFIX and LIB options to directories you
+        have read write authority over.
+
+        Note that PDL has quite a few dependencies, and can be tricky to
+        install. You may want to check with your system adminstrator and see
+        if they can install on your behalf before you tackle the local
+        install of PDL. All the other code mentioned here can be locally
+        installed quite routinely.
+
+        This is a good description of how to do local installs of Perl
+        modules: http://www.perl.com/pub/a/2002/04/10/mod_perl.html
+
+   CPAN Modules
+    1.  Ngram Statistics Package (version 1.01 or better).
+
+        This is required for unsupervised and supervised disambiguation.
+
+        CuiTools uses Text-NSP to select a variety of lexical features.
+        Text-NSP is freely available at
+        http://search.cpan.org/dist/Text-NSP/
+
+        perl -MCPAN -e shell > install Text::NSP
+
+        or manual installation (http://www.d.umn.edu/~tpederse/nsp.html)
+
+    2.  LWP::Simple
+
+        This is required to use supervised-disambiguate.pl
+
+        It is available at: http://search.cpan.org/dist/Math-SparseVector/
+
+        perl -MCPAN -e shell > install LWP::Simple
+
+        or manual installation.
+
+    3.  Config::Simple
+
+        This is required to use supervised-disambiguate.pl
+
+        It is available at: http://search.cpan.org/dist/Config-Simple/
+
+        perl -MCPAN -e shell > install Config::Simple
+
+        or manual installation.
+
+    4.  Math::SparseVector (version 0.03 or better).
+
+        This is required to use unsupervised-disambiguate.pl.
+
+        This is a Perl module that implements sparse vector operations.
+
+        It is available at: http://search.cpan.org/dist/Math-SparseVector/
+
+        perl -MCPAN -e shell > install Math::SparseVector
+
+        or manual installation.
+
+    5.  Math::SparseMatrix (version 0.01 or better).
+
+        This is required for unsupervised-disambiguate.pl
+
+        This is a Perl module that implements sparse matrix operations, in
+        particular the sparse matrix transpose operation.
+
+        It is available at: http://search.cpan.org/dist/Math-SparseMatrix/
+
+        perl -MCPAN -e shell > install Math::SparseMatrix
+
+        or manual installation.
+
+    6.  UMLS::Interface
+
+        This is required for unsupervised-disambiguate.pl
+
+        This is a Perl module that connects to the Unified Medical Language
+        System (UMLS) stored in a mysql database. If you do not have the
+        UMLS in a mysql database, the package contains instructions on how
+        to go about doing this.
+
+        It is available at: http://search.cpan.org/dist/UMLS-Interface
+
+        Otherwise, you can install as follows.
+
+        perl -MCPAN -e shell > install UMLS::Interface
+
+   Other Packages
+    1.  WEKA Data Mining Package.
+
+        This is required to use supervised-disambiguate.pl.
+
+        Weka is a collection of machine learning algorithms for data mining
+        tasks. CuiTools uses Weka's machine learning algorithms to perform
+        supervised word sense disambiguation. Weka is freely available at
+
+                   http://www.cs.waikato.ac.nz/ml/weka/
+
+        IMPORTANT:
+
+        Once downloaded and installed remember to set the environment
+        variable WEKAHOME and add WEKAHOME/weka.jar to your CLASSPATH. This
+        is required by Weka as well as CuiTools.
+
+        For example:
+
+          # in cshell
+          setenv WEKAHOME /home/btmcinnes/weka/weka-3-5-3
+          setenv CLASSPATH $WEKAHOME/weka.jar:$CLASSPATH
+
+          # in bash
+          export WEKAHOME=/home/btmcinnes/weka/weka-3-5-3
+          export CLASSPATH=$WEKAHOME/weka.jar:$CLASSPATH
+
+        This can be added to your .cshrc or .bashrc file
+
+    2.  MetaMap
+
+        This is required to use unsupervised-disambiguate.pl - or if you
+        would like to use the NLM-WSD dataset with the MetaMap assigned CUIs
+        - see program nlm2mm.pl
+
+        MetaMap is a freely available from the National Library of Medicine.
+        MetaMap maps text to concepts in the UMLS Metathesaurus. The program
+        parses the text into components including sentences, paragraphs,
+        phrases, lexical elements and tokens. It then identifies possible
+        UMLS concepts and chooses the best possible mapping. The information
+        that CuiTools uses from MetaMap is the sentence, phrase, and token
+        information, part of speech and head information of each token, the
+        possible UMLS concepts, the final final mapping concepts and the
+        semantic types associated with each concept.
+
+        MetaMap can be downloaded from:
+
+             http://metamap.nlm.nih.gov
+
+        Although MetaMap is free, in order to download this you need to
+        register. You can register at: http://umlsks.nlm.nih.gov
+
+        To download:
+
+        When you get to the MetaMap web page, click on the link "Download".
+        Scroll down and you will see tar.bz2 files that can be downloaded
+        and installed. Click on the 2008 version (not the 2007) for your
+        operating system. MetaMap is currently only available for Linux and
+        Solaris. If you are a windows users, there is the MetaMap Transfer
+        program which can be used instead.
+
+        Once downloaded, go to the installation instructions located here:
+
+             http://metamap.nlm.nih.gov/#Installation
+
+        Note: downloading takes a while (at least it did for me).
+
+        IMPORTANT:
+
+        Once Downloaded the remember to set the environment variable
+        METAMAP_PATH to the /bin level directory that store the MetaMap
+        programs just downloaded. This is required by MetaMap as well as
+        CuiTools.
+
+        For example:
+
+          # in cshell
+          setenv METAMAP_PATH /home/btmcinnes/metamap/public_mm/bin
+
+
+          # in bash
+          export METAMAP_PATH=/home/btmcinnes/metamap/public_mm/bin
+
+        This can be added to your .cshrc or .bashrc file
+
+        NOTE:
+
+        The MetaMap command used by this program is:
+
+            metamap10 -q InputFile OutputFile
+
+   Data (Optional)
+    1.  NLM-WSD Data Set. The National Library of Medicine's Word Sense
+        Disambiguation (NLM-WSD) dataset \cite{WeeberMA01}. The dataset was
+        created to promote the study of WSD in the biomedical domain. It
+        contains 50 highly frequent ambiguous CUIs from the 1998 MEDLINE
+        abstracts. Each ambiguous word in the dataset contains 100 ambiguous
+        instances randomly selected. The instances were manually
+        disambiguated by 11 evaluators who assigned the ambiguous word to a
+        CUI or ``None'' if none of the CUIs described the sense.
+
+        The NLM-WSD data set can be downloaded from:
+
+            http://wsd.nlm.nih.gov
+
+        Although the data set is free, in order to download this you need to
+        register. You can register at: http://umlsks.nlm.nih.gov
+
+        To download:
+
+        When you get to the NLM-WSD data set web page, click on the link
+        "Access WSD Test Collection (Restricted)"; this is where you need to
+        be registered.
+
+        NOTE: There are two versions of the NLM-WSD data set: USE THE PMID
+        VERSION! So click on "Switch to PMID identification version of the
+        WSD Test Collection".
+
+        There are three files that need to be downloaded.
+
+        The first in the "Basic Test Collection": 1. Basic Reviewed Set
+
+        The second and third in the "Full Test Collection": 2. Common Files
+        3. Full Reviewed Result Set
+
+        Unpack the files in a directory called NLM-WSD (for example - you
+        can call it anything you would like). You should end up with three
+        directories in the NLM-WSD directory: 1. Basic_Reviewed_Results 2.
+        common 3. Reviewed_Results
+
+        IMPORTANT:
+
+        Once Downloaded the environment variable NLMWSDHOME needs to be set.
+
+        For example:
+
+          # in cshell
+          setenv NLMWSDHOME /home/btmcinnes/NLM-WSD
+
+          # in bash
+          export NLMWSDHOME=/home/btmcinnes/NLM-WSD
+
+        This can be added to your .cshrc or .bashrc file
+
+    1.  Senseval Data set.
+
+        Senseval, now called Semeval, are evaluation exercises for the
+        semantic analysis of text. One such exercises is word sense
+        disambiguation. The Senseval data can be used by the CuiTools
+        package. The data from the senseval/semeval evaluations can be
+        download from the senseval website:
+
+                         http://www.senseval.org
+
+        Alternatively, Senseval 1, 2 and 3 data can be downloaded in various
+        formats from: http://www.d.umn.edu/~tpederse/data.html
+
+SEE ALSO
+    README
+
+    Project Home page: <http://cuitools.sourceforge.net>
+
+AUTHORS
+     Bridget T McInnes, University of Minnesota Twin Cities
+     bthomson at cs.umn.edu
+
+     Ted Pedersen, University of Minnesota Duluth
+     tpederse at d.umn.edu
+
+COPYRIGHT
+    Copyright (c) 2007-2011, Bridget T McInnes and Ted Pedersen
+
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.2 or
+    any later version published by the Free Software Foundation; with no
+    Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+
+    Note: a copy of the GNU Free Documentation License is available on the
+    web at <http://www.gnu.org/copyleft/fdl.html> and is included in this
+    distribution as FDL.txt.
+
+POD ERRORS
+    Hey! The above document had some coding errors, which are explained
+    below:
+
+    Around line 474:
+        You have '=item 1' instead of the expected '=item 2'
+

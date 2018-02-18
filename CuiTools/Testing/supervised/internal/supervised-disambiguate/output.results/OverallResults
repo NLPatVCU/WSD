@@ -1,0 +1,17 @@
+Defaults options set:
+  --binary
+  --seed 1
+  --javaparams "-Xmx2G"
+  --weka weka.classifiers.bayes.NaiveBayes
+  --line 
+
+
+User defined options set:
+  --wekacv 10
+  --ngramcount "--ngram 1"
+
+
+              adjustment  80.00
+
+        Overall Accuracy  80.00
+

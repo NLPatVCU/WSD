@@ -1,0 +1,12 @@
+@RELATION art
+@ATTRIBUTE of NUMERIC
+@ATTRIBUTE art NUMERIC
+@ATTRIBUTE gallery NUMERIC
+@ATTRIBUTE the NUMERIC
+@ATTRIBUTE Art NUMERIC
+@ATTRIBUTE Sense {art,art_gallery}
+@DATA
+0,0,0,0,1,art % art.40001
+1,1,1,1,0,art_gallery % art.40002
+1,1,0,0,0,art % art.40004
+1,1,0,0,0,art % art.40005

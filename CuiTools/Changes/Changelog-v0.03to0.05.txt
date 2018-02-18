@@ -1,0 +1,40 @@
+Changes made in CuiTools version 0.03 during version 0.05
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)	Modularized the mm2arff.pl and the disambiguate.pl programs
+		    
+(2)	Added checks to the user input options
+
+(3)	Added a test option so the user can train on the full data 
+	set and test on a give input file. (--test FILE)
+
+(4)     Added a key option to be used with the test option. The 
+	answers do not need to be embedded in the test file but 
+	given through the key
+
+(5)	Added a split option so the input data can be randomly 
+	split into training and test files. (--split 10)
+
+(6)	Added a trial option to work with the split option. The 
+	input data be randomly split into training and test 
+	files and run for a specified number of trials. 
+	(--trial 100).
+
+(7)	Fixed --stop option
+
+(8)     Added --punc option which will remove punctuation from 
+	the unigrams.
+
+(9)     Added --wekaparams option so that the user can directly
+	pass weka parameters through the command line
+
+(10)     Changed the option --crossvalidate name to --cv
+
+(11)    Fixed --threshold option
+
+(Changelog-v0.03to0.05 Last Updated on 06/13/2007 by Bridget)
+

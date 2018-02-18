@@ -1,0 +1,13 @@
+Changes made in CuiTools version 0.11 during version 0.13
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)    Made minor changes throughout the code
+
+(2)    Fixed a bug directly related to Senseval2 data
+
+(Changelog-v0.11to0.13 Last Updated on 10/15/2007 by Bridget)
+

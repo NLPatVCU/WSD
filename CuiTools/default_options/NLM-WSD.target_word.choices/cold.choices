@@ -1,0 +1,5 @@
+M1|Cold <1> (cold temperature)|npop, Natural Phenomenon or Process|C0009264
+M2|Cold <2> (Common Cold)|dsyn, Disease or Syndrome|C0009443
+M3|COLD <3> (Chronic Obstructive Airway Disease)|dsyn, Disease or Syndrome|C0024117
+M4|Cold <4> (Cold Therapy)|topp, Therapeutic or Preventive Procedure|C0010412
+M5|Cold <5> (Cold Sensation)|qlco, Qualitative Concept; sosy, Sign or Symptom|C0234192

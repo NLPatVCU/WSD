@@ -1,0 +1,187 @@
+=head1 CuiTools
+
+CuiTools
+
+=head1 SYNOPSIS
+
+CuiTools (Coo-e Tools) is a package of Perl programs that can used 
+to carry out supervised, unsupervised and semi-supervised word sense 
+disambiguation experiments. The name CuiTools comes from the Concept 
+Unique Identifiers (Cuis) found in the Unified Medical Language System 
+(UMLS). This package was originally created in order to assign Cuis from 
+the UMLS to ambiguous words in biomedical text. This has been extended 
+now to accommodate test sets in the general English domain such has 
+Senseval-2. This package allows users to extract features from the UMLS 
+for any given data set and experiment with the machine learning algorithms 
+in the WEKA data-mining package.
+
+CuiTools uses specialized tools such as the Ngram Statistics Package 
+(NSP), the WEKA data mining package, and MetaMap.
+
+=head1 OVERVIEW
+
+CuiTools supervised and semi-supervised disambiguation supports a variety 
+of features that can be extracted from the Unified Medical Language System 
+(UMLS), such as semantic types UMLS concept unique identifiers (CUIs), and 
+all the learning algorithms available from the WEKA data mining package 
+including Naive Bayes, Decision Trees and SVM. 
+
+CuiTools unsupervised disambiguation
+
+=head1 DOCUMENTATION
+
+CuiTools' documentation is available ONLINE at :
+L<http://cuitools.sourceforge.net/CuiTools-Code-README.html>
+
+For OFFLINE browsing, directory Docs/HTML is provided in CuiTools'
+main package directory and the CuiTools-Code-README.html file can
+be found here and locally browsed.
+
+All programs have inline source code documentation written in pod style
+and this can be browsed from command line as a man page or using the
+'perldoc' command. For example, 'man disambiguate.pl' or 'perldoc
+disambiguate.pl' will displayed the documentation for the disambiguuate.pl 
+program. Each program also has a --help option to provide information
+about program options.
+
+=head1 GETTING STARTED
+
+You might first like to run the Demo scripts in Demos/ directory to get
+an idea of CuiTools' usage and functionality.
+
+Demos/ contains scripts that utilize the wrapper program disambiguate.pl
+that calls various other programs from the package to run a complete
+experiment. It also contains examples where specialized experiments are
+constructed directly from the programs provided in the package. 
+
+=head1 PACKAGE ORGANIZATION
+
+After downloading and unpacking CuiTools, you should find following 
+files/directories within the CuiTools' directory.
+
+=over 4
+
+=item * README
+
+This file.
+
+=item * INSTALL
+
+The installation guide, which lists all package dependencies.
+
+
+=item * supervised-disambiguate.pl
+
+A wrapper program that acts as a driver to perform supervised 
+word sense disambiguation using other programs in this package. 
+It disambiguate the given target word instances based on specified 
+contextual information. 
+
+=item * unsupervised-disambiguate.html
+
+A wrapper program that acts as a driver to perform unsupervised 
+word sense disambiguation using other programs in this package. 
+It disambiguate the given target word instances based on specified 
+contextual information.
+
+=item * Demos/
+
+A directory of scripts that demonstrates CuiTools' usage and 
+functionality. 
+
+=item * src/
+
+A directory of Perl programs implemented and used by CuiTools. 
+
+=item * lib/
+
+A directory of Perl modules used by the Perl programs in the 
+bin directory
+
+=item * datafiles/
+
+A directory of data files used by the programs in the bin/ directory 
+and disambiguate.pl
+
+=item * Docs/
+
+A directory of CuiTools' documentation in html format. 
+
+=item * Testing/ 
+
+A directory of test cases written as C-shell scripts that will test if the 
+package is installed properly or not. 
+
+=item * Changes/
+
+A directory of changelogs that document the changes and improvements done 
+during each version.
+
+=item * Makefile.PL 
+
+Generates a Makefile on running 'perl Makefile.PL'.
+
+=item * GPL.txt
+
+A copy of the GNU General Public License, the terms under which CuiTools
+is distributed.
+
+=item * FDL.txt
+
+A copy of the GNU Free Documentation License, the terms under which the
+documentation of CuiTools is distributed.
+
+=back
+
+=head1 CONTACT US
+
+Please join our mailing lists to participate in the package related 
+discussions, to post your questions or bugs and also to suggest 
+enhancements to the package functionality.
+
+To subscribe to the user's mailing list, visit : 
+http://lists.sourceforge.net/lists/listinfo/cuitools-users
+
+To subscribe to a low volume news mailing list, visit : 
+http://lists.sourceforge.net/lists/listinfo/cuitools-news
+
+Recent version of CuiTools can be downloaded from :
+http://cuitools.sourceforge.net/
+
+=head1 SEE ALSO
+
+CuiTools' ONLINE Documentation at 
+http://cuitools.sourceforge.net/CuiTools-Code-README.html
+
+=head1 AUTHORS
+
+ Bridget T. McInnes
+ University of Minnesota
+ bthomson at cs.umn.edu
+ http://www.cs.umn.edu/~bthomson 
+
+ Ted Pedersen
+ University of Minnesota, Duluth
+ tpederse at d.umn.edu
+ http://www.d.umn.edu/~tpederse/
+
+=head1 COPYRIGHT
+Copyright (c) 2007-2011,  Bridget T. McInnes and Ted Pedersen
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to
+
+The Free Software Foundation, Inc.,
+59 Temple Place - Suite 330,
+Boston, MA  02111-1307, USA.
+
+=cut

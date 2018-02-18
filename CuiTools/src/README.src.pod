@@ -1,0 +1,170 @@
+=head1 NAME 
+
+README.src.pod
+
+=head1 Synopsis
+
+This file briefly describes the functionality of all the programs in 
+the src directory of CuiTools
+
+=head1 CuiTools Programs 
+
+=head2 supervised 
+
+=head3 internal
+
+=head4 mm2arff.pl
+
+Converts the CuiTools xml-like .mm formatted text into arff formatted 
+data used by the WEKA data mining package.
+
+More information about the arff format can be found in the file 
+README.format.arff.pod
+
+More information about the .mm format can be found in the file
+README.format.mm.pod
+
+=head4 x-fold.pl
+
+This program sets up the files for X-fold cross validation.
+
+=head4 split.pl
+
+This program randomly splits a file in mm format into a single 
+training and test file. 
+
+=head2 unsupervised
+
+=head3 external
+
+=head4 nsp2regex.pl (SenseCluster v0.95 program used without modifications)
+
+Takes n-word sequences and represents them as regular 
+expressions. These can then be used to identify lexical 
+features in a given data, and convert a lexical element 
+files from text into feature vectors.  
+
+=head4 order1vec.pl (SenseCluster v0.95 program used without modifications)
+
+Creates first order context vectors or feature vectors. Both of these vectors 
+indicate whether or not a given feature occurs in the given context. The 
+possible features are identified via Perl regular expressions of the form 
+created by nsp2regex.pl. 
+
+=head4 preprocess.pl (SenseCluster v0.95 program used without modifications)
+
+Takes an xml file in SENSEVAL-2 lexical-sample format
+and splits it apart into as many files as there are
+lexical elements in the original file. Each lexical 
+element usually corresponds with a word used in a 
+particular part of speech. It also does other sundry 
+preprocessing tasks with the data.
+
+
+=head3 internal
+
+=head4 create-vectors.pl
+
+This program creates the instance and sense vectors 
+for the unsupervised-disambiguate wrapper program 
+using SenseCluster programs.
+
+=head2 Data
+
+=head3 external
+
+=head4 sval2plain.pl
+
+Converts a given file from Senseval-2 format into plain text format. 
+Each line of the plain text files contains a single context.  
+
+=head4 text2sval.pl
+
+Converts a plain text instance data file into a Senseval-2 formatted XML file.
+
+=head4 nlm2sval2.pl
+
+Converts the Medline formatted data into Senseval-2 formatted data.
+
+=head4 nlm2sval2-driver.pl
+
+The driver program used to convert the NLM-WSD Basic_Reviewed_Results 
+into Senseval-2 format.
+
+=head3 internal
+
+=head4 machinecode2mm.pl 
+
+This program converts the machine code MetaMap formatted text  
+to our xml-like .mm format used by the CuiTools package.
+
+=head4 mm2plain.pl 
+
+Converts a given file from .mm format into plain text format. 
+Each line of the plain text files contains a single context.  
+
+=head4 nlm2mm.pl
+
+This program converts the NLM-WSD dataset to .mm format. The information 
+though is obtained the from the current version of MetaMap transfer program 
+(MMTx) rather than using the information in the dataset itself (except 
+xfor the sense of the target word). Note: this only works with the PMID 
+version of the dataset.
+
+
+=head4 plain2mm.pl
+
+Converts plain text to the xml-like .mm format used by the CuiTools 
+package. 
+
+More information about the .mm format can be found in the file
+README.format.mm.pod
+
+Here is an example of an instance in "plain" text:
+
+Paul was named <head instance="art.30002" sense="art">Art</head> magazine's top collector.
+
+=head4 prolog2mm.pl
+
+Converts NLM formated text (as seen in the NLM-WSD dataset) to the xml-like 
+.mm format used by the CuiTools package. An example of the .mm format is 
+above in the plain2mm.pl descriptions. For more detailed description of 
+the mm format see the documentation for the prolog2mm.pl program. For a more 
+detailed detailed description of the nlm format, also see the prolog2mm.pl 
+documentation but your best bet is to look at the documentation by the 
+National Library of Medicine themselves which is located at: 
+
+http://wsd.nlm.nih.gov/info/layout.html#detailed_descrip
+
+=head1 AUTHOR
+
+Bridget McInnes, University of Minnesota
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007,
+
+ Ted Pedersen, University of Minnesota, Duluth.
+ tpederse at umn.edu
+
+ Bridget McInnes, University of Minnesota
+ bthomson at cs.umn.edu
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut
+ 

@@ -1,0 +1,37 @@
+Changes made in CuiTools version 0.05 during version 0.07
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1)     Mofified sval2plain for back compatibility
+
+(2)	Modified the sval2plain test cases for back compatibility
+		    
+(3)     Created the MM.pm perl module for converting plain text 
+	and the machine code from the NLM-WSD data set into our 
+	.mm format (lib directory). 
+
+(4)     Renamed nlm2mm program to prolog2mm
+
+(5)	Added mmChecker which checks a .mm formated file to make 
+	certain there are not any glaring errors
+
+(6)	Created x-fold.pl program to perform x-fold cross validation
+
+(7)	Added a script (10-fold-demo) to demonstrate 10-fold
+	cross validation
+
+(8)     Modified the .mm format 
+
+(9)	Modified Testing scripts to account for the new .mm format
+
+(10)	Added .arff and .mm README's to explain in more detail
+	the format (they are in the bin directory)
+
+(11)    Changed the environment variable MMTX_PATH to METAMAPHOME
+	MMTX_PATH kept giving me problems
+
+(Changelog-v0.05to0.07 Last Updated on 08/22/2007 by Bridget)
+

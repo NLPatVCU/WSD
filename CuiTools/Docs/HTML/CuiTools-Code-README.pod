@@ -1,0 +1,99 @@
+## NOTE: IF ONE uses "pod2html" TO CREATE THE SenseClusters-Code-README.html FILE 
+## FROM THIS FILE, YOU WOULD HAVE TO MANUALLY EDIT AND CORRECT THE TARGET LOCATIONS 
+## OF THE VARIOUS HTML FILES THAT ARE LINKED TOGETHER BY SenseClusters-Code-README.html
+## CURRENTLY.
+## THUS PLEASE DO NOT USE THIS FILE TO RE_CREATE THE html VERSION.
+
+=head1 supervised-disambiguation.pl
+
+=head1 unsupervised-disambiguation.pl 
+
+=head1 Word Clustering FlowChart 
+
+=head1 src/
+
+=head2 Supervised WSD
+
+=head3 Internal Code
+
+=head4 mm2arff.pl
+
+=head4 mm2plain.pl
+
+=head4 nlm2mm.pl
+
+=head4 plain2prolog.pl
+
+=head4 prolog2mm.pl
+
+=head4 split.pl
+
+=head4 x-fold.pl
+
+=head3 External Code
+
+=head4 sval2plain.pl
+
+=head4 text2sval.pl
+
+=head2 Unsupervised WSD
+
+=head3 Internal Code
+
+=head4 create-vectors.pl
+
+=head4 mm2plain.pl
+
+=head3 External Code
+
+=head4 nsp2regex.pl 
+
+=head4 order1vec.pl 
+
+=head4 preprocess.pl
+
+=head4 text2sval.pl
+
+=head3 Processing Code
+
+=head4 format-data.pl
+
+=head1 AUTHORS
+
+ Bridget T McInnes
+ University of Minnesota Twin Cities
+ bthomson at cs.umn.edu
+ http://www.cs.umn.edu/~bthomson
+
+ Ted Pedersen
+ University of Minnesota, Duluth
+ tpederse at d.umn.edu
+ http://www.d.umn.edu/~tpederse/
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007-2011
+
+ Bridget T McInnes, University of Minnesota Twin Cities
+ bthomson at cs.umn.edu
+ Ted Pedersen, University of Minnesota, Duluth
+ tpederse at d.umn.edu
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to
+
+The Free Software Foundation, Inc.,
+59 Temple Place - Suite 330,
+Boston, MA  02111-1307, USA.
+
+=cut
+

@@ -1,0 +1,28 @@
+Changes made in CuiTools version 0.21 during version 0.23
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1) added a verbose option to unsupervised tools
+
+(2) added the option of using semantic similarity in the 
+    first order co-occurrence vectors rather than frequency
+    note - this will require the UMLS::Similarity module.
+
+(3) added two other vector measures:
+    	  --euclidean Euclidean distance
+	  --dice      Dice Coefficient
+
+(4) added utils directory which contains calculate-statistcs.pl
+    program
+
+(5) modified to work with MetaMap09
+
+(6) fixed debug statements and added a --debug option
+
+(7) cleaned it up a bit
+
+(Changelog-v0.21to0.23 Last Updated on 10/31/2010 by Bridget)
+

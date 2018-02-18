@@ -1,0 +1,2529 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+mm2arff.pl
+
+=head1 SYNOPSIS
+
+Creates arff files required by the weka data mining packages.
+
+=head1 DESCRIPTION
+
+Takes as input the CuiTools xml-like .mm format and extracts
+specified features based on the following options from the data
+set and outputs an arff format to be used by the WEKA data mining 
+package for supervised word sense disambiguation.    
+
+=head1 USAGE
+
+perl mm2arff.pl [OPTIONS] DESTINATION SOURCE
+
+=head1 INPUT
+
+=head2 Required Arguments:
+
+=head3 SOURCE
+
+The CuiTools xml-like .mm formatted file.
+
+=head3 DESTINATION
+
+The output file.
+
+=head2 Optional Arguments:
+
+$=head3 --test    
+
+This option allows for arff files to be created for both the test 
+data and the training data. The features for this will only 
+be extracted from the test data
+
+=head3 --key FILE
+The program will obtain the answers to the given test file from the 
+key file. The key file is expected to be in the same format as the 
+Senseval-2 key file.
+
+    Example:
+
+    art art.40003 pop_art%1:06:00::
+        <target word> <instance id> <sense>
+
+
+=head3 --nokey
+
+There is no key for the test file. The answers will be replaced with a 
+question mark (?).
+
+=head3 --pos
+
+The part of speech of the words surrounding the target word
+
+=head3 --head
+
+Whether the target word is the head word of its phrase.
+
+=head3 --ngramcount "OPTIONS" or FILE
+
+The words surrounding the target word as features 
+
+The Ngram Statistic Package (NSP) count.pl program is used to obtain 
+the counts. The options specify any additional options to be passed 
+to count.pl program.
+                 
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.
+
+=head3 --ngrammeasure "OPTIONS" 
+
+Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --ngramstat option to perform feature selection for the 
+--ngramcount option
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --ngramstat "OPTIONS"
+                 
+Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --cuicount "OPTIONS"
+
+Unified Medical Language System (UMLS) Concept Unique Identifiers 
+(CUIs) of the words surrounding the target word.
+
+The Ngram Statistic Package (NSP) is used to obtain the counts.
+
+The options specify any additional options to be passed to count.pl
+program.
+                 
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.
+
+=head3 --cuimeasure "OPTIONS"
+
+Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --cuistat option to perform feature selection for the 
+--cuicount option
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --cuistats "OPTIONS"
+                 
+Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --firstranked
+
+The first CUI in the set of one or more CUIs found in the mapping 
+(that have the highest MTI score) is used as the feature rather 
+than all of them (which is the default).
+
+=head3 --conflatedcuis
+
+Combine all the CUIS in the set of one or more CUIs found in the 
+mapping into one sorted string and use the string as a feature
+
+=head3 --stcount "OPTIONS"
+
+The words surrounding the target word as features 
+
+The Ngram Statistic Package (NSP) count.pl program is used to obtain 
+the counts. The options specify any additional options to be passed 
+to count.pl program.
+                 
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.
+
+=head3 --stmeasure "OPTIONS"
+
+Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --ststat option to perform feature selection for the 
+--stcount option
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --ststats "OPTIONS"
+                 
+                 
+Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options
+
+Note: All the options must be within double quotes, as
+      would be passed to the program at command line.
+
+=head3 --nspconfig FILE
+
+This is can be used in replace of or in conjunction with the 
+ngramcount, ngrammeasure, ngramstat, cuicount, cuimeasure, 
+cuistat, stcount, stmeasure and ststat options. It allows 
+for multiple instances of ngramcount, cuicount and stcount 
+to be called in order to allow for multiple ngrams to be 
+used as features. 
+
+An example of the format required for the configuration 
+file is as follows:
+
+ngramcount::
+count:: --ngram 3 --remove 3
+statistic:: ll.pm --score 3.841
+
+ngramcount::
+count:: --ngram 2 --remove 1
+
+cuicount::
+count:: --ngram 2 --remove 3
+statistic:: ll.pm --score 3.841
+
+stcount::
+count:: --ngram 1 --remove 3
+
+=head3 --relation 
+
+The semantic relation of the semantic type of the target word and 
+the semantic types s of the words surrounding the target word. 
+The relations are read in from a file which is located in the 
+'default_options' directory. The name of the file is called 
+'relation'. The relations comes from the UMLS 2007AC documentation.
+
+
+If you would like to provide your own, the format of the file 
+is as follows:
+
+    semantic_type relation semantic_type
+
+where each semantic type pair and relation are on their own line. 
+
+For example:
+
+    acab affects virs
+    acab affects vtbt
+    acap affects rept
+    ...
+    ...
+
+=head3 --mesh
+
+Uses the MeSH terms assigned to the abstract containing the 
+target word as features
+
+=head3 --punc
+
+Removes unigrams that contain only punctuation from the list 
+of features.
+
+=head3 --lc
+
+Lowercases all the words for the --ngramcount option
+
+=head3 --phrase
+
+The context considered is only the features that are in the 
+same phrase as the target word. The phrases are identified 
+by MetaMap.
+
+Note: If the phrase option is set then the --sentence and 
+--line options need to be off.
+
+=head3 --sentence
+
+The context considered is only the features that are in the 
+same sentence as the target word.
+
+Note: If the sentence option is set then the --phrase and 
+--line options need to be off.
+
+=head3 --line
+
+The context considered is the features that are in the 
+the complete line as defined by the .mm file as the 
+target word.
+
+Note: If the line option is set then the --sentence and 
+--phrase options need to be off.
+
+Note: This is the default option.
+
+=head3 --binary
+
+Uses a binary indicator to represent whether a feature exists. DEFAULT
+
+=head3 --freq
+
+Uses the frequency count of a feature to represent its existance.
+
+=head3 --stop FILE
+
+Stoplist for the count.pl program. This can also be added in 
+the --ngramcount option but I wanted to add it here as well 
+in case people were not as familiar with NSP.
+
+==head3 --idfstop DIR
+
+This is the directory that contains the idf stoplists for 
+each of the target words. The directory should contain 
+a file called:
+
+     <target word>.idf.stop
+
+foreach target word file.
+
+=head3 --debug  
+
+Sets the debug option on
+
+=head3 --log DIRECTORY
+
+Directory to contain temporary and log files. DEFAULT: mm2arff.log
+
+=head3 --help
+
+Displays the quick summary of program options.
+
+=head3 --version
+
+Displays the version information.
+
+=head1 OUTPUT
+
+mm2arff.pl creates one file in arff format. This file can be used as input 
+training data to the WEKA data mining package.
+
+=head1 THE .arff FORMAT
+
+See L<README.arff.format.pod>
+
+=head1 THE .mm FORMAT
+
+See L<README.mm.format.pod>
+
+=head1 PROGRAM REQUIREMENTS
+
+=over
+
+=item * Perl (version 5.8.5 or better) - http://www.perl.org
+
+=item * Text::NSP - http://search.cpan.org/dist/Text-NSP
+
+=back
+
+=head1 AUTHOR
+
+ Bridget T. McInnes, University of Minnesota, Twin Cities
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007-2008,
+
+ Bridget T. McInnes, University of Minnesota, Twin Cities
+ bthomson at cs.umn.edu
+
+ Ted Pedersen, University of Minnesota Duluth
+ tpederse at d.umn.edu
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to 
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut
+
+###############################################################################
+
+#                               THE CODE STARTS HERE
+###############################################################################
+
+#                           ================================
+#                            COMMAND LINE OPTIONS AND USAGE
+#                           ================================
+
+use Getopt::Long;
+use LWP::Simple;
+
+eval(GetOptions( "version", "help", "pos", "st", "cui", "head", "relation", "ngramcount=s", "ngrammeasure=s", "ngramstat=s", "cuicount=s", "cuimeasure=s", "cuistat=s", "stcount=s", "stmeasure=s", "ststat=s", "stop=s", "idfstop=s", "phrase", "sentence", "line", "test=s", "punc", "key=s", "log=s", "nokey", "mesh", "nspconfig=s", "lc", "firstranked", "conflatedcuis", "mmi=s", "freq", "binary", "similarity", "simconfig=s", "debug")) or die ("Please check the above mentioned option(s).\n");
+
+
+#  option variables
+my $KeyCount   = 0;
+my %KeyHash    = ();
+my %SenseHash  = ();
+my %relations  = ();
+
+my $log = "";
+
+my @ngramcountArray   = ();
+my @ngrammeasureArray = ();
+my @ngramstatArray    = ();
+my @cuicountArray     = ();
+my @cuimeasureArray   = ();
+my @cuistatArray      = ();
+my @stcountArray      = ();
+my @stmeasureArray    = ();
+my @ststatArray       = ();
+
+#  set the debug option
+my $debug = 0;
+if(defined $opt_debug) { 
+    $debug = $opt_debug;
+}
+
+if($debug) { print STDERR "In mm2arff\n"; }
+
+&checkOptions();
+
+#  retrieve the destination file
+my $destination = shift;
+
+#  check that destination has been supplied
+if( !($destination) ) {
+    print STDERR "No output file (DESTINATION) supplied.\n";
+    &askHelp();
+    exit;
+}
+
+#  check if the destination file exists
+if( -e $destination ) {
+    print "Output file $destination already exists! Overwrite (Y/N)?";
+    my $reply = <STDIN>;  chomp $reply; $reply = uc($reply);
+    exit 0 if ($reply ne "Y"); 
+}
+
+#  open destination files
+if(defined $opt_test) {
+    open(TRAIN, ">$destination.train.arff")      || die "Could not open train file: $destination.train\n";
+    open(TEST, ">$destination.test.arff")        || die "Could not open test file: $destination.test\n";
+    open(ORDER, ">$destination.test.order") || die "Could not open order file: $destination.test.order\n";
+}
+else { 
+    open(TRAIN, ">$destination.arff") || die "Could not open train file: $destination\n"; 
+}
+
+#  retrieve the source file
+my $source = shift;
+
+#  check that xml file has been supplied
+if( !($source) ) {
+    print STDERR "No input file (XML FILE) supplied.\n";
+    askHelp();
+    exit;
+}
+
+# part of speech (pos) feature variables
+my $PosCounter                 = 0;
+my %PosKey                     = ();
+my %PosHash                    = ();
+
+# ngram feature variables
+my $NgramCounter             = 0;
+my %NgramKey                 = ();
+my %NgramHash                = ();
+my %NgramArray               = ();
+my %NgramFreq                = ();
+my %NgramSimilarity          = ();
+
+# ngram feature variables
+my $MmiCounter             = 0;
+my %MmiKey                 = ();
+my %MmiHash                = ();
+my %MmiArray               = ();
+
+# mesh feature variables
+my $MeshCounter             = 0;
+my %MeshKey                 = ();
+my %MeshHash                = ();
+
+# semantic type feature variables
+my $SemanticTypeCounter        = 0;
+my %SemanticTypeKey            = ();
+my %SemanticTypeHash           = ();
+my %SemanticTypeArray          = ();
+my %SemanticTypeFreq           = ();
+
+# cui feature variables
+my $UmlsCuiCounter             = 0;
+my %UmlsCuiKey                 = ();
+my %UmlsCuiHash                = ();
+my %UmlsCuiArray               = ();
+my %UmlsCuiFreq                = ();
+my %UmlsCuiSimilarity          = ();
+
+# semantic relations feature variables
+my $SemanticRelationCounter    = 0;
+my %SemanticRelationKey        = ();
+my %SemanticRelationHash       = ();
+
+#  target word variables 
+my %TW                         = (); #  contains the target words
+my %TargetWord                 = (); #  contains the abstractId-target word pairs
+my %TargetWordPos              = (); #  pos of the target word
+my %TargetWordHead             = (); #  weather the target word is a head
+my %TargetWordSense            = (); #  the sense associated with the abstractId
+my %TargetWordSts              = (); #  the semantic types of the target word sense
+
+#  test data feature variables
+my %TestPosHash                = ();
+my %TestSemanticRelationHash   = ();
+my %TestWordSts                = ();	    
+my %testArray                  = ();
+
+my %TestNgramArray             = ();
+my %TestUmlsCuiArray           = ();
+my %TestSemanticTypeArray      = ();
+
+#  relation variables
+my $relation                   = "";      # target word
+my $senses                     = "";      # all possible sense of target word
+my @resultArray                = ();      # contains the id of the results
+
+
+&getTrainingData($source);
+&getTestData();
+
+&setNgrams();
+&setCuis();
+&setSemanticTypes();
+&setSemanticRelations();
+
+foreach my $abstractId (@resultArray) {
+    print STDERR "id: $abstractId\n";
+    &populateNgramHash($abstractId, "train");
+    &populateCuiHash($abstractId, "train");
+    &populateStHash($abstractId, "train");
+}
+
+foreach my $abstractId (@testArray) {
+    &populateNgramHash($abstractId, "test");
+    &populateCuiHash($abstractId, "test");
+    &populateStHash($abstractId, "test");
+}
+
+
+&printArffHeader();
+
+
+foreach my $abstractId (@resultArray) {
+    &printData($abstractId, "no");
+}
+foreach my $abstractId (@testArray) {
+    &printData($abstractId, "yes");
+}
+
+##############################################################################
+#  SUB FUNCTIONS
+##############################################################################
+
+##############################################################################
+#  check that key count matches the number of instances
+##############################################################################
+sub checkKeyCount {
+    #if((defined $opt_test) and (defined $opt_key)) {
+#	if($KeyCount != ($#testArray+1)) {
+#	    print STDERR "The number of instances in the key does not equal\n";
+#	    print STDERR "the number of instances in the test file\n\n";
+#	    exit;
+#	}
+#    }
+}
+
+##############################################################################
+#  print arff head information
+##############################################################################
+sub printHeadHeader {
+    print TRAIN "\@ATTRIBUTE head NUMERIC\n";
+    if(defined $opt_test) { print TEST "\@ATTRIBUTE head NUMERIC\n"; }
+}
+
+##############################################################################
+#  print arff POS information
+##############################################################################
+sub printPosHeader {
+
+    foreach (sort {$PosKey{$a}<=>$PosKey{$b}} keys %PosKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+} 
+
+##############################################################################
+#  print arff semantic type information
+##############################################################################
+sub printStHeader {
+    foreach (sort {$SemanticTypeKey{$a}<=>$SemanticTypeKey{$b}} keys %SemanticTypeKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff CUI information
+##############################################################################
+sub printCuiHeader {
+    foreach (sort {$UmlsCuiKey{$a}<=>$UmlsCuiKey{$b}} keys %UmlsCuiKey) {
+	my $cui = ucfirst($_);
+	print TRAIN "\@ATTRIBUTE $cui NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $cui NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff ngram information
+##############################################################################
+sub printNgramHeader {
+    foreach (sort {$NgramKey{$a}<=>$NgramKey{$b}} keys %NgramKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff mesh information
+##############################################################################
+sub printMeshHeader {
+    foreach (sort {$MeshKey{$a}<=>$MeshKey{$b}} keys %MeshKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff mmi information
+##############################################################################
+sub printMmiHeader {
+    foreach (sort {$MmiKey{$a}<=>$MmiKey{$b}} keys %MmiKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff semantic relation information
+##############################################################################
+sub printSemanticRelationHeader {
+    foreach (sort {$SemanticRelationKey{$a}<=>$SemanticRelationKey{$b}} 
+	     keys %SemanticRelationKey) {
+	print TRAIN "\@ATTRIBUTE $_ NUMERIC\n";
+	if(defined $opt_test) { print TEST "\@ATTRIBUTE $_ NUMERIC\n"; }
+    }
+}
+
+##############################################################################
+#  print arff sense information
+##############################################################################
+sub printSenseHeader {
+    
+    $senses = "";
+    foreach my $s (sort keys %SenseHash) {
+	if($s eq "?") { next; }
+	$senses .= "$s,"; 
+    } chop $senses;
+    
+    $senses=~s/\%/-/g;
+   
+    print TRAIN "\@ATTRIBUTE Sense {$senses}\n";
+    print TRAIN "\@DATA\n";
+    
+    if(defined $opt_test) {
+	print TEST "\@ATTRIBUTE Sense {$senses}\n";
+	print TEST "\@DATA\n";
+    }
+}
+
+##############################################################################
+#  print arff header information
+##############################################################################
+sub printArffHeader {
+    
+    $relation=~s/ /_/g;
+
+    print TRAIN "\@RELATION $relation\n";
+
+    if(defined $opt_test) { print TEST "\@RELATION $relation\n"; }
+
+    if(defined $opt_head) {
+	&printHeadHeader();
+    }
+    
+    if(defined $opt_pos) {
+	&printPosHeader();
+    }
+    
+    if(defined $opt_stcount) {
+	&printStHeader();
+    }
+
+    if(defined $opt_cuicount) {
+	&printCuiHeader();
+    }
+
+    if(defined $opt_ngramcount) {
+	&printNgramHeader();
+    }    
+
+    if(defined $opt_relation) {
+	&printSemanticRelationHeader();
+    }
+    
+    if(defined $opt_mesh) {
+	&printMeshHeader();
+    }
+
+    if(defined $opt_mmi) {
+	&printMmiHeader();
+    }
+
+    &printSenseHeader();
+}    
+
+##############################################################################
+#  get the test data information
+##############################################################################
+sub getTestData
+{
+    if(!(defined $opt_test) ) { return; }
+    
+    if($debug) { print STDERR "In getTestData\n"; }
+
+    open(TRC, $opt_test) || die "Could not open TEST file: $opt_test\n";
+     
+    # misc variables
+    my $abstractId     = "";      # id of the abstract
+    my $sentenceId     = "";      # id of current instance
+    my $targetPhrase   = "";      # if in the target word phrase
+    my $targetSentence = "";      # if in the target word sentence
+    my $tokenFlag      = 0;       # if we are looking at a token word
+    my $head           = "";
+    
+    my @conflatedcui   = ();      # for conflatedcui option
+
+    while(<TRC>) {
+	
+	chomp;
+	
+	#  get the target word and all possible senses
+	if($_=~/\<lexelt item=\"(.*?)\" senses=\"(.*?)\"\>/) {
+	    $relation = &getRelation("test", $1, $2);	
+	}
+	
+	#  get the abstract id and the target word
+	elsif($_=~/\<instance id=\"(.*)\" alias=\"(.*)\">/) {
+	    $abstractId = &getAbstractId("test", $1, $2, $relation);
+	    &getMesh("test", $abstractId);
+	}
+	
+	#  get the sentence id and its corresponding sense
+	elsif($_=~/\<answer instance=\"(.*?)\" senseid=\"(.*)\"\/\>/) {
+	    &getSense("test", $2, $abstractId);
+	}
+
+	#  get the context line
+	elsif($_=~/<context line=\"(.*?)\"\/\>/) {
+	    my $line = $1;
+	    
+	    &getNgram("test", $line, $abstractId, $targetSentence, $targetPhrase, "line");
+	    &getMmi("test", $line, $abstractId);
+        }
+	
+	#  check if the target word is contained in the sentence
+	elsif($_=~/\<sentence tw=\"(.*?)\" id=\"(.*?)\" line=\"(.*?)\"\>/) {
+	    $targetSentence = $1;
+	    &getNgram("test", $3, $abstractId, $targetSentence, $targetPhrase, "sentence");
+	} 
+        
+        #  reset targetSentence
+	elsif($_=~/\<\/sentence>/) {
+	    $targetSentence = "";
+	}
+
+	#  check if target word is contained in the phrase
+	elsif($_=~/\<phrase tw=\"(.*?)\" head=\"(.*?)\" line=\"(.*?)\"\>/) {
+	    $targetPhrase = $1; $head = $2;
+	    &getNgram("test", $3, $abstractId, $targetSentence, $targetPhrase, "phrase");
+	}
+    
+        #  reset targetPhrase
+	elsif($_=~/\<\/phrase>/) {
+	    $targetPhrase = "";
+	}
+
+	#  get each token word  
+	elsif($_=~/\<token word=\"(.*)\" pos=\"(.*)\"\>/) {
+	    &getPos("test", $2, $abstractId, $targetSentence, $targetPhrase);
+	    $tokenFlag = 1;
+	}
+
+	# if the word is a target word get the POS and head information
+	elsif($_=~/\<target word=\"(.*?)\" pos=\"(.*)\"/) {
+	    my $w = $1; my $p = $2; my $h = "no"; $tokenFlag = 0;
+
+	    if($head eq $w) { $h = "yes"; }
+	    
+	    &setTargetInformation($p, $h, $abstractId);	    
+	}
+	
+	#  get each concept and semantic type in the sentence
+	elsif($_=~/<mapping rank=\"(.*?)\" score=\"(.*?)\" umls_cui=\"(.*?)\" umls_concept=\"(.*?)\" semantic_types=\"(.*?)\"\/\>/) {
+	    
+	    my $rank = $1;
+	    my $cui = lc($4); 
+	    my $st = $5;
+
+	    push @conflatedcui, $cui;
+	    
+	    my $continue = 1;
+	    if($opt_firstranked) {
+		$continue = 0;
+		if($rank=~/1/) { $continue = 1; } 
+	    }
+	    if($continue == 0) { next; }	    
+	    
+            #  the concept is the target word
+	    if($tokenFlag == 0) {
+		&setTargetWordSts("test", $abstractId, $st);
+	    }
+	    else {
+		if(! (defined $opt_conflatedcuis)) {
+		    &getCuis("test", $cui, $abstractId, $targetSentence, $targetPhrase);
+		}
+		&getSemanticTypes("test", $st, $abstractId, $targetSentence, $targetPhrase);
+	    }    
+	}
+	elsif ($_=~/<\/token>/) {
+	    if(defined $opt_conflatedcuis) {
+		@conflatedcui = sort @conflatedcui;
+		my $conflated = join "-", @conflatedcui;
+		
+		&getCuis("test", $conflated, $abstractId, $targetSentence, $targetPhrase);
+	    }
+	    @conflatedcui = ();
+	}
+    }
+    close TRC;
+}
+
+##############################################################################
+#  get the training data information
+##############################################################################
+sub getTrainingData {
+
+    if($debug) { print STDERR "In getTrainingData\n"; }
+
+    my $source = shift;
+
+    # misc variables
+    my $relation       = "";      # target word
+    my $abstractId     = "";      # id of the abstract
+    my $sentenceId     = "";      # id of current instance
+    my $targetPhrase   = "";      # if in the target word phrase
+    my $targetSentence = "";      # if in the target word sentence
+    my $tokenFlag      = 0;       # if we are looking at a token word
+    my $head           = 0;       # head of the phrase
+
+
+    open(SRC, $source) || die "Could not open SOURCE file: $source\n";
+
+
+    while(<SRC>) {
+	chomp;
+
+	#  get the target word and all possible senses
+	if($_=~/\<lexelt item=\"(.*?)\" senses=\"(.*?)\"\>/) {
+	    $relation = &getRelation("train", $1, $2);	
+	}
+	
+	#  get the abstract id and the target word
+	elsif($_=~/\<instance id=\"(.*)\" alias=\"(.*)\">/) {
+	    $abstractId = &getAbstractId("train", $1, $2, $relation);
+	    &getMesh("train", $abstractId);
+	}
+	
+	#  get the sentence id and its corresponding sense
+	elsif($_=~/\<answer instance=\"(.*?)\" senseid=\"(.*?)\"/) {
+	    &getSense("train", $2, $abstractId);
+
+	}
+
+	#  get the context line
+	elsif($_=~/\<context line=\"(.*?)\"\/>/) {
+	    my $line = $1;
+	    &getNgram("train", $line, $abstractId, $targetSentence, $targetPhrase, "line");
+	    &getMmi("train", $line, $abstractId);
+        }
+	
+	#  check if target word is contained in the phrase
+	elsif($_=~/\<phrase tw=\"(.*?)\" head=\"(.*?)\" line=\"(.*?)\"\>/) {
+	    $targetPhrase = $1; $head = $2;
+	    &getNgram("train", $3, $abstractId, $targetSentence, $targetPhrase, "phrase");
+	}
+	
+	#  reset targetPhrase
+	elsif($_=~/\<\/phrase>/) {
+	    $targetPhrase = "";
+	}
+
+	#  check if the target wrod is contained in the sentence
+	elsif($_=~/\<sentence tw=\"(.*?)\" id=\"(.*?)\" line=\"(.*?)\">/) {
+	    $targetSentence = $1;
+	    &getNgram("train", $3, $abstractId, $targetSentence, $targetPhrase, "sentence");
+	} 
+	
+	#  reset targetSentence
+	elsif($_=~/\<\/sentence>/) {
+	    $targetSentence = "";
+	}
+
+	#  get ngram and pos information
+	elsif($_=~/\<token word=\"(.*)\" pos=\"(.*)\"/) {
+	    my $term = $1; my $pos = $2;
+	    &getPos("train", $pos, $abstractId, $targetSentence, $targetPhrase);
+	    
+	    $tokenFlag = 1;
+	}
+	
+	# if the word is a target word get the POS, head and semantic 
+	#  type information
+	elsif($_=~/\<target word=\"(.*?)\" pos=\"(.*?)\"\>/) { 
+	    my $w = $1; my $p = $2; my $h = "no"; $tokenFlag = 0;
+
+	    if($head eq $w) { $h = "yes"; }
+	    	    
+	    &setTargetInformation($p, $h, $abstractId);	    
+	    
+	}
+	
+	#  get each concept and semantic type in the sentence
+	elsif($_=~/<mapping rank=\"(.*?)\" score=\"(.*?)\" umls_cui=\"(.*?)\" umls_concept=\"(.*?)\" semantic_types=\"(.*?)\"\/\>/) {
+	    
+	    my $rank = $1;
+	    my $cui  = lc($4); 
+	    my $st   = $5;
+	    
+	    push @conflatedcui, $cui;
+
+	    my $continue = 1;
+	    if($opt_firstranked) {
+		$continue = 0;
+		if($rank=~/1/) { $continue = 1; } 
+	    }
+	    if($continue == 0) { next; }	    
+
+	    #  the concept is the target word
+	    if($tokenFlag == 0) {
+		&setTargetWordSts("train", $abstractId, $st);
+	    }
+	    # otherwise 
+	    else {
+		if(! (defined $opt_conflatedcuis)) {
+		    &getCuis("train", $cui, $abstractId, $targetSentence, $targetPhrase);
+		}
+		&getSemanticTypes("train", $st, $abstractId, $targetSentence, $targetPhrase);
+	    }    
+	}
+    	elsif ($_=~/<\/token>/) {
+	    if($#conflatedcui == -1) { next; }
+	    if(defined $opt_conflatedcuis) {
+		@conflatedcui = sort @conflatedcui;
+		my $conflated = join "-", @conflatedcui;
+
+		&getCuis("train", $conflated, $abstractId, $targetSentence, $targetPhrase);
+	    }
+	    @conflatedcui = ();
+	}
+    }
+    close SRC;
+}
+
+##############################################################################
+#  get the relation and all possible senses
+##############################################################################
+sub getRelation {
+    
+    my $type  = shift;  
+    my $r     = shift;
+    my $s     = shift;
+
+    if($type eq "train") {
+	$relation = $r;
+    }
+
+    $s=~s/\" sats=\"//g; $s=~s/\%/-/g; 
+    my @array = split/\,/, $s; #/
+    foreach (@array) { $SenseHash{$_}++;}
+
+    return $r;
+}
+
+##############################################################################
+#  get the abstract id of the instance
+##############################################################################
+sub getAbstractId {
+    my $type = shift;
+    my $a    = shift;
+    my $tw   = shift;
+    my $r    = shift;
+
+    $TargetWord{$a} = $r;
+
+    $TW{$r}++;
+
+    if($type eq "train") { push @resultArray, $a; }
+    else {                 push @testArray,   $a; }
+
+    return $a;
+}
+
+##############################################################################
+#  get the sense of the instance
+##############################################################################
+sub getSense {
+    my $type = shift;
+    my $s    = shift;
+    my $id   = shift;
+
+    if(defined $opt_key and $type eq "test") {
+	$s = $KeyHash{$id};
+    }
+    elsif($type eq "test") {
+	if($s eq "") { $s = "?"; }
+    }
+    
+    $s=~s/\" sats=\"//g; $s=~s/\%/-/g;
+    
+    $SenseHash{$s}++;
+
+    if($s eq "") { 
+	print STDERR "MM file does not have a sense associated with instance $id\n";
+	&askHelp();
+	exit; 
+    }
+    
+    $TargetWordSense{$id} = $s;
+}
+
+
+##############################################################################
+#  get the Mmi information
+##############################################################################
+sub getMmi {
+    my $type           = shift;
+    my $line           = shift;
+    my $abstractId     = shift;
+
+    if(!(defined $opt_mmi)) { return; }
+
+    my $output = "$log/$abstractId.mmi.output";
+    my $input  = "$log/$abstractId.mmi.input";
+
+    print "In getMmi\n";
+
+    #  print the line to the input file
+    open(INPUT, ">$input") || die "Could not open mmi input file: $input\n";
+    print INPUT "$line\n";
+    close INPUT;
+    
+    
+    #  run metamap10 on input
+    system "$ENV{METAMAP_PATH}/metamap10 -N $input $output";
+    
+    #  get metamap10 mmi output
+    if(! (-e $output) ){ 
+	print STDERR "The mmi output file ($output) does not exist\n";
+	exit;
+    }
+
+    open(OUTPUT, $output) || die "Could not open mmi output file: $output\n";
+    
+    #  get the mmi data
+    my %hash = (); my $mmiFlag = 0;
+    while(<OUTPUT>)  {
+	chomp;
+
+	$_=~/[0-9]+\|MM\|([0-9\.]+)\|(.*?)\|(C[0-9]+)\|/;
+	my $score = $1;
+	my $term  = $2;
+	my $cui   = $3;
+	
+	$hash{$cui} = $score;
+    }
+    
+    foreach my $cui (sort {$hash{$b}<=>$hash{$a}} keys %hash) {
+	
+	if($hash{$cui} > $opt_mmi) {
+	    
+	    if($type eq "train") {
+		$MmiKey{$cui} = exists $MmiKey{$cui} ? 
+		    $MmiKey{$cui} : $MmiCounter++;
+	    }
+	    
+	    $MmiHash{$abstractId}{$cui}++;
+	}
+    }     
+}
+
+##############################################################################
+#  get the MeSH information
+##############################################################################
+sub getMesh {
+    my $type = shift;
+    my $pmid = shift;
+
+    if(!(defined $opt_mesh)) { return; }
+
+    my $utils = "http://www.ncbi.nlm.nih.gov/entrez/eutils";
+
+    my $db     = "Pubmed";
+    my $report = "Medline";
+
+    my $esearch = "$utils/esearch.fcgi?" .
+	"db=$db&retmax=1&usehistory=y&term=";
+    
+    my $esearch_result = get($esearch . $pmid);
+
+    $esearch_result =~m|<Count>(\d+)</Count>.*<QueryKey>(\d+)</QueryKey>.*<WebEnv>(\S+)</WebEnv>|s;	    
+    
+    my $Count    = $1;
+    my $QueryKey = $2;
+    my $WebEnv   = $3;
+    
+    if($Count eq "")    { next; }
+    if($QueryKey eq "") { next; }
+    if($WebEnv eq "")   { next; }
+
+    my $retstart = 0;
+    my $retmax   = 3;
+
+    for($retstart = 0; $retstart < $Count; $retstart += $retmax) {
+	my $efetch = "$utils/efetch.fcgi?" .
+	    "rettype=$report&retmode=text&retstart=$retstart&retmax=$retmax&" .
+	    "db=$db&query_key=$QueryKey&WebEnv=$WebEnv";
+	
+	my $efetch_result = get($efetch);
+	
+	my @mhs = ();
+	while($efetch_result=~/MH\s+\- (.*?)\n/g) { push @mhs, "$1"; }
+	
+	foreach $msh (@mhs) {
+	    
+	    $msh=~s/\*//g;
+	    $msh=~s/\,//g;
+	    $msh=~s/\'//g;
+	    $msh=~s/\s/_/g;
+	    $msh=~s/\&/and/g;
+	    $msh=~s/-/_/g;
+
+	    if($type eq "train") {
+		$MeshKey{$msh} = exists $MeshKey{$msh} ? 
+		    $MeshKey{$msh} : $MeshCounter++;
+	    }
+	    
+	    $MeshHash{$pmid}{$msh}++;
+	}    
+    }
+}
+
+##############################################################################
+#  get the ngram information  
+##############################################################################
+sub getNgram {
+
+    my $type           = shift;
+    my $ngrams         = shift;
+    my $abstractId     = shift;   
+    my $targetSentence = shift;
+    my $targetPhrase   = shift;
+    my $location       = shift;
+
+    if(!(defined $opt_ngramcount)) { return; }
+    
+    if   (defined $opt_sentence) { if($location ne "sentence") { return; } }
+    elsif(defined $opt_phrase)   { if($location ne "phrase")   { return; } }
+    else                         { if($location ne "line")     { return; } }
+    
+    my @array = split/\s+/, $ngrams;
+
+    foreach my $item (@array) {
+	
+	if($opt_lc) {
+	    $item = lc($item);
+	}
+
+	#  remove some problematic punctuation
+	if($item=~/[\.\,\!\"\'\:\;\?]/) { next; }
+
+	if($type eq "train") {
+	    if(defined $opt_sentence and $targetSentence ne "") {
+		push @{$NgramArray{$abstractId}}, $item;
+	    }
+	    elsif(defined $opt_phrase and $targetPhrase ne "") {
+		push @{$NgramArray{$abstractId}}, $item;
+	    }
+	    elsif(defined $opt_line) {
+		push @{$NgramArray{$abstractId}}, $item;
+	    }
+	}
+	else  {    
+	    if(defined $opt_sentence and $targetSentence ne "") {
+		push @{$TestNgramArray{$abstractId}}, $item;
+	    }
+	    elsif(defined $opt_phrase and $targetPhrase ne "") {
+		push @{$TestNgramArray{$abstractId}}, $item;
+	    }
+	    elsif(defined $opt_line) {
+		push @{$TestNgramArray{$abstractId}}, $item;
+	    }
+	}
+    }
+
+}
+
+##############################################################################
+# get the part of speech information
+##############################################################################
+sub getPos {
+    
+    my $type           = shift;
+    my $pos            = shift;
+    my $abstractId     = shift;
+    my $targetSentence = shift;
+    my $targetPhrase   = shift;
+    
+    if(! (defined $opt_pos) ) { return; }
+    
+    $pos =~s/[\[\]]//g; $pos=~s/,/-/g; $pos=~s/ /_/g;
+    
+    
+    $PosKey{$pos} = exists $PosKey{$pos} ? 
+	$PosKey{$pos} : $PosCounter++;
+    
+    if($type eq "train") {
+	if(defined $opt_sentence and $targetSentence ne "") {
+	    $PosHash{$abstractId}{$pos}++;  	
+	}
+	elsif(defined $opt_phrase and $targetPhrase ne "") {
+	    $PosHash{$abstractId}{$pos}++;  	
+	}
+	elsif(defined $opt_line) {
+	    $PosHash{$abstractId}{$pos}++;  	
+	}
+    }
+    else {
+	if(defined $opt_sentence and $targetSentence ne "") {
+	    $TestPosHash{$abstractId}{$pos}++;  	
+	}
+	elsif(defined $opt_phrase and $targetPhrase ne "") {
+	    $TestPosHash{$abstractId}{$pos}++;  	
+	}
+	elsif(defined $opt_line) {
+	    $TestPosHash{$abstractId}{$pos}++;  	
+	}
+    }
+}
+
+##############################################################################
+#  get the semantic type information
+##############################################################################
+sub getSemanticTypes {
+    my $type           = shift;
+    my $st             = shift;
+    my $abstractId     = shift;
+    my $targetSentence = shift;
+    my $targetPhrase   = shift;
+
+    #  check for the semantic types that correspond to this cui
+    if(defined $opt_stcount or defined $opt_relation) {
+	
+	my @sts = split/\,/, $st; #/
+  
+	foreach my $s (@sts) {
+           
+	    if($type eq "train") {
+		if(defined $opt_sentence and $targetSentence ne "") {
+		    push @{$SemanticTypeArray{$abstractId}}, $s;
+		    
+		}
+		elsif(defined $opt_phrase and $targetPhrase ne "") {
+		    push @{$SemanticTypeArray{$abstractId}}, $s;
+		}
+		elsif(defined $opt_line) {
+		    push @{$SemanticTypeArray{$abstractId}}, $s;
+		}
+	    }
+	    else {
+		if(defined $opt_sentence and $targetSentence ne "") {
+		    push @{$TestSemanticTypeArray{$abstractId}}, $s;
+		}
+		elsif(defined $opt_phrase and $targetPhrase ne "") {
+		    push @{$TestSemanticTypeArray{$abstractId}}, $s;
+	       }
+		elsif(defined $opt_line)  {
+		    push @{$TestSemanticTypeArray{$abstractId}}, $s;
+		}
+	    }
+	}
+    }
+}
+
+##############################################################################
+#  get the umls concept unique identifier information
+##############################################################################
+sub getCuis {
+    my $type           = shift;
+    my $cui            = shift;
+    my $abstractId     = shift;
+    my $targetSentence = shift;
+    my $targetPhrase   = shift;
+    
+    if(!(defined $opt_cuicount)) { return; }
+    
+
+    $cui=~s/[<>]//g;
+    $cui=~s/\,/ /g;
+    #$cui=~s/-//g;
+    $cui=~s/[\'\"]//g;
+    $cui=~s/\%/percent/g;
+    $cui=~s/[\[\]]//g;
+    $cui=~s/\{//g;
+    $cui=~s/\}//g;
+    $cui=~s/\s+\-\s+/-/g;
+    $cui=~s/\s+$//g;
+    $cui=~s/^\s+//g;
+    $cui=~s/\s+/ /g;
+    $cui=~s/\s/_/g;
+    
+    if($cui=~/^\s*$/) { return; }
+
+    $cui = "<$cui>";
+
+    if($type eq "train") {
+	if(defined $opt_sentence and $targetSentence ne "") {
+	    push @{$UmlsCuiArray{$abstractId}}, $cui;
+	} 
+	elsif(defined $opt_phrase and $targetPhrase ne "") {
+	    push @{$UmlsCuiArray{$abstractId}}, $cui;
+	}
+	elsif(defined $opt_line) {
+	    push @{$UmlsCuiArray{$abstractId}}, $cui;
+	} 
+    }
+    else {
+	if(defined $opt_sentence and $targetSentence ne "") {
+	    push @{$TestUmlsCuiArray{$abstractId}}, $cui;
+	} 
+	elsif(defined $opt_phrase and $targetPhrase ne "") {
+	    push @{$TestUmlsCuiArray{$abstractId}}, $cui;
+	}
+	elsif(defined $opt_line) {
+	    push @{$TestUmlsCuiArray{$abstractId}}, $cui;
+	} 
+    }
+}
+
+##############################################################################
+#  set the target word information 
+##############################################################################
+sub setTargetInformation {
+
+    my $pos = shift;
+    my $head = shift;
+    my $abstractId = shift;
+    
+    $pos =~s/[\[\]]//g; $pos=~s/,/-/g; $pos=~s/ /_/g;
+    
+    if($pos=~/^\s*$/) { $pos = "none"; }
+    
+
+    $TargetWordPos{$abstractId}  = $pos; 
+    $TargetWordHead{$abstractId} = $head;
+}
+
+
+sub setTargetWordSts {
+    my $type       = shift;
+    my $abstractId = shift;
+    my $st         = shift;
+
+    if($type eq "train") { push @{$TargetWordSts{$abstractId}}, $st; }
+    else {                 push @{$TestWordSts{$abstractId}}, $st;   }
+}
+
+##############################################################################
+#  set the semantic relation information
+##############################################################################
+sub setSemanticRelations {
+    
+    if(defined $opt_relation) {
+
+	#  set the training data relations
+	foreach my $abstractId (sort keys %TargetWordSts) {
+	    foreach my $st1 (@{$TargetWordSts{$abstractId}}) {
+		foreach my $st2 (@{$SemanticTypeArray{$abstractId}}) {
+		    foreach my $rel (@{$relations{$st1}{$st2}}) {
+			$SemanticRelationHash{$abstractId}{$rel}++; 
+			$SemanticRelationKey{$rel} = exists $SemanticRelationKey{$rel} ? 
+			    $SemanticRelationKey{$rel} : $SemanticRelationCounter++;
+		    }
+		    foreach my $rel (@{$relations{$st2}{$st1}}) {
+			$SemanticRelationHash{$abstractId}{$rel}++; 
+			$SemanticRelationKey{$rel} = exists $SemanticRelationKey{$rel} ? 
+			    $SemanticRelationKey{$rel} : $SemanticRelationCounter++;
+		    }
+		}
+	    }
+	}
+	
+	# set the test data relations
+	foreach my $abstractId (sort keys %TestWordSts) {
+	    foreach my $st1 (@{$TestWordSts{$abstractId}}) {
+		foreach my $st2 (@{$TestSemanticTypeArray{$abstractId}}) {
+		    foreach my $rel (@{$relations{$st1}{$st2}}) {
+			$TestSemanticRelationHash{$abstractId}{$rel}++; 
+		    }
+		    foreach my $rel (@{$relations{$st2}{$st1}}) {
+			$TestSemanticRelationHash{$abstractId}{$rel}++; 
+		    }
+		}
+	    }
+	}
+    }
+}
+
+##############################################################################
+#  set the CUI threshold information
+##############################################################################
+sub setCuis {
+    
+    if( !(defined $opt_cuicount) ) { return; }
+	
+    
+    for my $i (0..$#cuicountArray) {
+       
+	my $cuicount   = $cuicountArray[$i];
+	my $cuimeasure = $cuimeasureArray[$i];
+	my $cuistat    = $cuistatArray[$i];
+
+	my $timestamp = &time_stamp();
+	
+	#  use NSP to obtain the ngrams and the counts	
+    	my $command = "$cuicount --token $ENV{CUITOOLSHOME}/default_options/tokenfile ";
+	
+	#&setNSPInput("$log/cui.$timestamp.input", "cui");
+	&setNSPInput("$destination.input", "cui");
+
+	&useNSPcount("$destination.input.cnt", "$destination.input", $command);
+	
+	if(defined $opt_similarity) {
+	    print STDERR "HERE\n";
+	    &useUMLSSimilarity("$destination.input.sim", "$destination.input.cnt");
+	    &getUMLSSimilarityOutput("$destination.input.sim", "cui");
+	}	
+	elsif(defined $opt_cuimeasure) {
+	    &useNSPstatistics("$destination.input.stat", "$destination.input.cnt", $cuimeasure, $cuistat);
+	    &getNSPOutput("$destination.input.stat", "cui");
+	}
+	else {
+	    #  get the frequency of the counts for each target word-sense cui pair
+	    &getNSPOutput("$destination.input.cnt", "cui");
+	}
+    }
+}
+
+##############################################################################
+#  set the semantic types information
+##############################################################################
+sub setSemanticTypes {
+
+    if( !(defined $opt_stcount) ) { return; }
+
+    
+    for my $i (0..$#stcountArray) {
+
+	my $stcount   = $stcountArray[$i];
+	my $stmeasure = $stmeasureArray[$i];
+	my $ststat    = $ststatArray[$i];
+    
+	my $timestamp = &time_stamp();
+	
+	#  use NSP to obtain the counts
+	&setNSPInput("$log/st.$timestamp.input", "st");	
+	
+	&useNSPcount("$log/st.$timestamp.input.cnt", "$log/st.$timestamp.input", $stcount);
+    
+	if(defined $opt_stmeasure) {
+	    &useNSPstatistics("$log/st.$timestamp.input.stat", "$log/st.$timestamp.input.cnt", $stmeasure, $ststat);
+	    &getNSPOutput("$log/st.$timestamp.input.stat", "st");
+	}
+	else {
+	    #  get the frequency of the counts for each target word-sense cui pair
+	    &getNSPOutput("$log/st.$timestamp.input.cnt", "st");
+	}
+    }
+}
+
+##############################################################################
+#  set the ngram information
+##############################################################################
+sub setNgrams {
+    
+    if( !(defined $opt_ngramcount) ) { return; }
+    
+    for my $i (0..$#ngramcountArray) {
+	
+	my $ngramcount   = $ngramcountArray[$i];
+	my $ngrammeasure = $ngrammeasureArray[$i];
+	my $ngramstat    = $ngramstatArray[$i];
+
+	my $timestamp    = &time_stamp();
+    
+	#  use NSP to obtain the counts
+	#&setNSPInput("$log/ngram.$timestamp.input", "ngram");
+	&setNSPInput("$destination.input", "ngram");
+
+	&useNSPcount("$destination.input.cnt", "$destination.input", $ngramcount);
+
+	if(defined $opt_similarity) {
+	    print STDERR "HERE\n";
+	    &useUMLSSimilarity("$destination.input.sim", "$destination.input.cnt");
+	    &getUMLSSimilarityOutput("$destination.input.sim", "ngram");
+	}	
+	elsif(defined $opt_ngrammeasure) {
+	    &useNSPstatistics("$destination.input.stat", "$destination.input.cnt", $ngrammeasure, $ngramstat);
+	    &getNSPOutput("$destination.input.stat", "ngram");
+	}
+	else {
+	    #  get the frequency of the counts for each target word-sense cui pair
+	    &getNSPOutput("$destination.input.cnt", "ngram");
+	}
+    }
+}
+
+##############################################################################
+#  get the NSP frequency count information
+##############################################################################
+sub getNSPOutput {
+
+    my $file = shift;
+    my $type = shift;
+    
+    open(CNT, "$file") || die "Could not open NSP output file $file\n";
+
+    my $temp = <CNT>;
+    while(<CNT>) {
+	chomp;
+	
+	my @array = split/<>/;
+	my $stats = pop @array;
+	my $item  = join "_", @array;
+	
+	my @numbers = split/\s+/, $stats;
+	my $frequency = shift @numbers;
+	
+	if($type eq "ngram")   { 
+	    $NgramKey{$item} = exists $NgramKey{$item} ? 
+		$NgramKey{$item} : $NgramCounter++;
+	    $NgramFreq{$item} = $frequency;
+	}
+	if($type eq "st") { 
+	    $SemanticTypeKey{$item} = exists $SemanticTypeKey{$item} ? 
+		$SemanticTypeKey{$item} : $SemanticTypeCounter++;
+	    $SemanticTypeFreq{$item} = $frequency;
+	}
+	if($type eq "cui")     { 
+	    $UmlsCuiKey{$item} = exists $UmlsCuiKey{$item} ? 
+		$UmlsCuiKey{$item} : $UmlsCuiCounter++;
+	    $UmlsCuiFreq{$item} = $frequency;
+	}
+    }
+
+    close CNT;
+}
+
+##############################################################################
+#  get the UMLS-Similarity similarity information
+##############################################################################
+sub getUMLSSimilarityOutput {
+    
+    my $file = shift;
+    my $type = shift;
+    
+    print STDERR "In getUMLSSimilarityOutput\n";
+
+    open(SIM, "$file") || die "Could not open similarity output file $file\n";
+    
+    while(<SIM>) {
+	chomp;
+	
+	my @array = split/<>/;
+	my $sim = shift @array;
+	my $item  = join "_", @array;
+
+	if($item=~/^\s*$/) { next; }
+	
+	if($type eq "ngram")   { 
+	    $NgramKey{$item} = exists $NgramKey{$item} ? 
+		$NgramKey{$item} : $NgramCounter++;
+	    $NgramSimilarity{$item} = $sim;
+	}
+	if($type eq "cui")     { 
+	    $UmlsCuiKey{$item} = exists $UmlsCuiKey{$item} ? 
+		$UmlsCuiKey{$item} : $UmlsCuiCounter++;
+	    $UmlsCuiSimilarity{$item} = $sim;
+	}
+    }
+
+    close SIM;
+    print STDERR "Exiting getUMLSSimilarityOutput\n";
+}
+
+
+##############################################################################
+#  get the counts using NSP
+##############################################################################
+sub useNSPcount {
+
+    my $output    = shift;
+    my $input     = shift;
+    my $command   = shift;
+        
+    if(defined $opt_stop) {
+	$command .= " --stop $opt_stop ";
+    }
+    elsif(defined $opt_idfstop) {
+	$command .= " --stop $opt_idfstop/$relation.training.stop ";
+    }
+    system("count.pl $command $output $input");
+}
+
+##############################################################################
+#  get the counts using NSP
+##############################################################################
+sub useNSPstatistics {
+    
+    my $output  = shift;
+    my $input   = shift;
+    my $measure = shift;
+    my $stat    = shift;
+
+    system("statistic.pl $measure $stat $output $input");
+}
+
+
+##############################################################################
+#  get the similarity using UMLS-Similarity
+##############################################################################
+sub useUMLSSimilarity {
+    my $output = shift;
+    my $input = shift;
+    
+    print STDERR "In useUMLSSimilarity\n";
+    
+    my $configfile = "$ENV{CUITOOLSHOME}/default_options/config"; 
+    if(defined $opt_simconfig) {
+	$configfile = $opt_simconfig;
+    }
+
+    print "get-similarity.pl --tw $relation --config $configfile --infile $input > $output\n";
+    system "get-similarity.pl --tw $relation --config $configfile --infile $input > $output";
+    
+    print STDERR "Exiting useUMLSSimilarity\n";
+    
+}
+
+##############################################################################
+#  set the NSP input file
+##############################################################################
+sub setNSPInput {
+
+    my $file = shift;
+    my $type = shift;
+
+    #  global input file
+    open(INPUT, ">$file") || die "Could not open set NSP file : $file";
+    
+    # get the ngrams surrounding each target word-sense pair 
+    if($type eq "ngram") {
+	foreach my $abstractId (sort keys %NgramArray) {
+	    print INPUT "@{$NgramArray{$abstractId}}\n";
+	}
+    }
+    # get the semantic types surrounding each target word-sense pair      
+    if($type eq "st") {
+	foreach my $abstractId (sort keys %SemanticTypeArray) {
+	    print INPUT "@{$SemanticTypeArray{$abstractId}}\n";
+	}
+    }
+ 
+    # get the cuis surrounding each target word-sense pair          
+    if($type eq "cui") {
+	foreach my $abstractId (sort keys %UmlsCuiArray) {
+	    print INPUT "@{$UmlsCuiArray{$abstractId}}\n";
+	}	
+    }
+    close INPUT;
+}
+
+##############################################################################
+#  populate the hash tables with the ngram feature information
+##############################################################################
+sub populateNgramHash {
+    
+    my $abstractId = shift;
+    my $type       = shift;
+
+    if(! (defined $opt_ngramcount)) { return; }
+    
+    for my $i ($#ngramcountArray) {
+	
+	my $ngramcount   = $ngramcountArray[$i];
+
+	open(PLAIN, ">$log/plain") || die "Could not open temp file ($log/plain) for NgramHash\n";
+	
+	if($type eq "train") { print PLAIN "@{$NgramArray{$abstractId}}\n"; }
+	else                 { print PLAIN "@{$TestNgramArray{$abstractId}}\n"; }
+	
+	close PLAIN;
+
+	my $command = $ngramcount;
+	if($type eq "test") {
+	    $ngramcount=~/(--ngram [0-9]+)/;
+	    $command = $1;
+	}
+    
+	&useNSPcount("$log/count", "$log/plain", $command);    
+	
+	open(CNT, "$log/count") || die "Could not open temp file ($log/count) for NgramHash\n";
+    
+	my $overall = <CNT>;
+	while(<CNT>) {
+	    chomp;
+	
+	    my @array = split/<>/; my $stats = pop @array; my $item  = join "_", @array;
+	
+	    $NgramHash{$abstractId}{$item}++; 
+	}
+	
+	close CNT;
+
+	system "rm $log/plain $log/count";
+    }
+}
+
+
+##############################################################################
+#  populate the hash tables with the cui feature information
+##############################################################################
+sub populateCuiHash {
+    
+    my $abstractId = shift;
+    my $type = shift;
+
+    if(!(defined $opt_cuicount)) { return; }
+
+    if(($type eq "train") and ($#{$UmlsCuiArray{$abstractId}} < 0))     { return; }
+    if(($type eq "test")  and ($#{$TestUmlsCuiArray{$abstractId}} < 0)) { return; }
+    
+    for my $i (0..$#cuicountArray) {
+	
+	my $cuicount   = $cuicountArray[$i];
+
+	open(PLAIN, ">$log/plain") || die "Could not open temp file: $log/plain";
+
+	if($type eq "train") { print PLAIN "@{$UmlsCuiArray{$abstractId}}\n"; }
+	else                 { print PLAIN "@{$TestUmlsCuiArray{$abstractId}}\n"; }
+    
+	close PLAIN;
+
+	my $command = $cuicount;
+	if($type eq "test") {
+	    $cuicount=~/(--ngram [0-9]+)/;
+	    $command = $1;
+	}
+	$command .= " --token $ENV{CUITOOLSHOME}/default_options/tokenfile ";
+	
+	&useNSPcount("$log/count", "$log/plain", $command);    
+
+	open(CNT, "$log/count") || die "Could not open temp file: $log/count";
+    
+	my $overall = <CNT>;
+	while(<CNT>) {
+	    chomp;
+	    
+	    my @array = split/<>/; my $stats = pop @array; my $item  = join "_", @array;
+	    
+	    $UmlsCuiHash{$abstractId}{$item}++; 
+	}
+	close CNT;
+	system "rm $log/plain $log/count";
+    }
+}
+
+
+##############################################################################
+#  populate the hash tables with the st feature information
+##############################################################################
+sub populateStHash {
+    
+    my $abstractId = shift;
+    my $type = shift;
+
+    if(! (defined $opt_stcount)) { return; }
+
+
+    if(($type eq "train") and ($#{$SemanticTypeArray{$abstractId}} < 0))     { return; }
+    if(($type eq "test")  and ($#{$TestSemanticTypeArray{$abstractId}} < 0)) { return; }
+
+    
+    for my $i (0..$#stcountArray) {
+	
+	my $stcount   = $stcountArray[$i];
+
+	open(PLAIN, ">$log/plain") || die "Could not open temp file: $log/plain";
+    
+	if($type eq "train") { print PLAIN "@{$SemanticTypeArray{$abstractId}}\n"; }
+	else                 { print PLAIN "@{$TestSemanticTypeArray{$abstractId}}\n"; }
+	
+	close PLAIN;
+	
+	my $command = $stcount;
+	if($type eq "test") {
+	    $stcount=~/(--ngram [0-9]+)/;
+	    $command = $1;
+	}
+
+	&useNSPcount("$log/count", "$log/plain", $command);    
+ 	
+	open(CNT, "$log/count") || die "Could not open temp file: $log/count";
+    
+	my $overall = <CNT>;
+	while(<CNT>) {
+	    chomp;
+	    
+	    my @array = split/<>/; my $stats = pop @array; my $item  = join "_", @array;
+	    
+	    $SemanticTypeHash{$abstractId}{$item}++; 
+	}
+	close CNT;
+	system "rm $log/plain $log/count";
+    }
+}
+    
+
+##############################################################################
+#  get the user defined options
+##############################################################################
+sub checkOptions {
+    
+    #  if help is defined, print out help
+    if( defined $opt_help ) {
+	$opt_help = 1;
+	&showHelp();
+	exit;
+    }
+    
+    #  if version is requested, show version
+    if( defined $opt_version ) {
+	$opt_version = 1;
+	&showVersion();
+	exit;
+    }
+
+    if($#ARGV < 0) {
+	$opt_help = 1;
+	&minimalUsageNotes();
+	exit;
+    }
+
+    if( (defined $opt_key) and (defined $opt_nokey) ) {
+	print STDERR "ERROR: The options --key and --nokey can not be defined at the same time\n";
+	exit;
+    }
+
+    #  if key is defined load the KeyHash
+    if(defined $opt_key) {
+	
+	open(KEY, $opt_key) || die "Could not open the key file: $opt_key\n";
+	
+	while(<KEY>) {
+	    chomp;
+	    my ($tw, $id, $sense) = split/\s+/;
+	    $sense=~s/\%/-/g;
+	    $KeyHash{$id} = $sense;
+	    $KeyCount++;
+	}
+    }
+    
+    if(defined $opt_similarity) {
+	if(!defined $opt_ngramcount and !defined $opt_cuicount) {
+	    print STDERR "ERROR: The option --similarity can only be defined when using --ngramcount or --cuicount for bigrams.\n";
+	    exit;
+	}
+    }
+    
+    if( (defined $opt_ngrammeasure or defined $opt_ngramstat) and !(defined $opt_ngramcount)) {
+	print STDERR "ERROR: The option --ngramcount must be defined when using the --ngrammeasure and/or --ngarmstat options\n";
+	exit;
+    }
+    if( (defined $opt_cuimeasure or defined $opt_cuistat) and !(defined $opt_cuicount)) {
+	print STDERR "ERROR: The option --cuicount must be defined when using the --cuimeasure and/or --cuistat options\n";
+	exit;
+    }
+    if( defined $opt_similarity and defined $opt_cuimeasure) {
+	print STDERR "ERROR: The options --similarity and --cuimeasure can not both be defined.\n";
+	exit;
+    }
+    if( defined $opt_similarity and defined $opt_ngrammeasure) {
+	print STDERR "ERROR: The options --similarity and --ngrammeasure can not both be defined.\n";
+	exit;
+    }
+    if( (defined $opt_stmeasure or defined $opt_ststat) and !(defined $opt_stcount)) {
+	print STDERR "ERROR: The option --stcount must be defined when using the --stmeasure and/or --ststat options\n";
+	exit;
+    }
+        
+    if(defined $opt_ngramcount)   { 
+	push @ngramcountArray,   $opt_ngramcount;   
+	if(defined $opt_ngrammeasure) { push @ngrammeasureArray, $opt_ngrammeasure; }
+	else                          { push @ngrammeasureArray, "";                }
+	if(defined $opt_ngramstat)    { push @ngramstatArray,    $opt_ngramstat;    }
+	else                          { push @ngramstatArray,    "";                }
+    }
+
+    if(defined $opt_cuicount)   { 
+	push @cuicountArray,   $opt_cuicount;   
+	if(defined $opt_cuimeasure) { push @cuimeasureArray, $opt_cuimeasure; }
+	else                        { push @cuimeasureArray, "";              }
+	if(defined $opt_cuistat)    { push @cuistatArray,    $opt_cuistat;    }
+	else                        { push @cuistatArray,    "";              }
+    }
+
+    if(defined $opt_stcount)   { 
+	push @stcountArray,   $opt_stcount;   
+	if(defined $opt_stmeasure) { push @stmeasureArray, $opt_stmeasure; }
+	else                       { push @stmeasureArray, "";             }
+	if(defined $opt_ststat)    { push @ststatArray,    $opt_ststat;    }
+	else                       { push @ststatArray,    "";             }
+    }
+    
+    
+    if(defined $opt_nspconfig) {
+	
+	open(CONFIG, $opt_nspconfig) || die "Could not open the nsp configuration file: $opt_nspconfig\n";
+	
+	my $configuration = "";
+	while(<CONFIG>) {
+	    if($_=~/^\#/)   { next; }
+	    if($_=~/^\s*$/) { next; }
+	    
+	    if($_=~/(ngramcount\:\:|cuicount\:\:|stcount\:\:)/) {
+		if($configuration ne "") {
+		    &processConfiguration($configuration);
+		}
+		$configuration = "";
+	    }
+	    $configuration .= $_;
+	}
+	&processConfiguration($configuration);  
+    }    
+
+    # if relation is defined
+    if(defined $opt_relation) {
+	open(REL, "$ENV{CUITOOLSHOME}/default_options/relation") ||
+	    die "Could not find relation file $ENV{CUITOOLSHOME}/default_options/relation\n";
+	while(<REL>) {
+	    chomp;
+	    my($st1, $rel, $st2) = split/\s+/;
+	    push @{$relations{$st1}{$st2}}, $rel;
+	    push @{$relations{$st2}{$st1}}, $rel;
+	}
+    }
+    
+    if(defined $opt_lc) { $opt_lc = 1; }
+
+    #  check if log file is defined
+    $log = "mm2arff.log";
+    if(defined $opt_log) {
+	$log = $opt_log;
+    }
+    if(! (-e $log)) {
+	system "mkdir $log";
+    }
+
+    #  check the context options
+    if( (!(defined $opt_line))  && 
+	(!(defined $opt_sentence)) && 
+	(!(defined $opt_phrase)) ) {
+	$opt_line = 1;
+    }
+    
+    if( (defined $opt_line && defined $opt_sentence) ||
+	(defined $opt_line && defined $opt_phrase)   ||
+	(defined $opt_phrase  && defined $opt_sentence)) {
+	print STDERR "ERROR: Can only define the line, phrase OR sentence options\n";
+	&askHelp();
+	exit;
+    }
+}
+
+##############################################################################
+#  process the configuration statement in the config file
+##############################################################################
+sub processConfiguration
+{
+    my $line = shift;
+
+    my $type = "";
+    my $count = "";
+    my $measure = "";
+    my $stat  = "";
+    
+    if($line=~/^(.*?)\:\:/)           { $type = $1;  }
+    
+    if($line=~/\bcount::(.*?)\s*\n/)  { $count = $1; }
+    
+    if($line=~/\bstatistic::(.*?\.pm)(.*?)\n/) {
+	$measure = $1; $stat = $2;  	
+    }
+
+    if($type eq "ngramcount") {
+	$opt_ngramcount = 1;
+	push @ngramcountArray, $count;
+	push @ngrammeasureArray, $measure;
+	push @ngramstatArray, $stat;
+    }
+
+    if($type eq "cuicount") {
+	$opt_cuicount = 1;
+	push @cuicountArray, $count;
+	push @cuimeasureArray, $measure;
+	push @cuistatArray, $stat;
+    }
+    
+    if($type eq "stcount") {
+	$opt_stcount = 1;
+	push @stcountArray, $count;
+	push @stmeasureArray, $measure;
+	push @ststatArray, $stat;
+    }
+}
+
+##############################################################################
+#  print instance head information
+##############################################################################
+sub printHeadInformation {
+
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+
+    if($testInstance=~/yes/) {
+	if(! (exists $TargetWordHead{$abstractId})) { print TEST "0, "; }
+	else {($TargetWordHead{$abstractId}=~/yes/) ? print TEST "1," : print TEST "0,"; }
+    }
+    else {
+	if(! (exists $TargetWordHead{$abstractId})) { print TRAIN "0, "; }
+	else {($TargetWordHead{$abstractId}=~/yes/) ? print TRAIN "1," : print TRAIN "0,"; }
+    }
+}
+
+##############################################################################
+#  print instance POS information
+##############################################################################
+sub printPosInformation {
+
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+
+    foreach (sort {$PosKey{$a}<=>$PosKey{$b}} 
+	     keys %PosKey) {
+	
+	if($testInstance=~/yes/) {
+	    (exists $TestPosHash{$abstractId}{$_}) ? 
+		print TEST "1," : print TEST "0,";
+	}
+	else {
+	    (exists $PosHash{$abstractId}{$_}) ? 
+		print TRAIN "1," : print TRAIN "0,";
+	}
+    }
+}
+  
+##############################################################################
+#  print instance semantic type information
+##############################################################################
+sub printStInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+    
+    foreach (sort {$SemanticTypeKey{$a}<=>$SemanticTypeKey{$b}} 
+	     keys %SemanticTypeKey) {
+	
+	if($testInstance=~/yes/) {
+	    if(defined $opt_freq) {
+		(exists $SemanticTypeHash{$abstractId}{$_}) ? 
+		    print TEST "$SemanticTypeFreq{$_}," : print TEST "0,";
+	    }
+	    else {
+		(exists $SemanticTypeHash{$abstractId}{$_}) ? 
+		    print TEST "1," : print TEST "0,";
+	    }
+	}
+	else {
+	    if(defined $opt_freq) {
+		(exists $SemanticTypeHash{$abstractId}{$_}) ? 
+		    print TRAIN "$SemanticTypeFreq{$_}," : print TRAIN "0,";
+	    }
+	    else {
+		(exists $SemanticTypeHash{$abstractId}{$_}) ? 
+		    print TRAIN "1," : print TRAIN "0,";
+	    }
+	}
+    }
+}
+
+
+##############################################################################
+#  print instance CUI information
+##############################################################################
+sub printCuiInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+    
+    foreach my $cui (sort {$UmlsCuiKey{$a}<=>$UmlsCuiKey{$b}} keys %UmlsCuiKey) {
+	
+	if( (defined $testInstance) and ($testInstance=~/yes/)) {
+	    if(defined $opt_similarity) {
+		if(exists $UmlsCuiHash{$abstractId}{$cui}) {
+		    if($UmlsCuiSimilarity{$cui} > 0.5) {
+			print TEST "1,";
+		    } else { print TEST "0,"; }
+		} else { print TEST "0,"; }
+  	    }
+	    elsif(defined $opt_freq) {
+		(exists $UmlsCuiHash{$abstractId}{$cui}) ? 
+		    print TEST "$UmlsCuiFreq{$cui}," : print TEST "0,";
+	    }
+	    else {
+		(exists $UmlsCuiHash{$abstractId}{$cui}) ? 
+		    print TEST "1," : print TEST "0,";
+	    }
+	}
+	else {
+	    if(defined $opt_similarity) {
+		if(exists $UmlsCuiHash{$abstractId}{$cui}) {
+		    if($UmlsCuiSimilarity{$cui} > 0.5) {
+			print TEST "1,";
+		    } else { print TEST "0,"; }
+		} else { print TEST "0,"; }
+	    }
+	    elsif(defined $opt_freq) {
+		(exists $UmlsCuiHash{$abstractId}{$cui}) ?
+		    print TRAIN "$UmlsCuiFreq{$cui}," : print TRAIN "0,";
+	    }
+	    else {
+		(exists $UmlsCuiHash{$abstractId}{$cui}) ?
+		    print TRAIN "1," : print TRAIN "0,";
+	    }
+	}
+    }
+}
+
+##############################################################################
+#  print instance ngram information
+##############################################################################
+sub printNgramInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+    
+    foreach my $ngram (sort {$NgramKey{$a}<=>$NgramKey{$b}} keys %NgramKey) {
+	
+	if($testInstance=~/yes/) {
+	    if(defined $opt_similarity) {
+		if(exists $NgramHash{$abstractId}{$ngram}) {
+		    if($NgramSimilarity{$ngram} > 0.5) {
+			print TEST "1,";
+		    } else { print TEST "0,"; }
+		} else { print TEST "0,"; }
+	    }
+	    elsif(defined $opt_freq) {
+		(exists $NgramHash{$abstractId}{$ngram}) ? 
+		    print TEST "$NgramFreq{$ngram}," : print TEST "0,";
+	    }
+	    else {
+		(exists $NgramHash{$abstractId}{$ngram}) ? 
+		    print TEST "1," : print TEST "0,";
+	    }
+	}
+	else {
+	    if(defined $opt_similarity) {
+		if(exists $NgramHash{$abstractId}{$ngram}) {
+		    if($NgramSimilarity{$ngram} > 0.5) {
+			print TEST "1,";
+		    } else { print TEST "0,"; }
+		} else { print TEST "0,"; }
+	    }
+	    elsif(defined $opt_freq) {
+		(exists $NgramHash{$abstractId}{$ngram}) ? 
+		    print TRAIN "$NgramFreq{$ngram}," : print TRAIN "0,";
+	    }
+	    else {
+		(exists $NgramHash{$abstractId}{$ngram}) ? 
+		    print TRAIN "1," : print TRAIN "0,";
+	    }
+	}
+    }
+}
+
+
+##############################################################################
+#  print instance mesh information
+##############################################################################
+sub printMeshInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+    
+    foreach my $mesh (sort {$MeshKey{$a}<=>$MeshKey{$b}} keys %MeshKey) {
+	
+	if($testInstance=~/yes/) {
+	    (exists $MeshHash{$abstractId}{$mesh}) ? 
+		print TEST "1," : print TEST "0,";
+	}
+	else {
+	    (exists $MeshHash{$abstractId}{$mesh}) ? 
+		print TRAIN "1," : print TRAIN "0,";
+	}
+    }
+}
+
+##############################################################################
+#  print instance mmi information
+##############################################################################
+sub printMmiInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+    
+    foreach my $cui (sort {$MmiKey{$a}<=>$MmiKey{$b}} keys %MmiKey) {
+	
+	if($testInstance=~/yes/) {
+	    (exists $MmiHash{$abstractId}{$cui}) ? 
+		print TEST "1," : print TEST "0,";
+	}
+	else {
+	    (exists $MmiHash{$abstractId}{$cui}) ? 
+		print TRAIN "1," : print TRAIN "0,";
+	}
+    }
+}
+
+##############################################################################
+#  print instance relation information
+##############################################################################
+sub printRelationInformation {
+    
+    my $tw           = shift;
+    my $abstractId   = shift;
+    my $testInstance = shift;
+
+    foreach my $rel (sort {$SemanticRelationKey{$a}<=>$SemanticRelationKey{$b}} 
+		     keys %SemanticRelationKey) {
+	
+	
+	if($testInstance=~/yes/) {
+	    (exists $SemanticRelationHash{$abstractId}{$rel}) ? 
+		print TEST "1," : print TEST "0,";
+	}
+	else {
+	    (exists $SemanticRelationHash{$abstractId}{$rel}) ?
+		print TRAIN "1," : print TRAIN "0,"; 
+	    }
+    }
+}
+
+##############################################################################
+#  print the data for a specified instance
+##############################################################################
+sub printData
+{
+    my $abstractId   = shift;
+    my $testInstance = shift;
+
+    my $tw = $TargetWord{$abstractId};
+
+    if($testInstance=~/yes/) {
+	print ORDER "$abstractId\n";
+    }
+        
+    if(defined $opt_head) {
+	&printHeadInformation($tw, $abstractId, $testInstance);
+    }
+    
+    if(defined $opt_pos) {
+	&printPosInformation($tw, $abstractId, $testInstance);
+    }
+    
+    if(defined $opt_stcount) {
+	&printStInformation($tw, $abstractId, $testInstance);
+    }    
+       
+    if(defined $opt_cuicount) {
+	&printCuiInformation($tw, $abstractId, $testInstance);
+	
+    }
+    
+    if(defined $opt_ngramcount) {
+	&printNgramInformation($tw, $abstractId, $testInstance);
+    }
+
+    if(defined $opt_mesh) {
+	&printMeshInformation($tw, $abstractId, $testInstance);
+    }
+
+    if(defined $opt_mmi) {
+	&printMmiInformation($tw, $abstractId, $testInstance);
+    }
+
+    if(defined $opt_relation) {
+	&printRelationInformation($tw, $abstractId, $testInstance); 
+    }
+    	    
+    if($testInstance=~/yes/) {
+	if(defined $opt_key) {
+	    print TEST "$KeyHash{$abstractId} % $abstractId\n";
+	} 
+	elsif(defined $opt_nokey) {
+	    print TEST "? % $abstractId\n";
+	}
+	else {
+	    print TEST "$TargetWordSense{$abstractId} % $abstractId\n"; 
+	}
+    }
+    else {
+	print TRAIN "$TargetWordSense{$abstractId} % $abstractId\n"; 
+    }
+}
+
+##############################################################################
+#  function to create a timestamp
+##############################################################################
+sub time_stamp {
+    my ($stamp);
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
+
+    $year += 1900;
+    $mon++;
+    $d = sprintf("%4d%2.2d%2.2d",$year,$mon,$mday);
+    $t = sprintf("%2.2d%2.2d%2.2d",$hour,$min,$sec);
+    
+    $stamp = $d . $t;
+
+    #return($stamp);
+
+    return (rand());
+
+}
+
+##############################################################################
+#  function to output minimal usage notes
+##############################################################################
+sub minimalUsageNotes {
+    
+    print STDERR "Usage: mm2arff.pl [OPTIONS] DESTINATION SOURCE\n";
+    askHelp();
+}
+
+##############################################################################
+#  function to output help messages for this program
+##############################################################################
+sub showHelp() {
+
+    print "Usage: mm2arff.pl [OPTIONS] DESTINATION SOURCE\n\n";
+    
+    print "Takes as input CuiTools xml-like .mm format and extracts\n";
+    print "specified features based on the following options and outputs\n";
+    print "an arff format file to be used by the WEKA data mining package\n\n";
+
+    print "TRAINING/TESTING OPTIONS:\n\n";
+
+    print "--test                     This option allows for arff files to be \n";
+    print "                           created for both the test data and the \n";
+    print "                           training data. The features for this will\n";
+    print "                           only be extracted from the test data\n\n";
+
+    
+    print " --key FILE                Key file contain the tags to the instances\n";
+    print "                           in the test file\n\n";
+
+    print "--nokey                    There is no key for the test data\n";
+
+
+    print "FEATURES:\n\n";
+
+    print "--pos                      Part of speech of the words surrounding\n";
+    print "                           the target word\n\n";
+    
+    print "--head                     Whether the target word is the head word\n";
+    print "                           of its phrase\n\n";
+
+    print "--ngramcount \"OPTIONS\"   Words in the same context as the target\n";
+    print "                           word and any additional options to be passed\n";
+    print "                           to count.pl program.\n\n";
+
+    print "--ngrammeasure \"OPTIONS\" Measure of assocation used by the statistic.pl\n";
+    print "                           program for feature selection. Used with the\n";
+    print "                           --ngramcount option\n\n";
+
+    print "--ngramstat \"OPTIONS\"    Options to be passed to the statistic.pl \n";
+    print "                           program for feature selection\n\n";
+
+    print "--cuicount \"OPTIONS\"     Words in the same context as the target\n";
+    print "                           word and any additional options to be passed\n";
+    print "                           to count.pl program.\n\n";
+
+    print "--cuimeasure \"OPTIONS\"   Measure of assocation used by the statistic.pl\n";
+    print "                           program for feature selection. Used with the\n";
+    print "                           --cuicount option\n\n";
+
+    print "--cuistat \"OPTIONS\"      Options to be passed to the statistic.pl \n";
+    print "                           program for feature selection\n\n";
+
+    print "--firstranked              The first CUI in the set of one or more CUIs\n";
+    print "                           found in the mapping (that have the highest\n";
+    print "                           MTI score) Note: The default is to use all of\n";
+    print "                           them\n\n"; 
+
+    print "--conflatedcuis            Combine all the CUIS in the set of one or more \n";
+    print "                           CUIs found in the mapping into one sorted string \n";
+    print "                           and use the string as a feature\n\n";
+
+    print "--stcount \"OPTIONS\"      Words in the same context as the target\n";
+    print "                           word and any additional options to be passed\n";
+    print "                           to count.pl program.\n\n";
+
+    print "--stmeasure \"OPTIONS\"    Measure of assocation used by the statistic.pl\n";
+    print "                           program for feature selection. Used with the\n";
+    print "                           --stcount option\n\n";
+
+    print "--ststat \"OPTIONS\"       Options to be passed to the statistic.pl \n";
+    print "                           program for feature selection\n\n";
+
+    print "--nspconfig FILE           the --ngramcount, --ngrammeasure and --ngramstat\n";
+    print "                           options (as well as the corresponding cui and st)\n";
+    print "                           can be passed through a config file. See perldoc\n";
+    print "                           for more information\n";
+
+    print "--relation FILE            The semantic relations between the semantic\n";
+    print "                           types of the target word and the semantic \n";
+    print "                           types of the words in the same context as \n";
+    print "                           the target word\n\n";
+
+    print "--mesh                     Uses the MeSH terms assigned to the abstract\n";
+    print "                           containing the target word\n\n";
+
+    print "--mmi                     Uses the Mmi terms assigned to the abstract\n";
+    print "                           containing the target word\n\n";
+
+    print "FEATURE OPTIONS:\n\n";
+
+    print "--punc                     Removes punctuation in for the ngramcount option\n\n";
+
+    print "--lc                       Lowercases all the words for the ngramcount option\n\n";
+
+    print "--phrase                   Context is the phrase that contains the \n";
+    print "                           target word\n\n";
+    
+    print "--sentence                 Context is the sentence that contains the\n";
+    print "                           target word\n\n";
+    
+    print "--line                     Context is the complete context line. \n";
+    print "                           DEFAULT\n\n";
+
+    print "--binary                   Uses a binary indicator to represent whether a \n";
+    print "                           feature exists. DEFAULT\n\n";
+
+    print "--freq                     Uses the frequency count of a feature to represent\n";
+    print "                           its existance in the learning algorithm.\n\n";
+
+    print "--stop FILE                Stoplist for the count.pl program. This can also\n";
+    print "                           be added in the --ngramcount option but I wanted \n";
+    print "                           to add it here as well in case people were not as \n";
+    print "                           familiar with NSP.\n\n";
+
+    print "--idfstop DIR              Directory containing the idf stoplists for each of \n";
+    print "                           the target words.\n\n"; 
+
+    print "PROGRAM OPTIONS:\n\n";
+
+    print "--debug                    Sets the debug option on\n";
+
+    print "--log DIRECTORY            Directory to contain log files.\n";
+    print "                           DEFAULT: plain2mm.log\n\n";
+
+    print "--version                  Prints the version number\n\n";
+ 
+    print "--help                     Prints this help message.\n\n";
+}
+
+##############################################################################
+#  function to output the version number
+##############################################################################
+sub showVersion {
+        print '$Id: mm2arff.pl,v 1.45 2014/11/17 21:54:52 btmcinnes Exp $';
+        print "\nCopyright (c) 2007, Ted Pedersen & Bridget McInnes\n";
+}
+
+##############################################################################
+#  function to output "ask for help" message when user's goofed
+##############################################################################
+sub askHelp {
+    print STDERR "Type mm2arff.pl --help for help.\n";
+}
+    

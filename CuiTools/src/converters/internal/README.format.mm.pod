@@ -1,0 +1,179 @@
+=head1 NAME 
+
+README.format.mm.pod
+
+=head1 SYNOPSIS
+
+This file briefly describes the .mm format used by the CuiTools package.
+
+=head1 THE .mm FORMAT
+
+The .mm format is the xml-like format that is used by the CuiTools package.
+
+The complete context is displayed in the <context line="<context>"/> tags. 
+
+The sentences in the context are broken up and displayed in the <sentence 
+tw="<target word, if exists in the sentence>" instance="<id>" line="<sentence>" 
+tags. There may be more than one sentence per context and the sentence id may 
+or may not be available.
+
+The sentences are broken up and displayed in the <phrase tw="<target word, 
+if exists in the phrase>" hw="<head word of the phrase>" line="<phrase>"/> 
+tags. There is more than one phrase associated with a single sentence. 
+The "tw" contain the target word if it exists in the phrase.
+
+The phrases are then broken up into their individual words using the 
+<token word="<word>" pos="<part of speech>" tags. If the word is the 
+target word then instead of "token" the tag will display "target". 
+Inside the token tags there may exist a mapping tag which contain 
+information from the National Library of Medicine's MetaMap Transfer 
+(MMTx) program. This information includes the concept unique identifiers 
+(CUIs) associated with that token. A mapping tag would look as such: 
+
+<mapping rank="<rank>" score="<score>" umls_cui="<the UMLS concept unique identifier>" umls_concept="<UMLS concept>" semantic_types="<semantic types>"/>
+
+The CUIs associated with a token are assigned a score and are ranked based 
+on this score by MMTx. The mapping tag includes the rank and the score 
+information. The UMLS concept unique identifier is an ID, such as "C0003826", 
+indicating the the UMLS concept.  The UMLS concept is the written form of the 
+CUIs. The UMLS concept for cui "C0003826" is "Art". The semantic types are 
+the types that are associated with that cui such as "ocdi". There may exist 
+more than one semantic types, in which case they are comma separated. A complete 
+listing of semantic types can be found:
+	http://mmtx.nlm.nih.gov/semanticTypes.shtml.
+
+There may or may  not exist a mapping tag for each token/target tag.
+
+Example of .mm format for the context line: "Paul was name Art magazine's 
+top collector".
+
+<corpus lang='en'>
+
+  <lexelt item="art" senses="art">
+
+    <instance id="art.30002" alias="art">
+
+      <answer instance="art.30002" senseid="art"/>
+
+      <context line="Paul was name Art magazine's top collector"/>
+
+        <sentence tw="art" id="art.30002" line="Paul was name Art magazine's top collector">
+
+          <phrase tw="" head="" line="Paul">
+
+            <token word="paul" pos="noun">
+
+            </token>
+
+          </phrase>
+
+          <phrase tw="" head="" line="was">
+
+            <token word="was" pos="aux">
+
+            </token>
+
+          </phrase>
+
+          <phrase tw="" head="name" line="name">
+
+            <token word="name" pos="verb">
+
+              <mapping rank="1" score="1000" umls_cui="C0027365" umls_concept="Name" semantic_types="idcn,inpr"/>
+
+              <mapping rank="2" score="966" umls_cui="C0233735" umls_concept="Naming" semantic_types="menp"/>
+
+            </token>
+
+          </phrase>
+
+          <phrase tw="art" head="magazine" line="Art magazine">
+
+            <target word="art" pos="noun">
+
+              <mapping rank="1" score="694" umls_cui="C0003826" umls_concept="Arts" semantic_types="ocdi"/>
+
+              <mapping rank="2" score="694" umls_cui="C0220786" umls_concept="Products of the Arts" semantic_types="mnob"/>
+
+              <mapping rank="3" score="694" umls_cui="C1140123" umls_concept="WHO Adverse Reaction Terminology" semantic_types="inpr"/>
+
+            </target>
+
+            <token word="magazine" pos="noun">
+
+              <mapping rank="1,2,3" score="861" umls_cui="C0162443" umls_concept="Magazines" semantic_types="inpr,mnob"/>
+
+            </token>
+
+          </phrase>
+
+          <phrase tw="" head="" line="''s">
+
+            <token word=" s" pos="aux">
+
+            </token>
+
+          </phrase>
+
+          <phrase tw="" head="collector" line="top collector">
+
+            <token word="top" pos="noun">
+
+              <mapping rank="1" score="694" umls_cui="C1552827" umls_concept="Table Cell Vertical Align - top" semantic_types="spco"/>
+
+              <mapping rank="2" score="694" umls_cui="C0000811" umls_concept="Termination of pregnancy" semantic_types="topp"/>
+
+              <mapping rank="3" score="661" umls_cui="C0076833" umls_concept="container tops" semantic_types="medd"/>
+
+            </token>
+
+            <token word="collector" pos="noun">
+
+              <mapping rank="1,2,3" score="827" umls_cui="C0180011" umls_concept="Collectors" semantic_types="medd"/>
+
+            </token>
+
+          </phrase>
+
+        </sentence>
+
+    </instance>
+
+  </lexelt>
+
+</corpus>
+
+=head1 AUTHOR
+
+Bridget McInnes, University of Minnesota, Twin Cities
+
+=head1 COPYRIGHT
+
+Copyright (c) 2007-2011,
+
+ Ted Pedersen, University of Minnesota, Duluth.
+ tpederse at umn.edu
+
+ Bridget McInnes, University of Minnesota, Twin Cities
+ bthomson at cs.umn.edu
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to
+
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.
+
+=cut 
+
+
+

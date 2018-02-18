@@ -1,0 +1,23 @@
+line-n.w8_036:2056: \s(<[^>]*>)*computers(<[^>]*>)*\s
+line-n.w8_036:2056: \s(<[^>]*>)*connect(<[^>]*>)*\s
+line-n.w8_036:2056: \s(<[^>]*>)*network(<[^>]*>)*\s
+line-n.w8_036:2056: \s(<[^>]*>)*communication(<[^>]*>)*\s
+line-n.art} aphb 08800556: \s(<[^>]*>)*service(<[^>]*>)*\s
+line-n.art} aphb 08800556: \s(<[^>]*>)*communication(<[^>]*>)*\s
+line-n.w9_40:5727: \s(<[^>]*>)*page(<[^>]*>)*\s
+line-n.w9_40:5727: \s(<[^>]*>)*words(<[^>]*>)*\s
+line-n.w8_032:6138: \s(<[^>]*>)*blank(<[^>]*>)*\s
+line-n.w8_032:6138: \s(<[^>]*>)*read(<[^>]*>)*\s
+line-n.w9_35:11120: \s(<[^>]*>)*market(<[^>]*>)*\s
+line-n.w9_35:11120: \s(<[^>]*>)*profit(<[^>]*>)*\s
+line-n.w8_120:14831: \s(<[^>]*>)*computers(<[^>]*>)*\s
+line-n.w8_120:14831: \s(<[^>]*>)*customers(<[^>]*>)*\s
+line-n.w8_120:14831: \s(<[^>]*>)*communication(<[^>]*>)*\s
+line-n.w8_120:14831: \s(<[^>]*>)*firm(<[^>]*>)*\s
+line-n.w8_066:17112: \s(<[^>]*>)*connect(<[^>]*>)*\s
+line-n.w8_066:17112: \s(<[^>]*>)*service(<[^>]*>)*\s
+line-n.w8_066:17112: \s(<[^>]*>)*public(<[^>]*>)*\s
+line-n.w8_066:17112: \s(<[^>]*>)*network(<[^>]*>)*\s
+line-n.w7_092:15481: \s(<[^>]*>)*print(<[^>]*>)*\s
+line-n.art7} aphb 54100155: \s(<[^>]*>)*blank(<[^>]*>)*\s
+line-n.art7} aphb 54100155: \s(<[^>]*>)*read(<[^>]*>)*\s

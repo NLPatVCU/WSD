@@ -1,0 +1,12 @@
+Changes made in CuiTools version 0.25 during version 0.27
+
+Bridget McInnes  bthomson@cs.umn.edu
+Ted Pedersen 	 tpederse@umn.edu
+
+University of Minnesota 
+
+(1) modified how the target words are found in the prolog2mm conversion
+    program. 
+
+(Changelog-v0.25to0.27 Last Updated on 11/31/2010 by Bridget)
+

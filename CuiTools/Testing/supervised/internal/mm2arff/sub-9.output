@@ -1,0 +1,8 @@
+@RELATION art
+@ATTRIBUTE head NUMERIC
+@ATTRIBUTE Sense {art,art_gallery}
+@DATA
+1,art % art.40001
+0,art_gallery % art.40002
+1,art % art.40004
+1,art % art.40005

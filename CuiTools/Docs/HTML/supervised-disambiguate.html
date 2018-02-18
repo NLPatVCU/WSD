@@ -1,0 +1,537 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>supervised-disambiguate.pl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#usage">USAGE</a></li>
+	<li><a href="#input">INPUT</a></li>
+	<ul>
+
+		<li><a href="#required_arguments_">Required Arguments:</a></li>
+		<ul>
+
+			<li><a href="#source">SOURCE</a></li>
+			<li><a href="#supervised_data_options__">SUPERVISED DATA OPTIONS :</a></li>
+			<ul>
+
+				<li><a href="#__wekacv_number">-wekacv NUMBER</a></li>
+				<li><a href="#__cv_number">-cv NUMBER</a></li>
+				<li><a href="#__seed_number">-seed NUMBER</a></li>
+				<li><a href="#__test_file">-test FILE</a></li>
+				<li><a href="#__nokey">-nokey</a></li>
+				<li><a href="#__key_file">-key FILE</a></li>
+				<li><a href="#__split_number">-split NUMBER</a></li>
+			</ul>
+
+			<li><a href="#feature_options__">FEATURE OPTIONS :</a></li>
+			<ul>
+
+				<li><a href="#__pos">-pos</a></li>
+				<li><a href="#__head">-head</a></li>
+				<li><a href="#__mesh">-mesh</a></li>
+				<li><a href="#__mmi_score">-mmi SCORE</a></li>
+				<li><a href="#__ngramcount_options">-ngramcount &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__ngrammeasure_options">-ngrammeasure &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__ngramstat_options">-ngramstat &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__cuicount_options">-cuicount &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__cuimeasure_options">-cuimeasure &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__cuistats_options">-cuistats &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__firstranked">-firstranked</a></li>
+				<li><a href="#__conflatedcuis">-conflatedcuis</a></li>
+				<li><a href="#__stcount_options">-stcount &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__stmeasure_options">-stmeasure &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__ststats_options">-ststats &quot;OPTIONS&quot;</a></li>
+				<li><a href="#__nspconfig_file">-nspconfig FILE</a></li>
+				<li><a href="#__relation">-relation</a></li>
+				<li><a href="#__punc">-punc</a></li>
+				<li><a href="#__phrase">-phrase</a></li>
+				<li><a href="#__sentence">-sentence</a></li>
+				<li><a href="#__line">-line</a></li>
+				<li><a href="#__stop_file">-stop FILE</a></li>
+			</ul>
+
+			<li><a href="#weka_options_">WEKA OPTIONS:</a></li>
+			<ul>
+
+				<li><a href="#__weka">-weka</a></li>
+				<li><a href="#__wekaparams_parameters">-wekaparams PARAMETERS</a></li>
+				<li><a href="#__javaparams_parameters">-javaparams PARAMETERS</a></li>
+			</ul>
+
+			<li><a href="#program_options_">PROGRAM OPTIONS:</a></li>
+			<ul>
+
+				<li><a href="#__debug">-debug</a></li>
+				<li><a href="#__directory">-directory</a></li>
+				<li><a href="#__confidence">-confidence</a></li>
+				<li><a href="#__binary">-binary</a></li>
+				<li><a href="#__freq">-freq</a></li>
+			</ul>
+
+			<li><a href="#help_options_">HELP OPTIONS:</a></li>
+			<ul>
+
+				<li><a href="#__help">-help</a></li>
+				<li><a href="#__version">-version</a></li>
+			</ul>
+
+		</ul>
+
+	</ul>
+
+	<li><a href="#output">OUTPUT</a></li>
+	<li><a href="#program_requirements">PROGRAM REQUIREMENTS</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>supervised-disambiguate</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>This is a wrapper program for supervised, unsupervised and 
+semi-supervised word sense disambiguation using CuiTools 
+programs.</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The program takes as input the data set (SOURCE) which 
+can either be a directory containing files in the CuiTools 
+xml-like format or a single file in the CuiTools xml-like 
+format and returns the results stored in a directory 
+(DESTINATION).</p>
+<p>The program extracts specified features based on the user 
+defined options options and outputs arff formatted text to 
+be used by the WEKA data mining package for supervised word 
+sense disambiguation.</p>
+<p>
+</p>
+<hr />
+<h1><a name="usage">USAGE</a></h1>
+<p>perl supervised-disambiguate.pl [OPTIONS] SOURCE</p>
+<p>
+</p>
+<hr />
+<h1><a name="input">INPUT</a></h1>
+<p>
+</p>
+<h2><a name="required_arguments_">Required Arguments:</a></h2>
+<p>
+</p>
+<h3><a name="source">SOURCE</a></h3>
+<p>A directory containing the CuiTools xml-like .mm formatted 
+training file(s) or a single file in the CuiTools xml-like
+.mm format.</p>
+<p>head2 Optional Arguments:</p>
+<p>
+</p>
+<h3><a name="supervised_data_options__">SUPERVISED DATA OPTIONS :</a></h3>
+<p>
+</p>
+<h4><a name="__wekacv_number">--wekacv NUMBER</a></h4>
+<p>This will perform NUMBER-fold cross validation on the training 
+data using the cross validation in the WEKA data mining package.</p>
+<p>NOTE: This is also the default option. If neither --test or 
+--split or --cv are specified, 10-fold cross validation will 
+be performed.</p>
+<p>
+</p>
+<h4><a name="__cv_number">--cv NUMBER</a></h4>
+<p>With weka (--wekacv option) the features are identified from 
+all of the X folds, one of which is the test fold. In --cv, 
+the features are identified from only the X-1 training folds, 
+where the test fold is held out of feature identification.</p>
+<p>
+</p>
+<h4><a name="__seed_number">--seed NUMBER</a></h4>
+<p>This is used with the --cv option in order to seed the 
+random number generator for the cross validation</p>
+<p>Default: --seed 1</p>
+<p>
+</p>
+<h4><a name="__test_file">--test FILE</a></h4>
+<p>The program will train on the complete training data and test on 
+a given test data FILE.</p>
+<p>
+</p>
+<h4><a name="__nokey">--nokey</a></h4>
+<p>The test data does not contain the sense tags. The id and 
+sense tag assigned by the classifier will be in the file, 
+test.answers, in the log directory. This This option can 
+only be used with the --test option.</p>
+<p>
+</p>
+<h4><a name="__key_file">--key FILE</a></h4>
+<p>The program will obtain the answers to the given test file from the 
+key file. The key file is expected to be in the same format as the 
+Senseval-2 key file.</p>
+<pre>
+    Example:</pre>
+<pre>
+   art art.40003 pop_art%1:06:00::
+    
+    &lt;target word&gt; &lt;instance id&gt; &lt;sense&gt;</pre>
+<p>
+</p>
+<h4><a name="__split_number">--split NUMBER</a></h4>
+<p>This option will split the training data into two sections. The 
+NUMBER specifies the percentage of the training data that will 
+be put aside for testing if the --test option is set. 
+Example: --split 25 
+    25% of the data will be used to test the algorithm and 
+    75% of the data will be used to train.</p>
+<p>
+</p>
+<h3><a name="feature_options__">FEATURE OPTIONS :</a></h3>
+<p>If no feature option is chosen, the default feature setting 
+is used:</p>
+<pre>
+    --ngramcount &quot;--ngram 1 --frequency 2&quot;</pre>
+<p>If no feature option is chosen, the default is as follows:
+    --ngramcount &quot;--ngram 1 --frequency 2&quot;</p>
+<p>
+</p>
+<h4><a name="__pos">--pos</a></h4>
+<p>The part of speech of the target word</p>
+<p>
+</p>
+<h4><a name="__head">--head</a></h4>
+<p>Whether the target word is the head word of its phrase.</p>
+<p>
+</p>
+<h4><a name="__mesh">--mesh</a></h4>
+<p>Uses the MeSH terms assigned to the abstract containing the 
+target word as features</p>
+<p>
+</p>
+<h4><a name="__mmi_score">--mmi SCORE</a></h4>
+<p>Uses the CUIs whose MMI score is greater than SCORE</p>
+<p>
+</p>
+<h4><a name="__ngramcount_options">--ngramcount &quot;OPTIONS&quot;</a></h4>
+<p>The words surrounding the target word as features</p>
+<p>The Ngram Statistic Package (NSP) count.pl program is used to obtain 
+the counts. The options specify any additional options to be passed 
+to count.pl program.</p>
+<pre>
+  Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</pre>
+<p>Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.</p>
+<p>
+</p>
+<h4><a name="__ngrammeasure_options">--ngrammeasure &quot;OPTIONS&quot;</a></h4>
+<p>Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --ngramstat option to perform feature selection for the 
+--ngramcount option</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__ngramstat_options">--ngramstat &quot;OPTIONS&quot;</a></h4>
+<p>Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__cuicount_options">--cuicount &quot;OPTIONS&quot;</a></h4>
+<p>Unified Medical Language System (UMLS) Concept Unique Identifiers 
+(CUIs) of the words surrounding the target word.</p>
+<p>The Ngram Statistic Package (NSP) is used to obtain the counts.</p>
+<p>The options specify any additional options to be passed to count.pl
+program.</p>
+<pre>
+  Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</pre>
+<p>Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.</p>
+<p>
+</p>
+<h4><a name="__cuimeasure_options">--cuimeasure &quot;OPTIONS&quot;</a></h4>
+<p>Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --cuistat option to perform feature selection for the 
+--cuicount option</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__cuistats_options">--cuistats &quot;OPTIONS&quot;</a></h4>
+<p>Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__firstranked">--firstranked</a></h4>
+<p>The first CUI in the set of one or more CUIs found in the mapping 
+(that have the highest MTI score) is used as the feature rather 
+than all of them (which is the default).</p>
+<p>
+</p>
+<h4><a name="__conflatedcuis">--conflatedcuis</a></h4>
+<p>Combine all the CUIS in the set of one or more CUIs found in the 
+mapping into one sorted string and use the string as a feature</p>
+<p>
+</p>
+<h4><a name="__stcount_options">--stcount &quot;OPTIONS&quot;</a></h4>
+<p>The words surrounding the target word as features</p>
+<p>The Ngram Statistic Package (NSP) count.pl program is used to obtain 
+the counts. The options specify any additional options to be passed 
+to count.pl program.</p>
+<pre>
+  Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</pre>
+<p>Note: If the --sentence option is defined, the surrounding 
+words will come from the sentence that contains the target 
+word. If the --phrase option is defined, the surrounding owrds 
+will come only from the phrase that contains the target word. 
+Otherwise they come from the abstract.</p>
+<p>
+</p>
+<h4><a name="__stmeasure_options">--stmeasure &quot;OPTIONS&quot;</a></h4>
+<p>Specifies a measure of association to be used with the statistic.pl 
+program in the Ngram Statistics Package which is used in combination 
+with the --ststat option to perform feature selection for the 
+--stcount option</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__ststats_options">--ststats &quot;OPTIONS&quot;</a></h4>
+<p>Specifies any additional options to be passed to statistic.pl program 
+when using --ngramcount and --ngrammeasure options</p>
+<p>Note: All the options must be within double quotes, as
+      would be passed to the program at command line.</p>
+<p>
+</p>
+<h4><a name="__nspconfig_file">--nspconfig FILE</a></h4>
+<p>This is can be used in replace of or in conjunction with the 
+ngramcount, ngrammeasure, ngramstat, cuicount, cuimeasure, 
+cuistat, stcount, stmeasure and ststat options. It allows 
+for multiple instances of ngramcount, cuicount and stcount 
+to be called in order to allow for multiple ngrams to be 
+used as features.</p>
+<p>An example of the format required for the configuration 
+file is as follows:</p>
+<p>ngramcount::
+count:: --ngram 3 --remove 3
+statistic:: ll.pm --score 3.841</p>
+<p>ngramcount::
+count:: --ngram 2 --remove 1</p>
+<p>cuicount::
+count:: --ngram 2 --remove 3
+statistic:: ll.pm --score 3.841</p>
+<p>stcount::
+count:: --ngram 1 --remove 3</p>
+<p>
+</p>
+<h4><a name="__relation">--relation</a></h4>
+<p>The semantic relation of the semantic type of the target word and 
+the semantic types s of the words surrounding the target word. 
+The relations are read in from a file which is located in the 
+'default_options' directory. The name of the file is called 
+'relation'. The relations comes from the UMLS 2007AC documentation.</p>
+<p>If you would like to provide your own, the format of the file 
+is as follows:</p>
+<pre>
+    semantic_type relation semantic_type</pre>
+<p>where each semantic type pair and relation are on their own line.</p>
+<p>For example:</p>
+<pre>
+    acab affects virs
+    acab affects vtbt
+    acap affects rept
+    ...</pre>
+<p>
+</p>
+<h4><a name="__punc">--punc</a></h4>
+<p>Removes punctuation in the --unigram, --term, --bigram or 
+--trigram options</p>
+<p>
+</p>
+<h4><a name="__phrase">--phrase</a></h4>
+<p>The context considered is only the features that are in the 
+same phrase as the target word. The phrases are identified 
+by MetaMap.</p>
+<p>Note: If the phrase option is set then the --sentence and 
+--line options need to be off.</p>
+<p>
+</p>
+<h4><a name="__sentence">--sentence</a></h4>
+<p>The context considered is only the features that are in the 
+same sentence as the target word.</p>
+<p>Note: If the sentence option is set then the --phrase and 
+--line options need to be off.</p>
+<p>
+</p>
+<h4><a name="__line">--line</a></h4>
+<p>The context considered is the features that are in the 
+the complete line as defined by the .mm file as the 
+target word.</p>
+<p>Note: If the line option is set then the --sentence and 
+--phrase options need to be off.</p>
+<p>Note: This is the default option.</p>
+<p>
+</p>
+<h4><a name="__stop_file">--stop FILE</a></h4>
+<p>Stoplist for the count.pl program. This can also be added in 
+the --ngramcount option but I wanted to add it here as well 
+in case people were not as familiar with NSP.</p>
+<p>This is the directory that contains the idf stoplists for 
+each of the target words. The directory should contain 
+a file called:</p>
+<pre>
+     &lt;target word&gt;.idf.stop</pre>
+<p>foreach target word file.</p>
+<p>
+</p>
+<h3><a name="weka_options_">WEKA OPTIONS:</a></h3>
+<p>
+</p>
+<h4><a name="__weka">--weka</a></h4>
+<p>The weka machine learning algorithm that you would like to 
+run the feature set on. The program is expecting the java 
+command that would be used to run weka.</p>
+<p>Default:</p>
+<p>weka.classifiers.bayes.NaiveBayes</p>
+<p>
+</p>
+<h4><a name="__wekaparams_parameters">--wekaparams PARAMETERS</a></h4>
+<p>Option so that the user can directly pass weka parameters through the 
+command line</p>
+<p>The main reason we added this was to allow for the -s NUM option to 
+be  used. This option sets the random number seed for cross-validation. 
+Its default is 1.</p>
+<p>
+</p>
+<h4><a name="__javaparams_parameters">--javaparams PARAMETERS</a></h4>
+<p>Option so that the user can directly pass java parameters through the 
+command line</p>
+<p>
+</p>
+<h3><a name="program_options_">PROGRAM OPTIONS:</a></h3>
+<p>
+</p>
+<h4><a name="__debug">--debug</a></h4>
+<p>Sets the debug option</p>
+<p>
+</p>
+<h4><a name="__directory">--directory</a></h4>
+<p>The prefix that the directories for the weka, arff, results and log files.</p>
+<p>Default: &lt;timestamp&gt;.dir</p>
+<p>Therefore the weka files would be located in &lt;timestamp&gt;.dir.weka.,
+the arff files would be located in &lt;timestamp&gt;.dir.arff, results 
+in the &lt;timestamp&gt;.dir.results and log files in the &lt;timestamp&gt;.dir.log.</p>
+<p>
+</p>
+<h4><a name="__confidence">--confidence</a></h4>
+<p>Print out the confidence values with the accuracy</p>
+<p>
+</p>
+<h4><a name="__binary">--binary</a></h4>
+<p>Uses a binary indicator to represent whether a feature exists. DEFAULT</p>
+<p>
+</p>
+<h4><a name="__freq">--freq</a></h4>
+<p>Uses the frequency count of a feature to represent its existance.</p>
+<p>
+</p>
+<h3><a name="help_options_">HELP OPTIONS:</a></h3>
+<p>
+</p>
+<h4><a name="__help">--help</a></h4>
+<p>Displays the quick summary of program options.</p>
+<p>
+</p>
+<h4><a name="__version">--version</a></h4>
+<p>Displays the version information.</p>
+<p>
+</p>
+<hr />
+<h1><a name="output">OUTPUT</a></h1>
+<p>supervised-disambiguate.pl creates two directories. One containing the 
+arff files and the other containing the weka files. In the weka directory, 
+the overall averages are stored in the OverallAverage file.</p>
+<p>
+</p>
+<hr />
+<h1><a name="program_requirements">PROGRAM REQUIREMENTS</a></h1>
+<ul>
+<li><strong><a name="perl" class="item">Perl (version 5.8.5 or better) - <a href="http://www.perl.org">http://www.perl.org</a></a></strong>
+
+</li>
+<li><strong><a name="text_nsp_http_search_cpan_org_dist_text_nsp" class="item">Text::NSP - <a href="http://search.cpan.org/dist/Text-NSP">http://search.cpan.org/dist/Text-NSP</a></a></strong>
+
+</li>
+<li><strong><a name="weka_data_mining_package_http_sourceforge_net_projects_weka" class="item">WEKA data mining package - <a href="http://sourceforge.net/projects/weka/">http://sourceforge.net/projects/weka/</a></a></strong>
+
+</li>
+</ul>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<pre>
+ Bridget T. McInnes, University of Minnesota</pre>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007,</p>
+<pre>
+ Bridget T. McInnes, University of Minnesota
+ bthomson at cs.umn.edu
+    
+    Ted Pedersen, University of Minnesota Duluth
+    tpederse at d.umn.edu</pre>
+<p>This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with
+this program; if not, write to</p>
+<pre>
+ The Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330,
+ Boston, MA  02111-1307, USA.</pre>
+
+</body>
+
+</html>

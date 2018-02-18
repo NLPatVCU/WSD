@@ -1,0 +1,16 @@
+<corpus lang="english">
+<lexelt item="LEXELT">
+<instance id="C0456081">
+<answer instance="C0456081" senseid="M1"/>
+<context>
+<head>Adjustment Action</head> 
+</context>
+</instance>
+<instance id="C0683269">
+<answer instance="C0683269" senseid="M2"/>
+<context>
+<head>Psychological adjustment</head> Awareness of oneself in relation to time, place and person. A mechanism of information stimulus and response that may control subsequent behavior, cognition, perception, or performance. (From APA Thesaurus of Psychological Index Terms, 8th ed.) adaptive method of dealing with individual or environmental situations that involve psychologic or physiologic stress or threat. reactions to identifiable emotional stressors; adjustment may take place by adapting the self to the situation, or by changing the situation. studies concerned with the emotional, cognitive, attitudinal, social and intellectual changes when diagnosed with cancer process; use also for family coping with cancer diagnosis. studies concerned with the emotional, cognitive, attitudinal, social and intellectual changes during the aging process; use for middle through old age and death. 
+</context>
+</instance>
+</lexelt>
+</corpus>

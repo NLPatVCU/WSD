@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>supervised-disambiguation.pl</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#supervised_disambiguation_pl">supervised-disambiguation.pl</a></li>
+	<li><a href="#unsupervised_disambiguation_pl">unsupervised-disambiguation.pl</a></li>
+	<li><a href="#word_clustering_flowchart">Word Clustering FlowChart</a></li>
+	<li><a href="#src_">src/</a></li>
+	<ul>
+
+		<li><a href="#supervised_wsd">Supervised WSD</a></li>
+		<ul>
+
+			<li><a href="#internal_code">Internal Code</a></li>
+			<ul>
+
+				<li><a href="#mm2arff_pl">mm2arff.pl</a></li>
+				<li><a href="#mm2plain_pl">mm2plain.pl</a></li>
+				<li><a href="#nlm2mm_pl">nlm2mm.pl</a></li>
+				<li><a href="#plain2prolog_pl">plain2prolog.pl</a></li>
+				<li><a href="#prolog2mm_pl">prolog2mm.pl</a></li>
+				<li><a href="#split_pl">split.pl</a></li>
+				<li><a href="#x_fold_pl">x-fold.pl</a></li>
+			</ul>
+
+			<li><a href="#external_code">External Code</a></li>
+			<ul>
+
+				<li><a href="#sval2plain_pl">sval2plain.pl</a></li>
+				<li><a href="#text2sval_pl">text2sval.pl</a></li>
+			</ul>
+
+		</ul>
+
+		<li><a href="#unsupervised_wsd">Unsupervised WSD</a></li>
+		<ul>
+
+			<li><a href="#internal_code">Internal Code</a></li>
+			<ul>
+
+				<li><a href="#create_vectors_pl">create-vectors.pl</a></li>
+				<li><a href="#mm2plain_pl">mm2plain.pl</a></li>
+			</ul>
+
+			<li><a href="#external_code">External Code</a></li>
+			<ul>
+
+				<li><a href="#nsp2regex_pl">nsp2regex.pl</a></li>
+				<li><a href="#order1vec_pl">order1vec.pl</a></li>
+				<li><a href="#preprocess_pl">preprocess.pl</a></li>
+				<li><a href="#text2sval_pl">text2sval.pl</a></li>
+			</ul>
+
+			<li><a href="#processing_code">Processing Code</a></li>
+			<ul>
+
+				<li><a href="#format_data_pl">format-data.pl</a></li>
+			</ul>
+
+		</ul>
+
+	</ul>
+
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#copyright">COPYRIGHT</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="supervised_disambiguation_pl">supervised-disambiguation.pl</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="unsupervised_disambiguation_pl">unsupervised-disambiguation.pl</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="word_clustering_flowchart">Word Clustering FlowChart</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="src_">src/</a></h1>
+<p>
+</p>
+<h2><a name="supervised_wsd">Supervised WSD</a></h2>
+<p>
+</p>
+<h3><a name="internal_code">Internal Code</a></h3>
+<p>
+</p>
+<h4><a name="mm2arff_pl">mm2arff.pl</a></h4>
+<p>
+</p>
+<h4><a name="mm2plain_pl">mm2plain.pl</a></h4>
+<p>
+</p>
+<h4><a name="nlm2mm_pl">nlm2mm.pl</a></h4>
+<p>
+</p>
+<h4><a name="plain2prolog_pl">plain2prolog.pl</a></h4>
+<p>
+</p>
+<h4><a name="prolog2mm_pl">prolog2mm.pl</a></h4>
+<p>
+</p>
+<h4><a name="split_pl">split.pl</a></h4>
+<p>
+</p>
+<h4><a name="x_fold_pl">x-fold.pl</a></h4>
+<p>
+</p>
+<h3><a name="external_code">External Code</a></h3>
+<p>
+</p>
+<h4><a name="sval2plain_pl">sval2plain.pl</a></h4>
+<p>
+</p>
+<h4><a name="text2sval_pl">text2sval.pl</a></h4>
+<p>
+</p>
+<h2><a name="unsupervised_wsd">Unsupervised WSD</a></h2>
+<p>
+</p>
+<h3><a name="internal_code">Internal Code</a></h3>
+<p>
+</p>
+<h4><a name="create_vectors_pl">create-vectors.pl</a></h4>
+<p>
+</p>
+<h4><a name="mm2plain_pl">mm2plain.pl</a></h4>
+<p>
+</p>
+<h3><a name="external_code">External Code</a></h3>
+<p>
+</p>
+<h4><a name="nsp2regex_pl">nsp2regex.pl</a></h4>
+<p>
+</p>
+<h4><a name="order1vec_pl">order1vec.pl</a></h4>
+<p>
+</p>
+<h4><a name="preprocess_pl">preprocess.pl</a></h4>
+<p>
+</p>
+<h4><a name="text2sval_pl">text2sval.pl</a></h4>
+<p>
+</p>
+<h3><a name="processing_code">Processing Code</a></h3>
+<p>
+</p>
+<h4><a name="format_data_pl">format-data.pl</a></h4>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<pre>
+ Bridget T McInnes
+ University of Minnesota Twin Cities
+ bthomson at cs.umn.edu
+ <a href="http://www.cs.umn.edu/~bthomson">http://www.cs.umn.edu/~bthomson</a></pre>
+<pre>
+ Ted Pedersen
+ University of Minnesota, Duluth
+ tpederse at d.umn.edu
+ <a href="http://www.d.umn.edu/~tpederse/">http://www.d.umn.edu/~tpederse/</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="copyright">COPYRIGHT</a></h1>
+<p>Copyright (c) 2007-2011</p>
+<pre>
+ Bridget T McInnes, University of Minnesota Twin Cities
+ bthomson at cs.umn.edu
+ Ted Pedersen, University of Minnesota, Duluth
+ tpederse at d.umn.edu</pre>
+<p>This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with
+this program; if not, write to</p>
+<p>The Free Software Foundation, Inc.,
+59 Temple Place - Suite 330,
+Boston, MA  02111-1307, USA.</p>
+
+</body>
+
+</html>
